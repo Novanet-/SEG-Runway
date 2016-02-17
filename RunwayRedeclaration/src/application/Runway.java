@@ -1,65 +1,44 @@
 package application;
 
-public class Runway {
-	private String name;
-	
-	/**
-	 * Take-Off Run Available
-	 */
-	double TORA;
-	
-	/**
-	 * Take-Off Distance Available
-	 */
-	double TODA;
-	
-	/**
-	 * Accelerate-Stop Distance Available
-	 */
-	double ASDA;
-	
-	/**
-	 * Landing Distance Available
-	 */
-	double LDA;
-	
-	public double getTORA() {
-		return TORA;
+import java.util.ArrayList;
+
+public class Runway
+{
+
+	private int runwayID;
+	private char alignment;
+	private RunwayParameters runwayParameters = new RunwayParameters();
+	private RunwayDetails runwayDetails = new RunwayDetails();
+	private ArrayList<Obstacle> obstacleArray;
+
+	public int getRunwayID()
+	{
+		return runwayID;
 	}
 
-	public void setTORA(double TORA) {
-		this.TORA = TORA;
+	public char getAlignment()
+	{
+		return alignment;
 	}
 
-	public double getTODA() {
-		return TODA;
+	public RunwayParameters getRunwayParameters()
+	{
+		return runwayParameters;
 	}
 
-	public void setTODA(double TODA) {
-		this.TODA = TODA;
+	public RunwayDetails getRunwayDetails()
+	{
+		return runwayDetails;
 	}
 
-	public double getASDA() {
-		return ASDA;
+	public ArrayList<Obstacle> getObstacles()
+	{
+		return obstacleArray;
 	}
 
-	public void setASDA(double ASDA) {
-		this.ASDA = ASDA;
+	public void addObstacle(Obstacle obstacle)
+	{
+		this.obstacleArray.add(obstacle);
 	}
 
-	public double getLDA() {
-		return LDA;
-	}
-
-	public void setLDA(double LDA) {
-		this.LDA = LDA;
-	}
-
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
 }

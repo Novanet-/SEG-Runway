@@ -1,28 +1,29 @@
 package application;
 
-public class Obstacle{
+public class Obstacle
+{
+
 	private String name;
 	private double height, width, length;
 
-
-	public String getName(){
+	public String getName()
+	{
 		return name;
 	}
 
-
-	public double getHeight(){
+	public double getHeight()
+	{
 		return height;
 	}
 
-	public double getWidth(){
+	public double getWidth()
+	{
 		return width;
 	}
 
-	public double getLength(){
+	public double getLength()
+	{
 		return length;
 	}
-
-
-
 
 }
