@@ -16,19 +16,9 @@ public class RunwayParameters
 		return TORA;
 	}
 
-	public void setTORA(double tORA)
-	{
-		TORA = tORA;
-	}
-
 	public double getTODA()
 	{
 		return TODA;
-	}
-
-	public void setTODA(double tODA)
-	{
-		TODA = tODA;
 	}
 
 	public double getASDA()
@@ -36,18 +26,9 @@ public class RunwayParameters
 		return ASDA;
 	}
 
-	public void setASDA(double aSDA)
-	{
-		ASDA = aSDA;
-	}
-
 	public double getLDA()
 	{
 		return LDA;
 	}
 
-	public void setLDA(double lDA)
-	{
-		LDA = lDA;
-	}
 }
