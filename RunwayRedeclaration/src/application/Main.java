@@ -20,6 +20,8 @@ public class Main extends Application
 			Scene scene = new Scene(page);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("FXML is Simple");
+			primaryStage.setMinWidth(1000);
+			primaryStage.setMinHeight(600);
 			primaryStage.show();
 		}
 		catch (Exception ex)
