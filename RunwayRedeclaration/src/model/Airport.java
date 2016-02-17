@@ -1,4 +1,4 @@
-package application;
+package model;
 
 public class Airport {
 	private String name;

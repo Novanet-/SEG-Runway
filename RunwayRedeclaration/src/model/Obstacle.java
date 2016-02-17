@@ -1,4 +1,4 @@
-package application;
+package model;
 
 public class Obstacle{
 	private String name;
