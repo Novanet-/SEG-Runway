@@ -136,12 +136,12 @@
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <children>
-                                          <Label layoutY="3.0" text="ASDA:" />
+                                          <Label layoutY="3.0" text="ASDA:" textFill="#efefef" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Label text="LDA:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Label text="Displaced Threshold:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="LDA:" textFill="#efefef" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label text="Displaced Threshold:" textFill="#efefef" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                  </children>
                               </GridPane>
                            </children>
@@ -153,26 +153,26 @@
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <children>
-                                          <Label layoutY="3.0" text="TORA:" />
+                                          <Label layoutY="3.0" text="TORA:" textFill="#efefef" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <Label layoutY="3.0" text="TODA:" />
+                                          <Label layoutY="3.0" text="TODA:" textFill="#efefef" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <children>
-                                          <Label layoutY="3.0" text="ASDA:" />
+                                          <Label layoutY="3.0" text="ASDA:" textFill="#efefef" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Label text="LDA:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Label text="Displaced Threshold:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="LDA:" textFill="#efefef" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label text="Displaced Threshold:" textFill="#efefef" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="63.0" />
@@ -196,27 +196,27 @@
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <children>
-                                          <Label layoutY="3.0" text="RESA:" />
+                                          <Label layoutY="3.0" text="RESA:" textFill="#efefef" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <Label layoutY="3.0" text="Stopway:" />
+                                          <Label layoutY="3.0" text="Stopway:" textFill="#efefef" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <children>
-                                          <Label layoutY="3.0" text="Blast Allowance:" />
+                                          <Label layoutY="3.0" text="Blast Allowance:" textFill="#efefef" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Label text="Angle of Slope:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Label text="Strip Width:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <Label text="Clear &amp; Graded Width:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label text="Angle of Slope:" textFill="#efefef" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label text="Strip Width:" textFill="#efefef" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="Clear &amp; Graded Width:" textFill="#efefef" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="63.0" />

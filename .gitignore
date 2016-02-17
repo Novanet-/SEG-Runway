@@ -1,3 +1,7 @@
 .DS_Store
 *.class
-/bin/
+bin/
+
+# Ignore all hidden files except Git ignore
+.*
+!.gitignore
