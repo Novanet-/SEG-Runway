@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Airport
 {
 
-	private int airportID;
-	private String airportName;
-	private ArrayList<Runway> runways;
+	private int					airportID;
+	private String				airportName;
+	private ArrayList<Runway>	runways;
 
 	public int getAirportID()
 	{

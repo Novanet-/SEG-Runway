@@ -3,12 +3,13 @@ package application;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import application.view.MainScreenController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-s
+
 public class Main extends Application
 {
 	@Override
@@ -16,12 +17,14 @@ public class Main extends Application
 	{
 		try
 		{
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("RunwayFXML.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("MainScreen.fxml"));
 			Scene scene = new Scene(page);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("FXML is Simple");
 			primaryStage.setMinWidth(1000);
 			primaryStage.setMinHeight(600);
+			
+			
 			primaryStage.show();
 		}
 		catch (Exception ex)

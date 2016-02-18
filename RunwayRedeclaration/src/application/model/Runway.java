@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Runway
 {
 
-	private int runwayID;
-	private char alignment;
-	private RunwayParameters runwayParameters = new RunwayParameters();
-	private RunwayDetails runwayDetails = new RunwayDetails();
-	private ArrayList<Obstacle> obstacleArray;
+	private int					runwayID;
+	private char				alignment;
+	private RunwayParameters	runwayParameters	= new RunwayParameters();
+	private RunwayDetails		runwayDetails		= new RunwayDetails();
+	private ArrayList<Obstacle>	obstacleArray;
 
 	public int getRunwayID()
 	{

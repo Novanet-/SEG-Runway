@@ -2,10 +2,10 @@ package application.model;
 
 public class RunwayParameters
 {
-	private double TORA;
-	private double TODA;
-	private double ASDA;
-	private double LDA;
+	private double	TORA;
+	private double	TODA;
+	private double	ASDA;
+	private double	LDA;
 
 	public RunwayParameters()
 	{

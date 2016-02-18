@@ -3,8 +3,8 @@ package application.model;
 public class Obstacle
 {
 
-	private String name;
-	private double height, width, length;
+	private String	name;
+	private double	height, width, length;
 
 	public String getName()
 	{

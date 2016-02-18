@@ -3,13 +3,13 @@ package application.model;
 public class RunwayDetails
 {
 
-	private int displacedThreshold;
-	private int clearway;
-	private int stopway;
-	private int resa;
-	private int stripEnd;
-	private int blastProtection;
-	private int runwayStrip;
+	private int	displacedThreshold;
+	private int	clearway;
+	private int	stopway;
+	private int	resa;
+	private int	stripEnd;
+	private int	blastProtection;
+	private int	runwayStrip;
 
 	public RunwayDetails()
 	{
