@@ -4,22 +4,22 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
+    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-text-fill: #d6dadb;
     -fx-opacity: 0.6;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
+    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-text-fill: #d6dadb;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-text-fill: #d6dadb;
     -fx-opacity: 1;
 }
 
@@ -50,8 +50,8 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-text-fill: #d6dadb;
     -fx-alignment: center-left;
     -fx-opacity: 1;
 }
@@ -79,8 +79,8 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-text-fill: #d6dadb;
     -fx-opacity: 0.9;
 }
 
@@ -90,7 +90,7 @@
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
 }
 
 /* 
