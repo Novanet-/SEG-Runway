@@ -20,7 +20,7 @@ public class Main extends Application
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("MainScreen.fxml"));
 			Scene scene = new Scene(page);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("FXML is Simple");
+			primaryStage.setTitle("Runway Redeclaration");
 			primaryStage.setMinWidth(1000);
 			primaryStage.setMinHeight(600);
 			
