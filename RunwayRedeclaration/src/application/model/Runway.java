@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Runway
 {
 
+	private final RunwayParameters runwayParameters = new RunwayParameters();
+	private final RunwayDetails    runwayDetails    = new RunwayDetails();
 	private int					runwayID;
 	private char				alignment;
-	private RunwayParameters	runwayParameters	= new RunwayParameters();
-	private RunwayDetails		runwayDetails		= new RunwayDetails();
 	private ArrayList<Obstacle>	obstacleArray;
 
 	public int getRunwayID()
