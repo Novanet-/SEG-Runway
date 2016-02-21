@@ -7,9 +7,17 @@ import javafx.collections.ObservableList;
 public class Airport
 {
 
-	private IntegerProperty        airportID;
-	private StringProperty         airportName;
-	private ObservableList<Runway> runways;
+	private final IntegerProperty        airportID;
+	private final StringProperty         airportName;
+	private       ObservableList<Runway> runways;
+
+
+	public Airport(final IntegerProperty airportID, final StringProperty airportName, final ObservableList<Runway> runways)
+	{
+		this.airportID = airportID;
+		this.airportName = airportName;
+		this.runways = runways;
+	}
 
 
 	public int getAirportID()

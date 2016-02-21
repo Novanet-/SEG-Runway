@@ -5,14 +5,18 @@ import javafx.beans.property.DoubleProperty;
 public class RunwayParameters
 {
 
-	private DoubleProperty TORA;
-	private DoubleProperty TODA;
-	private DoubleProperty ASDA;
-	private DoubleProperty LDA;
+	private final DoubleProperty TORA;
+	private final DoubleProperty TODA;
+	private final DoubleProperty ASDA;
+	private final DoubleProperty LDA;
 
 
-	public RunwayParameters()
+	public RunwayParameters(final DoubleProperty TORA, final DoubleProperty TODA, final DoubleProperty ASDA, final DoubleProperty LDA)
 	{
+		this.TORA = TORA;
+		this.TODA = TODA;
+		this.ASDA = ASDA;
+		this.LDA = LDA;
 	}
 
 

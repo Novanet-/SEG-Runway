@@ -5,17 +5,25 @@ import javafx.beans.property.IntegerProperty;
 public class RunwayDetails
 {
 
-	private IntegerProperty displacedThreshold;
-	private IntegerProperty clearway;
-	private IntegerProperty stopway;
-	private IntegerProperty resa;
-	private IntegerProperty stripEnd;
-	private IntegerProperty blastProtection;
-	private IntegerProperty runwayStrip;
+	private final IntegerProperty displacedThreshold;
+	private final IntegerProperty clearway;
+	private final IntegerProperty stopway;
+	private final IntegerProperty resa;
+	private final IntegerProperty stripEnd;
+	private final IntegerProperty blastProtection;
+	private final IntegerProperty runwayStrip;
 
 
-	public RunwayDetails()
+	public RunwayDetails(final IntegerProperty displacedThreshold, final IntegerProperty clearway, final IntegerProperty stopway, final IntegerProperty resa,
+			final IntegerProperty stripEnd, final IntegerProperty blastProtection, final IntegerProperty runwayStrip)
 	{
+		this.displacedThreshold = displacedThreshold;
+		this.clearway = clearway;
+		this.stopway = stopway;
+		this.resa = resa;
+		this.stripEnd = stripEnd;
+		this.blastProtection = blastProtection;
+		this.runwayStrip = runwayStrip;
 	}
 
 

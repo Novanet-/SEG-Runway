@@ -6,8 +6,17 @@ import javafx.beans.property.StringProperty;
 public class Obstacle
 {
 
-	private StringProperty name;
-	private DoubleProperty height, width, length;
+	private final StringProperty name;
+	private final DoubleProperty height, width, length;
+
+
+	public Obstacle(final StringProperty name, final DoubleProperty height, final DoubleProperty width, final DoubleProperty length)
+	{
+		this.name = name;
+		this.height = height;
+		this.width = width;
+		this.length = length;
+	}
 
 
 	public String getName()

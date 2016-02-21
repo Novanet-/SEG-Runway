@@ -166,11 +166,11 @@
                                                         <Blend/>
                                                     </effect>
                                                 </Rectangle>
-                                                <Label fx:id="originalTORA" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-                                                <Label fx:id="originalTODA" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-                                                <Label fx:id="originalASDA" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-                                                <Label fx:id="originalLDA" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-                                                <Label fx:id="originalDisplacedThreshold" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+                                                <Label fx:id="lblOrigTora" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                                                <Label fx:id="lblOrigToda" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                                                <Label fx:id="lblOrigAsda" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                                                <Label fx:id="lblOrigLda" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                                                <Label fx:id="lblOrigDisplacedThreshold" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
                                             </children>
                                         </GridPane>
                                     </children>
@@ -259,11 +259,11 @@
                                                         <Blend/>
                                                     </effect>
                                                 </Rectangle>
-                                                <Label fx:id="newTORA" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-                                                <Label fx:id="newTODA" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-                                                <Label fx:id="newASDA" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-                                                <Label fx:id="newLDA" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-                                                <Label fx:id="newDisplacedThreshold" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+                                                <Label fx:id="lblRecalcTora" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                                                <Label fx:id="lblRecalToda" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                                                <Label fx:id="lblRecalAsda" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                                                <Label fx:id="lblRecalLda" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                                                <Label fx:id="lblRecalDisplacedThreshold" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
                                             </children>
                                         </GridPane>
                                     </children>
@@ -328,12 +328,12 @@
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label fx:id="newRESA" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-                                                <Label fx:id="newStopway" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-                                                <Label fx:id="newBlastProtection" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-                                                <Label fx:id="newAngleofSlope" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-                                                <Label fx:id="newStripWidth" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-                                                <Label fx:id="newClearGradedWidth" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+                                                <Label fx:id="lblResa" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                                                <Label fx:id="lblStopway" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                                                <Label fx:id="lblBlastProtection" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                                                <Label fx:id="lblAngleOfSlope" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                                                <Label fx:id="lblStripWidth" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+                                                <Label fx:id="lblCAndGWidth" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
                                             </children>
                                         </GridPane>
                                     </children>
@@ -359,6 +359,8 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
+                        <MenuItem fx:id="btnAddAirport" mnemonicParsing="false" text="Add Airport"/>
+                        <MenuItem fx:id="btnAddRunway" mnemonicParsing="false" text="Add Runway"/>
                         <MenuItem mnemonicParsing="false" text="Close"/>
                     </items>
                 </Menu>
