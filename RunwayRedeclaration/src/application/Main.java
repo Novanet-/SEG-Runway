@@ -1,5 +1,6 @@
 package application;
 
+import application.view.MainScreenController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,12 +23,20 @@ public class Main extends Application
 	{
 		try
 		{
-			AnchorPane page = FXMLLoader.load(getClass().getClassLoader().getResource("MainScreen.fxml"));
+			// Load person overview.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/MainScreen.fxml"));
+			AnchorPane page = loader.load();
+
 			Scene scene = new Scene(page);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Runway Redeclaration");
 			primaryStage.setMinWidth(1000);
 			primaryStage.setMinHeight(600);
+
+			// Give the controller access to the main app.
+			MainScreenController controller = loader.getController();
+			controller.setMainApp(this);
 
 			primaryStage.show();
 		}

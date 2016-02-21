@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-
-<AnchorPane style="-fx-min-width: 1000; -fx-min-height: 450;" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" style="-fx-min-width: 1000; -fx-min-height: 450;" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8.0.65"
+			fx:controller="application.view.MainScreenController">
    <children>
    	<SplitPane dividerPositions="0.40648379052369077" layoutY="27.0" minHeight="400.0" minWidth="1000.0" prefHeight="573.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
       <items>
@@ -63,19 +61,19 @@
                   								<Blend />
                   							</effect>
                   						</Label>
-                  						<ComboBox prefWidth="150.0" style="-fx-background-color: #fff;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+					  <ComboBox fx:id="cmbRunways" prefWidth="150.0" style="-fx-background-color: #fff;" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
                   						<Label text="Object: " textFill="#efefef" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                   							<effect>
                   								<Blend />
                   							</effect>
                   						</Label>
-                  						<TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
+					  <TextField fx:id="cmbObjects" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
                   						<Label text="Airport: " textFill="#efefef" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                   							<effect>
                   								<Blend />
                   							</effect>
                   						</Label>
-                  						<ChoiceBox prefWidth="150.0" style="-fx-background-color: #fff;" GridPane.columnIndex="2" />
+					  <ComboBox fx:id="cmbAirports" prefWidth="150.0" style="-fx-background-color: #fff;" GridPane.columnIndex="2"/>
                   </children>
                					</GridPane>
                </children>
