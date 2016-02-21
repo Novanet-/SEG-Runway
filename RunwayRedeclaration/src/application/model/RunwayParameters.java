@@ -1,34 +1,42 @@
 package application.model;
 
+import javafx.beans.property.DoubleProperty;
+
 public class RunwayParameters
 {
-	private double	TORA;
-	private double	TODA;
-	private double	ASDA;
-	private double	LDA;
+
+	private DoubleProperty TORA;
+	private DoubleProperty TODA;
+	private DoubleProperty ASDA;
+	private DoubleProperty LDA;
+
 
 	public RunwayParameters()
 	{
 	}
 
+
 	public double getTORA()
 	{
-		return TORA;
+		return TORA.getValue();
 	}
+
 
 	public double getTODA()
 	{
-		return TODA;
+		return TODA.getValue();
 	}
+
 
 	public double getASDA()
 	{
-		return ASDA;
+		return ASDA.getValue();
 	}
+
 
 	public double getLDA()
 	{
-		return LDA;
+		return LDA.getValue();
 	}
 
 }

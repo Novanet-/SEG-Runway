@@ -1,29 +1,36 @@
 package application.model;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.StringProperty;
+
 public class Obstacle
 {
 
-	private String	name;
-	private double	height, width, length;
+	private StringProperty name;
+	private DoubleProperty height, width, length;
+
 
 	public String getName()
 	{
-		return name;
+		return name.getValueSafe();
 	}
+
 
 	public double getHeight()
 	{
-		return height;
+		return height.getValue();
 	}
+
 
 	public double getWidth()
 	{
-		return width;
+		return width.getValue();
 	}
+
 
 	public double getLength()
 	{
-		return length;
+		return length.getValue();
 	}
 
 }

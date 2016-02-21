@@ -1,53 +1,63 @@
 package application.model;
 
+import javafx.beans.property.IntegerProperty;
+
 public class RunwayDetails
 {
 
-	private int	displacedThreshold;
-	private int	clearway;
-	private int	stopway;
-	private int	resa;
-	private int	stripEnd;
-	private int	blastProtection;
-	private int	runwayStrip;
+	private IntegerProperty displacedThreshold;
+	private IntegerProperty clearway;
+	private IntegerProperty stopway;
+	private IntegerProperty resa;
+	private IntegerProperty stripEnd;
+	private IntegerProperty blastProtection;
+	private IntegerProperty runwayStrip;
+
 
 	public RunwayDetails()
 	{
 	}
 
+
 	public int getDisplacedThreshold()
 	{
-		return displacedThreshold;
+		return displacedThreshold.getValue();
 	}
+
 
 	public int getClearway()
 	{
-		return clearway;
+		return clearway.getValue();
 	}
+
 
 	public int getStopway()
 	{
-		return stopway;
+		return stopway.getValue();
 	}
+
 
 	public int getResa()
 	{
-		return resa;
+		return resa.getValue();
 	}
+
 
 	public int getStripEnd()
 	{
-		return stripEnd;
+		return stripEnd.getValue();
 	}
+
 
 	public int getBlastProtection()
 	{
-		return blastProtection;
+		return blastProtection.getValue();
 	}
+
 
 	public int getRunwayStrip()
 	{
-		return runwayStrip;
+		return runwayStrip.getValue();
 	}
 
 }

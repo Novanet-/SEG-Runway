@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import javafx.scene.layout.AnchorPane?>
-
-
-<AnchorPane stylesheets="@../application.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.71">
-	<!-- TODO Add Nodes -->
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8.0.71">
+    <!-- TODO Add Nodes -->
 </AnchorPane>

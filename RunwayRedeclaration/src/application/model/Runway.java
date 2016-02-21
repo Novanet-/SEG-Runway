@@ -1,40 +1,48 @@
 package application.model;
 
-import java.util.ArrayList;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 
 public class Runway
 {
 
 	private final RunwayParameters runwayParameters = new RunwayParameters();
 	private final RunwayDetails    runwayDetails    = new RunwayDetails();
-	private int					runwayID;
-	private char				alignment;
-	private ArrayList<Obstacle>	obstacleArray;
+	private IntegerProperty          runwayID;
+	private StringProperty           alignment;
+	private ObservableList<Obstacle> obstacleArray;
+
 
 	public int getRunwayID()
 	{
-		return runwayID;
+		return runwayID.getValue();
 	}
 
-	public char getAlignment()
+
+	public String getAlignment()
 	{
-		return alignment;
+		return alignment.getValueSafe();
 	}
+
 
 	public RunwayParameters getRunwayParameters()
 	{
 		return runwayParameters;
 	}
 
+
 	public RunwayDetails getRunwayDetails()
 	{
 		return runwayDetails;
 	}
 
-	public ArrayList<Obstacle> getObstacles()
+
+	public ObservableList<Obstacle> getObstacles()
 	{
 		return obstacleArray;
 	}
+
 
 	public void addObstacle(Obstacle obstacle)
 	{

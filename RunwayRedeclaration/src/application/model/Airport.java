@@ -1,28 +1,34 @@
 package application.model;
 
-import java.util.ArrayList;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 
 public class Airport
 {
 
-	private int					airportID;
-	private String				airportName;
-	private ArrayList<Runway>	runways;
+	private IntegerProperty        airportID;
+	private StringProperty         airportName;
+	private ObservableList<Runway> runways;
+
 
 	public int getAirportID()
 	{
-		return airportID;
+		return airportID.getValue();
 	}
+
 
 	public String getAirportName()
 	{
-		return airportName;
+		return airportName.getValueSafe();
 	}
 
-	public ArrayList<Runway> getRunways()
+
+	public ObservableList<Runway> getRunways()
 	{
 		return runways;
 	}
+
 
 	public void addRunway(Runway runway)
 	{
