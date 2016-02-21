@@ -1,14 +1,25 @@
 package application.view;
 
 import application.Main;
+import application.model.Airport;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainScreenController
 {
+
+	private ObservableList<Airport> airportList;
 
 	@FXML private MenuItem  btnAddAirport;
 	@FXML private MenuItem  btnAddRunway;
@@ -37,20 +48,55 @@ public class MainScreenController
 
 
 	/**
-	 * The constructor.
-	 * The constructor is called before the initialize() method.
-	 */
-	public MainScreenController()
-	{
-	}
-
-
-	/**
 	 * Initializes the controller class. This method is automatically called
 	 * after the fxml file has been loaded.
 	 */
-	@FXML private void initialize()
+	@FXML
+	private void initialize()
 	{
+		airportList = mainApp.getAirportList();
+		updateCmbAirports();
+		airportList.addListener((ListChangeListener) change -> {
+			updateCmbAirports();
+		});
+	}
+
+
+	private void updateCmbAirports()
+	{
+		cmbAirports.setItems(mainApp.getAirportList());
+	}
+
+
+	@FXML
+	private void handleBtnAddAirport()
+	{
+		openAddAirport();
+
+	}
+
+
+	@FXML
+	private void openAddAirport()
+	{
+		try
+		{// Load person overview.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/AddAirport.fxml"));
+			AnchorPane page = loader.load();
+			Stage stage = new Stage();
+			Scene scene = new Scene(page);
+			stage.setScene(scene);
+			stage.setTitle("Add Airport");
+			stage.setMinWidth(300);
+			stage.setMinHeight(100);
+			stage.show();
+
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 
 	}
 

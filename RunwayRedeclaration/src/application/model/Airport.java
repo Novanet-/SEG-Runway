@@ -2,7 +2,10 @@ package application.model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
 
 public class Airport
 {
@@ -12,11 +15,12 @@ public class Airport
 	private       ObservableList<Runway> runways;
 
 
-	public Airport(final IntegerProperty airportID, final StringProperty airportName, final ObservableList<Runway> runways)
+	public Airport(final IntegerProperty airportID, final StringProperty airportName)
 	{
 		this.airportID = airportID;
 		this.airportName = airportName;
-		this.runways = runways;
+		ArrayList<Runway> list = new ArrayList<Runway>();
+		runways = FXCollections.observableArrayList(list);
 	}
 
 
