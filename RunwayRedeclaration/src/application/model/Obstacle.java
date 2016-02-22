@@ -7,7 +7,9 @@ public class Obstacle
 {
 
 	private final StringProperty name;
-	private final DoubleProperty height, width, length;
+	private final DoubleProperty height;
+	private final DoubleProperty width;
+	private final DoubleProperty length;
 
 
 	public Obstacle(final StringProperty name, final DoubleProperty height, final DoubleProperty width, final DoubleProperty length)
@@ -19,25 +21,25 @@ public class Obstacle
 	}
 
 
-	public String getName()
+	public final String getName()
 	{
 		return name.getValueSafe();
 	}
 
 
-	public double getHeight()
+	public final double getHeight()
 	{
 		return height.getValue();
 	}
 
 
-	public double getWidth()
+	public final double getWidth()
 	{
 		return width.getValue();
 	}
 
 
-	public double getLength()
+	public final double getLength()
 	{
 		return length.getValue();
 	}

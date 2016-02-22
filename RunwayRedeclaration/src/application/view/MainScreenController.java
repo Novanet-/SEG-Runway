@@ -5,16 +5,10 @@ import application.model.Airport;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class MainScreenController
 {
@@ -54,17 +48,12 @@ public class MainScreenController
 	@FXML
 	private void initialize()
 	{
-		airportList = mainApp.getAirportList();
-		updateCmbAirports();
-		airportList.addListener((ListChangeListener) change -> {
-			updateCmbAirports();
-		});
 	}
 
 
 	private void updateCmbAirports()
 	{
-		cmbAirports.setItems(mainApp.getAirportList());
+		cmbAirports.setItems(airportList);
 	}
 
 
@@ -79,25 +68,7 @@ public class MainScreenController
 	@FXML
 	private void openAddAirport()
 	{
-		try
-		{// Load person overview.
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/AddAirport.fxml"));
-			AnchorPane page = loader.load();
-			Stage stage = new Stage();
-			Scene scene = new Scene(page);
-			stage.setScene(scene);
-			stage.setTitle("Add Airport");
-			stage.setMinWidth(300);
-			stage.setMinHeight(100);
-			stage.show();
-
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-
+		mainApp.toggleAddAirport();
 	}
 
 
@@ -106,13 +77,23 @@ public class MainScreenController
 	 *
 	 * @param mainApp
 	 */
-	public void setMainApp(Main mainApp)
+	public final void setMainApp(Main mainApp)
 	{
 		this.mainApp = mainApp;
 
 		/*cmbAirports.setItems(mainApp.getAirports());
 		cmbRunways.setItems(mainApp.getAirports().getRunways);
 		cmbAirports.setItems(mainApp.getAirports().getRunways.getObjects);*/
+	}
+
+
+	public final void linkToSession()
+	{
+		airportList = mainApp.getAirportList();
+		updateCmbAirports();
+		airportList.addListener((ListChangeListener) change -> {
+			updateCmbAirports();
+		});
 	}
 }
 

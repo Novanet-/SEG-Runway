@@ -28,15 +28,15 @@ public class AddAirportController
 	@FXML
 	private void initialize()
 	{
-		airportList = mainApp.getAirportList();
 	}
 
 
 	@FXML
 	private void handleBtnSubmitAirport()
 	{
-		IntegerProperty airportId = new SimpleIntegerProperty(airportList.size());
+		final IntegerProperty airportId = new SimpleIntegerProperty(airportList.size());
 		airportList.add(new Airport(airportId, txtAirportName.textProperty()));
+		mainApp.toggleAddAirport();
 	}
 
 
@@ -45,12 +45,18 @@ public class AddAirportController
 	 *
 	 * @param mainApp
 	 */
-	public void setMainApp(Main mainApp)
+	public final void setMainApp(Main mainApp)
 	{
 		this.mainApp = mainApp;
 
 		/*cmbAirports.setItems(mainApp.getAirports());
 		cmbRunways.setItems(mainApp.getAirports().getRunways);
 		cmbAirports.setItems(mainApp.getAirports().getRunways.getObjects);*/
+	}
+
+
+	public final void linkToSession()
+	{
+		airportList = mainApp.getAirportList();
 	}
 }

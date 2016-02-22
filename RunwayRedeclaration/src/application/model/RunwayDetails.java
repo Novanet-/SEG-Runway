@@ -27,43 +27,43 @@ public class RunwayDetails
 	}
 
 
-	public int getDisplacedThreshold()
+	public final int getDisplacedThreshold()
 	{
 		return displacedThreshold.getValue();
 	}
 
 
-	public int getClearway()
+	public final int getClearway()
 	{
 		return clearway.getValue();
 	}
 
 
-	public int getStopway()
+	public final int getStopway()
 	{
 		return stopway.getValue();
 	}
 
 
-	public int getResa()
+	public final int getResa()
 	{
 		return resa.getValue();
 	}
 
 
-	public int getStripEnd()
+	public final int getStripEnd()
 	{
 		return stripEnd.getValue();
 	}
 
 
-	public int getBlastProtection()
+	public final int getBlastProtection()
 	{
 		return blastProtection.getValue();
 	}
 
 
-	public int getRunwayStrip()
+	public final int getRunwayStrip()
 	{
 		return runwayStrip.getValue();
 	}

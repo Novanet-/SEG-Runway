@@ -20,25 +20,25 @@ public class RunwayParameters
 	}
 
 
-	public double getTORA()
+	public final double getTORA()
 	{
 		return TORA.getValue();
 	}
 
 
-	public double getTODA()
+	public final double getTODA()
 	{
 		return TODA.getValue();
 	}
 
 
-	public double getASDA()
+	public final double getASDA()
 	{
 		return ASDA.getValue();
 	}
 
 
-	public double getLDA()
+	public final double getLDA()
 	{
 		return LDA.getValue();
 	}

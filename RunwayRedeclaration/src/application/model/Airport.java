@@ -6,45 +6,55 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class Airport
 {
 
 	private final IntegerProperty        airportID;
 	private final StringProperty         airportName;
-	private       ObservableList<Runway> runways;
+	private final ObservableList<Runway> runways;
 
 
 	public Airport(final IntegerProperty airportID, final StringProperty airportName)
 	{
 		this.airportID = airportID;
 		this.airportName = airportName;
-		ArrayList<Runway> list = new ArrayList<Runway>();
+		final Collection<Runway> list = new ArrayList<Runway>();
 		runways = FXCollections.observableArrayList(list);
 	}
 
 
-	public int getAirportID()
+	public final int getAirportID()
 	{
 		return airportID.getValue();
 	}
 
 
-	public String getAirportName()
+	public final String getAirportName()
 	{
 		return airportName.getValueSafe();
 	}
 
 
-	public ObservableList<Runway> getRunways()
+	public final List<Runway> getRunways()
 	{
-		return runways;
+		return Collections.unmodifiableList(runways);
 	}
 
 
-	public void addRunway(Runway runway)
+	public final void addRunway(Runway runway)
 	{
-		this.runways.add(runway);
+		runways.add(runway);
+	}
+
+
+	@Override
+	public final String toString()
+	{
+		return airportID.getValue() + " - " + airportName.getValue();
 	}
 
 }

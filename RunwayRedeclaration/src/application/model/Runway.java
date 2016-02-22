@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Runway
 {
@@ -14,7 +15,7 @@ public class Runway
 	private final RunwayDetails            runwayDetails;
 	private final IntegerProperty          runwayID;
 	private final StringProperty           alignment;
-	private       ObservableList<Obstacle> obstacleArray;
+	private final ObservableList<Obstacle> obstacleArray;
 
 
 	public Runway(final RunwayParameters runwayParameters, final RunwayDetails runwayDetails, final IntegerProperty runwayID, final StringProperty alignment)
@@ -23,44 +24,53 @@ public class Runway
 		this.runwayDetails = runwayDetails;
 		this.runwayID = runwayID;
 		this.alignment = alignment;
-		ArrayList<Obstacle> list = new ArrayList<Obstacle>();
+		final Collection<Obstacle> list = new ArrayList<Obstacle>();
 		obstacleArray = FXCollections.observableArrayList(list);
 	}
 
 
-	public int getRunwayID()
+	public final int getRunwayID()
 	{
 		return runwayID.getValue();
 	}
 
 
-	public String getAlignment()
+	public final String getAlignment()
 	{
 		return alignment.getValueSafe();
 	}
 
 
-	public RunwayParameters getRunwayParameters()
+	public final RunwayParameters getRunwayParameters()
 	{
 		return runwayParameters;
 	}
 
 
-	public RunwayDetails getRunwayDetails()
+	public final RunwayDetails getRunwayDetails()
 	{
 		return runwayDetails;
 	}
 
 
-	public ObservableList<Obstacle> getObstacles()
+	public final ObservableList<Obstacle> getObstacles()
 	{
 		return obstacleArray;
 	}
 
 
-	public void addObstacle(Obstacle obstacle)
+	public final void addObstacle(Obstacle obstacle)
 	{
-		this.obstacleArray.add(obstacle);
+		obstacleArray.add(obstacle);
 	}
 
+
+	@Override
+	public final String toString()
+	{
+		return "Runway{" +
+				"runwayID=" + runwayID +
+				", alignment=" + alignment +
+				'}';
+	}
 }

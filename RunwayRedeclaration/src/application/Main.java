@@ -1,6 +1,7 @@
 package application;
 
 import application.model.Airport;
+import application.view.AddAirportController;
 import application.view.MainScreenController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -10,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,6 +21,9 @@ public class Main extends Application
 {
 
 	private ObservableList<Airport> airportList;
+
+	private Stage msStage;
+	private Stage aaStage;
 
 
 	public static void main(String[] args)
@@ -27,34 +33,86 @@ public class Main extends Application
 
 
 	@Override
-	public void start(Stage primaryStage)
+	public final void start(Stage primaryStage)
 	{
 		try
 		{
 			// Load person overview.
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/MainScreen.fxml"));
-			AnchorPane page = loader.load();
-			Scene scene = new Scene(page);
+			final FXMLLoader msLoader = new FXMLLoader();
+			final FXMLLoader aaLoader = loadAAStage();
+			assert aaLoader != null;
+			final AddAirportController aaController = aaLoader.getController();
+			aaController.setMainApp(this);
+
+			msLoader.setLocation(Main.class.getResource("view/MainScreen.fxml"));
+			final AnchorPane msPage = msLoader.load();
+			final MainScreenController msController = msLoader.getController();
+			msController.setMainApp(this);
+
+			final Scene scene = new Scene(msPage);
+			msStage = primaryStage;
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Runway Redeclaration");
-			primaryStage.setMinWidth(1000);
-			primaryStage.setMinHeight(600);
-			ArrayList<Airport> list = new ArrayList<Airport>();
+			primaryStage.setMinWidth(1000.0);
+			primaryStage.setMinHeight(600.0);
+
+			final Collection<Airport> list = new ArrayList<Airport>();
 			airportList = FXCollections.observableArrayList(list);
-			// Give the controller access to the main app.
-			MainScreenController controller = loader.getController();
-			controller.setMainApp(this);
+
+			aaController.linkToSession();
+			msController.linkToSession();
+
 			primaryStage.show();
 		}
-		catch (Exception ex)
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		catch (final Exception ex)
 		{
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
 
-	public ObservableList<Airport> getAirportList()
+	private FXMLLoader loadAAStage()
+	{
+		try
+		{// Load person overview.
+			final FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/AddAirport.fxml"));
+			final AnchorPane page = loader.load();
+			aaStage = new Stage();
+			final Scene scene = new Scene(page);
+			aaStage.setScene(scene);
+			aaStage.setTitle("Add Airport");
+			aaStage.setMinWidth(300.0);
+			aaStage.setMinHeight(100.0);
+			return loader;
+
+		}
+		catch (final IOException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
+	public final void toggleAddAirport()
+	{
+		if (aaStage.isShowing())
+		{
+			aaStage.hide();
+		}
+		else
+		{
+			aaStage.show();
+		}
+	}
+
+
+	public final ObservableList<Airport> getAirportList()
 	{
 		return airportList;
 	}
