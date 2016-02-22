@@ -7,8 +7,6 @@ import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 public class Airport
 {
@@ -48,9 +46,9 @@ public class Airport
     /**
      * @return
      */
-    public final List<Runway> getRunways()
+    public final ObservableList<Runway> getRunways()
     {
-        return Collections.unmodifiableList(runways);
+        return runways;
     }
 
     /**

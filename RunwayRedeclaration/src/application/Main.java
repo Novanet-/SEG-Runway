@@ -5,7 +5,6 @@ import application.view.AddAirportController;
 import application.view.AddRunwayController;
 import application.view.MainScreenController;
 import javafx.application.Application;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -78,6 +77,7 @@ public class Main extends Application
             airportList = FXCollections.observableArrayList(list);
 
             aaController.linkToSession();
+            arController.linkToSession();
             msController.linkToSession();
 
             primaryStage.show();

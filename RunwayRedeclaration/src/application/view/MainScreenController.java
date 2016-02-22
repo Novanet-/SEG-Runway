@@ -97,6 +97,12 @@ public class MainScreenController
         openAddRunway();
     }
 
+    @FXML
+    private void handleAirportSelected()
+    {
+        cmbRunways.setItems(((Airport) cmbAirports.getValue()).getRunways());
+    }
+
     /**
      *
      */
@@ -112,7 +118,7 @@ public class MainScreenController
     @FXML
     private void openAddRunway()
     {
-        mainApp.toggleAddRunway(((Airport)cmbAirports.getValue()).getAirportName());
+        mainApp.toggleAddRunway(((Airport) cmbAirports.getValue()).getAirportName());
     }
 
     /**

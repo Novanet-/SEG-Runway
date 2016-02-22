@@ -2,10 +2,12 @@ package tests;
 
 import org.junit.Test;
 
-public class Models {
+public class Models
+{
 
-	@Test
-	public void testAddRunwayToAirport() {
-		// TODO: write
-	}
+    @Test
+    public void testAddRunwayToAirport()
+    {
+        // TODO: write
+    }
 }

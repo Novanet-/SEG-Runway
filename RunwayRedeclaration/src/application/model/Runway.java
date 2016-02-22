@@ -12,7 +12,7 @@ public class Runway
 {
 
     private final RunwayParameters runwayParameters;
-    private final RunwayDetails runwayDetails;
+    //    private final RunwayDetails runwayDetails;
     private final IntegerProperty runwayID;
     private final StringProperty alignment;
     private final ObservableList<Obstacle> obstacleArray;
@@ -21,7 +21,7 @@ public class Runway
                   final IntegerProperty runwayID, final StringProperty alignment)
     {
         this.runwayParameters = runwayParameters;
-        this.runwayDetails = runwayDetails;
+        // this.runwayDetails = runwayDetails;
         this.runwayID = runwayID;
         this.alignment = alignment;
         final Collection<Obstacle> list = new ArrayList<Obstacle>();
@@ -55,10 +55,10 @@ public class Runway
     /**
      * @return
      */
-    public final RunwayDetails getRunwayDetails()
-    {
-        return runwayDetails;
-    }
+//    public final RunwayDetails getRunwayDetails()
+//    {
+//        return runwayDetails;
+//    }
 
     /**
      * @return
@@ -80,8 +80,8 @@ public class Runway
      * @return
      */
     @Override
-    public final String toString()
+    public String toString()
     {
-        return "Runway{" + "runwayID=" + runwayID + ", alignment=" + alignment + '}';
+        return "Runway{" + alignment.getValue() + '}';
     }
 }
