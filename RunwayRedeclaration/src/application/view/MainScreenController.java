@@ -2,6 +2,7 @@ package application.view;
 
 import application.Main;
 import application.model.Airport;
+import application.model.Runway;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -103,6 +104,12 @@ public class MainScreenController
         cmbRunways.setItems(((Airport) cmbAirports.getValue()).getRunways());
     }
 
+    @FXML
+    private void handleRunwaySelected()
+    {
+        updateOriginalParameters();
+    }
+
     /**
      *
      */
@@ -119,6 +126,18 @@ public class MainScreenController
     private void openAddRunway()
     {
         mainApp.toggleAddRunway(((Airport) cmbAirports.getValue()).getAirportName());
+    }
+
+    /**
+     *
+     */
+    private void updateOriginalParameters() {
+        Runway currentRunway = (Runway) cmbRunways.getValue();
+        lblOrigTora.setText(Double.toString(currentRunway.getRunwayParameters().getTORA()));
+        lblOrigToda.setText(Double.toString(currentRunway.getRunwayParameters().getTODA()));
+        lblOrigAsda.setText(Double.toString(currentRunway.getRunwayParameters().getASDA()));
+        lblOrigLda.setText(Double.toString(currentRunway.getRunwayParameters().getLDA()));
+        lblOrigDisplacedThreshold.setText(Double.toString(currentRunway.getRunwayParameters().getDisplacedThreshold()));
     }
 
     /**

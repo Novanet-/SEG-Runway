@@ -52,7 +52,7 @@ public class AddRunwayController
     {
         try
         {
-            int runwayAlingment;
+            int runwayAlignment;
 
             double TORA = Double.parseDouble(txtTORA.textProperty().getValue());
             double TODA = Double.parseDouble(txtTODA.textProperty().getValue());
