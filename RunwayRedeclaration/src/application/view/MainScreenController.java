@@ -132,6 +132,7 @@ public class MainScreenController
      */
     private void updateOriginalParameters() {
         Runway currentRunway = (Runway) cmbRunways.getValue();
+//        Runway currentRunway = new Runway(new RunwayParameters(new SimpleDoubleProperty(10), new SimpleDoubleProperty(10), new SimpleDoubleProperty(10), new SimpleDoubleProperty(10), new SimpleDoubleProperty(10)), null, new SimpleIntegerProperty(10), new SimpleStringProperty("10"));
         lblOrigTora.setText(Double.toString(currentRunway.getRunwayParameters().getTORA()));
         lblOrigToda.setText(Double.toString(currentRunway.getRunwayParameters().getTODA()));
         lblOrigAsda.setText(Double.toString(currentRunway.getRunwayParameters().getASDA()));

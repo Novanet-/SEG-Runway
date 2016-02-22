@@ -76,9 +76,9 @@
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <ComboBox fx:id="cmbRunways" prefWidth="150.0"
-                                                          style="-fx-background-color: #fff;" GridPane.columnIndex="2"
-                                                          GridPane.rowIndex="1"/>
+                                                <ComboBox fx:id="cmbRunways" onAction="#handleRunwaySelected"
+                                                          prefWidth="150.0" style="-fx-background-color: #fff;"
+                                                          GridPane.columnIndex="2" GridPane.rowIndex="1"/>
                                                 <Label text="Object: " textFill="#efefef" GridPane.columnIndex="1"
                                                        GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                                                     <effect>
