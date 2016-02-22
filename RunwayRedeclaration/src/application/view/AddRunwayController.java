@@ -66,18 +66,13 @@ public class AddRunwayController
         //TODO: Make the listener that validates input an inner class or something and apply it to all text fiels
 
         //Validates the input to numeric input
-        txtTODA.textProperty().addListener(new ChangeListener<String>()
-        {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
+        txtTODA.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.matches("\\d*"))
             {
-                if (newValue.matches("\\d*"))
-                {
-                    int value = Integer.parseInt(newValue);
-                } else
-                {
-                    txtTODA.setText(oldValue);
-                }
+                double value = Double.parseDouble(newValue);
+            } else
+            {
+                txtTODA.setText(oldValue);
             }
         });
     }
