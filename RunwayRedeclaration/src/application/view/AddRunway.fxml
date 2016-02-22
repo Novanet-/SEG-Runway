@@ -30,16 +30,16 @@
 						<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 					</GridPane.margin>
 				</Label>
-				<TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+				<TextField fx:id="txtTORA" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 				<Label text="TODA:" GridPane.halignment="RIGHT"
 					GridPane.rowIndex="2">
 					<GridPane.margin>
 						<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 					</GridPane.margin>
 				</Label>
-				<TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-				<TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-				<TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+				<TextField fx:id="txtTODA" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+				<TextField fx:id="txtASDA" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+				<TextField fx:id="txtLDA" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 				<Label text="ASDA:" GridPane.halignment="RIGHT"
 					GridPane.rowIndex="3">
 					<GridPane.margin>
@@ -58,7 +58,7 @@
 						<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 					</GridPane.margin>
 				</Label>
-				<TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+				<TextField fx:id="txtDisplacedThreshold" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 			</children>
 			<columnConstraints>
 				<ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0"

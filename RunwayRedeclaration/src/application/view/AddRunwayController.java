@@ -3,12 +3,23 @@ package application.view;
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class AddRunwayController {
 
 	private Main mainApp;
 	@FXML
 	private Button btnSubmitAirport;
+	@FXML
+	private TextField txtTORA;
+	@FXML
+	private TextField txtTODA;
+	@FXML
+	private TextField txtASDA;
+	@FXML
+	private TextField txtLDA;
+	@FXML
+	private TextField txtDisplacedThreshold;
 
 	@FXML
 	private void handleBtnSubmitRunway() {
