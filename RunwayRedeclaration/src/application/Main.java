@@ -1,7 +1,14 @@
 package application;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import application.model.Airport;
 import application.view.AddAirportController;
+import application.view.AddRunwayController;
 import application.view.MainScreenController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -10,12 +17,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Main extends Application {
 
@@ -39,6 +40,10 @@ public class Main extends Application {
 			assert aaLoader != null;
 			final AddAirportController aaController = aaLoader.getController();
 			aaController.setMainApp(this);
+			
+			assert arLoader != null;
+			final AddRunwayController arController = arLoader.getController();
+			arController.setMainApp(this);
 
 			msLoader.setLocation(Main.class.getResource("view/MainScreen.fxml"));
 			final AnchorPane msPage = msLoader.load();

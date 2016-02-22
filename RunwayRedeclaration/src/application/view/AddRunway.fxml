@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="400.0"
 	minWidth="300.0" style="-fx-background-color: #363d43;" stylesheets="@../application.css"
-	xmlns="http://javafx.com/javafx/8">
+	xmlns="http://javafx.com/javafx/8" fx:controller="application.view.AddRunwayController">
 	<children>
 		<GridPane layoutX="-143.0" layoutY="-70.0" prefHeight="400.0"
 			prefWidth="300.0" stylesheets="@../application.css"
@@ -21,7 +21,7 @@
 				<Button mnemonicParsing="false"
 					style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-border-width: 0; -fx-background-color: #838383;"
 					text="Submit" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-					GridPane.rowIndex="6" />
+					onAction="#handleBtnSubmitRunway" GridPane.rowIndex="6" />
 				<ComboBox prefWidth="150.0" style="-fx-background-color: WHITE;"
 					GridPane.columnIndex="1" />
 				<Label text="TORA:" GridPane.halignment="RIGHT"
