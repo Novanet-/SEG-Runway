@@ -29,7 +29,6 @@ public class AddAirportController
     @FXML
     private void initialize()
     {
-
     }
 
     @FXML

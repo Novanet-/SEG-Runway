@@ -23,24 +23,15 @@ public class AddRunwayController
 
     StringProperty selectedAirport;
     private Main mainApp;
-    @FXML
-    private Label lblAirportName;
-    @FXML
-    private Label lblSecondRunwayAlignment;
-    @FXML
-    private Button btnSubmitRunway;
-    @FXML
-    private ComboBox cmbRunwayAlignment;
-    @FXML
-    private TextField txtTORA;
-    @FXML
-    private TextField txtTODA;
-    @FXML
-    private TextField txtASDA;
-    @FXML
-    private TextField txtLDA;
-    @FXML
-    private TextField txtDisplacedThreshold;
+    @FXML private Label lblAirportName;
+    @FXML private Label lblSecondRunwayAlignment;
+    @FXML private Button btnSubmitRunway;
+    @FXML private ComboBox cmbRunwayAlignment;
+    @FXML private TextField txtTORA;
+    @FXML private TextField txtTODA;
+    @FXML private TextField txtASDA;
+    @FXML private TextField txtLDA;
+    @FXML private TextField txtDisplacedThreshold;
     private ObservableList<Airport> airportList;
 
 
@@ -102,24 +93,6 @@ public class AddRunwayController
 
         cmbRunwayAlignment.setItems(FXCollections.observableArrayList(alignments));
         //TODO: Make the listener that validates input an inner class or something and apply it to all text fiels
-
-//        //Validates the input to numeric input
-//        txtTODA.textProperty().addListener(new ChangeListener<String>()
-//        {
-//            @Override
-//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
-//            {
-//                if (newValue.matches("\\d*"))
-//                {
-//                    int value = Integer.parseInt(newValue);
-//                } else
-//                {
-//                    txtTODA.setText(oldValue);
-//                }
-//            }
-//        });
-
-        //updateSelectedAirport();
     }
 
     /**
