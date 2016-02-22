@@ -1,16 +1,11 @@
 package application;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import application.model.Airport;
 import application.view.AddAirportController;
 import application.view.AddRunwayController;
 import application.view.MainScreenController;
 import javafx.application.Application;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -18,136 +13,167 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-	// TODO : FIll in JavaDoc stubs for all methods
+public class Main extends Application
+{
 
-	private ObservableList<Airport> airportList;
+    // TODO : FIll in JavaDoc stubs for all methods
 
-	private Stage msStage;
-	private Stage aaStage;
-	private Stage arStage;
+    private ObservableList<Airport> airportList;
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		launch(args);
-	}
+    private Stage msStage;
+    private Stage aaStage;
+    private Stage arStage;
 
-	/**
-	 * @param primaryStage
-	 */
-	@Override
-	public final void start(Stage primaryStage) {
-		try {
-			// Load person overview.
-			final FXMLLoader msLoader = new FXMLLoader();
-			final FXMLLoader aaLoader = loadAAStage();
-			final FXMLLoader arLoader = loadARStage();
-			assert aaLoader != null;
-			final AddAirportController aaController = aaLoader.getController();
-			aaController.setMainApp(this);
-			
-			assert arLoader != null;
-			final AddRunwayController arController = arLoader.getController();
-			arController.setMainApp(this);
+    private AddAirportController aaController;
+    private AddRunwayController arController;
+    private MainScreenController msController;
 
-			msLoader.setLocation(Main.class.getResource("view/MainScreen.fxml"));
-			final AnchorPane msPage = msLoader.load();
-			final MainScreenController msController = msLoader.getController();
-			msController.setMainApp(this);
+    /**
+     * @param args
+     */
+    public static void main(String[] args)
+    {
+        launch(args);
+    }
 
-			final Scene scene = new Scene(msPage);
-			msStage = primaryStage;
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Runway Redeclaration");
-			primaryStage.setMinWidth(1000.0);
-			primaryStage.setMinHeight(600.0);
+    /**
+     * @param primaryStage
+     */
+    @Override
+    public final void start(Stage primaryStage)
+    {
+        try
+        {
+            // Load person overview.
+            final FXMLLoader msLoader = new FXMLLoader();
+            final FXMLLoader aaLoader = loadAAStage();
+            final FXMLLoader arLoader = loadARStage();
+            assert aaLoader != null;
+            aaController = aaLoader.getController();
+            aaController.setMainApp(this);
 
-			final Collection<Airport> list = new ArrayList<Airport>();
-			airportList = FXCollections.observableArrayList(list);
+            assert arLoader != null;
+            arController = arLoader.getController();
+            arController.setMainApp(this);
 
-			aaController.linkToSession();
-			msController.linkToSession();
+            msLoader.setLocation(Main.class.getResource("view/MainScreen.fxml"));
+            final AnchorPane msPage = msLoader.load();
+            msController = msLoader.getController();
+            msController.setMainApp(this);
 
-			primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (final Exception ex) {
-			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
+            final Scene scene = new Scene(msPage);
+            msStage = primaryStage;
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Runway Redeclaration");
+            primaryStage.setMinWidth(1000.0);
+            primaryStage.setMinHeight(600.0);
 
-	/**
-	 * @return
-	 */
-	private FXMLLoader loadAAStage() {
-		try {// Load person overview.
-			final FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/AddAirport.fxml"));
-			final AnchorPane page = loader.load();
-			aaStage = new Stage();
-			final Scene scene = new Scene(page);
-			aaStage.setScene(scene);
-			aaStage.setTitle("Add Airport");
-			aaStage.setMinWidth(300.0);
-			aaStage.setMinHeight(100.0);
-			return loader;
+            final Collection<Airport> list = new ArrayList<Airport>();
+            airportList = FXCollections.observableArrayList(list);
 
-		} catch (final IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+            aaController.linkToSession();
+            msController.linkToSession();
 
-	/**
-	 * @return
-	 */
-	private FXMLLoader loadARStage() {
-		try {
-			final FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/AddRunway.fxml"));
-			final AnchorPane page = loader.load();
-			arStage = new Stage();
-			final Scene scene = new Scene(page);
-			arStage.setScene(scene);
-			arStage.setTitle("Add Runway");
-			arStage.setMinWidth(300.0);
-			arStage.setMinHeight(100.0);
-			return loader;
-		} catch (final IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+            primaryStage.show();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        } catch (final Exception ex)
+        {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-	/**
-	 *
-	 */
-	public final void toggleAddAirport() {
-		if (aaStage.isShowing()) {
-			aaStage.hide();
-		} else {
-			aaStage.show();
-		}
-	}
+    /**
+     * @return
+     */
+    private FXMLLoader loadAAStage()
+    {
+        try
+        {// Load person overview.
+            final FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/AddAirport.fxml"));
+            final AnchorPane page = loader.load();
+            aaStage = new Stage();
+            final Scene scene = new Scene(page);
+            aaStage.setScene(scene);
+            aaStage.setTitle("Add Airport");
+            aaStage.setMinWidth(300.0);
+            aaStage.setMinHeight(100.0);
+            return loader;
 
-	/**
-	 *
-	 */
-	public final void toggleAddRunway() {
-		if (arStage.isShowing()) {
-			arStage.hide();
-		} else {
-			arStage.show();
-		}
-	}
+        } catch (final IOException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-	/**
-	 * @return
-	 */
-	public final ObservableList<Airport> getAirportList() {
-		return airportList;
-	}
+    /**
+     * @return
+     */
+    private FXMLLoader loadARStage()
+    {
+        try
+        {
+            final FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/AddRunway.fxml"));
+            final AnchorPane page = loader.load();
+            arStage = new Stage();
+            final Scene scene = new Scene(page);
+            arStage.setScene(scene);
+            arStage.setTitle("Add Runway");
+            arStage.setMinWidth(300.0);
+            arStage.setMinHeight(100.0);
+            return loader;
+        } catch (final IOException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     *
+     */
+    public final void toggleAddAirport()
+    {
+        if (aaStage.isShowing())
+        {
+            aaStage.hide();
+        } else
+        {
+            aaStage.show();
+        }
+    }
+
+    /**
+     *
+     */
+    public final void toggleAddRunway(String airportName)
+    {
+        if (arStage.isShowing())
+        {
+            arStage.hide();
+        } else
+        {
+            arController.updateSelectedAirport(airportName);
+            arStage.show();
+        }
+    }
+
+    /**
+     * @return
+     */
+    public final ObservableList<Airport> getAirportList()
+    {
+        return airportList;
+    }
+
 }

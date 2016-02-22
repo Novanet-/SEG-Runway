@@ -1,20 +1,34 @@
 package application.view;
 
 import application.Main;
+import application.model.Runway;
 import application.model.RunwayParameters;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.util.ArrayList;
 
 public class AddRunwayController
 {
 
     private Main mainApp;
+    StringProperty selectedAirport;
     @FXML
-    private Button btnSubmitAirport;
+    private Label lblAirportName;
+    @FXML
+    private Button btnSubmitRunway;
+    @FXML
+    private ComboBox cmbRunwayAlignment;
     @FXML
     private TextField txtTORA;
     @FXML
@@ -26,6 +40,7 @@ public class AddRunwayController
     @FXML
     private TextField txtDisplacedThreshold;
 
+
     /**
      *
      */
@@ -34,6 +49,8 @@ public class AddRunwayController
     {
         try
         {
+            int runwayAlingment;
+
             double TORA = Double.parseDouble(txtTORA.textProperty().getValue());
             double TODA = Double.parseDouble(txtTODA.textProperty().getValue());
             double ASDA = Double.parseDouble(txtASDA.textProperty().getValue());
@@ -47,13 +64,14 @@ public class AddRunwayController
             // TODO: modify runway form so that a specific airport needs to be selected to add a runway to
             // TODO: work out what to do with displaced threshold and the other paramters of RunwayDetails
             // TODO: once the previous three tasks are done, create a new Runway object with the paramters and details objects along with the runway alignment, then add that object to the list of the given airport
+
+            Runway runway = new Runway(parameters, null, new SimpleIntegerProperty(0), new SimpleStringProperty("0"));
+            mainApp.toggleAddRunway(lblAirportName.getText());
+
         } catch (NumberFormatException e)
         {
-            // TODO: deal with invalid input
             e.printStackTrace();
         }
-
-        mainApp.toggleAddRunway();
     }
 
     /**
@@ -63,23 +81,39 @@ public class AddRunwayController
     @FXML
     private void initialize()
     {
+        ArrayList<String> alignments = new ArrayList<String>();
+        for (int i = 0; i <= 36; i++)
+        {
+            alignments.add(String.format("%02d", i));
+        }
+
+        cmbRunwayAlignment.setItems(FXCollections.observableArrayList(alignments));
         //TODO: Make the listener that validates input an inner class or something and apply it to all text fiels
 
-        //Validates the input to numeric input
-        txtTODA.textProperty().addListener(new ChangeListener<String>()
-        {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
-            {
-                if (newValue.matches("\\d*"))
-                {
-                    int value = Integer.parseInt(newValue);
-                } else
-                {
-                    txtTODA.setText(oldValue);
-                }
-            }
-        });
+//        //Validates the input to numeric input
+//        txtTODA.textProperty().addListener(new ChangeListener<String>()
+//        {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
+//            {
+//                if (newValue.matches("\\d*"))
+//                {
+//                    int value = Integer.parseInt(newValue);
+//                } else
+//                {
+//                    txtTODA.setText(oldValue);
+//                }
+//            }
+//        });
+
+        //updateSelectedAirport();
+    }
+
+
+
+    public void updateSelectedAirport(String airportName)
+    {
+        lblAirportName.setText(airportName);
     }
 
     /**
@@ -87,7 +121,6 @@ public class AddRunwayController
      *
      * @param mainApp
      */
-
     public final void setMainApp(Main mainApp)
     {
         this.mainApp = mainApp;
