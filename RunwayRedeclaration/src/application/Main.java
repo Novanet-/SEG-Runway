@@ -17,8 +17,7 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Main extends Application
-{
+public class Main extends Application {
 
 	private ObservableList<Airport> airportList;
 
@@ -26,18 +25,13 @@ public class Main extends Application
 	private Stage aaStage;
 	private Stage arStage;
 
-
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		launch(args);
 	}
 
-
 	@Override
-	public final void start(Stage primaryStage)
-	{
-		try
-		{
+	public final void start(Stage primaryStage) {
+		try {
 			// Load person overview.
 			final FXMLLoader msLoader = new FXMLLoader();
 			final FXMLLoader aaLoader = loadAAStage();
@@ -65,22 +59,15 @@ public class Main extends Application
 			msController.linkToSession();
 
 			primaryStage.show();
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		catch (final Exception ex)
-		{
+		} catch (final Exception ex) {
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
-
-	private FXMLLoader loadAAStage()
-	{
-		try
-		{// Load person overview.
+	private FXMLLoader loadAAStage() {
+		try {// Load person overview.
 			final FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/AddAirport.fxml"));
 			final AnchorPane page = loader.load();
@@ -92,14 +79,12 @@ public class Main extends Application
 			aaStage.setMinHeight(100.0);
 			return loader;
 
-		}
-		catch (final IOException e)
-		{
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	private FXMLLoader loadARStage() {
 		try {
 			final FXMLLoader loader = new FXMLLoader();
@@ -118,19 +103,14 @@ public class Main extends Application
 		}
 	}
 
-
-	public final void toggleAddAirport()
-	{
-		if (aaStage.isShowing())
-		{
+	public final void toggleAddAirport() {
+		if (aaStage.isShowing()) {
 			aaStage.hide();
-		}
-		else
-		{
+		} else {
 			aaStage.show();
 		}
 	}
-	
+
 	public final void toggleAddRunway() {
 		if (arStage.isShowing()) {
 			arStage.hide();
@@ -139,9 +119,7 @@ public class Main extends Application
 		}
 	}
 
-
-	public final ObservableList<Airport> getAirportList()
-	{
+	public final ObservableList<Airport> getAirportList() {
 		return airportList;
 	}
 }

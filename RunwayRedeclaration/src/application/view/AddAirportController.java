@@ -12,51 +12,46 @@ import javafx.scene.control.TextField;
 /**
  * Created by Will on 21/02/2016.
  */
-public class AddAirportController
-{
+public class AddAirportController {
 
-	private       Main                    mainApp;
-	@FXML private TextField               txtAirportName;
-	@FXML private Button                  btnSubmitAirport;
-	private       ObservableList<Airport> airportList;
-
+	private Main mainApp;
+	@FXML
+	private TextField txtAirportName;
+	@FXML
+	private Button btnSubmitAirport;
+	private ObservableList<Airport> airportList;
 
 	/**
 	 * Initializes the controller class. This method is automatically called
 	 * after the fxml file has been loaded.
 	 */
 	@FXML
-	private void initialize()
-	{
+	private void initialize() {
 	}
 
-
 	@FXML
-	private void handleBtnSubmitAirport()
-	{
+	private void handleBtnSubmitAirport() {
 		final IntegerProperty airportId = new SimpleIntegerProperty(airportList.size());
 		airportList.add(new Airport(airportId, txtAirportName.textProperty()));
 		mainApp.toggleAddAirport();
 	}
-
 
 	/**
 	 * Is called by the main application to give a reference back to itself.
 	 *
 	 * @param mainApp
 	 */
-	public final void setMainApp(Main mainApp)
-	{
+	public final void setMainApp(Main mainApp) {
 		this.mainApp = mainApp;
 
-		/*cmbAirports.setItems(mainApp.getAirports());
-		cmbRunways.setItems(mainApp.getAirports().getRunways);
-		cmbAirports.setItems(mainApp.getAirports().getRunways.getObjects);*/
+		/*
+		 * cmbAirports.setItems(mainApp.getAirports());
+		 * cmbRunways.setItems(mainApp.getAirports().getRunways);
+		 * cmbAirports.setItems(mainApp.getAirports().getRunways.getObjects);
+		 */
 	}
 
-
-	public final void linkToSession()
-	{
+	public final void linkToSession() {
 		airportList = mainApp.getAirportList();
 	}
 }
