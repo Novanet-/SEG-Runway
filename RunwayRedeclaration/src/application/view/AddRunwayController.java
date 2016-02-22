@@ -84,7 +84,7 @@ public class AddRunwayController
     private void initialize()
     {
         ArrayList<String> alignments = new ArrayList<String>();
-        for (int i = 0; i < 36; i++)
+        for (int i = 0; i < 35; i++)
         {
             alignments.add(String.format("%02d", i));
         }
