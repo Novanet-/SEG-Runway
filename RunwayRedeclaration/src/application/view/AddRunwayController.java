@@ -27,6 +27,7 @@ public class AddRunwayController
     @FXML private Label lblSecondRunwayAlignment;
     @FXML private Button btnSubmitRunway;
     @FXML private ComboBox cmbRunwayAlignment;
+    @FXML private ComboBox cmbRunwayPosition;
     @FXML private TextField txtPrimaryTORA;
     @FXML private TextField txtPrimaryTODA;
     @FXML private TextField txtPrimaryASDA;
