@@ -9,6 +9,12 @@ public class RunwayParameters {
 	private final DoubleProperty ASDA;
 	private final DoubleProperty LDA;
 
+	/**
+	 * @param TORA
+	 * @param TODA
+	 * @param ASDA
+	 * @param LDA
+	 */
 	public RunwayParameters(final DoubleProperty TORA, final DoubleProperty TODA, final DoubleProperty ASDA,
 			final DoubleProperty LDA) {
 		this.TORA = TORA;
@@ -17,18 +23,32 @@ public class RunwayParameters {
 		this.LDA = LDA;
 	}
 
+
+
+	/**
+	 * @return
+	 */
 	public final double getTORA() {
 		return TORA.getValue();
 	}
 
+	/**
+	 * @return
+	 */
 	public final double getTODA() {
 		return TODA.getValue();
 	}
 
+	/**
+	 * @return
+	 */
 	public final double getASDA() {
 		return ASDA.getValue();
 	}
 
+	/**
+	 * @return
+	 */
 	public final double getLDA() {
 		return LDA.getValue();
 	}

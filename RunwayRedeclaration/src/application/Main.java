@@ -20,16 +20,24 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+	// TODO : FIll in JavaDoc stubs for all methods
+
 	private ObservableList<Airport> airportList;
 
 	private Stage msStage;
 	private Stage aaStage;
 	private Stage arStage;
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
 
+	/**
+	 * @param primaryStage
+	 */
 	@Override
 	public final void start(Stage primaryStage) {
 		try {
@@ -71,6 +79,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	private FXMLLoader loadAAStage() {
 		try {// Load person overview.
 			final FXMLLoader loader = new FXMLLoader();
@@ -90,6 +101,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	private FXMLLoader loadARStage() {
 		try {
 			final FXMLLoader loader = new FXMLLoader();
@@ -108,6 +122,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 *
+	 */
 	public final void toggleAddAirport() {
 		if (aaStage.isShowing()) {
 			aaStage.hide();
@@ -116,6 +133,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 *
+	 */
 	public final void toggleAddRunway() {
 		if (arStage.isShowing()) {
 			arStage.hide();
@@ -124,6 +144,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	public final ObservableList<Airport> getAirportList() {
 		return airportList;
 	}

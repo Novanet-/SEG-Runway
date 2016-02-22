@@ -18,18 +18,30 @@ public class Obstacle {
 		this.length = length;
 	}
 
+	/**
+	 * @return
+	 */
 	public final String getName() {
 		return name.getValueSafe();
 	}
 
+	/**
+	 * @return
+	 */
 	public final double getHeight() {
 		return height.getValue();
 	}
 
+	/**
+	 * @return
+	 */
 	public final double getWidth() {
 		return width.getValue();
 	}
 
+	/**
+	 * @return
+	 */
 	public final double getLength() {
 		return length.getValue();
 	}

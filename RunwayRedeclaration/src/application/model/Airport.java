@@ -16,6 +16,10 @@ public class Airport {
 	private final StringProperty airportName;
 	private final ObservableList<Runway> runways;
 
+	/**
+	 * @param airportID
+	 * @param airportName
+	 */
 	public Airport(final IntegerProperty airportID, final StringProperty airportName) {
 		this.airportID = airportID;
 		this.airportName = airportName;
@@ -23,22 +27,37 @@ public class Airport {
 		runways = FXCollections.observableArrayList(list);
 	}
 
+	/**
+	 * @return
+	 */
 	public final int getAirportID() {
 		return airportID.getValue();
 	}
 
+	/**
+	 * @return
+	 */
 	public final String getAirportName() {
 		return airportName.getValueSafe();
 	}
 
+	/**
+	 * @return
+	 */
 	public final List<Runway> getRunways() {
 		return Collections.unmodifiableList(runways);
 	}
 
+	/**
+	 * @param runway
+	 */
 	public final void addRunway(Runway runway) {
 		runways.add(runway);
 	}
 
+	/**
+	 * @return
+	 */
 	@Override
 	public final String toString() {
 		return airportID.getValue() + " - " + airportName.getValue();

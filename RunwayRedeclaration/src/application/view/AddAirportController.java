@@ -43,12 +43,6 @@ public class AddAirportController {
 	 */
 	public final void setMainApp(Main mainApp) {
 		this.mainApp = mainApp;
-
-		/*
-		 * cmbAirports.setItems(mainApp.getAirports());
-		 * cmbRunways.setItems(mainApp.getAirports().getRunways);
-		 * cmbAirports.setItems(mainApp.getAirports().getRunways.getObjects);
-		 */
 	}
 
 	public final void linkToSession() {

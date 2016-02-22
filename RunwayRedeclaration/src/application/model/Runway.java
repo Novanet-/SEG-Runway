@@ -26,30 +26,51 @@ public class Runway {
 		obstacleArray = FXCollections.observableArrayList(list);
 	}
 
+	/**
+	 * @return
+	 */
 	public final int getRunwayID() {
 		return runwayID.getValue();
 	}
 
+	/**
+	 * @return
+	 */
 	public final String getAlignment() {
 		return alignment.getValueSafe();
 	}
 
+	/**
+	 * @return
+	 */
 	public final RunwayParameters getRunwayParameters() {
 		return runwayParameters;
 	}
 
+	/**
+	 * @return
+	 */
 	public final RunwayDetails getRunwayDetails() {
 		return runwayDetails;
 	}
 
+	/**
+	 * @return
+	 */
 	public final ObservableList<Obstacle> getObstacles() {
 		return obstacleArray;
 	}
 
+	/**
+	 * @param obstacle
+	 */
 	public final void addObstacle(Obstacle obstacle) {
 		obstacleArray.add(obstacle);
 	}
 
+	/**
+	 * @return
+	 */
 	@Override
 	public final String toString() {
 		return "Runway{" + "runwayID=" + runwayID + ", alignment=" + alignment + '}';

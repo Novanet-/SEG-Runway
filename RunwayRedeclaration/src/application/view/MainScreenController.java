@@ -68,26 +68,41 @@ public class MainScreenController {
 	private void initialize() {
 	}
 
+	/**
+	 *
+	 */
 	private void updateCmbAirports() {
 		cmbAirports.setItems(airportList);
 	}
 
+	/**
+	 *
+	 */
 	@FXML
 	private void handleBtnAddAirport() {
 		openAddAirport();
 
 	}
 
+	/**
+	 *
+	 */
 	@FXML
 	private void handleBtnAddRunway() {
 		openAddRunway();
 	}
 
+	/**
+	 *
+	 */
 	@FXML
 	private void openAddAirport() {
 		mainApp.toggleAddAirport();
 	}
 
+	/**
+	 *
+	 */
 	@FXML
 	private void openAddRunway() {
 		mainApp.toggleAddRunway();
@@ -108,6 +123,9 @@ public class MainScreenController {
 		 */
 	}
 
+	/**
+	 *
+	 */
 	public final void linkToSession() {
 		airportList = mainApp.getAirportList();
 		updateCmbAirports();
