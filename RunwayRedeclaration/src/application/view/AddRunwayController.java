@@ -27,11 +27,16 @@ public class AddRunwayController
     @FXML private Label lblSecondRunwayAlignment;
     @FXML private Button btnSubmitRunway;
     @FXML private ComboBox cmbRunwayAlignment;
-    @FXML private TextField txtTORA;
-    @FXML private TextField txtTODA;
-    @FXML private TextField txtASDA;
-    @FXML private TextField txtLDA;
-    @FXML private TextField txtDisplacedThreshold;
+    @FXML private TextField txtPrimaryTORA;
+    @FXML private TextField txtPrimaryTODA;
+    @FXML private TextField txtPrimaryASDA;
+    @FXML private TextField txtPrimaryLDA;
+    @FXML private TextField txtPrimaryDisplacedThreshold;
+    @FXML private TextField txtSecondaryTORA;
+    @FXML private TextField txtSecondaryTODA;
+    @FXML private TextField txtSecondaryASDA;
+    @FXML private TextField txtSecondaryLDA;
+    @FXML private TextField txtSecondaryDisplacedThreshold;
     private ObservableList<Airport> airportList;
 
 
@@ -45,27 +50,37 @@ public class AddRunwayController
         {
             int runwayAlignment;
 
-            double TORA = Double.parseDouble(txtTORA.textProperty().getValue());
-            double TODA = Double.parseDouble(txtTODA.textProperty().getValue());
-            double ASDA = Double.parseDouble(txtASDA.textProperty().getValue());
-            double LDA = Double.parseDouble(txtLDA.textProperty().getValue());
-            double displacedThreshold = Double.parseDouble(txtDisplacedThreshold.textProperty().getValue());
+            double primaryTORA = Double.parseDouble(txtPrimaryTORA.textProperty().getValue());
+            double primaryTODA = Double.parseDouble(txtPrimaryTODA.textProperty().getValue());
+            double primaryASDA = Double.parseDouble(txtPrimaryASDA.textProperty().getValue());
+            double primaryLDA = Double.parseDouble(txtPrimaryLDA.textProperty().getValue());
+            double primaryDisplacedThreshold = Double.parseDouble(txtPrimaryDisplacedThreshold.textProperty().getValue());
 
-            RunwayParameters parameters;
-            parameters = new RunwayParameters(new SimpleDoubleProperty(TORA), new SimpleDoubleProperty(TODA), new SimpleDoubleProperty(ASDA), new SimpleDoubleProperty(LDA), new SimpleDoubleProperty(displacedThreshold));
+            double secondaryTORA = Double.parseDouble(txtSecondaryTORA.textProperty().getValue());
+            double secondaryTODA = Double.parseDouble(txtSecondaryTODA.textProperty().getValue());
+            double secondaryASDA = Double.parseDouble(txtSecondaryASDA.textProperty().getValue());
+            double secondaryLDA = Double.parseDouble(txtSecondaryLDA.textProperty().getValue());
+            double secondaryDisplacedThreshold = Double.parseDouble(txtSecondaryDisplacedThreshold.textProperty().getValue());
+
+
+            RunwayParameters primaryParameters, secondaryParameters;
+            primaryParameters = new RunwayParameters(new SimpleDoubleProperty(primaryTORA), new SimpleDoubleProperty(primaryTODA), new SimpleDoubleProperty(primaryASDA), new SimpleDoubleProperty(primaryLDA), new SimpleDoubleProperty(primaryDisplacedThreshold));
+            secondaryParameters = new RunwayParameters(new SimpleDoubleProperty(secondaryTORA), new SimpleDoubleProperty(secondaryTODA), new SimpleDoubleProperty(secondaryASDA), new SimpleDoubleProperty(secondaryLDA), new SimpleDoubleProperty(secondaryDisplacedThreshold));
 
             // TODO: do something with properties
             // TODO: modify runway form so that a specific airport needs to be selected to add a runway to
             // TODO: work out what to do with displaced threshold and the other paramters of RunwayDetails
             // TODO: once the previous three tasks are done, create a new Runway object with the paramters and details objects along with the runway alignment, then add that object to the list of the given airport
 
-            Runway runway = new Runway(parameters, null, new SimpleIntegerProperty(0), new SimpleStringProperty(cmbRunwayAlignment.getValue().toString()));
+            Runway primaryRunway = new Runway(primaryParameters, null, new SimpleIntegerProperty(0), new SimpleStringProperty(cmbRunwayAlignment.getValue().toString()));
+            Runway secondaryRunway = new Runway(secondaryParameters, null, new SimpleIntegerProperty(1), new SimpleStringProperty(lblSecondRunwayAlignment.getText()));
 
             for (Airport a : airportList)
             {
                 if (a.getAirportName().equals(lblAirportName.getText()))
                 {
-                    a.addRunway(runway);
+                    a.addRunway(primaryRunway);
+                    a.addRunway(secondaryRunway);
                     break;
                 }
             }
