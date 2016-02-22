@@ -63,12 +63,22 @@ public class MainScreenController
 		openAddAirport();
 
 	}
+	
+	@FXML
+	private void handleBtnAddRunway() {
+		openAddRunway();
+	}
 
 
 	@FXML
 	private void openAddAirport()
 	{
 		mainApp.toggleAddAirport();
+	}
+	
+	@FXML
+	private void openAddRunway() {
+		mainApp.toggleAddRunway();
 	}
 
 

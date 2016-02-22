@@ -24,6 +24,7 @@ public class Main extends Application
 
 	private Stage msStage;
 	private Stage aaStage;
+	private Stage arStage;
 
 
 	public static void main(String[] args)
@@ -40,6 +41,7 @@ public class Main extends Application
 			// Load person overview.
 			final FXMLLoader msLoader = new FXMLLoader();
 			final FXMLLoader aaLoader = loadAAStage();
+			final FXMLLoader arLoader = loadARStage();
 			assert aaLoader != null;
 			final AddAirportController aaController = aaLoader.getController();
 			aaController.setMainApp(this);
@@ -97,6 +99,24 @@ public class Main extends Application
 			return null;
 		}
 	}
+	
+	private FXMLLoader loadARStage() {
+		try {
+			final FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/AddRunway.fxml"));
+			final AnchorPane page = loader.load();
+			arStage = new Stage();
+			final Scene scene = new Scene(page);
+			arStage.setScene(scene);
+			arStage.setTitle("Add Runway");
+			arStage.setMinWidth(300.0);
+			arStage.setMinHeight(100.0);
+			return loader;
+		} catch (final IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 
 	public final void toggleAddAirport()
@@ -108,6 +128,14 @@ public class Main extends Application
 		else
 		{
 			aaStage.show();
+		}
+	}
+	
+	public final void toggleAddRunway() {
+		if (arStage.isShowing()) {
+			arStage.hide();
+		} else {
+			arStage.show();
 		}
 	}
 
