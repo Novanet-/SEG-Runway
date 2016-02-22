@@ -26,6 +26,8 @@ public class AddRunwayController
     @FXML
     private Label lblAirportName;
     @FXML
+    private Label lblSecondRunwayAlignment;
+    @FXML
     private Button btnSubmitRunway;
     @FXML
     private ComboBox cmbRunwayAlignment;
@@ -82,7 +84,7 @@ public class AddRunwayController
     private void initialize()
     {
         ArrayList<String> alignments = new ArrayList<String>();
-        for (int i = 0; i <= 36; i++)
+        for (int i = 0; i < 36; i++)
         {
             alignments.add(String.format("%02d", i));
         }
@@ -107,6 +109,18 @@ public class AddRunwayController
 //        });
 
         //updateSelectedAirport();
+    }
+
+    /**
+     *
+     */
+    @FXML
+    private void handleItemSelected() {
+        if(Integer.parseInt((String) cmbRunwayAlignment.getValue()) > 17) {
+            lblSecondRunwayAlignment.setText(Integer.toString(Integer.parseInt((String) cmbRunwayAlignment.getValue())-18));
+        } else {
+            lblSecondRunwayAlignment.setText(Integer.toString(Integer.parseInt((String) cmbRunwayAlignment.getValue()) + 18));
+        }
     }
 
 
