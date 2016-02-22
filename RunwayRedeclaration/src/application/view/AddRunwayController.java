@@ -1,6 +1,7 @@
 package application.view;
 
 import application.Main;
+import application.model.Runway;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -23,7 +24,19 @@ public class AddRunwayController {
 
 	@FXML
 	private void handleBtnSubmitRunway() {
-		// TODO: get properties and do something with them
+		try {
+			double TORA = Double.parseDouble(txtTORA.textProperty().getValue());
+			double TODA = Double.parseDouble(txtTODA.textProperty().getValue());
+			double ASDA = Double.parseDouble(txtASDA.textProperty().getValue());
+			double LDA = Double.parseDouble(txtLDA.textProperty().getValue());
+			double displacedThreshold = Double.parseDouble(txtDisplacedThreshold.textProperty().getValue());
+			
+			// TODO: do something with properties
+		} catch (NumberFormatException e) {
+			// TODO: deal with invalid input
+			e.printStackTrace();
+		}
+		
 		mainApp.toggleAddRunway();
 	}
 
