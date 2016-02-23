@@ -14,138 +14,151 @@ import javafx.scene.control.TextField;
 public class MainScreenController
 {
 
-    private ObservableList<Airport> airportList;
+	private ObservableList<Airport> airportList;
 
-    @FXML private MenuItem btnAddAirport;
-    @FXML private MenuItem btnAddRunway;
-    @FXML private ComboBox cmbAirports;
-    @FXML private ComboBox cmbRunways;
-    @FXML private TextField cmbObjects;
-    @FXML private Label lblOrigTora;
-    @FXML private Label lblOrigToda;
-    @FXML private Label lblOrigAsda;
-    @FXML private Label lblOrigLda;
-    @FXML private Label lblOrigDisplacedThreshold;
-    @FXML private Label lblRecalcTora;
-    @FXML private Label lblRecalToda;
-    @FXML private Label lblRecalAsda;
-    @FXML private Label lblRecalLda;
-    @FXML private Label lblRecalDisplacedThreshold;
-    @FXML private Label lblResa;
-    @FXML private Label lblStopway;
-    @FXML private Label lblBlastProtection;
-    @FXML private Label lblAngleOfSlope;
-    @FXML private Label lblStripWidth;
-    @FXML private Label lblCAndGWidth;
+	@FXML private MenuItem  btnAddAirport;
+	@FXML private MenuItem  btnAddRunway;
+	@FXML private ComboBox  cmbAirports;
+	@FXML private ComboBox  cmbRunways;
+	@FXML private TextField cmbObjects;
+	@FXML private Label     lblOrigTora;
+	@FXML private Label     lblOrigToda;
+	@FXML private Label     lblOrigAsda;
+	@FXML private Label     lblOrigLda;
+	@FXML private Label     lblOrigDisplacedThreshold;
+	@FXML private Label     lblRecalcTora;
+	@FXML private Label     lblRecalToda;
+	@FXML private Label     lblRecalAsda;
+	@FXML private Label     lblRecalLda;
+	@FXML private Label     lblRecalDisplacedThreshold;
+	@FXML private Label     lblResa;
+	@FXML private Label     lblStopway;
+	@FXML private Label     lblBlastProtection;
+	@FXML private Label     lblAngleOfSlope;
+	@FXML private Label     lblStripWidth;
+	@FXML private Label     lblCAndGWidth;
 
-    // Reference to the main application.
-    private Main mainApp;
+	// Reference to the main application.
+	private Main mainApp;
 
-    /**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
-     */
-    @FXML
-    private void initialize()
-    {
-    }
 
-    /**
-     *
-     */
-    private void updateCmbAirports()
-    {
-        cmbAirports.setItems(airportList);
-    }
+	/**
+	 * Initializes the controller class. This method is automatically called
+	 * after the fxml file has been loaded.
+	 */
+	@FXML
+	private void initialize()
+	{
+	}
 
-    /**
-     *
-     */
-    @FXML
-    private void handleBtnAddAirport()
-    {
-        openAddAirport();
-    }
 
-    /**
-     *
-     */
-    @FXML
-    private void handleBtnAddRunway()
-    {
-        openAddRunway();
-    }
+	/**
+	 *
+	 */
+	private void updateCmbAirports()
+	{
+		cmbAirports.setItems(airportList);
+	}
 
-    @FXML
-    private void handleAirportSelected()
-    {
-        cmbRunways.setItems(((Airport) cmbAirports.getValue()).getRunways());
-    }
 
-    @FXML
-    private void handleRunwaySelected()
-    {
-        updateOriginalParameters();
-    }
+	/**
+	 *
+	 */
+	@FXML
+	private void handleBtnAddAirport()
+	{
+		openAddAirport();
+	}
 
-    /**
-     *
-     */
-    @FXML
-    private void openAddAirport()
-    {
-        mainApp.toggleAddAirport();
-    }
 
-    /**
-     *
-     */
-    @FXML
-    private void openAddRunway()
-    {
-        mainApp.toggleAddRunway(((Airport) cmbAirports.getValue()).getAirportName());
-    }
+	/**
+	 *
+	 */
+	@FXML
+	private void handleBtnAddRunway()
+	{
+		openAddRunway();
+	}
 
-    /**
-     *
-     */
-    @FXML
-    private void openAddObject()
-    {
-        mainApp.toggleAddObject();
-    }
 
-    /**
-     *
-     */
-    private void updateOriginalParameters() {
-        Runway currentRunway = (Runway) cmbRunways.getValue();
-        lblOrigTora.setText(Double.toString(currentRunway.getRunwayParameters().getTORA()));
-        lblOrigToda.setText(Double.toString(currentRunway.getRunwayParameters().getTODA()));
-        lblOrigAsda.setText(Double.toString(currentRunway.getRunwayParameters().getASDA()));
-        lblOrigLda.setText(Double.toString(currentRunway.getRunwayParameters().getLDA()));
-        lblOrigDisplacedThreshold.setText(Double.toString(currentRunway.getRunwayParameters().getDisplacedThreshold()));
-    }
+	@FXML
+	private void handleAirportSelected()
+	{
+		cmbRunways.setItems(((Airport) cmbAirports.getValue()).getRunways());
+	}
 
-    /**
-     * Is called by the main application to give a reference back to itself.
-     *
-     * @param mainApp
-     */
-    public final void setMainApp(Main mainApp)
-    {
-        this.mainApp = mainApp;
-    }
 
-    /**
-     *
-     */
-    public final void linkToSession()
-    {
-        airportList = mainApp.getAirportList();
-        updateCmbAirports();
-        airportList.addListener((ListChangeListener) change -> {
-            updateCmbAirports();
-        });
-    }
+	@FXML
+	private void handleRunwaySelected()
+	{
+		updateOriginalParameters();
+	}
+
+
+	/**
+	 *
+	 */
+	@FXML
+	private void openAddAirport()
+	{
+		mainApp.toggleAddAirport();
+	}
+
+
+	/**
+	 *
+	 */
+	@FXML
+	private void openAddRunway()
+	{
+		mainApp.toggleAddRunway(((Airport) cmbAirports.getValue()).getAirportName());
+	}
+
+
+	/**
+	 *
+	 */
+	@FXML
+	private void openAddObject()
+	{
+		mainApp.toggleAddObject();
+	}
+
+
+	/**
+	 *
+	 */
+	private void updateOriginalParameters()
+	{
+		Runway currentRunway = (Runway) cmbRunways.getValue();
+		lblOrigTora.setText(Double.toString(currentRunway.getRunwayParameters().getTORA()));
+		lblOrigToda.setText(Double.toString(currentRunway.getRunwayParameters().getTODA()));
+		lblOrigAsda.setText(Double.toString(currentRunway.getRunwayParameters().getASDA()));
+		lblOrigLda.setText(Double.toString(currentRunway.getRunwayParameters().getLDA()));
+		lblOrigDisplacedThreshold.setText(Double.toString(currentRunway.getRunwayParameters().getDisplacedThreshold()));
+	}
+
+
+	/**
+	 * Is called by the main application to give a reference back to itself.
+	 *
+	 * @param mainApp
+	 */
+	public final void setMainApp(Main mainApp)
+	{
+		this.mainApp = mainApp;
+	}
+
+
+	/**
+	 *
+	 */
+	public final void linkToSession()
+	{
+		airportList = mainApp.getAirportList();
+		updateCmbAirports();
+		airportList.addListener((ListChangeListener) change -> {
+			updateCmbAirports();
+		});
+	}
 }

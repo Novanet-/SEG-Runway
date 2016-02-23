@@ -15,42 +15,44 @@ import javafx.scene.control.TextField;
 public class AddAirportController
 {
 
-    private Main mainApp;
-    @FXML
-    private TextField txtAirportName;
-    @FXML
-    private Button btnSubmitAirport;
-    private ObservableList<Airport> airportList;
+	private       Main                    mainApp;
+	@FXML private TextField               txtAirportName;
+	@FXML private Button                  btnSubmitAirport;
+	private       ObservableList<Airport> airportList;
 
-    /**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
-     */
-    @FXML
-    private void initialize()
-    {
-    }
 
-    @FXML
-    private void handleBtnSubmitAirport()
-    {
-        final IntegerProperty airportId = new SimpleIntegerProperty(airportList.size());
-        airportList.add(new Airport(airportId, txtAirportName.textProperty()));
-        mainApp.toggleAddAirport();
-    }
+	/**
+	 * Initializes the controller class. This method is automatically called
+	 * after the fxml file has been loaded.
+	 */
+	@FXML
+	private void initialize()
+	{
+	}
 
-    /**
-     * Is called by the main application to give a reference back to itself.
-     *
-     * @param mainApp
-     */
-    public final void setMainApp(Main mainApp)
-    {
-        this.mainApp = mainApp;
-    }
 
-    public final void linkToSession()
-    {
-        airportList = mainApp.getAirportList();
-    }
+	@FXML
+	private void handleBtnSubmitAirport()
+	{
+		final IntegerProperty airportId = new SimpleIntegerProperty(airportList.size());
+		airportList.add(new Airport(airportId, txtAirportName.textProperty()));
+		mainApp.toggleAddAirport();
+	}
+
+
+	/**
+	 * Is called by the main application to give a reference back to itself.
+	 *
+	 * @param mainApp
+	 */
+	public final void setMainApp(Main mainApp)
+	{
+		this.mainApp = mainApp;
+	}
+
+
+	public final void linkToSession()
+	{
+		airportList = mainApp.getAirportList();
+	}
 }
