@@ -16,48 +16,27 @@ public class MainScreenController
 
     private ObservableList<Airport> airportList;
 
-    @FXML
-    private MenuItem btnAddAirport;
-    @FXML
-    private MenuItem btnAddRunway;
-    @FXML
-    private ComboBox cmbAirports;
-    @FXML
-    private ComboBox cmbRunways;
-    @FXML
-    private TextField cmbObjects;
-    @FXML
-    private Label lblOrigTora;
-    @FXML
-    private Label lblOrigToda;
-    @FXML
-    private Label lblOrigAsda;
-    @FXML
-    private Label lblOrigLda;
-    @FXML
-    private Label lblOrigDisplacedThreshold;
-    @FXML
-    private Label lblRecalcTora;
-    @FXML
-    private Label lblRecalToda;
-    @FXML
-    private Label lblRecalAsda;
-    @FXML
-    private Label lblRecalLda;
-    @FXML
-    private Label lblRecalDisplacedThreshold;
-    @FXML
-    private Label lblResa;
-    @FXML
-    private Label lblStopway;
-    @FXML
-    private Label lblBlastProtection;
-    @FXML
-    private Label lblAngleOfSlope;
-    @FXML
-    private Label lblStripWidth;
-    @FXML
-    private Label lblCAndGWidth;
+    @FXML private MenuItem btnAddAirport;
+    @FXML private MenuItem btnAddRunway;
+    @FXML private ComboBox cmbAirports;
+    @FXML private ComboBox cmbRunways;
+    @FXML private TextField cmbObjects;
+    @FXML private Label lblOrigTora;
+    @FXML private Label lblOrigToda;
+    @FXML private Label lblOrigAsda;
+    @FXML private Label lblOrigLda;
+    @FXML private Label lblOrigDisplacedThreshold;
+    @FXML private Label lblRecalcTora;
+    @FXML private Label lblRecalToda;
+    @FXML private Label lblRecalAsda;
+    @FXML private Label lblRecalLda;
+    @FXML private Label lblRecalDisplacedThreshold;
+    @FXML private Label lblResa;
+    @FXML private Label lblStopway;
+    @FXML private Label lblBlastProtection;
+    @FXML private Label lblAngleOfSlope;
+    @FXML private Label lblStripWidth;
+    @FXML private Label lblCAndGWidth;
 
     // Reference to the main application.
     private Main mainApp;
