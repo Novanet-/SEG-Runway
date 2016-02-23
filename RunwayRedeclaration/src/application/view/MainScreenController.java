@@ -109,6 +109,15 @@ public class MainScreenController
     /**
      *
      */
+    @FXML
+    private void openAddObject()
+    {
+        mainApp.toggleAddObject();
+    }
+
+    /**
+     *
+     */
     private void updateOriginalParameters() {
         Runway currentRunway = (Runway) cmbRunways.getValue();
         lblOrigTora.setText(Double.toString(currentRunway.getRunwayParameters().getTORA()));
