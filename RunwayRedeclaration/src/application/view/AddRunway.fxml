@@ -114,7 +114,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox fx:id="cmbRunwayPosition" prefWidth="150.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="1">
+                  <ComboBox fx:id="cmbRunwayPosition" onAction="#handlePositionSelected" prefWidth="150.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets right="10.0" />
                      </GridPane.margin>

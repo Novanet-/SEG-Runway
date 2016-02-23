@@ -124,12 +124,32 @@ public class AddRunwayController
     @FXML
     private void handleItemSelected()
     {
-        if (Integer.parseInt((String) cmbRunwayAlignment.getValue()) > 17)
+        lblSecondRunwayAlignment.setText(Integer.toString(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue()))));
+    }
+
+    /**
+     *
+     */
+    @FXML
+    private void handlePositionSelected()
+    {
+        if((String) cmbRunwayPosition.getValue() == "L") {
+            lblSecondRunwayAlignment.setText(Integer.toString(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue()))) + "R");
+        } else if((String) cmbRunwayPosition.getValue() == "C") {
+            lblSecondRunwayAlignment.setText(Integer.toString(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue()))) + "C");
+        } else if((String) cmbRunwayPosition.getValue() == "R") {
+            lblSecondRunwayAlignment.setText(Integer.toString(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue()))) + "L");
+        }
+    }
+
+    private Integer calculateSecondPosition(Integer firstPosition)
+    {
+        if (firstPosition > 17)
         {
-            lblSecondRunwayAlignment.setText(Integer.toString(Integer.parseInt((String) cmbRunwayAlignment.getValue()) - 18));
+            return firstPosition - 18;
         } else
         {
-            lblSecondRunwayAlignment.setText(Integer.toString(Integer.parseInt((String) cmbRunwayAlignment.getValue()) + 18));
+            return firstPosition + 18;
         }
     }
 
