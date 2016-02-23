@@ -73,7 +73,7 @@ public class AddRunwayController
             // TODO: work out what to do with displaced threshold and the other paramters of RunwayDetails
             // TODO: once the previous three tasks are done, create a new Runway object with the paramters and details objects along with the runway alignment, then add that object to the list of the given airport
 
-            Runway primaryRunway = new Runway(primaryParameters, null, new SimpleIntegerProperty(0), new SimpleStringProperty(cmbRunwayAlignment.getValue().toString()));
+            Runway primaryRunway = new Runway(primaryParameters, null, new SimpleIntegerProperty(0), new SimpleStringProperty(cmbRunwayAlignment.getValue().toString() + cmbRunwayPosition.getValue().toString()));
             Runway secondaryRunway = new Runway(secondaryParameters, null, new SimpleIntegerProperty(1), new SimpleStringProperty(lblSecondRunwayAlignment.getText()));
 
             for (Airport a : airportList)
