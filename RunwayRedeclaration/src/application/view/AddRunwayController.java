@@ -119,7 +119,6 @@ public class AddRunwayController
 
 		cmbRunwayAlignment.setItems(FXCollections.observableArrayList(alignments));
 		cmbRunwayPosition.setItems(FXCollections.observableArrayList(positions));
-		//TODO: Make the listener that validates input an inner class or something and apply it to all text fiels
 	}
 
 
