@@ -153,8 +153,7 @@ public class MainScreenController
 	/**
 	 *
 	 */
-	public final void linkToSession()
-	{
+	public final void linkToSession() {
 		airportList = mainApp.getAirportList();
 		updateCmbAirports();
 		airportList.addListener((ListChangeListener) change -> {
