@@ -124,7 +124,10 @@ public class AddRunwayController
     @FXML
     private void handleItemSelected()
     {
-        lblSecondRunwayAlignment.setText(Integer.toString(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue()))));
+        updateSecondRunwayAlignmentPosition(
+                calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue())),
+                (String) cmbRunwayPosition.getValue()
+        );
     }
 
     /**
@@ -133,13 +136,10 @@ public class AddRunwayController
     @FXML
     private void handlePositionSelected()
     {
-        if((String) cmbRunwayPosition.getValue() == "L") {
-            lblSecondRunwayAlignment.setText(Integer.toString(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue()))) + "R");
-        } else if((String) cmbRunwayPosition.getValue() == "C") {
-            lblSecondRunwayAlignment.setText(Integer.toString(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue()))) + "C");
-        } else if((String) cmbRunwayPosition.getValue() == "R") {
-            lblSecondRunwayAlignment.setText(Integer.toString(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue()))) + "L");
-        }
+        updateSecondRunwayAlignmentPosition(
+                calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue())),
+                (String) cmbRunwayPosition.getValue()
+        );
     }
 
     private Integer calculateSecondPosition(Integer firstPosition)
@@ -151,6 +151,20 @@ public class AddRunwayController
         {
             return firstPosition + 18;
         }
+    }
+
+    private void updateSecondRunwayAlignmentPosition(Integer alignment, String position)
+    {
+        String newPosition = "";
+        if((String) cmbRunwayPosition.getValue() == "L") {
+            newPosition = "R";
+        } else if((String) cmbRunwayPosition.getValue() == "C") {
+            newPosition = "C";
+        } else if((String) cmbRunwayPosition.getValue() == "R") {
+            newPosition = "L";
+        }
+
+        lblSecondRunwayAlignment.setText(Integer.toString(alignment) + newPosition);
     }
 
 
