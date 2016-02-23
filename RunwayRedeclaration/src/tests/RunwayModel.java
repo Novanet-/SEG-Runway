@@ -1,7 +1,8 @@
 package tests;
 
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 import application.model.Runway;
 import application.model.RunwayDetails;
@@ -11,7 +12,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 public class RunwayModel {
 	@Test
@@ -35,11 +35,13 @@ public class RunwayModel {
 		IntegerProperty runwayStrip = new SimpleIntegerProperty(20);
 		RunwayDetails rD = new RunwayDetails(displacedThresholdI, clearway, stopway, resa, stripEnd, blastProtection,
 				runwayStrip);
-		
-		IntegerProperty runwayID = new SimpleIntegerProperty(14);
-		StringProperty alignment = new SimpleStringProperty("L");
-		Runway r = new Runway(rP, rD, runwayID, alignment);
-		
+
+		int runwayID = 14;
+		String alignment = "L";
+		Runway r = new Runway(rP, rD, new SimpleIntegerProperty(runwayID), new SimpleStringProperty(alignment));
+
 		assertEquals("Should return parameter", runwayID, r.getRunwayID());
+		assertEquals("Should return parameter", alignment, r.getAlignment());
+		assertEquals("Should return paramter", rP, r.getRunwayParameters());
 	}
 }
