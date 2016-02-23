@@ -33,16 +33,16 @@ public class AirportModel {
 		RunwayParameters p = new RunwayParameters(dP, dP, dP, dP, dP);
 		RunwayDetails d = new RunwayDetails(iP, iP, iP, iP, iP, iP, iP);
 		Runway r = new Runway(p, d, new SimpleIntegerProperty(9), new SimpleStringProperty("L"));
-		
+
 		a.addRunway(r);
 		assertEquals("Should get runway back", r, a.getRunways().get(0));
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void testAirportIDNegative() {
 		new Airport(new SimpleIntegerProperty(-1), new SimpleStringProperty("Test"));
 	}
-	
+
 	@Test
 	public void testAirportIDBoundaries() {
 		Airport a = null;
@@ -51,18 +51,18 @@ public class AirportModel {
 		a = new Airport(new SimpleIntegerProperty(0), new SimpleStringProperty("Test"));
 		assertEquals("Should allow zero", 0, a.getAirportID());
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void testAirportNameBoundaries() {
 		new Airport(new SimpleIntegerProperty(10), new SimpleStringProperty(""));
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void testAirportNullName() {
 		new Airport(new SimpleIntegerProperty(10), null);
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void testAirportNullID() {
 		new Airport(null, new SimpleStringProperty("Test"));
 	}
