@@ -2,6 +2,7 @@ package application;
 
 import application.model.Airport;
 import application.view.AddAirportController;
+import application.view.AddObjectController;
 import application.view.AddRunwayController;
 import application.view.MainScreenController;
 import javafx.application.Application;
@@ -28,9 +29,11 @@ public class Main extends Application
     private Stage msStage;
     private Stage aaStage;
     private Stage arStage;
+    private Stage aoStage;
 
     private AddAirportController aaController;
     private AddRunwayController arController;
+    private AddObjectController aoController;
     private MainScreenController msController;
 
     /**
@@ -140,6 +143,30 @@ public class Main extends Application
     }
 
     /**
+     * @return
+     */
+    private FXMLLoader loadAOStage()
+    {
+        try
+        {
+            final FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/AddObject.fxml"));
+            final AnchorPane page = loader.load();
+            arStage = new Stage();
+            final Scene scene = new Scene(page);
+            arStage.setScene(scene);
+            arStage.setTitle("Add Object");
+            arStage.setMinWidth(300.0);
+            arStage.setMinHeight(100.0);
+            return loader;
+        } catch (final IOException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      *
      */
     public final void toggleAddAirport()
@@ -165,6 +192,20 @@ public class Main extends Application
         {
             arController.updateSelectedAirport(airportName);
             arStage.show();
+        }
+    }
+
+    /**
+     *
+     */
+    public final void toggleAddObject()
+    {
+        if(aoStage.isShowing())
+        {
+            aoStage.hide();
+        } else
+        {
+            aoStage.show();
         }
     }
 
