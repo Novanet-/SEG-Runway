@@ -8,6 +8,8 @@ import application.model.RunwayParameters;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -85,12 +87,12 @@ public class MainScreenController
 	@FXML
 	private void handleBtnAddRunway()
 	{
-		if (airportSelected)
+		if (airportSelected) {
 			openAddRunway();
-		else
-			System.err.println("No airport selected");
-		
-		// TODO: show error message instead
+		} else {
+			Alert alert = new Alert(AlertType.INFORMATION, "No airport selected. Please select an airport.");
+			alert.showAndWait();
+		}
 	}
 	
 	@FXML
