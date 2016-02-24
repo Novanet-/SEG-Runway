@@ -1,21 +1,19 @@
 package tests;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
 import application.model.Runway;
 import application.model.RunwayDetails;
 import application.model.RunwayParameters;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
+import org.junit.Test;
 
-public class RunwayModel {
+import static org.junit.Assert.assertEquals;
+
+public class RunwayModel
+{
+
 	@Test
-	public void testRunwayProperties() {
+	public void testRunwayProperties()
+	{
 		// Exact values don't matter, just want to ensure
 		// they are stored and returned
 
@@ -33,8 +31,7 @@ public class RunwayModel {
 		IntegerProperty stripEnd = new SimpleIntegerProperty(20);
 		IntegerProperty blastProtection = new SimpleIntegerProperty(20);
 		IntegerProperty runwayStrip = new SimpleIntegerProperty(20);
-		RunwayDetails rD = new RunwayDetails(displacedThresholdI, clearway, stopway, resa, stripEnd, blastProtection,
-				runwayStrip);
+		RunwayDetails rD = new RunwayDetails(displacedThresholdI, clearway, stopway, resa, stripEnd, blastProtection, runwayStrip);
 
 		int runwayID = 14;
 		String alignment = "L";

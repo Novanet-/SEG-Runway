@@ -1,11 +1,15 @@
 package application.model;
 
-public class Redeclaration {
+public class Redeclaration
+{
 
-	public static Runway redeclareParameters(Runway runway) {
+	public static Runway redeclareParameters(Runway runway)
+	{
 		final RunwayParameters runwayParameters = runway.getRunwayParameters();
 		final Obstacle obstacle = runway.getObstacles().get(0);
 
+		//TODO: Finish psuedocode for redeclaration
+		//TODO: do redeclaration
 		// if takeOffAway() and landingOver()
 		// double newTORA =
 		// runwayParameters.getTORA() - obstacle.getBlastProtection() -

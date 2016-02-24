@@ -2,7 +2,8 @@ package application.model;
 
 import javafx.beans.property.IntegerProperty;
 
-public class RunwayDetails {
+public class RunwayDetails
+{
 
 	private final IntegerProperty displacedThreshold;
 	private final IntegerProperty clearway;
@@ -11,6 +12,7 @@ public class RunwayDetails {
 	private final IntegerProperty stripEnd;
 	private final IntegerProperty blastProtection;
 	private final IntegerProperty runwayStrip;
+
 
 	/**
 	 * @param displacedThreshold
@@ -21,9 +23,9 @@ public class RunwayDetails {
 	 * @param blastProtection
 	 * @param runwayStrip
 	 */
-	public RunwayDetails(final IntegerProperty displacedThreshold, final IntegerProperty clearway,
-			final IntegerProperty stopway, final IntegerProperty resa, final IntegerProperty stripEnd,
-			final IntegerProperty blastProtection, final IntegerProperty runwayStrip) {
+	public RunwayDetails(final IntegerProperty displacedThreshold, final IntegerProperty clearway, final IntegerProperty stopway, final IntegerProperty resa,
+			final IntegerProperty stripEnd, final IntegerProperty blastProtection, final IntegerProperty runwayStrip)
+	{
 		this.displacedThreshold = displacedThreshold;
 		this.clearway = clearway;
 		this.stopway = stopway;
@@ -33,52 +35,66 @@ public class RunwayDetails {
 		this.runwayStrip = runwayStrip;
 	}
 
+
 	/**
 	 * @return
 	 */
-	public final int getDisplacedThreshold() {
+	public final int getDisplacedThreshold()
+	{
 		return displacedThreshold.getValue();
 	}
 
+
 	/**
 	 * @return
 	 */
-	public final int getClearway() {
+	public final int getClearway()
+	{
 		return clearway.getValue();
 	}
 
+
 	/**
 	 * @return
 	 */
-	public final int getStopway() {
+	public final int getStopway()
+	{
 		return stopway.getValue();
 	}
 
+
 	/**
 	 * @return
 	 */
-	public final int getResa() {
+	public final int getResa()
+	{
 		return resa.getValue();
 	}
 
+
 	/**
 	 * @return
 	 */
-	public final int getStripEnd() {
+	public final int getStripEnd()
+	{
 		return stripEnd.getValue();
 	}
 
-	/**
-	 * @return
-	 */
-	public final int getBlastProtection() {
-		return blastProtection.getValue();
-	}
 
 	/**
 	 * @return
 	 */
-	public final int getRunwayStrip() {
+	public final int getBlastProtection()
+	{
+		return blastProtection.getValue();
+	}
+
+
+	/**
+	 * @return
+	 */
+	public final int getRunwayStrip()
+	{
 		return runwayStrip.getValue();
 	}
 
