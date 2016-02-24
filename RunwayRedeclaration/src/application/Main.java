@@ -22,8 +22,6 @@ import java.util.logging.Logger;
 public class Main extends Application
 {
 
-	// TODO : FIll in JavaDoc stubs for all methods
-
 	private ObservableList<Airport> airportList;
 
 	private Stage msStage;
