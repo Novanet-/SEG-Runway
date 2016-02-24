@@ -99,6 +99,15 @@ public class MainScreenController
 	private void handleBtnClose() {
 		mainApp.stop();
 	}
+	
+	@FXML
+	private void handleBtnAbout() {
+		String message = "Authors:\nJack Clarke\n"
+				+ "Maksim Romanovich\nJames Littlefair\n"
+				+ "William Davies\nDaniel Oakey";
+		Alert alert = new Alert(AlertType.INFORMATION, message);
+		alert.showAndWait();
+	}
 
 
 	@FXML
