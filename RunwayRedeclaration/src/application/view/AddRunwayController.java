@@ -70,11 +70,10 @@ public class AddRunwayController
 					new SimpleDoubleProperty(primaryLDA), new SimpleDoubleProperty(primaryDisplacedThreshold));
 			secondaryParameters = new RunwayParameters(new SimpleDoubleProperty(secondaryTORA), new SimpleDoubleProperty(secondaryTODA),
 					new SimpleDoubleProperty(secondaryASDA), new SimpleDoubleProperty(secondaryLDA), new SimpleDoubleProperty(secondaryDisplacedThreshold));
-
-			// TODO: do something with properties
+			
 			// TODO: work out what to do with displaced threshold and the other
 			// paramters of RunwayDetails
-			// TODO: once the previous three tasks are done, create a new Runway
+			// TODO: once the previous task is done, create a new Runway
 			// object with the paramters and details objects along with the
 			// runway alignment, then add that object to the list of the given
 			// airport
