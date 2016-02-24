@@ -6,13 +6,13 @@ public class RunwayDetails
 {
 
 	private final IntegerProperty displacedThreshold;
-	private final IntegerProperty clearway;
-	private final IntegerProperty stopway;
-	private final IntegerProperty resa;
+	private final IntegerProperty clearway; //75.0
+	private final IntegerProperty stopway; //60.0
+	private final IntegerProperty resa; //240.0
 	private final IntegerProperty stripEnd;
-	private final IntegerProperty blastProtection;
-	private final IntegerProperty runwayStrip;
-
+	private final IntegerProperty blastProtection; //300.0
+	private final IntegerProperty runwayStrip; //150.0
+	//Slope angle 1:50.0
 
 	/**
 	 * @param displacedThreshold
