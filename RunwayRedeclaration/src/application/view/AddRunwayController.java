@@ -72,8 +72,6 @@ public class AddRunwayController
 					new SimpleDoubleProperty(secondaryASDA), new SimpleDoubleProperty(secondaryLDA), new SimpleDoubleProperty(secondaryDisplacedThreshold));
 
 			// TODO: do something with properties
-			// TODO: modify runway form so that a specific airport needs to be
-			// selected to add a runway to
 			// TODO: work out what to do with displaced threshold and the other
 			// paramters of RunwayDetails
 			// TODO: once the previous three tasks are done, create a new Runway

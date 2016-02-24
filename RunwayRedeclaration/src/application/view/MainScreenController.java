@@ -42,6 +42,12 @@ public class MainScreenController
 
 	// Reference to the main application.
 	private Main mainApp;
+	
+	/**
+	 * Used to prevent adding a runway without
+	 * an airport selected.
+	 */
+	boolean airportSelected = false;
 
 
 	/**
@@ -79,7 +85,12 @@ public class MainScreenController
 	@FXML
 	private void handleBtnAddRunway()
 	{
-		openAddRunway();
+		if (airportSelected)
+			openAddRunway();
+		else
+			System.err.println("No airport selected");
+		
+		// TODO: show error message instead
 	}
 	
 	@FXML
@@ -91,6 +102,7 @@ public class MainScreenController
 	@FXML
 	private void handleAirportSelected()
 	{
+		airportSelected = cmbAirports.getValue() != null;
 		cmbRunways.setItems(((Airport) cmbAirports.getValue()).getRunways());
 	}
 
