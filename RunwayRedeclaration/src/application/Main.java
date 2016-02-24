@@ -231,5 +231,10 @@ public class Main extends Application
 	{
 		return airportList;
 	}
+	
+	@Override
+	public void stop() {
+		System.exit(0);
+	}
 
 }

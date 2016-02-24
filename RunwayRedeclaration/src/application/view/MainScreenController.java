@@ -81,6 +81,11 @@ public class MainScreenController
 	{
 		openAddRunway();
 	}
+	
+	@FXML
+	private void handleBtnClose() {
+		mainApp.stop();
+	}
 
 
 	@FXML
