@@ -2,7 +2,9 @@ package application.view;
 
 import application.Main;
 import application.model.Airport;
+import application.model.Redeclaration;
 import application.model.Runway;
+import application.model.RunwayParameters;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,10 +29,10 @@ public class MainScreenController
 	@FXML private Label     lblOrigLda;
 	@FXML private Label     lblOrigDisplacedThreshold;
 	@FXML private Label     lblRecalcTora;
-	@FXML private Label     lblRecalToda;
-	@FXML private Label     lblRecalAsda;
-	@FXML private Label     lblRecalLda;
-	@FXML private Label     lblRecalDisplacedThreshold;
+	@FXML private Label     lblRecalcToda;
+	@FXML private Label     lblRecalcAsda;
+	@FXML private Label     lblRecalcLda;
+	@FXML private Label     lblRecalcDisplacedThreshold;
 	@FXML private Label     lblResa;
 	@FXML private Label     lblStopway;
 	@FXML private Label     lblBlastProtection;
@@ -92,6 +94,19 @@ public class MainScreenController
 	private void handleRunwaySelected()
 	{
 		updateOriginalParameters();
+		Runway newRunway = Redeclaration.redeclareParameters((Runway) cmbRunways.getValue());
+		updateNewParameters(newRunway);
+	}
+
+
+	private void updateNewParameters(Runway newRunway)
+	{
+		RunwayParameters newRunwayParameters = newRunway.getRunwayParameters();
+		lblRecalcTora.setText(Double.toString(newRunwayParameters.getTORA()));
+		lblRecalcToda.setText(Double.toString(newRunwayParameters.getTODA()));
+		lblRecalcAsda.setText(Double.toString(newRunwayParameters.getASDA()));
+		lblRecalcLda.setText(Double.toString(newRunwayParameters.getLDA()));
+		lblRecalcDisplacedThreshold.setText(Double.toString(newRunwayParameters.getDisplacedThreshold()));
 	}
 
 

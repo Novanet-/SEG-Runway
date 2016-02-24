@@ -32,7 +32,6 @@ public class AirportModel
 		RunwayParameters p = new RunwayParameters(dP, dP, dP, dP, dP);
 		RunwayDetails d = new RunwayDetails(iP, iP, iP, iP, iP, iP, iP);
 		Runway r = new Runway(p, d, new SimpleIntegerProperty(9), new SimpleStringProperty("L"));
-
 		a.addRunway(r);
 		assertEquals("Should get runway back", r, a.getRunways().get(0));
 	}

@@ -1,6 +1,8 @@
 package application.model;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +18,8 @@ public class Runway
 	private final IntegerProperty          runwayID;
 	private final StringProperty           alignment;
 	private final ObservableList<Obstacle> obstacleArray;
+	private final double stripEnd = 50;
+	private final double resa     = 200;
 
 
 	//TODO: add stuff like stripd end and resa to runway details
@@ -27,6 +31,8 @@ public class Runway
 		this.alignment = alignment;
 		final Collection<Obstacle> list = new ArrayList<Obstacle>();
 		obstacleArray = FXCollections.observableArrayList(list);
+		Obstacle obstacle = new Obstacle(new SimpleStringProperty("TEst1"), new SimpleDoubleProperty(12), new SimpleDoubleProperty(3646), new SimpleDoubleProperty(300));
+		obstacleArray.add(obstacle);
 	}
 
 

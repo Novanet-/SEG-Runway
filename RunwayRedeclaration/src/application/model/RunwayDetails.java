@@ -14,6 +14,7 @@ public class RunwayDetails
 	private final IntegerProperty runwayStrip; //150.0
 	//Slope angle 1:50.0
 
+
 	/**
 	 * @param displacedThreshold
 	 * @param clearway

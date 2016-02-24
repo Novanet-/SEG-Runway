@@ -9,7 +9,7 @@
 <AnchorPane xmlns:fx = "http://javafx.com/fxml/1"
             style = "-fx-min-width: 1000; -fx-min-height: 450;"
             stylesheets = "@../application.css"
-            xmlns = "http://javafx.com/javafx/8"
+            xmlns = "http://javafx.com/javafx/8.0.60"
             fx:controller = "application.view.MainScreenController">
     <children>
         <SplitPane dividerPositions = "0.40648379052369077"
@@ -540,19 +540,19 @@
                                                        text = "Label"
                                                        GridPane.columnIndex = "2"
                                                        GridPane.rowIndex = "1"/>
-                                                <Label fx:id = "lblRecalToda"
+                                                <Label fx:id = "lblRecalcToda"
                                                        text = "Label"
                                                        GridPane.columnIndex = "2"
                                                        GridPane.rowIndex = "2"/>
-                                                <Label fx:id = "lblRecalAsda"
+                                                <Label fx:id = "lblRecalcAsda"
                                                        text = "Label"
                                                        GridPane.columnIndex = "2"
                                                        GridPane.rowIndex = "3"/>
-                                                <Label fx:id = "lblRecalLda"
+                                                <Label fx:id = "lblRecalcLda"
                                                        text = "Label"
                                                        GridPane.columnIndex = "2"
                                                        GridPane.rowIndex = "4"/>
-                                                <Label fx:id = "lblRecalDisplacedThreshold"
+                                                <Label fx:id = "lblRecalcDisplacedThreshold"
                                                        text = "Label"
                                                        GridPane.columnIndex = "2"
                                                        GridPane.rowIndex = "5"/>
