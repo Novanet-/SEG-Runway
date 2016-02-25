@@ -22,6 +22,12 @@ public class Airport
 	 */
 	public Airport(final IntegerProperty airportID, final StringProperty airportName)
 	{
+		if (airportID == null ||
+				airportName == null ||
+				airportID.getValue() < 0 ||
+				airportName.getValue().equals(""))
+			throw new IllegalArgumentException();
+		
 		this.airportID = airportID;
 		this.airportName = airportName;
 		final Collection<Runway> list = new ArrayList<Runway>();
