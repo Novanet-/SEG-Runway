@@ -8,18 +8,18 @@ import application.model.RunwayParameters;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 
 public class MainScreenController
 {
 
+	/**
+	 * Used to prevent adding a runway without
+	 * an airport selected.
+	 */
+	boolean airportSelected;
 	private ObservableList<Airport> airportList;
-
 	@FXML private MenuItem  btnAddAirport;
 	@FXML private MenuItem  btnAddRunway;
 	@FXML private ComboBox  cmbAirports;
@@ -41,15 +41,8 @@ public class MainScreenController
 	@FXML private Label     lblAngleOfSlope;
 	@FXML private Label     lblStripWidth;
 	@FXML private Label     lblCAndGWidth;
-
 	// Reference to the main application.
 	private Main mainApp;
-	
-	/**
-	 * Used to prevent adding a runway without
-	 * an airport selected.
-	 */
-	boolean airportSelected = false;
 
 
 	/**
@@ -59,6 +52,7 @@ public class MainScreenController
 	@FXML
 	private void initialize()
 	{
+		updateRunwayDetails();
 	}
 
 
@@ -135,6 +129,14 @@ public class MainScreenController
 		lblRecalcAsda.setText(Double.toString(newRunwayParameters.getASDA()));
 		lblRecalcLda.setText(Double.toString(newRunwayParameters.getLDA()));
 		lblRecalcDisplacedThreshold.setText(Double.toString(newRunwayParameters.getDisplacedThreshold()));
+	}
+
+
+	private void updateRunwayDetails()
+	{
+		lblStopway.setText(Double.toString(Redeclaration.getStopway()));
+		lblBlastProtection.setText(Double.toString(Redeclaration.getBlastProtection()));
+		lblResa.setText(Double.toString(Redeclaration.getResa()));
 	}
 
 

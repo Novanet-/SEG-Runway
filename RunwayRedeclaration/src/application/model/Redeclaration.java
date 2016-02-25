@@ -66,4 +66,39 @@ public class Redeclaration
 
 	}
 
+
+	public static double getClearway()
+	{
+		return clearway;
+	}
+
+
+	public static double getStopway()
+	{
+		return stopway;
+	}
+
+
+	public static double getResa()
+	{
+		return resa;
+	}
+
+
+	public static double getStripEnd()
+	{
+		return stripEnd;
+	}
+
+
+	public static double getBlastProtection()
+	{
+		return blastProtection;
+	}
+
+
+	public static double getRunwayStrip()
+	{
+		return runwayStrip;
+	}
 }
