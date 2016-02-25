@@ -4,7 +4,7 @@ all:
 
 run:
 	cd RunwayRedeclaration/src; \
-	java -cp lib/javafx.jar:. application.Main
+	java -cp ../lib/javafx.jar:. application.Main
 
 clean:
 	cd RunwayRedeclaration; \
