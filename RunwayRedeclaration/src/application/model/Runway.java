@@ -25,6 +25,13 @@ public class Runway
 	//TODO: add stuff like stripd end and resa to runway details
 	public Runway(final RunwayParameters runwayParameters, final RunwayDetails runwayDetails, final IntegerProperty runwayID, final StringProperty alignment)
 	{
+		if (runwayParameters == null ||
+				runwayDetails == null ||
+				alignment == null ||
+				runwayID == null ||
+				alignment.getValue().equals(""))
+			throw new IllegalArgumentException();
+		
 		this.runwayParameters = runwayParameters;
 		// this.runwayDetails = runwayDetails;
 		this.runwayID = runwayID;
