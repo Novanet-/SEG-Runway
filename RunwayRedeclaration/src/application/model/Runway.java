@@ -23,8 +23,9 @@ public class Runway
 
 
 	//TODO: add stuff like stripd end and resa to runway details
-	public Runway(final RunwayParameters runwayParameters, final RunwayDetails runwayDetails, final IntegerProperty runwayID, final StringProperty alignment)
+	public Runway(final RunwayParameters runwayParameters, RunwayDetails runwayDetails, final IntegerProperty runwayID, final StringProperty alignment)
 	{
+		runwayDetails = new RunwayDetails(null, null, null, null, null, null, null);
 		if (runwayParameters == null ||
 				runwayDetails == null ||
 				alignment == null ||

@@ -211,7 +211,7 @@ public class Main extends Application
 	/**
 	 *
 	 */
-	public final void toggleAddObject()
+	public final void toggleAddObject(String airportName, String runwayID)
 	{
 		if (aoStage.isShowing())
 		{
@@ -219,6 +219,7 @@ public class Main extends Application
 		}
 		else
 		{
+			aoController.updateSelectedAirportRunway(airportName, runwayID);
 			aoStage.show();
 		}
 	}

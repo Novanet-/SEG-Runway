@@ -19,30 +19,30 @@ public class MainScreenController
 	 * an airport selected.
 	 */
 	boolean airportSelected;
-	private ObservableList<Airport> airportList;
-	@FXML private MenuItem  btnAddAirport;
-	@FXML private MenuItem  btnAddRunway;
-	@FXML private ComboBox  cmbAirports;
-	@FXML private ComboBox  cmbRunways;
-	@FXML private TextField cmbObjects;
-	@FXML private Label     lblOrigTora;
-	@FXML private Label     lblOrigToda;
-	@FXML private Label     lblOrigAsda;
-	@FXML private Label     lblOrigLda;
-	@FXML private Label     lblOrigDisplacedThreshold;
-	@FXML private Label     lblRecalcTora;
-	@FXML private Label     lblRecalcToda;
-	@FXML private Label     lblRecalcAsda;
-	@FXML private Label     lblRecalcLda;
-	@FXML private Label     lblRecalcDisplacedThreshold;
-	@FXML private Label     lblResa;
-	@FXML private Label     lblStopway;
-	@FXML private Label     lblBlastProtection;
-	@FXML private Label     lblAngleOfSlope;
-	@FXML private Label     lblStripWidth;
-	@FXML private Label     lblCAndGWidth;
+	private       ObservableList<Airport> airportList;
+	@FXML private MenuItem                btnAddAirport;
+	@FXML private MenuItem                btnAddRunway;
+	@FXML private ComboBox                cmbAirports;
+	@FXML private ComboBox                cmbRunways;
+	@FXML private TextField               cmbObjects;
+	@FXML private Label                   lblOrigTora;
+	@FXML private Label                   lblOrigToda;
+	@FXML private Label                   lblOrigAsda;
+	@FXML private Label                   lblOrigLda;
+	@FXML private Label                   lblOrigDisplacedThreshold;
+	@FXML private Label                   lblRecalcTora;
+	@FXML private Label                   lblRecalcToda;
+	@FXML private Label                   lblRecalcAsda;
+	@FXML private Label                   lblRecalcLda;
+	@FXML private Label                   lblRecalcDisplacedThreshold;
+	@FXML private Label                   lblResa;
+	@FXML private Label                   lblStopway;
+	@FXML private Label                   lblBlastProtection;
+	@FXML private Label                   lblAngleOfSlope;
+	@FXML private Label                   lblStripWidth;
+	@FXML private Label                   lblCAndGWidth;
 	// Reference to the main application.
-	private Main mainApp;
+	private       Main                    mainApp;
 
 
 	/**
@@ -81,24 +81,29 @@ public class MainScreenController
 	@FXML
 	private void handleBtnAddRunway()
 	{
-		if (airportSelected) {
+		if (airportSelected)
+		{
 			openAddRunway();
-		} else {
+		}
+		else
+		{
 			Alert alert = new Alert(AlertType.INFORMATION, "No airport selected. Please select an airport.");
 			alert.showAndWait();
 		}
 	}
-	
+
+
 	@FXML
-	private void handleBtnClose() {
+	private void handleBtnClose()
+	{
 		mainApp.stop();
 	}
-	
+
+
 	@FXML
-	private void handleBtnAbout() {
-		String message = "Authors:\nJack Clarke\n"
-				+ "Maksim Romanovich\nJames Littlefair\n"
-				+ "William Davies\nDaniel Oakey";
+	private void handleBtnAbout()
+	{
+		String message = "Authors:\nJack Clarke\n" + "Maksim Romanovich\nJames Littlefair\n" + "William Davies\nDaniel Oakey";
 		Alert alert = new Alert(AlertType.INFORMATION, message);
 		alert.showAndWait();
 	}
@@ -116,10 +121,23 @@ public class MainScreenController
 	private void handleRunwaySelected()
 	{
 		updateOriginalParameters();
-		Runway newRunway = Redeclaration.redeclareParameters((Runway) cmbRunways.getValue());
+		final Runway currentRunway = (Runway) cmbRunways.getValue();
+		Runway newRunway = Redeclaration.redeclareParameters(currentRunway);
+		if (!currentRunway.getObstacles().isEmpty())
+		{
+			updateObstacleList();
+		}
 		updateNewParameters(newRunway);
 	}
 
+
+	@FXML
+	private void handleObjectSelected()
+
+	{
+		final Runway currentRunway = (Runway) cmbRunways.getValue();
+		updateNewParameters(currentRunway);
+	}
 
 	private void updateNewParameters(Runway newRunway)
 	{
@@ -137,6 +155,12 @@ public class MainScreenController
 		lblStopway.setText(Double.toString(Redeclaration.getStopway()));
 		lblBlastProtection.setText(Double.toString(Redeclaration.getBlastProtection()));
 		lblResa.setText(Double.toString(Redeclaration.getResa()));
+	}
+
+
+	private void updateObstacleList()
+	{
+		cmbObjects.setText(((Runway) cmbRunways.getValue()).getObstacles().get(0).toString());
 	}
 
 
@@ -166,7 +190,7 @@ public class MainScreenController
 	@FXML
 	private void openAddObject()
 	{
-		mainApp.toggleAddObject();
+		mainApp.toggleAddObject(((Airport) cmbAirports.getValue()).getAirportName(), ((Runway) cmbRunways.getValue()).getAlignment());
 	}
 
 
