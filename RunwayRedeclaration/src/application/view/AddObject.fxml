@@ -6,13 +6,15 @@
 <AnchorPane xmlns:fx = "http://javafx.com/fxml/1"
             minHeight = "300.0"
             minWidth = "400.0"
+            prefHeight = "446.0"
+            prefWidth = "400.0"
             style = "-fx-background-color: #363d43;"
             stylesheets = "@../application.css"
-            xmlns = "http://javafx.com/javafx/8">
+            xmlns = "http://javafx.com/javafx/8.0.65">
     <children>
         <GridPane layoutX = "-143.0"
-                  layoutY = "-70.0"
-                  prefHeight = "300.0"
+                  layoutY = "-42.0"
+                  prefHeight = "342.0"
                   prefWidth = "400.0"
                   stylesheets = "@../application.css"
                   AnchorPane.bottomAnchor = "0.0"
@@ -22,7 +24,8 @@
             <children>
                 <Label text = "Name:"
                        textFill = "#efefef"
-                       GridPane.halignment = "RIGHT">
+                       GridPane.halignment = "RIGHT"
+                       GridPane.rowIndex = "1">
                     <GridPane.margin>
                         <Insets bottom = "10.0"
                                 left = "10.0"
@@ -37,25 +40,13 @@
                         text = "Submit"
                         GridPane.columnIndex = "1"
                         GridPane.halignment = "CENTER"
-                        GridPane.rowIndex = "5"/>
+                        GridPane.rowIndex = "6"/>
                 <ComboBox fx:id = "cmbCloserTo"
                           prefWidth = "150.0"
                           style = "-fx-background-color: WHITE;"
                           GridPane.columnIndex = "1"
-                          GridPane.rowIndex = "1"/>
+                          GridPane.rowIndex = "2"/>
                 <Label text = "Closer to:"
-                       GridPane.halignment = "RIGHT"
-                       GridPane.rowIndex = "1">
-                    <GridPane.margin>
-                        <Insets bottom = "10.0"
-                                left = "10.0"
-                                right = "10.0"
-                                top = "10.0"/>
-                    </GridPane.margin>
-                </Label>
-                <TextField fx:id = "txtObjectName"
-                           GridPane.columnIndex = "1"/>
-                <Label text = "Height:"
                        GridPane.halignment = "RIGHT"
                        GridPane.rowIndex = "2">
                     <GridPane.margin>
@@ -65,25 +56,10 @@
                                 top = "10.0"/>
                     </GridPane.margin>
                 </Label>
-                <TextField fx:id = "txtObjectHeight"
+                <TextField fx:id = "txtObjectName"
                            GridPane.columnIndex = "1"
-                           GridPane.rowIndex = "2"/>
-                <Label text = " m"
-                       GridPane.columnIndex = "2"
-                       GridPane.rowIndex = "2"/>
-                <TextField fx:id = "txtObjectDistFromThreshold"
-                           GridPane.columnIndex = "1"
-                           GridPane.rowIndex = "3"/>
-                <TextField fx:id = "txtObjectDistFromCentre"
-                           GridPane.columnIndex = "1"
-                           GridPane.rowIndex = "4"/>
-                <Label text = " m"
-                       GridPane.columnIndex = "2"
-                       GridPane.rowIndex = "3"/>
-                <Label text = " m"
-                       GridPane.columnIndex = "2"
-                       GridPane.rowIndex = "4"/>
-                <Label text = "Distance from Threshold:"
+                           GridPane.rowIndex = "1"/>
+                <Label text = "Height:"
                        GridPane.halignment = "RIGHT"
                        GridPane.rowIndex = "3">
                     <GridPane.margin>
@@ -93,7 +69,25 @@
                                 top = "10.0"/>
                     </GridPane.margin>
                 </Label>
-                <Label text = "Distance from Centre Line:"
+                <TextField fx:id = "txtObjectHeight"
+                           GridPane.columnIndex = "1"
+                           GridPane.rowIndex = "3"/>
+                <Label text = " m"
+                       GridPane.columnIndex = "2"
+                       GridPane.rowIndex = "3"/>
+                <TextField fx:id = "txtObjectDistFromThreshold"
+                           GridPane.columnIndex = "1"
+                           GridPane.rowIndex = "4"/>
+                <TextField fx:id = "txtObjectDistFromCentre"
+                           GridPane.columnIndex = "1"
+                           GridPane.rowIndex = "5"/>
+                <Label text = " m"
+                       GridPane.columnIndex = "2"
+                       GridPane.rowIndex = "4"/>
+                <Label text = " m"
+                       GridPane.columnIndex = "2"
+                       GridPane.rowIndex = "5"/>
+                <Label text = "Distance from Threshold:"
                        GridPane.halignment = "RIGHT"
                        GridPane.rowIndex = "4">
                     <GridPane.margin>
@@ -103,6 +97,21 @@
                                 top = "10.0"/>
                     </GridPane.margin>
                 </Label>
+                <Label text = "Distance from Centre Line:"
+                       GridPane.halignment = "RIGHT"
+                       GridPane.rowIndex = "5">
+                    <GridPane.margin>
+                        <Insets bottom = "10.0"
+                                left = "10.0"
+                                right = "10.0"
+                                top = "10.0"/>
+                    </GridPane.margin>
+                </Label>
+                <Label fx:id = "lblAirportName"
+                       text = "Airport Name"/>
+                <Label fx:id = "lblRunwayID"
+                       text = "RunwayID"
+                       GridPane.columnIndex = "1"/>
             </children>
             <columnConstraints>
                 <ColumnConstraints hgrow = "SOMETIMES"
@@ -125,6 +134,9 @@
                         top = "10.0"/>
             </padding>
             <rowConstraints>
+                <RowConstraints minHeight = "10.0"
+                                prefHeight = "30.0"
+                                vgrow = "SOMETIMES"/>
                 <RowConstraints minHeight = "10.0"
                                 prefHeight = "30.0"
                                 vgrow = "SOMETIMES"/>

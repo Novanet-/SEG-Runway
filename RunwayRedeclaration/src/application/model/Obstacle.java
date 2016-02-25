@@ -51,4 +51,13 @@ public class Obstacle
 		return blastProtection.get();
 	}
 
+
+	@Override
+	public String toString()
+	{
+		return "Obs{" + name +
+				", height=" + height +
+				", position=" + position +
+				'}';
+	}
 }
