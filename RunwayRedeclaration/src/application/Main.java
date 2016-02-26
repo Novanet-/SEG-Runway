@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -72,6 +73,7 @@ public class Main extends Application
 			final Scene scene = new Scene(msPage);
 			msStage = primaryStage;
 			primaryStage.setScene(scene);
+			primaryStage.getIcons().add(new Image("file:resources/images/planeicon.png"));
 			primaryStage.setTitle("Runway Redeclaration");
 			primaryStage.setMinWidth(1000.0);
 			primaryStage.setMinHeight(600.0);
@@ -110,6 +112,7 @@ public class Main extends Application
 			final Scene scene = new Scene(page);
 			aaStage.setScene(scene);
 			aaStage.setTitle("Add Airport");
+			aaStage.getIcons().add(new Image("file:resources/images/planeicon.png"));
 			aaStage.setMinWidth(300.0);
 			aaStage.setMinHeight(100.0);
 			return loader;
@@ -137,6 +140,7 @@ public class Main extends Application
 			final Scene scene = new Scene(page);
 			arStage.setScene(scene);
 			arStage.setTitle("Add Runway");
+			arStage.getIcons().add(new Image("file:resources/images/planeicon.png"));
 			arStage.setMinWidth(300.0);
 			arStage.setMinHeight(100.0);
 			return loader;
@@ -163,6 +167,7 @@ public class Main extends Application
 			final Scene scene = new Scene(page);
 			arStage.setScene(scene);
 			arStage.setTitle("Add Object");
+			arStage.getIcons().add(new Image("file:resources/images/planeicon.png"));
 			arStage.setMinWidth(300.0);
 			arStage.setMinHeight(100.0);
 			return loader;
