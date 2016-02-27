@@ -1,5 +1,8 @@
 package application;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import application.model.Airport;
 import application.view.AddAirportController;
 import application.view.AddObjectController;
@@ -14,182 +17,161 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class Main extends Application
 {
+	private static String			PLANE_ICON			= "file:resources/images/planeicon.png";
+	private static String			APPLICATION_TITLE	= "Runway Redeclaration";
+	private static String			MAIN_FXML			= "view/MainScreen.fxml";
+	private static String			ADD_AIRPORT_FXML	= "view/AddAirport.fxml";
+	private static String			ADD_RUNWAY_FXML		= "view/AddRunway.fxml";
+	private static String			ADD_OBJECT_FXML		= "view/AddObject.fxml";
 
-	private ObservableList<Airport> airportList;
+	private ObservableList<Airport>	airportList;
 
-	private Stage msStage;
-	private Stage aaStage;
-	private Stage arStage;
-	private Stage aoStage;
+	private Stage					msStage;
+	private Stage					aaStage;
+	private Stage					arStage;
+	private Stage					aoStage;
 
-	private AddAirportController aaController;
-	private AddRunwayController  arController;
-	private AddObjectController  aoController;
-	private MainScreenController msController;
+	private AddAirportController	aaController;
+	private AddRunwayController		arController;
+	private AddObjectController		aoController;
+	private MainScreenController	msController;
 
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args)
 	{
 		launch(args);
 	}
 
 
-	/**
-	 * @param primaryStage
-	 */
 	@Override
 	public final void start(Stage primaryStage)
 	{
+		airportList = FXCollections.observableArrayList(new ArrayList<Airport>());
+		
+		final FXMLLoader msLoader = new FXMLLoader();
+		msLoader.setLocation(Main.class.getResource(MAIN_FXML));
+		AnchorPane msPage = null;
 		try
 		{
-			// Load person overview.
-			final FXMLLoader msLoader = new FXMLLoader();
-			final FXMLLoader aaLoader = loadAAStage();
-			final FXMLLoader arLoader = loadARStage();
-			final FXMLLoader aoLoader = loadAOStage();
-
-			assert aaLoader != null;
-			aaController = aaLoader.getController();
-			aaController.setMainApp(this);
-
-			assert arLoader != null;
-			arController = arLoader.getController();
-			arController.setMainApp(this);
-
-			assert aoLoader != null;
-			aoController = aoLoader.getController();
-			aoController.setMainApp(this);
-
-			msLoader.setLocation(Main.class.getResource("view/MainScreen.fxml"));
-			final AnchorPane msPage = msLoader.load();
-			msController = msLoader.getController();
-			msController.setMainApp(this);
-
-			final Scene scene = new Scene(msPage);
-			msStage = primaryStage;
-			primaryStage.setScene(scene);
-			primaryStage.getIcons().add(new Image("file:resources/images/planeicon.png"));
-			primaryStage.setTitle("Runway Redeclaration");
-			primaryStage.setMinWidth(1000.0);
-			primaryStage.setMinHeight(600.0);
-
-			final Collection<Airport> list = new ArrayList<Airport>();
-			airportList = FXCollections.observableArrayList(list);
-
-			aaController.linkToSession();
-			arController.linkToSession();
-			msController.linkToSession();
-			aoController.linkToSession();
-
-			primaryStage.show();
+			msPage = msLoader.load();
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-		catch (final Exception ex)
-		{
-			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		
+		final Scene mainScene = new Scene(msPage);
+		msStage = primaryStage;
+		msStage.setScene(mainScene);
+		msStage.getIcons().add(new Image(PLANE_ICON));
+		msStage.setTitle(APPLICATION_TITLE);
+		msStage.setMinWidth(1000.0);
+		msStage.setMinHeight(600.0);
+		
+		final FXMLLoader aaLoader = loadAAStage();
+		final FXMLLoader arLoader = loadARStage();
+		final FXMLLoader aoLoader = loadAOStage();
+
+		aaController = aaLoader.getController();
+		aaController.setMainApp(this);
+		arController = arLoader.getController();
+		arController.setMainApp(this);
+		aoController = aoLoader.getController();
+		aoController.setMainApp(this);
+		msController = msLoader.getController();
+		msController.setMainApp(this);
+		
+		aaController.linkToSession();
+		arController.linkToSession();
+		msController.linkToSession();
+		aoController.linkToSession();
+		
+		msStage.show();
 	}
 
-
-	/**
-	 * @return
-	 */
+	
 	private FXMLLoader loadAAStage()
 	{
+		final FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource(ADD_AIRPORT_FXML));
+		AnchorPane page = null;
 		try
-		{// Load person overview.
-			final FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/AddAirport.fxml"));
-			final AnchorPane page = loader.load();
-			aaStage = new Stage();
-			final Scene scene = new Scene(page);
-			aaStage.setScene(scene);
-			aaStage.setTitle("Add Airport");
-			aaStage.getIcons().add(new Image("file:resources/images/planeicon.png"));
-			aaStage.setMinWidth(300.0);
-			aaStage.setMinHeight(100.0);
-			return loader;
-
+		{
+			page = loader.load();
 		}
-		catch (final IOException e)
+		catch (IOException e)
 		{
 			e.printStackTrace();
-			return null;
 		}
+		
+		aaStage = new Stage();
+		final Scene scene = new Scene(page);
+		aaStage.setScene(scene);
+		aaStage.setTitle("Add Airport");
+		aaStage.getIcons().add(new Image(PLANE_ICON));
+		aaStage.setMinWidth(300.0);
+		aaStage.setMinHeight(100.0);
+		
+		return loader;
 	}
 
-
-	/**
-	 * @return
-	 */
+	
 	private FXMLLoader loadARStage()
 	{
+		final FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource(ADD_RUNWAY_FXML));
+		AnchorPane page = null;
 		try
 		{
-			final FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/AddRunway.fxml"));
-			final AnchorPane page = loader.load();
-			arStage = new Stage();
-			final Scene scene = new Scene(page);
-			arStage.setScene(scene);
-			arStage.setTitle("Add Runway");
-			arStage.getIcons().add(new Image("file:resources/images/planeicon.png"));
-			arStage.setMinWidth(300.0);
-			arStage.setMinHeight(100.0);
-			return loader;
+			page = loader.load();
 		}
-		catch (final IOException e)
+		catch (IOException e)
 		{
 			e.printStackTrace();
-			return null;
 		}
+			
+		arStage = new Stage();
+		final Scene scene = new Scene(page);
+		arStage.setScene(scene);
+		arStage.setTitle("Add Runway");
+		arStage.getIcons().add(new Image(PLANE_ICON));
+		arStage.setMinWidth(300.0);
+		arStage.setMinHeight(100.0);
+		
+		return loader;
 	}
 
-
-	/**
-	 * @return
-	 */
+	
 	private FXMLLoader loadAOStage()
 	{
+		final FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource(ADD_OBJECT_FXML));
+		AnchorPane page = null;
+		
 		try
 		{
-			final FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/AddObject.fxml"));
-			final AnchorPane page = loader.load();
-			aoStage = new Stage();
-			final Scene scene = new Scene(page);
-			aoStage.setScene(scene);
-			aoStage.setTitle("Add Object");
-			aoStage.getIcons().add(new Image("file:resources/images/planeicon.png"));
-			aoStage.setMinWidth(300.0);
-			aoStage.setMinHeight(100.0);
-			return loader;
+			page = loader.load();
 		}
-		catch (final IOException e)
+		catch (IOException e)
 		{
 			e.printStackTrace();
-			return null;
 		}
+		
+		aoStage = new Stage();
+		final Scene scene = new Scene(page);
+		aoStage.setScene(scene);
+		aoStage.setTitle("Add Object");
+		// TODO: plane icon doesn't show - set path relative to other files
+		aoStage.getIcons().add(new Image(PLANE_ICON));
+		aoStage.setMinWidth(300.0);
+		aoStage.setMinHeight(100.0);
+		
+		return loader;
 	}
 
-
-	/**
-	 *
-	 */
+	
 	public final void toggleAddAirport()
 	{
 		if (aaStage.isShowing())
@@ -202,10 +184,7 @@ public class Main extends Application
 		}
 	}
 
-
-	/**
-	 *
-	 */
+	
 	public final void toggleAddRunway(String airportName)
 	{
 		if (arStage.isShowing())
@@ -219,10 +198,7 @@ public class Main extends Application
 		}
 	}
 
-
-	/**
-	 *
-	 */
+	
 	public final void toggleAddObject(String airportName, String runwayID)
 	{
 		if (aoStage.isShowing())
@@ -237,10 +213,7 @@ public class Main extends Application
 		}
 	}
 
-
-	/**
-	 * @return
-	 */
+	
 	public final ObservableList<Airport> getAirportList()
 	{
 		return airportList;
