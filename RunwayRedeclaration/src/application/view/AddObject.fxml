@@ -9,7 +9,7 @@
             prefHeight = "446.0"
             prefWidth = "400.0"
             style = "-fx-background-color: #363d43;"
-            stylesheets = "@../application.css"
+            stylesheets = "@application.css"
             xmlns = "http://javafx.com/javafx/8.0.65"
             fx:controller = "application.controller.AddObjectController">
     <children>
@@ -17,7 +17,7 @@
                   layoutY = "-42.0"
                   prefHeight = "342.0"
                   prefWidth = "400.0"
-                  stylesheets = "@../application.css"
+                  stylesheets = "@application.css"
                   AnchorPane.bottomAnchor = "0.0"
                   AnchorPane.leftAnchor = "0.0"
                   AnchorPane.rightAnchor = "0.0"
