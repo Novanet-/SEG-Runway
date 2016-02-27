@@ -57,6 +57,8 @@ public class Main extends Application
 			final FXMLLoader msLoader = new FXMLLoader();
 			final FXMLLoader aaLoader = loadAAStage();
 			final FXMLLoader arLoader = loadARStage();
+			final FXMLLoader aoLoader = loadAOStage();
+
 			assert aaLoader != null;
 			aaController = aaLoader.getController();
 			aaController.setMainApp(this);
@@ -64,6 +66,10 @@ public class Main extends Application
 			assert arLoader != null;
 			arController = arLoader.getController();
 			arController.setMainApp(this);
+
+			assert aoLoader != null;
+			aoController = aoLoader.getController();
+			aoController.setMainApp(this);
 
 			msLoader.setLocation(Main.class.getResource("view/MainScreen.fxml"));
 			final AnchorPane msPage = msLoader.load();
@@ -84,6 +90,7 @@ public class Main extends Application
 			aaController.linkToSession();
 			arController.linkToSession();
 			msController.linkToSession();
+			aoController.linkToSession();
 
 			primaryStage.show();
 		}
@@ -163,13 +170,13 @@ public class Main extends Application
 			final FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/AddObject.fxml"));
 			final AnchorPane page = loader.load();
-			arStage = new Stage();
+			aoStage = new Stage();
 			final Scene scene = new Scene(page);
-			arStage.setScene(scene);
-			arStage.setTitle("Add Object");
-			arStage.getIcons().add(new Image("file:resources/images/planeicon.png"));
-			arStage.setMinWidth(300.0);
-			arStage.setMinHeight(100.0);
+			aoStage.setScene(scene);
+			aoStage.setTitle("Add Object");
+			aoStage.getIcons().add(new Image("file:resources/images/planeicon.png"));
+			aoStage.setMinWidth(300.0);
+			aoStage.setMinHeight(100.0);
 			return loader;
 		}
 		catch (final IOException e)

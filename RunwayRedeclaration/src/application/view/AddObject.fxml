@@ -10,7 +10,8 @@
             prefWidth = "400.0"
             style = "-fx-background-color: #363d43;"
             stylesheets = "@../application.css"
-            xmlns = "http://javafx.com/javafx/8.0.65">
+            xmlns = "http://javafx.com/javafx/8.0.65"
+            fx:controller = "application.view.AddObjectController">
     <children>
         <GridPane layoutX = "-143.0"
                   layoutY = "-42.0"
@@ -35,7 +36,7 @@
                 </Label>
                 <Button fx:id = "btnObjectSubmit"
                         mnemonicParsing = "false"
-                        onAction = "#handleObjectSubmit"
+                        onAction = "#handleObstacleSubmitted"
                         style = "-fx-border-radius: 10; -fx-background-radius: 10; -fx-border-width: 0; -fx-background-color: #838383;"
                         text = "Submit"
                         GridPane.columnIndex = "1"

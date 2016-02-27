@@ -31,18 +31,21 @@ public class MainScreenController
 	@FXML private Label                   lblOrigLda;
 	@FXML private Label                   lblOrigDisplacedThreshold;
 	@FXML private Label                   lblRecalcTora;
-	@FXML private Label                   lblRecalcToda;
-	@FXML private Label                   lblRecalcAsda;
-	@FXML private Label                   lblRecalcLda;
-	@FXML private Label                   lblRecalcDisplacedThreshold;
-	@FXML private Label                   lblResa;
-	@FXML private Label                   lblStopway;
-	@FXML private Label                   lblBlastProtection;
-	@FXML private Label                   lblAngleOfSlope;
-	@FXML private Label                   lblStripWidth;
-	@FXML private Label                   lblCAndGWidth;
+	@FXML private Label  lblRecalcToda;
+	@FXML private Label  lblRecalcAsda;
+	@FXML private Label  lblRecalcLda;
+	@FXML private Label  lblRecalcDisplacedThreshold;
+	@FXML private Label  lblResa;
+	@FXML private Label  lblStopway;
+	@FXML private Label  lblBlastProtection;
+	@FXML private Label  lblAngleOfSlope;
+	@FXML private Label  lblStripWidth;
+	@FXML private Label  lblCAndGWidth;
+	@FXML private Button btnAddObstacle;
+	@FXML private Button btnRemoveObstacle;
+
 	// Reference to the main application.
-	private       Main                    mainApp;
+	private Main mainApp;
 
 
 	/**
@@ -93,6 +96,25 @@ public class MainScreenController
 	}
 
 
+	/**
+	 *
+	 */
+	@FXML
+	private void handleBtnAddObstacle()
+	{
+		if (airportSelected)
+		{
+			openAddObject();
+		}
+		else
+		{
+			Alert alert = new Alert(AlertType.INFORMATION, "No runway selected. Please select an airport.");
+			alert.showAndWait();
+		}
+	}
+
+
+
 	@FXML
 	private void handleBtnClose()
 	{
@@ -138,6 +160,7 @@ public class MainScreenController
 		final Runway currentRunway = (Runway) cmbRunways.getValue();
 		updateNewParameters(currentRunway);
 	}
+
 
 	private void updateNewParameters(Runway newRunway)
 	{

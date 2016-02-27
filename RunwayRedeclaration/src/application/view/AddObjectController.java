@@ -44,6 +44,7 @@ public class AddObjectController
 	}
 
 
+	@FXML
 	private final void handleObstacleSubmitted()
 	{
 		StringProperty obstacleName = new SimpleStringProperty(txtObjectName.getText());

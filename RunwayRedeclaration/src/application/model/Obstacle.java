@@ -55,9 +55,9 @@ public class Obstacle
 	@Override
 	public String toString()
 	{
-		return "Obs{" + name +
-				", height=" + height +
-				", position=" + position +
+		return "Obs{" + name.getValue() +
+				", height=" + height.getValue() +
+				", position=" + position.getValue() +
 				'}';
 	}
 }
