@@ -40,7 +40,7 @@ public class Redeclaration
 		}
 		RunwayParameters newRunwayParameters = new RunwayParameters(newTORA, newTODA, newASDA, newLDA,
 				runwayParameters.getDisplacedThreshold());
-		Runway newRunway = new Runway(newRunwayParameters, null, runway.getRunwayID(), runway.getAlignment());
+		Runway newRunway = new Runway(newRunwayParameters, runway.getRunwayID(), runway.getAlignment());
 		System.out.println(newTORA + " , " + newTODA + " ," + newASDA + " ," + newLDA + " ," + runwayParameters.getDisplacedThreshold());
 		return newRunway;
 	}

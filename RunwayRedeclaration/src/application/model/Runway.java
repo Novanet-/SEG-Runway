@@ -18,13 +18,12 @@ public class Runway
 
 
 	//TODO: add stuff like stripd end and resa to runway details
-	public Runway(final RunwayParameters runwayParameters, final RunwayDetails runwayDetails, final int runwayID, final String alignment)
+	public Runway(final RunwayParameters runwayParameters, final int runwayID, final String alignment)
 	{
 		//if (runwayParameters == null || runwayDetails == null || alignment == null || alignment.equals(""))
 		//	throw new IllegalArgumentException();
 		
 		this.runwayParameters = runwayParameters;
-		// this.runwayDetails = runwayDetails;
 		this.runwayID = runwayID;
 		this.alignment = alignment;
 		final Collection<Obstacle> list = new ArrayList<Obstacle>();

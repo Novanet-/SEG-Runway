@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import application.model.Airport;
 import application.model.Runway;
-import application.model.RunwayDetails;
 import application.model.RunwayParameters;
 
 public class AirportModel
@@ -28,8 +27,7 @@ public class AirportModel
 	{
 		Airport a = new Airport(20, "JFK International");
 		RunwayParameters p = new RunwayParameters(0.0, 0.0, 0.0, 0.0, 0.0);
-		RunwayDetails d = new RunwayDetails(0, 0, 0, 0, 0, 0, 0);
-		Runway r = new Runway(p, d, 9, "L");
+		Runway r = new Runway(p, 9, "L");
 		a.addRunway(r);
 		assertEquals("Should get runway back", r, a.getRunways().get(0));
 	}

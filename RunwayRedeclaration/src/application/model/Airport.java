@@ -59,8 +59,8 @@ public class Airport
 		// runway alignment, then add that object to the list of the given
 		// airport
 
-		Runway primaryRunway = new Runway(primaryParameters, null, 0, Integer.toString(27) + "R");
-		Runway secondaryRunway = new Runway(secondaryParameters, null, 1, "09L");
+		Runway primaryRunway = new Runway(primaryParameters, 0, Integer.toString(27) + "R");
+		Runway secondaryRunway = new Runway(secondaryParameters, 1, "09L");
 		airport.getRunways().add(primaryRunway);
 		airport.getRunways().add(secondaryRunway);
 

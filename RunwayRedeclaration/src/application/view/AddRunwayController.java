@@ -74,8 +74,8 @@ public class AddRunwayController
 			// airport
 
 			String alignment = cmbRunwayAlignment.getValue().toString() + cmbRunwayPosition.getValue().toString();
-			Runway primaryRunway = new Runway(primaryParameters, null, 0, alignment);
-			Runway secondaryRunway = new Runway(secondaryParameters, null, 1, lblSecondRunwayAlignment.getText());
+			Runway primaryRunway = new Runway(primaryParameters, 0, alignment);
+			Runway secondaryRunway = new Runway(secondaryParameters, 1, lblSecondRunwayAlignment.getText());
 
 			for (Airport a : airportList)
 			{
