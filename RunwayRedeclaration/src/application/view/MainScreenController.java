@@ -4,12 +4,16 @@ import application.Main;
 import application.model.Airport;
 import application.model.Redeclaration;
 import application.model.Runway;
-import application.model.RunwayParameters;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 
 public class MainScreenController
 {
@@ -194,12 +198,11 @@ public class MainScreenController
 
 	private void updateNewParameters(Runway newRunway)
 	{
-		RunwayParameters newRunwayParameters = newRunway.getRunwayParameters();
-		lblRecalcTora.setText(Double.toString(newRunwayParameters.getTORA()));
-		lblRecalcToda.setText(Double.toString(newRunwayParameters.getTODA()));
-		lblRecalcAsda.setText(Double.toString(newRunwayParameters.getASDA()));
-		lblRecalcLda.setText(Double.toString(newRunwayParameters.getLDA()));
-		lblRecalcDisplacedThreshold.setText(Double.toString(newRunwayParameters.getDisplacedThreshold()));
+		lblRecalcTora.setText(Double.toString(newRunway.getTORA()));
+		lblRecalcToda.setText(Double.toString(newRunway.getTODA()));
+		lblRecalcAsda.setText(Double.toString(newRunway.getASDA()));
+		lblRecalcLda.setText(Double.toString(newRunway.getLDA()));
+		lblRecalcDisplacedThreshold.setText(Double.toString(newRunway.getDisplacedThreshold()));
 	}
 
 
@@ -260,11 +263,11 @@ public class MainScreenController
 	private void updateOriginalParameters()
 	{
 		Runway currentRunway = (Runway) cmbRunways.getValue();
-		lblOrigTora.setText(Double.toString(currentRunway.getRunwayParameters().getTORA()));
-		lblOrigToda.setText(Double.toString(currentRunway.getRunwayParameters().getTODA()));
-		lblOrigAsda.setText(Double.toString(currentRunway.getRunwayParameters().getASDA()));
-		lblOrigLda.setText(Double.toString(currentRunway.getRunwayParameters().getLDA()));
-		lblOrigDisplacedThreshold.setText(Double.toString(currentRunway.getRunwayParameters().getDisplacedThreshold()));
+		lblOrigTora.setText(Double.toString(currentRunway.getTORA()));
+		lblOrigToda.setText(Double.toString(currentRunway.getTODA()));
+		lblOrigAsda.setText(Double.toString(currentRunway.getASDA()));
+		lblOrigLda.setText(Double.toString(currentRunway.getLDA()));
+		lblOrigDisplacedThreshold.setText(Double.toString(currentRunway.getDisplacedThreshold()));
 	}
 
 

@@ -15,33 +15,37 @@ public class Redeclaration
 
 	public static Runway redeclareParameters(Runway runway)
 	{
-		final RunwayParameters runwayParameters = runway.getRunwayParameters();
 		final Obstacle obstacle = runway.getObstacles().get(0);
-		double newTORA;
-		double newTODA;
-		double newASDA;
-		double newLDA;
+		final double newTORA;
+		final double newTODA;
+		final double newASDA;
+		final double newLDA;
 
 		if (!takeOffTowards(runway))
 		{
-			newTORA = runwayParameters.getTORA() - obstacle.getBlastProtection() - obstacle.getPosition() - runwayParameters
-					.getDisplacedThreshold(); //Original TORA - Blast Protection - Distance from Threshold - Displaced Threshold
-			newTODA = newTORA + stopway; //(R) TORA + STOPWAY
-			newASDA = newTORA + clearway; //(R) TORA + CLEARWAY
-			newLDA = runwayParameters.getLDA() - obstacle.getPosition() - stripEnd - (obstacle.getHeight()
-					* 50); //Original LDA - Distance from Threshold – Strip End - Slope Calculation
+			// Original TORA - Blast Protection - Dist from Threshold -
+			// Displaced Threshold
+			newTORA = runway.getTORA() - obstacle.getBlastProtection() - obstacle.getPosition()
+					- runway.getDisplacedThreshold();
+			newTODA = newTORA + stopway; // (R) TORA + STOPWAY
+			newASDA = newTORA + clearway; // (R) TORA + CLEARWAY
+			// Original LDA - Dist from Threshold - Strip End - Slop Calculation
+			newLDA = runway.getLDA() - obstacle.getPosition() - stripEnd - (obstacle.getHeight() * 50);
 		}
 		else
 		{
-			newTORA = obstacle.getPosition() - (obstacle.getHeight() * 50) - stripEnd; // Distance from Threshold - Slope Calculation - Strip End
-			newTODA = newTORA; //(R) TORA
-			newASDA = newTORA; //(R) TORA
-			newLDA = obstacle.getPosition() - resa - stripEnd; // Distance from Threshold - RESA - Strip End
+			// Distance from Threshold - Slope Calculation - Strip End
+			newTORA = obstacle.getPosition() - (obstacle.getHeight() * 50) - stripEnd;
+			newTODA = newTORA; // (R) TORA
+			newASDA = newTORA; // (R) TORA
+			// Distance from Threshold - RESA - Strip End
+			newLDA = obstacle.getPosition() - resa - stripEnd;
 		}
-		RunwayParameters newRunwayParameters = new RunwayParameters(newTORA, newTODA, newASDA, newLDA,
-				runwayParameters.getDisplacedThreshold());
-		Runway newRunway = new Runway(newRunwayParameters, runway.getRunwayID(), runway.getAlignment());
-		System.out.println(newTORA + " , " + newTODA + " ," + newASDA + " ," + newLDA + " ," + runwayParameters.getDisplacedThreshold());
+
+		Runway newRunway = new Runway(runway.getRunwayID(), runway.getAlignment(), newTORA, newTODA, newASDA, newLDA,
+				runway.getDisplacedThreshold());
+		System.out.println(
+				newTORA + ", " + newTODA + ", " + newASDA + ", " + newLDA + ", " + runway.getDisplacedThreshold());
 		return newRunway;
 	}
 
@@ -55,7 +59,7 @@ public class Redeclaration
 	private static boolean takeOffTowards(Runway runway)
 	{
 		Obstacle obstacle = runway.getObstacles().get(0);
-		double TORA = runway.getRunwayParameters().getTORA();
+		double TORA = runway.getTORA();
 		return obstacle.getPosition() > TORA / 2;
 
 	}
