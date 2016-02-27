@@ -1,11 +1,10 @@
 package application.model;
 
-import javafx.beans.property.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
 import java.util.Collection;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Airport
 {
