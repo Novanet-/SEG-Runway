@@ -3,11 +3,11 @@ package application;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import application.controller.AddAirportController;
+import application.controller.AddObjectController;
+import application.controller.AddRunwayController;
+import application.controller.MainScreenController;
 import application.model.Airport;
-import application.view.AddAirportController;
-import application.view.AddObjectController;
-import application.view.AddRunwayController;
-import application.view.MainScreenController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

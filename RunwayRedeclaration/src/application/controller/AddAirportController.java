@@ -1,4 +1,4 @@
-package application.view;
+package application.controller;
 
 import application.Main;
 import application.model.Airport;

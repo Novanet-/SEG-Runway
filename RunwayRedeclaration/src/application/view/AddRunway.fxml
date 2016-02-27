@@ -9,7 +9,7 @@
             style = "-fx-background-color: #363d43;"
             stylesheets = "@../application.css"
             xmlns = "http://javafx.com/javafx/8"
-            fx:controller = "application.view.AddRunwayController">
+            fx:controller = "application.controller.AddRunwayController">
     <children>
         <GridPane layoutX = "-143.0"
                   layoutY = "-70.0"
