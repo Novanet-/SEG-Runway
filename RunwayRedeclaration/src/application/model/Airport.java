@@ -46,12 +46,6 @@ public class Airport
 		double secondaryLDA = 3595;
 		double secondaryDisplacedThreshold = 306;
 
-		RunwayParameters primaryParameters, secondaryParameters;
-		primaryParameters = new RunwayParameters(primaryTORA, primaryTODA, primaryASDA, primaryLDA,
-				primaryDisplacedThreshold);
-		secondaryParameters = new RunwayParameters(secondaryTORA, secondaryTODA, secondaryASDA, secondaryLDA,
-				secondaryDisplacedThreshold);
-
 		// TODO: work out what to do with displaced threshold and the other
 		// paramters of RunwayDetails
 		// TODO: once the previous task is done, create a new Runway
@@ -59,8 +53,10 @@ public class Airport
 		// runway alignment, then add that object to the list of the given
 		// airport
 
-		Runway primaryRunway = new Runway(primaryParameters, 0, Integer.toString(27) + "R");
-		Runway secondaryRunway = new Runway(secondaryParameters, 1, "09L");
+		Runway primaryRunway = new Runway(0, 27 + "R", primaryTORA, primaryTODA, primaryASDA, primaryLDA,
+				primaryDisplacedThreshold);
+		Runway secondaryRunway = new Runway(1, "09L", secondaryTORA, secondaryTODA, secondaryASDA, secondaryLDA,
+				secondaryDisplacedThreshold);
 		airport.getRunways().add(primaryRunway);
 		airport.getRunways().add(secondaryRunway);
 

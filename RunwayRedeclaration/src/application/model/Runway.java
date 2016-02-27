@@ -8,90 +8,82 @@ import javafx.collections.ObservableList;
 
 public class Runway
 {
-
-	private final RunwayParameters			runwayParameters;
+	private final double					TORA;
+	private final double					TODA;
+	private final double					ASDA;
+	private final double					LDA;
+	private final double					displacedThreshold;
 	private final int						runwayID;
 	private final String					alignment;
-	private final ObservableList<Obstacle>	obstacleArray;
+	private final ObservableList<Obstacle>	obstacles;
 	private final double					stripEnd	= 50;
 	private final double					resa		= 200;
 
-
-	//TODO: add stuff like stripd end and resa to runway details
-	public Runway(final RunwayParameters runwayParameters, final int runwayID, final String alignment)
+	public Runway(final int runwayID, final String alignment, final double TORA, final double TODA, final double ASDA,
+			final double LDA, final double displacedThreshold)
 	{
-		//if (runwayParameters == null || runwayDetails == null || alignment == null || alignment.equals(""))
-		//	throw new IllegalArgumentException();
-		
-		this.runwayParameters = runwayParameters;
 		this.runwayID = runwayID;
 		this.alignment = alignment;
+		this.TORA = TORA;
+		this.TODA = TODA;
+		this.ASDA = ASDA;
+		this.LDA = LDA;
+		this.displacedThreshold = displacedThreshold;
+		
 		final Collection<Obstacle> list = new ArrayList<Obstacle>();
-		obstacleArray = FXCollections.observableArrayList(list);
+		obstacles = FXCollections.observableArrayList(list);
 		Obstacle obstacle = new Obstacle("Test1", 12, 3646, 300);
-		obstacleArray.add(obstacle);
+		obstacles.add(obstacle);
 	}
 
-
-	/**
-	 * @return
-	 */
 	public final int getRunwayID()
 	{
 		return runwayID;
 	}
 
-
-	/**
-	 * @return
-	 */
 	public final String getAlignment()
 	{
 		return alignment;
 	}
 
-
-	/**
-	 * @return
-	 */
-	public final RunwayParameters getRunwayParameters()
-	{
-		return runwayParameters;
-	}
-
-	/**
-	 * @return
-	 */
-	// public final RunwayDetails getRunwayDetails()
-	// {
-	// return runwayDetails;
-	// }
-
-
-	/**
-	 * @return
-	 */
 	public final ObservableList<Obstacle> getObstacles()
 	{
-		return obstacleArray;
+		return obstacles;
 	}
 
-
-	/**
-	 * @param obstacle
-	 */
 	public final void addObstacle(Obstacle obstacle)
 	{
-		obstacleArray.add(obstacle);
+		obstacles.add(obstacle);
 	}
 
-
-	/**
-	 * @return
-	 */
 	@Override
 	public String toString()
 	{
 		return "Runway{" + getAlignment() + '}';
+	}
+
+	public final double getTORA()
+	{
+		return TORA;
+	}
+
+	public final double getTODA()
+	{
+		return TODA;
+	}
+
+	public final double getASDA()
+	{
+		return ASDA;
+	}
+
+	public final double getLDA()
+	{
+		return LDA;
+	}
+
+	public final double getDisplacedThreshold()
+	{
+		return displacedThreshold;
 	}
 }
