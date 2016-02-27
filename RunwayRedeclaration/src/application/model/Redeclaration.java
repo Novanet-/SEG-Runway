@@ -1,12 +1,6 @@
 package application.model;
 
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 
-/**
- * Created by wd6g14 on 23/02/2016.
- */
 public class Redeclaration
 {
 
@@ -44,9 +38,9 @@ public class Redeclaration
 			newASDA = newTORA; //(R) TORA
 			newLDA = obstacle.getPosition() - resa - stripEnd; // Distance from Threshold - RESA - Strip End
 		}
-		RunwayParameters newRunwayParameters = new RunwayParameters(new SimpleDoubleProperty(newTORA), new SimpleDoubleProperty(newTODA), new SimpleDoubleProperty(newASDA),
-				new SimpleDoubleProperty(newLDA), new SimpleDoubleProperty(runwayParameters.getDisplacedThreshold()));
-		Runway newRunway = new Runway(newRunwayParameters, null, new SimpleIntegerProperty(runway.getRunwayID()), new SimpleStringProperty(runway.getAlignment()));
+		RunwayParameters newRunwayParameters = new RunwayParameters(newTORA, newTODA, newASDA, newLDA,
+				runwayParameters.getDisplacedThreshold());
+		Runway newRunway = new Runway(newRunwayParameters, null, runway.getRunwayID(), runway.getAlignment());
 		System.out.println(newTORA + " , " + newTODA + " ," + newASDA + " ," + newLDA + " ," + runwayParameters.getDisplacedThreshold());
 		return newRunway;
 	}

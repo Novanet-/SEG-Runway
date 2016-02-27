@@ -4,10 +4,6 @@ import application.Main;
 import application.model.Airport;
 import application.model.Obstacle;
 import application.model.Runway;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,9 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-/**
- * Created by jackclarke on 23/02/2016.
- */
+
 public class AddObjectController
 {
 
@@ -47,11 +41,11 @@ public class AddObjectController
 	@FXML
 	private final void handleObstacleSubmitted()
 	{
-		StringProperty obstacleName = new SimpleStringProperty(txtObjectName.getText());
-		DoubleProperty objectHeight = new SimpleDoubleProperty(Double.parseDouble(txtObjectHeight.getText()));
-		DoubleProperty objectPosition = new SimpleDoubleProperty(Double.parseDouble(txtObjectDistFromThreshold.getText()));
+		String obstacleName = txtObjectName.getText();
+		double objectHeight = Double.parseDouble(txtObjectHeight.getText());
+		double objectPosition = Double.parseDouble(txtObjectDistFromThreshold.getText());
 
-		Obstacle obstacle = new Obstacle(obstacleName, objectHeight, objectPosition, new SimpleDoubleProperty(300.0));
+		Obstacle obstacle = new Obstacle(obstacleName, objectHeight, objectPosition, 300.0);
 
 		for (Airport a : airportList)
 		{

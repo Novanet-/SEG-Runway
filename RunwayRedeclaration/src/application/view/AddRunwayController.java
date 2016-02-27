@@ -1,12 +1,11 @@
 package application.view;
 
+import java.util.ArrayList;
+
 import application.Main;
 import application.model.Airport;
 import application.model.Runway;
 import application.model.RunwayParameters;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,8 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
-import java.util.ArrayList;
 
 public class AddRunwayController
 {
@@ -51,8 +48,6 @@ public class AddRunwayController
 	{
 		try
 		{
-			int runwayAlignment;
-
 			double primaryTORA = Double.parseDouble(txtPrimaryTORA.textProperty().getValue());
 			double primaryTODA = Double.parseDouble(txtPrimaryTODA.textProperty().getValue());
 			double primaryASDA = Double.parseDouble(txtPrimaryASDA.textProperty().getValue());
@@ -66,10 +61,10 @@ public class AddRunwayController
 			double secondaryDisplacedThreshold = Double.parseDouble(txtSecondaryDisplacedThreshold.textProperty().getValue());
 
 			RunwayParameters primaryParameters, secondaryParameters;
-			primaryParameters = new RunwayParameters(new SimpleDoubleProperty(primaryTORA), new SimpleDoubleProperty(primaryTODA), new SimpleDoubleProperty(primaryASDA),
-					new SimpleDoubleProperty(primaryLDA), new SimpleDoubleProperty(primaryDisplacedThreshold));
-			secondaryParameters = new RunwayParameters(new SimpleDoubleProperty(secondaryTORA), new SimpleDoubleProperty(secondaryTODA),
-					new SimpleDoubleProperty(secondaryASDA), new SimpleDoubleProperty(secondaryLDA), new SimpleDoubleProperty(secondaryDisplacedThreshold));
+			primaryParameters = new RunwayParameters(primaryTORA, primaryTODA, primaryASDA, primaryLDA,
+					primaryDisplacedThreshold);
+			secondaryParameters = new RunwayParameters(secondaryTORA, secondaryTODA, secondaryASDA, secondaryLDA,
+					secondaryDisplacedThreshold);
 			
 			// TODO: work out what to do with displaced threshold and the other
 			// paramters of RunwayDetails
@@ -78,9 +73,9 @@ public class AddRunwayController
 			// runway alignment, then add that object to the list of the given
 			// airport
 
-			Runway primaryRunway = new Runway(primaryParameters, null, new SimpleIntegerProperty(0),
-					new SimpleStringProperty(cmbRunwayAlignment.getValue().toString() + cmbRunwayPosition.getValue().toString()));
-			Runway secondaryRunway = new Runway(secondaryParameters, null, new SimpleIntegerProperty(1), new SimpleStringProperty(lblSecondRunwayAlignment.getText()));
+			String alignment = cmbRunwayAlignment.getValue().toString() + cmbRunwayPosition.getValue().toString();
+			Runway primaryRunway = new Runway(primaryParameters, null, 0, alignment);
+			Runway secondaryRunway = new Runway(secondaryParameters, null, 1, lblSecondRunwayAlignment.getText());
 
 			for (Airport a : airportList)
 			{

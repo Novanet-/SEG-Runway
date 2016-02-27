@@ -1,17 +1,15 @@
 package application.model;
 
-import javafx.beans.property.IntegerProperty;
-
 public class RunwayDetails
 {
 
-	private final IntegerProperty displacedThreshold;
-	private final IntegerProperty clearway; //75.0
-	private final IntegerProperty stopway; //60.0
-	private final IntegerProperty resa; //240.0
-	private final IntegerProperty stripEnd;
-	private final IntegerProperty blastProtection; //300.0
-	private final IntegerProperty runwayStrip; //150.0
+	private final int displacedThreshold;
+	private final int clearway; //75.0
+	private final int stopway; //60.0
+	private final int resa; //240.0
+	private final int stripEnd;
+	private final int blastProtection; //300.0
+	private final int runwayStrip; //150.0
 	//Slope angle 1:50.0
 
 
@@ -24,8 +22,8 @@ public class RunwayDetails
 	 * @param blastProtection
 	 * @param runwayStrip
 	 */
-	public RunwayDetails(final IntegerProperty displacedThreshold, final IntegerProperty clearway, final IntegerProperty stopway, final IntegerProperty resa,
-			final IntegerProperty stripEnd, final IntegerProperty blastProtection, final IntegerProperty runwayStrip)
+	public RunwayDetails(final int displacedThreshold, final int clearway, final int stopway, final int resa,
+			final int stripEnd, final int blastProtection, final int runwayStrip)
 	{
 		this.displacedThreshold = displacedThreshold;
 		this.clearway = clearway;
@@ -42,7 +40,7 @@ public class RunwayDetails
 	 */
 	public final int getDisplacedThreshold()
 	{
-		return displacedThreshold.getValue();
+		return displacedThreshold;
 	}
 
 
@@ -51,7 +49,7 @@ public class RunwayDetails
 	 */
 	public final int getClearway()
 	{
-		return clearway.getValue();
+		return clearway;
 	}
 
 
@@ -60,7 +58,7 @@ public class RunwayDetails
 	 */
 	public final int getStopway()
 	{
-		return stopway.getValue();
+		return stopway;
 	}
 
 
@@ -69,7 +67,7 @@ public class RunwayDetails
 	 */
 	public final int getResa()
 	{
-		return resa.getValue();
+		return resa;
 	}
 
 
@@ -78,7 +76,7 @@ public class RunwayDetails
 	 */
 	public final int getStripEnd()
 	{
-		return stripEnd.getValue();
+		return stripEnd;
 	}
 
 
@@ -87,7 +85,7 @@ public class RunwayDetails
 	 */
 	public final int getBlastProtection()
 	{
-		return blastProtection.getValue();
+		return blastProtection;
 	}
 
 
@@ -96,7 +94,7 @@ public class RunwayDetails
 	 */
 	public final int getRunwayStrip()
 	{
-		return runwayStrip.getValue();
+		return runwayStrip;
 	}
 
 }

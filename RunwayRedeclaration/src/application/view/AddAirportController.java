@@ -2,8 +2,6 @@ package application.view;
 
 import application.Main;
 import application.model.Airport;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,8 +29,7 @@ public class AddAirportController
 	@FXML
 	private void handleBtnSubmitAirport()
 	{
-		final IntegerProperty airportId = new SimpleIntegerProperty(airportList.size());
-		airportList.add(new Airport(airportId, txtAirportName.textProperty()));
+		airportList.add(new Airport(airportList.size(), txtAirportName.getText()));
 		mainApp.toggleAddAirport();
 	}
 

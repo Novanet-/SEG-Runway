@@ -1,15 +1,13 @@
 package application.model;
 
-import javafx.beans.property.DoubleProperty;
-
 public class RunwayParameters
 {
 
-	private final DoubleProperty TORA;
-	private final DoubleProperty TODA;
-	private final DoubleProperty ASDA;
-	private final DoubleProperty LDA;
-	private final DoubleProperty displacedThreshold;
+	private final double TORA;
+	private final double TODA;
+	private final double ASDA;
+	private final double LDA;
+	private final double displacedThreshold;
 
 
 	/**
@@ -18,7 +16,7 @@ public class RunwayParameters
 	 * @param ASDA
 	 * @param LDA
 	 */
-	public RunwayParameters(final DoubleProperty TORA, final DoubleProperty TODA, final DoubleProperty ASDA, final DoubleProperty LDA, final DoubleProperty displacedThreshold)
+	public RunwayParameters(final double TORA, final double TODA, final double ASDA, final double LDA, final double displacedThreshold)
 	{
 		this.TORA = TORA;
 		this.TODA = TODA;
@@ -33,7 +31,7 @@ public class RunwayParameters
 	 */
 	public final double getTORA()
 	{
-		return TORA.getValue();
+		return TORA;
 	}
 
 
@@ -42,7 +40,7 @@ public class RunwayParameters
 	 */
 	public final double getTODA()
 	{
-		return TODA.getValue();
+		return TODA;
 	}
 
 
@@ -51,7 +49,7 @@ public class RunwayParameters
 	 */
 	public final double getASDA()
 	{
-		return ASDA.getValue();
+		return ASDA;
 	}
 
 
@@ -60,13 +58,13 @@ public class RunwayParameters
 	 */
 	public final double getLDA()
 	{
-		return LDA.getValue();
+		return LDA;
 	}
 
 
 	public final double getDisplacedThreshold()
 	{
-		return displacedThreshold.getValue();
+		return displacedThreshold;
 	}
 
 }
