@@ -228,6 +228,7 @@ public class Main extends Application
 		if (aoStage.isShowing())
 		{
 			aoStage.hide();
+			msController.updateObstacleList();
 		}
 		else
 		{

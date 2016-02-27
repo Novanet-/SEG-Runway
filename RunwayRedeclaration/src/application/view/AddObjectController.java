@@ -68,6 +68,7 @@ public class AddObjectController
 				break;
 			}
 		}
+		mainApp.toggleAddObject(lblAirportName.getText(), lblRunwayID.getText());
 
 	}
 

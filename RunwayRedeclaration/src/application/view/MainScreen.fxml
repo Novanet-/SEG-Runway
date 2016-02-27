@@ -158,8 +158,9 @@
 												</Label>
 												<TextField fx:id = "cmbObjects"
 														   onAction = "#handleObjectSelected"
-														   prefHeight = "16.0"
-														   prefWidth = "125.0"
+														   prefHeight = "50.0"
+														   prefWidth = "145.0"
+														   styleClass = "text-field-small"
 														   GridPane.columnIndex = "2"
 														   GridPane.rowIndex = "2">
 													<padding>
@@ -212,6 +213,7 @@
 												</Button>
 												<Button fx:id = "btnRemoveObstacle"
 														mnemonicParsing = "false"
+														onAction = "#handleBtnRemoveObstacle"
 														prefHeight = "33.0"
 														prefWidth = "0.0"
 														text = "-"
@@ -400,18 +402,23 @@
 													</effect>
 												</Rectangle>
 												<Label fx:id = "lblOrigTora"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "1"/>
 												<Label fx:id = "lblOrigToda"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "2"/>
 												<Label fx:id = "lblOrigAsda"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "3"/>
 												<Label fx:id = "lblOrigLda"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "4"/>
 												<Label fx:id = "lblOrigDisplacedThreshold"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "5"/>
 											</children>
@@ -588,18 +595,23 @@
 													</effect>
 												</Rectangle>
 												<Label fx:id = "lblRecalcTora"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "1"/>
 												<Label fx:id = "lblRecalcToda"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "2"/>
 												<Label fx:id = "lblRecalcAsda"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "3"/>
 												<Label fx:id = "lblRecalcLda"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "4"/>
 												<Label fx:id = "lblRecalcDisplacedThreshold"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "5"/>
 											</children>
@@ -717,21 +729,27 @@
 													</effect>
 												</Label>
 												<Label fx:id = "lblResa"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "1"/>
 												<Label fx:id = "lblStopway"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "2"/>
 												<Label fx:id = "lblBlastProtection"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "3"/>
 												<Label fx:id = "lblAngleOfSlope"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "4"/>
 												<Label fx:id = "lblStripWidth"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "5"/>
 												<Label fx:id = "lblCAndGWidth"
+													   styleClass = "label-bright"
 													   GridPane.columnIndex = "2"
 													   GridPane.rowIndex = "6"/>
 											</children>

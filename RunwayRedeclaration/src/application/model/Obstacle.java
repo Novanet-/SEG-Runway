@@ -56,8 +56,8 @@ public class Obstacle
 	public String toString()
 	{
 		return "Obs{" + name.getValue() +
-				", height=" + height.getValue() +
-				", position=" + position.getValue() +
+				", h=" + height.getValue() +
+				", p=" + position.getValue() +
 				'}';
 	}
 }

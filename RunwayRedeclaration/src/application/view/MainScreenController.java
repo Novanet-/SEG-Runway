@@ -21,28 +21,28 @@ public class MainScreenController
 	boolean airportSelected;
 	private       ObservableList<Airport> airportList;
 	@FXML private MenuItem                btnAddAirport;
-	@FXML private MenuItem                btnAddRunway;
-	@FXML private ComboBox                cmbAirports;
-	@FXML private ComboBox                cmbRunways;
-	@FXML private TextField               cmbObjects;
-	@FXML private Label                   lblOrigTora;
-	@FXML private Label                   lblOrigToda;
-	@FXML private Label                   lblOrigAsda;
-	@FXML private Label                   lblOrigLda;
-	@FXML private Label                   lblOrigDisplacedThreshold;
-	@FXML private Label                   lblRecalcTora;
-	@FXML private Label  lblRecalcToda;
-	@FXML private Label  lblRecalcAsda;
-	@FXML private Label  lblRecalcLda;
-	@FXML private Label  lblRecalcDisplacedThreshold;
-	@FXML private Label  lblResa;
-	@FXML private Label  lblStopway;
-	@FXML private Label  lblBlastProtection;
-	@FXML private Label  lblAngleOfSlope;
-	@FXML private Label  lblStripWidth;
-	@FXML private Label  lblCAndGWidth;
-	@FXML private Button btnAddObstacle;
-	@FXML private Button btnRemoveObstacle;
+	@FXML private MenuItem  btnAddRunway;
+	@FXML private ComboBox  cmbAirports;
+	@FXML private ComboBox  cmbRunways;
+	@FXML private TextField cmbObjects;
+	@FXML private Label     lblOrigTora;
+	@FXML private Label     lblOrigToda;
+	@FXML private Label     lblOrigAsda;
+	@FXML private Label     lblOrigLda;
+	@FXML private Label     lblOrigDisplacedThreshold;
+	@FXML private Label     lblRecalcTora;
+	@FXML private Label     lblRecalcToda;
+	@FXML private Label     lblRecalcAsda;
+	@FXML private Label     lblRecalcLda;
+	@FXML private Label     lblRecalcDisplacedThreshold;
+	@FXML private Label     lblResa;
+	@FXML private Label     lblStopway;
+	@FXML private Label     lblBlastProtection;
+	@FXML private Label     lblAngleOfSlope;
+	@FXML private Label     lblStripWidth;
+	@FXML private Label     lblCAndGWidth;
+	@FXML private Button    btnAddObstacle;
+	@FXML private Button    btnRemoveObstacle;
 
 	// Reference to the main application.
 	private Main mainApp;
@@ -102,9 +102,17 @@ public class MainScreenController
 	@FXML
 	private void handleBtnAddObstacle()
 	{
-		if (airportSelected)
+		if (cmbRunways.getValue() != null)
 		{
-			openAddObject();
+			if (((Runway) cmbRunways.getValue()).getObstacles().size() > 0)
+			{
+				Alert alert = new Alert(AlertType.INFORMATION, "Obstacle already exists. please remove before adding another");
+				alert.showAndWait();
+			}
+			else
+			{
+				openAddObject();
+			}
 		}
 		else
 		{
@@ -114,6 +122,28 @@ public class MainScreenController
 	}
 
 
+	@FXML
+	private void handleBtnRemoveObstacle()
+	{
+		if (cmbRunways.getValue() != null)
+		{
+			if (((Runway) cmbRunways.getValue()).getObstacles().size() > 0)
+			{
+				((Runway) cmbRunways.getValue()).getObstacles().remove(0);
+				updateObstacleList();
+			}
+			else
+			{
+				Alert alert = new Alert(AlertType.INFORMATION, "No obstacle to remove");
+				alert.showAndWait();
+			}
+		}
+		else
+		{
+			Alert alert = new Alert(AlertType.INFORMATION, "No runway selected. Please select an airport.");
+			alert.showAndWait();
+		}
+	}
 
 	@FXML
 	private void handleBtnClose()
@@ -181,9 +211,16 @@ public class MainScreenController
 	}
 
 
-	private void updateObstacleList()
+	public void updateObstacleList()
 	{
-		cmbObjects.setText(((Runway) cmbRunways.getValue()).getObstacles().get(0).toString());
+		if (((Runway) cmbRunways.getValue()).getObstacles().size() > 0)
+		{
+			cmbObjects.setText(((Runway) cmbRunways.getValue()).getObstacles().get(0).toString());
+		}
+		else
+		{
+			cmbObjects.setText("");
+		}
 	}
 
 
