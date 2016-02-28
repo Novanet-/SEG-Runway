@@ -8,7 +8,7 @@
             minWidth = "600.0"
             style = "-fx-background-color: #363d43;"
             stylesheets = "@application.css"
-            xmlns = "http://javafx.com/javafx/8"
+            xmlns = "http://javafx.com/javafx/8.0.65"
             fx:controller = "application.controller.AddRunwayController">
     <children>
         <GridPane layoutX = "-143.0"
@@ -152,6 +152,7 @@
                 <Label fx:id = "lblAirportName"
                        prefHeight = "19.0"
                        prefWidth = "294.0"
+                       styleClass = "label-bright"
                        text = "Heathrow"
                        GridPane.columnIndex = "1">
                     <GridPane.margin>

@@ -7,23 +7,31 @@ import application.model.Runway;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.util.Objects;
 
 public class AddObjectController
 {
 
-	@FXML private Label                   lblAirportName;
-	@FXML private Label                   lblRunwayID;
-	@FXML private TextField               txtObjectName;
-	@FXML private ComboBox                cmbCloserTo;
-	@FXML private TextField               txtObjectHeight;
-	@FXML private TextField               txtObjectDistFromThreshold;
-	@FXML private TextField               txtObjectDistFromCentre;
-	@FXML private Button                  btnObjectSubmit;
-	private       Main                    mainApp;
-	private       ObservableList<Airport> airportList;
+	@FXML private Label     lblAirportName;
+	@FXML private Label     lblRunwayID;
+	@FXML private TextField txtPrimObjectName;
+	@FXML private TextField txtPrimObjectHeight;
+	@FXML private TextField txtPrimObjectDistFromThreshold;
+	@FXML private TextField txtPrimObjectDistFromCentre;
+
+	@FXML private Label     lblSecondaryRunwayID;
+	@FXML private Label     lblSecObjectName;
+	@FXML private Label     lblSecObjectHeight;
+	@FXML private TextField txtSecObjectDistFromThreshold;
+	@FXML private Label     lblSecObjectDistFromCentre;
+
+	@FXML private Button btnObjectSubmit;
+
+	private Main                    mainApp;
+	private ObservableList<Airport> airportList;
 
 
 	/**
@@ -33,18 +41,28 @@ public class AddObjectController
 	@FXML
 	private void initialize()
 	{
-
+		txtPrimObjectName.textProperty().addListener((observable, oldValue, newValue) -> {
+			lblSecObjectName.setText(newValue);
+		});
+		txtPrimObjectHeight.textProperty().addListener((observable, oldValue, newValue) -> {
+			lblSecObjectHeight.setText(newValue);
+		});
+		txtPrimObjectName.textProperty().addListener((observable, oldValue, newValue) -> {
+			lblSecObjectName.setText(newValue);
+		});
 	}
 
 
 	@FXML
 	private void handleObstacleSubmitted()
 	{
-		final String obstacleName = txtObjectName.getText();
-		final double objectHeight = Double.parseDouble(txtObjectHeight.getText());
-		final double objectPosition = Double.parseDouble(txtObjectDistFromThreshold.getText());
+		final String obstacleName = txtPrimObjectName.getText();
+		final double objectHeight = Double.parseDouble(txtPrimObjectHeight.getText());
+		final double objectPrimaryPosition = Double.parseDouble(txtPrimObjectDistFromThreshold.getText());
+		final double objectSecondaryPosition = Double.parseDouble(txtSecObjectDistFromThreshold.getText());
 
-		final Obstacle obstacle = new Obstacle(obstacleName, objectHeight, objectPosition, 300.0);
+		final Obstacle primaryObstacle = new Obstacle(obstacleName, objectHeight, objectPrimaryPosition, 300.0);
+		final Obstacle secondaryObstacle = new Obstacle(obstacleName, objectHeight, objectSecondaryPosition, 300.0);
 
 		for (final Airport a : airportList)
 		{
@@ -54,15 +72,38 @@ public class AddObjectController
 				{
 					if (r.getAlignment().equals(lblRunwayID.getText()))
 					{
-						r.addObstacle(obstacle);
-						break;
+						r.addObstacle(primaryObstacle);
+					}
+					if (r.getAlignment().equals(lblSecondaryRunwayID.getText()))
+					{
+						r.addObstacle(secondaryObstacle);
 					}
 				}
-				break;
 			}
 		}
 		mainApp.toggleAddObject(lblAirportName.getText(), lblRunwayID.getText());
 
+	}
+
+
+	@FXML
+	private void handleNameChanged()
+	{
+		lblSecObjectName.setText(txtPrimObjectName.getText());
+	}
+
+
+	@FXML
+	private void handleHeightChanged()
+	{
+		lblSecObjectHeight.setText(txtPrimObjectHeight.getText());
+	}
+
+
+	@FXML
+	private void handleDistCentreChanged()
+	{
+		lblSecObjectDistFromCentre.setText(txtPrimObjectDistFromCentre.getText());
 	}
 
 
@@ -87,5 +128,23 @@ public class AddObjectController
 	{
 		lblAirportName.setText(airportName);
 		lblRunwayID.setText(runwayID);
+		String primaryID = runwayID.replaceAll("\\D+", "");
+		String primaryPosition = runwayID.replaceAll("\\d+", "");
+		String secondaryPosition = "";
+		if (Objects.equals(primaryPosition, "L")) //TODO: Extract these ifelse blocks into a method in Runway
+		{
+			secondaryPosition = "R";
+		}
+		else if (Objects.equals(primaryPosition, "C"))
+		{
+			secondaryPosition = "C";
+		}
+		else if (Objects.equals(primaryPosition, "R"))
+		{
+			secondaryPosition = "L";
+		}
+
+		Integer secondaryID = AddRunwayController.calculateSecondPosition(Integer.parseInt(primaryID)); //TODO: Move this method to the Runway class
+		lblSecondaryRunwayID.setText(String.format("%02d", secondaryID) + secondaryPosition);
 	}
 }

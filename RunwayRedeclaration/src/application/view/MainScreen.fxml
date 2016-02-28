@@ -159,7 +159,7 @@
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <TextField fx:id = "cmbObjects"
+                                                <TextField fx:id = "txtObstacles"
                                                            onAction = "#handleObjectSelected"
                                                            prefHeight = "50.0"
                                                            prefWidth = "145.0"

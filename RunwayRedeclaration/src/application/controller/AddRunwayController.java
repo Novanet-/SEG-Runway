@@ -47,7 +47,7 @@ public class AddRunwayController
 	 * @param firstPosition The alignment of the first runway
 	 * @return The alignment of the opposite logical runway
 	 */
-	private static Integer calculateSecondPosition(Integer firstPosition)
+	public static Integer calculateSecondPosition(Integer firstPosition)
 	{
 		if (firstPosition > 17)
 		{

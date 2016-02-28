@@ -9,6 +9,8 @@ import java.util.Collection;
 public class Runway
 {
 
+	//TODO: Change obstacle array to a variable that contains one instance of an obstacle, either one obstacle or null
+
 	private static final double stripEnd = 50.0;
 	private static final double resa     = 200.0;
 	private final int                      runwayID;

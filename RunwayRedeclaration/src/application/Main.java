@@ -20,6 +20,13 @@ import java.util.ArrayList;
 public class Main extends Application
 {
 
+	//TODO: Add obstacle JUNIT tests
+	//TODO: Add more null/validity checking
+	//TODO: look into XML
+	//TODO: look into java graphics
+	//TODO: readme file, help document
+
+
 	private static final String PLANE_ICON        = "file:resources/images/planeicon.png";
 	private static final String APPLICATION_TITLE = "Runway Redeclaration";
 	private static final String MAIN_FXML         = "view/MainScreen.fxml";

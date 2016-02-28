@@ -22,9 +22,9 @@ public class MainScreenController
 	private       ObservableList<Airport> airportList;
 	@FXML private MenuItem                btnAddAirport;
 	@FXML private MenuItem                btnAddRunway;
-	@FXML private ComboBox                cmbAirports;
-	@FXML private ComboBox                cmbRunways;
-	@FXML private TextField               cmbObjects;
+	@FXML private ComboBox<Airport>       cmbAirports;
+	@FXML private ComboBox<Runway>        cmbRunways;
+	@FXML private TextField               txtObstacles;
 	@FXML private Label                   lblOrigTora;
 	@FXML private Label                   lblOrigToda;
 	@FXML private Label                   lblOrigAsda;
@@ -95,7 +95,7 @@ public class MainScreenController
 	{
 		if (cmbRunways.getValue() != null)
 		{
-			if (!((Runway) cmbRunways.getValue()).getObstacles().isEmpty())
+			if (!cmbRunways.getValue().getObstacles().isEmpty())
 			{
 				final Alert alert = new Alert(AlertType.INFORMATION, "Obstacle already exists. please remove before adding another");
 				alert.showAndWait();
@@ -112,15 +112,21 @@ public class MainScreenController
 		}
 	}
 
+	//TODO: When obstacle is removed from one logical runway, it should remove it from both logical runways
+	//TODO: Rename all instances of object to obstacle
+
+	//TODO: Change add airport/runway buttons to + and - buttons as per obstacle for consistency and to allow for removal or airports and runways
+
+
 
 	@FXML
 	private void handleBtnRemoveObstacle()
 	{
 		if (cmbRunways.getValue() != null)
 		{
-			if (!((Runway) cmbRunways.getValue()).getObstacles().isEmpty())
+			if (!cmbRunways.getValue().getObstacles().isEmpty())
 			{
-				((Runway) cmbRunways.getValue()).removeObstacle();
+				cmbRunways.getValue().removeObstacle();
 				updateObstacleList();
 			}
 			else
@@ -157,7 +163,10 @@ public class MainScreenController
 	private void handleAirportSelected()
 	{
 		airportSelected = cmbAirports.getValue() != null;
-		cmbRunways.setItems(FXCollections.observableArrayList(((Airport) cmbAirports.getValue()).getRunways()));
+		cmbRunways.setValue(null);
+		cmbRunways.setItems(FXCollections.observableArrayList(cmbAirports.getValue().getRunways()));
+		txtObstacles.setText("");
+
 	}
 
 
@@ -165,11 +174,15 @@ public class MainScreenController
 	private void handleRunwaySelected()
 	{
 		updateOriginalParameters();
-		final Runway currentRunway = (Runway) cmbRunways.getValue();
-		final Runway newRunway = Redeclaration.redeclareParameters(currentRunway);
-		if (!currentRunway.getObstacles().isEmpty())
+		Runway newRunway = null;
+		if (cmbRunways.getValue() != null)
 		{
 			updateObstacleList();
+			final Runway currentRunway = cmbRunways.getValue();
+			if (!currentRunway.getObstacles().isEmpty())
+			{
+				newRunway = Redeclaration.redeclareParameters(currentRunway);
+			}
 		}
 		updateNewParameters(newRunway);
 	}
@@ -179,18 +192,29 @@ public class MainScreenController
 	private void handleObjectSelected()
 
 	{
-		final Runway currentRunway = (Runway) cmbRunways.getValue();
+		final Runway currentRunway = cmbRunways.getValue();
 		updateNewParameters(currentRunway);
 	}
 
 
 	private void updateNewParameters(Runway newRunway)
 	{
-		lblRecalcTora.setText(Double.toString(newRunway.getTORA()));
-		lblRecalcToda.setText(Double.toString(newRunway.getTODA()));
-		lblRecalcAsda.setText(Double.toString(newRunway.getASDA()));
-		lblRecalcLda.setText(Double.toString(newRunway.getLDA()));
-		lblRecalcDisplacedThreshold.setText(Double.toString(newRunway.getDisplacedThreshold()));
+		if (newRunway != null)
+		{
+			lblRecalcTora.setText(Double.toString(newRunway.getTORA()));
+			lblRecalcToda.setText(Double.toString(newRunway.getTODA()));
+			lblRecalcAsda.setText(Double.toString(newRunway.getASDA()));
+			lblRecalcLda.setText(Double.toString(newRunway.getLDA()));
+			lblRecalcDisplacedThreshold.setText(Double.toString(newRunway.getDisplacedThreshold()));
+		}
+		else
+		{
+			lblRecalcTora.setText("");
+			lblRecalcToda.setText("");
+			lblRecalcAsda.setText("");
+			lblRecalcLda.setText("");
+			lblRecalcDisplacedThreshold.setText("");
+		}
 	}
 
 
@@ -204,13 +228,13 @@ public class MainScreenController
 
 	public final void updateObstacleList()
 	{
-		if (!((Runway) cmbRunways.getValue()).getObstacles().isEmpty())
+		if (!cmbRunways.getValue().getObstacles().isEmpty())
 		{
-			cmbObjects.setText(((Runway) cmbRunways.getValue()).getObstacles().get(0).toString());
+			txtObstacles.setText(cmbRunways.getValue().getObstacles().get(0).toString());
 		}
 		else
 		{
-			cmbObjects.setText("");
+			txtObstacles.setText("");
 		}
 	}
 
@@ -220,12 +244,23 @@ public class MainScreenController
 	 */
 	private void updateOriginalParameters()
 	{
-		final Runway currentRunway = (Runway) cmbRunways.getValue();
-		lblOrigTora.setText(Double.toString(currentRunway.getTORA()));
-		lblOrigToda.setText(Double.toString(currentRunway.getTODA()));
-		lblOrigAsda.setText(Double.toString(currentRunway.getASDA()));
-		lblOrigLda.setText(Double.toString(currentRunway.getLDA()));
-		lblOrigDisplacedThreshold.setText(Double.toString(currentRunway.getDisplacedThreshold()));
+		if (cmbRunways.getValue() != null)
+		{
+			final Runway currentRunway = cmbRunways.getValue();
+			lblOrigTora.setText(Double.toString(currentRunway.getTORA()));
+			lblOrigToda.setText(Double.toString(currentRunway.getTODA()));
+			lblOrigAsda.setText(Double.toString(currentRunway.getASDA()));
+			lblOrigLda.setText(Double.toString(currentRunway.getLDA()));
+			lblOrigDisplacedThreshold.setText(Double.toString(currentRunway.getDisplacedThreshold()));
+		}
+		else
+		{
+			lblOrigTora.setText("");
+			lblOrigToda.setText("");
+			lblOrigAsda.setText("");
+			lblOrigLda.setText("");
+			lblOrigDisplacedThreshold.setText("");
+		}
 	}
 
 
@@ -254,7 +289,7 @@ public class MainScreenController
 	@FXML
 	private void openAddRunway()
 	{
-		mainApp.toggleAddRunway(((Airport) cmbAirports.getValue()).getAirportName());
+		mainApp.toggleAddRunway(cmbAirports.getValue().getAirportName());
 	}
 
 
@@ -264,7 +299,7 @@ public class MainScreenController
 	@FXML
 	private void openAddObject()
 	{
-		mainApp.toggleAddObject(((Airport) cmbAirports.getValue()).getAirportName(), ((Runway) cmbRunways.getValue()).getAlignment());
+		mainApp.toggleAddObject(cmbAirports.getValue().getAirportName(), cmbRunways.getValue().getAlignment());
 	}
 
 
