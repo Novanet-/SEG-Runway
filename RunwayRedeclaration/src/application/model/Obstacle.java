@@ -23,7 +23,7 @@ public class Obstacle
 	/**
 	 * @return
 	 */
-	private String getName()
+	public String getName()
 	{
 		return name;
 	}
