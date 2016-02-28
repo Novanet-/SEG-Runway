@@ -22,8 +22,8 @@ public class MainScreenController
 	private       ObservableList<Airport> airportList;
 	@FXML private MenuItem                btnAddAirport;
 	@FXML private MenuItem                btnAddRunway;
-	@FXML private ComboBox                cmbAirports;
-	@FXML private ComboBox                cmbRunways;
+	@FXML private ComboBox<Airport>       cmbAirports;
+	@FXML private ComboBox<Runway>        cmbRunways;
 	@FXML private TextField               cmbObjects;
 	@FXML private Label                   lblOrigTora;
 	@FXML private Label                   lblOrigToda;
@@ -286,7 +286,7 @@ public class MainScreenController
 	{
 		airportList = mainApp.getAirportList();
 		updateCmbAirports();
-		airportList.addListener((ListChangeListener) change -> {
+		airportList.addListener((ListChangeListener<Airport>) change -> {
 			updateCmbAirports();
 		});
 	}
