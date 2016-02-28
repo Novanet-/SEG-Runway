@@ -2,12 +2,10 @@ package application.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import application.Main;
 import application.model.Airport;
 import application.model.Runway;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,7 +17,6 @@ import javafx.scene.control.TextField;
 public class AddRunwayController
 {
 
-	private       StringProperty          selectedAirport;
 	private       Main                    mainApp;
 	@FXML private Label                   lblAirportName;
 	@FXML private Label                   lblSecondRunwayAlignment;
@@ -136,7 +133,8 @@ public class AddRunwayController
 	@FXML
 	private void handleItemSelected()
 	{
-		updateSecondRunwayAlignmentPosition(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue())), (String) cmbRunwayPosition.getValue());
+		updateSecondRunway(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue())),
+				(String) cmbRunwayPosition.getValue());
 	}
 
 
@@ -146,23 +144,24 @@ public class AddRunwayController
 	@FXML
 	private void handlePositionSelected()
 	{
-		updateSecondRunwayAlignmentPosition(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue())), (String) cmbRunwayPosition.getValue());
+		updateSecondRunway(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue())),
+				(String) cmbRunwayPosition.getValue());
 	}
 
 
-	private void updateSecondRunwayAlignmentPosition(Integer alignment, String position)
+	private void updateSecondRunway(int alignment, String position)
 	{
 		String newPosition = "";
-		if (Objects.equals(position, "L"))
+		
+		switch (position)
 		{
+		case "L":
 			newPosition = "R";
-		}
-		else if (Objects.equals(position, "C"))
-		{
+			break;
+		case "C":
 			newPosition = "C";
-		}
-		else if (Objects.equals(position, "R"))
-		{
+			break;
+		case "R":
 			newPosition = "L";
 		}
 
