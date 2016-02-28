@@ -68,7 +68,7 @@ public class Airport
 	/**
 	 * @return
 	 */
-	private int getAirportID()
+	public int getAirportID()
 	{
 		return airportID;
 	}
