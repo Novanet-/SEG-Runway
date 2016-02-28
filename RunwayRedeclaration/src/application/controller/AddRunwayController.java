@@ -1,5 +1,9 @@
 package application.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import application.Main;
 import application.model.Airport;
 import application.model.Runway;
@@ -12,10 +16,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 public class AddRunwayController
 {
 
@@ -24,8 +24,8 @@ public class AddRunwayController
 	@FXML private Label                   lblAirportName;
 	@FXML private Label                   lblSecondRunwayAlignment;
 	@FXML private Button                  btnSubmitRunway;
-	@FXML private ComboBox                cmbRunwayAlignment;
-	@FXML private ComboBox                cmbRunwayPosition;
+	@FXML private ComboBox<String>        cmbRunwayAlignment;
+	@FXML private ComboBox<String>        cmbRunwayPosition;
 	@FXML private TextField               txtPrimaryTORA;
 	@FXML private TextField               txtPrimaryTODA;
 	@FXML private TextField               txtPrimaryASDA;
