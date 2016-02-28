@@ -1,7 +1,5 @@
 package application.controller;
 
-import java.util.ArrayList;
-
 import application.Main;
 import application.model.Airport;
 import application.model.Runway;
@@ -14,10 +12,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class AddRunwayController
 {
 
-	StringProperty selectedAirport;
+	private       StringProperty          selectedAirport;
 	private       Main                    mainApp;
 	@FXML private Label                   lblAirportName;
 	@FXML private Label                   lblSecondRunwayAlignment;
@@ -40,55 +42,20 @@ public class AddRunwayController
 
 
 	/**
+	 * Based on the alignment of the first runway entered, calculates the alignment for the logical runway for the given runway in the opposite direction
 	 *
+	 * @param firstPosition The alignment of the first runway
+	 * @return The alignment of the opposite logical runway
 	 */
-	@FXML
-	private void handleBtnSubmitRunway()
+	private static Integer calculateSecondPosition(Integer firstPosition)
 	{
-		try
+		if (firstPosition > 17)
 		{
-			double primaryTORA = Double.parseDouble(txtPrimaryTORA.textProperty().getValue());
-			double primaryTODA = Double.parseDouble(txtPrimaryTODA.textProperty().getValue());
-			double primaryASDA = Double.parseDouble(txtPrimaryASDA.textProperty().getValue());
-			double primaryLDA = Double.parseDouble(txtPrimaryLDA.textProperty().getValue());
-			double primaryDisplacedThreshold = Double.parseDouble(txtPrimaryDisplacedThreshold.textProperty().getValue());
-
-			double secondaryTORA = Double.parseDouble(txtSecondaryTORA.textProperty().getValue());
-			double secondaryTODA = Double.parseDouble(txtSecondaryTODA.textProperty().getValue());
-			double secondaryASDA = Double.parseDouble(txtSecondaryASDA.textProperty().getValue());
-			double secondaryLDA = Double.parseDouble(txtSecondaryLDA.textProperty().getValue());
-			double secondaryDisplacedThreshold = Double.parseDouble(txtSecondaryDisplacedThreshold.textProperty().getValue());
-			
-			
-			// TODO: work out what to do with displaced threshold and the other
-			// paramters of RunwayDetails
-			// TODO: once the previous task is done, create a new Runway
-			// object with the paramters and details objects along with the
-			// runway alignment, then add that object to the list of the given
-			// airport
-
-			String alignment = cmbRunwayAlignment.getValue().toString() + cmbRunwayPosition.getValue().toString();
-			Runway primaryRunway = new Runway(0, alignment, primaryTORA, primaryTODA, primaryASDA, primaryLDA,
-					primaryDisplacedThreshold);
-			Runway secondaryRunway = new Runway(1, lblSecondRunwayAlignment.getText(), secondaryTORA, secondaryTODA,
-					secondaryASDA, secondaryLDA, secondaryDisplacedThreshold);
-
-			for (Airport a : airportList)
-			{
-				if (a.getAirportName().equals(lblAirportName.getText()))
-				{
-					a.addRunway(primaryRunway);
-					a.addRunway(secondaryRunway);
-					break;
-				}
-			}
-
-			mainApp.toggleAddRunway(lblAirportName.getText());
-
+			return firstPosition - 18;
 		}
-		catch (NumberFormatException e)
+		else
 		{
-			e.printStackTrace();
+			return firstPosition + 18;
 		}
 	}
 
@@ -100,13 +67,13 @@ public class AddRunwayController
 	@FXML
 	private void initialize()
 	{
-		ArrayList<String> alignments = new ArrayList<String>();
+		final List<String> alignments = new ArrayList<String>();
 		for (int i = 0; i < 35; i++)
 		{
 			alignments.add(String.format("%02d", i));
 		}
 
-		ArrayList<String> positions = new ArrayList<>();
+		final List<String> positions = new ArrayList<>();
 		positions.add("");
 		positions.add("L");
 		positions.add("C");
@@ -114,6 +81,52 @@ public class AddRunwayController
 
 		cmbRunwayAlignment.setItems(FXCollections.observableArrayList(alignments));
 		cmbRunwayPosition.setItems(FXCollections.observableArrayList(positions));
+	}
+
+
+	/**
+	 *
+	 */
+	@FXML
+	private void handleBtnSubmitRunway()
+	{
+		try
+		{
+			final double primaryTORA = Double.parseDouble(txtPrimaryTORA.textProperty().getValue());
+			final double primaryTODA = Double.parseDouble(txtPrimaryTODA.textProperty().getValue());
+			final double primaryASDA = Double.parseDouble(txtPrimaryASDA.textProperty().getValue());
+			final double primaryLDA = Double.parseDouble(txtPrimaryLDA.textProperty().getValue());
+			final double primaryDisplacedThreshold = Double.parseDouble(txtPrimaryDisplacedThreshold.textProperty().getValue());
+
+			final double secondaryTORA = Double.parseDouble(txtSecondaryTORA.textProperty().getValue());
+			final double secondaryTODA = Double.parseDouble(txtSecondaryTODA.textProperty().getValue());
+			final double secondaryASDA = Double.parseDouble(txtSecondaryASDA.textProperty().getValue());
+			final double secondaryLDA = Double.parseDouble(txtSecondaryLDA.textProperty().getValue());
+			final double secondaryDisplacedThreshold = Double.parseDouble(txtSecondaryDisplacedThreshold.textProperty().getValue());
+
+			// TODO: work out what to do with displaced threshold and the other
+			// paramters of RunwayDetails
+			// TODO: once the previous task is done, create a new Runway
+			// object with the paramters and details objects along with the
+			// runway alignment, then add that object to the list of the given
+			// airport
+
+			final String alignment = cmbRunwayAlignment.getValue().toString() + cmbRunwayPosition.getValue().toString();
+			final Runway primaryRunway = new Runway(0, alignment, primaryTORA, primaryTODA, primaryASDA, primaryLDA, primaryDisplacedThreshold);
+			final Runway secondaryRunway = new Runway(1, lblSecondRunwayAlignment.getText(), secondaryTORA, secondaryTODA, secondaryASDA, secondaryLDA,
+					secondaryDisplacedThreshold);
+
+			final Airport selectedAirport = getSelectedAirport();
+			selectedAirport.addRunway(primaryRunway);
+			selectedAirport.addRunway(secondaryRunway);
+
+			mainApp.toggleAddRunway(lblAirportName.getText());
+
+		}
+		catch (final NumberFormatException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 
@@ -137,31 +150,18 @@ public class AddRunwayController
 	}
 
 
-	private Integer calculateSecondPosition(Integer firstPosition)
-	{
-		if (firstPosition > 17)
-		{
-			return firstPosition - 18;
-		}
-		else
-		{
-			return firstPosition + 18;
-		}
-	}
-
-
 	private void updateSecondRunwayAlignmentPosition(Integer alignment, String position)
 	{
 		String newPosition = "";
-		if (cmbRunwayPosition.getValue() == "L")
+		if (Objects.equals(position, "L"))
 		{
 			newPosition = "R";
 		}
-		else if (cmbRunwayPosition.getValue() == "C")
+		else if (Objects.equals(position, "C"))
 		{
 			newPosition = "C";
 		}
-		else if (cmbRunwayPosition.getValue() == "R")
+		else if (Objects.equals(position, "R"))
 		{
 			newPosition = "L";
 		}
@@ -170,9 +170,22 @@ public class AddRunwayController
 	}
 
 
-	public void updateSelectedAirport(String airportName)
+	public final void updateSelectedAirport(String airportName)
 	{
 		lblAirportName.setText(airportName);
+	}
+
+
+	private Airport getSelectedAirport()
+	{
+		for (final Airport a : airportList)
+		{
+			if (a.getAirportName().equals(lblAirportName.getText()))
+			{
+				return a;
+			}
+		}
+		return null;
 	}
 
 

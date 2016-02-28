@@ -1,16 +1,18 @@
 package application.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class Airport
 {
 
-	private final int airportID;
-	private final String airportName;
+	private final int                    airportID;
+	private final String                 airportName;
 	private final ObservableList<Runway> runways;
 
 
@@ -20,31 +22,33 @@ public class Airport
 	 */
 	public Airport(final int airportID, final String airportName)
 	{
-		if (airportName == null || airportID < 0 || airportName.equals(""))
+		if (airportName == null || airportID < 0 || "".equals(airportName))
+		{
 			throw new IllegalArgumentException();
-		
+		}
+
 		this.airportID = airportID;
 		this.airportName = airportName;
-		
+
 		final Collection<Runway> list = new ArrayList<Runway>();
 		runways = FXCollections.observableArrayList(list);
 		createTestRunway(this);
 	}
 
 
-	private void createTestRunway(final Airport airport)
+	private static void createTestRunway(final Airport airport)
 	{
-		double primaryTORA = 3884;
-		double primaryTODA = 3962;
-		double primaryASDA = 3884;
-		double primaryLDA = 3884;
-		double primaryDisplacedThreshold = 0;
+		final double primaryTORA = 3884.0;
+		final double primaryTODA = 3962.0;
+		final double primaryASDA = 3884.0;
+		final double primaryLDA = 3884.0;
+		final double primaryDisplacedThreshold = 0.0;
 
-		double secondaryTORA = 3902;
-		double secondaryTODA = 3902;
-		double secondaryASDA = 3902;
-		double secondaryLDA = 3595;
-		double secondaryDisplacedThreshold = 306;
+		final double secondaryTORA = 3902.0;
+		final double secondaryTODA = 3902.0;
+		final double secondaryASDA = 3902.0;
+		final double secondaryLDA = 3595.0;
+		final double secondaryDisplacedThreshold = 306.0;
 
 		// TODO: work out what to do with displaced threshold and the other
 		// paramters of RunwayDetails
@@ -53,12 +57,10 @@ public class Airport
 		// runway alignment, then add that object to the list of the given
 		// airport
 
-		Runway primaryRunway = new Runway(0, 27 + "R", primaryTORA, primaryTODA, primaryASDA, primaryLDA,
-				primaryDisplacedThreshold);
-		Runway secondaryRunway = new Runway(1, "09L", secondaryTORA, secondaryTODA, secondaryASDA, secondaryLDA,
-				secondaryDisplacedThreshold);
-		airport.getRunways().add(primaryRunway);
-		airport.getRunways().add(secondaryRunway);
+		final Runway primaryRunway = new Runway(0, 27 + "R", primaryTORA, primaryTODA, primaryASDA, primaryLDA, primaryDisplacedThreshold);
+		final Runway secondaryRunway = new Runway(1, "09L", secondaryTORA, secondaryTODA, secondaryASDA, secondaryLDA, secondaryDisplacedThreshold);
+		airport.addRunway(primaryRunway);
+		airport.addRunway(secondaryRunway);
 
 	}
 
@@ -66,7 +68,7 @@ public class Airport
 	/**
 	 * @return
 	 */
-	public final int getAirportID()
+	private int getAirportID()
 	{
 		return airportID;
 	}
@@ -84,9 +86,9 @@ public class Airport
 	/**
 	 * @return
 	 */
-	public final ObservableList<Runway> getRunways()
+	public final List<Runway> getRunways()
 	{
-		return runways;
+		return Collections.unmodifiableList(runways);
 	}
 
 
@@ -105,7 +107,7 @@ public class Airport
 	@Override
 	public final String toString()
 	{
-		return getAirportID() + " - " + getAirportName();
+		return airportID + " - " + airportName;
 	}
 
 }

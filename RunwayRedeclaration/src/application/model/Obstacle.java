@@ -3,13 +3,13 @@ package application.model;
 public class Obstacle
 {
 
-	private final String	name;
-	private final double	height;
-	private final double	position;
-	private final double	blastProtection;
+	private final String name;
+	private final double height;
+	private final double position;
+	private final double blastProtection;
 
-	public Obstacle(final String name, final double height, final double position,
-			final double blastProtection)
+
+	public Obstacle(final String name, final double height, final double position, final double blastProtection)
 	{
 		this.name = name;
 		this.height = height;
@@ -17,13 +17,15 @@ public class Obstacle
 		this.blastProtection = 50.0;
 	}
 
+
 	/**
 	 * @return
 	 */
-	public final String getName()
+	private String getName()
 	{
 		return name;
 	}
+
 
 	/**
 	 * @return
@@ -33,19 +35,22 @@ public class Obstacle
 		return height;
 	}
 
-	public double getPosition()
+
+	public final double getPosition()
 	{
 		return position;
 	}
+
 
 	public final double getBlastProtection()
 	{
 		return blastProtection;
 	}
 
+
 	@Override
-	public String toString()
+	public final String toString()
 	{
-		return "Obs{" + getName() + ", h=" + getHeight() + ", p=" + getPosition() + '}';
+		return "Obs{" + name + ", h=" + height + ", p=" + position + '}';
 	}
 }

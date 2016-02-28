@@ -11,20 +11,19 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-
 public class AddObjectController
 {
 
-	@FXML   Label                   lblAirportName;
-	@FXML   Label                   lblRunwayID;
-	@FXML   TextField               txtObjectName;
-	@FXML   ComboBox                cmbCloserTo;
-	@FXML   TextField               txtObjectHeight;
-	@FXML   TextField               txtObjectDistFromThreshold;
-	@FXML   TextField               txtObjectDistFromCentre;
-	@FXML   Button                  btnObjectSubmit;
-	private Main                    mainApp;
-	private ObservableList<Airport> airportList;
+	@FXML private Label                   lblAirportName;
+	@FXML private Label                   lblRunwayID;
+	@FXML private TextField               txtObjectName;
+	@FXML private ComboBox                cmbCloserTo;
+	@FXML private TextField               txtObjectHeight;
+	@FXML private TextField               txtObjectDistFromThreshold;
+	@FXML private TextField               txtObjectDistFromCentre;
+	@FXML private Button                  btnObjectSubmit;
+	private       Main                    mainApp;
+	private       ObservableList<Airport> airportList;
 
 
 	/**
@@ -39,21 +38,21 @@ public class AddObjectController
 
 
 	@FXML
-	private final void handleObstacleSubmitted()
+	private void handleObstacleSubmitted()
 	{
-		String obstacleName = txtObjectName.getText();
-		double objectHeight = Double.parseDouble(txtObjectHeight.getText());
-		double objectPosition = Double.parseDouble(txtObjectDistFromThreshold.getText());
+		final String obstacleName = txtObjectName.getText();
+		final double objectHeight = Double.parseDouble(txtObjectHeight.getText());
+		final double objectPosition = Double.parseDouble(txtObjectDistFromThreshold.getText());
 
-		Obstacle obstacle = new Obstacle(obstacleName, objectHeight, objectPosition, 300.0);
+		final Obstacle obstacle = new Obstacle(obstacleName, objectHeight, objectPosition, 300.0);
 
-		for (Airport a : airportList)
+		for (final Airport a : airportList)
 		{
 			if (a.getAirportName().equals(lblAirportName.getText()))
 			{
-				for (Runway r : a.getRunways())
+				for (final Runway r : a.getRunways())
 				{
-					if (r.getAlignment().equals(lblRunwayID))
+					if (r.getAlignment().equals(lblRunwayID.getText()))
 					{
 						r.addObstacle(obstacle);
 						break;
@@ -84,7 +83,7 @@ public class AddObjectController
 	}
 
 
-	public void updateSelectedAirportRunway(final String airportName, final String runwayID)
+	public final void updateSelectedAirportRunway(final String airportName, final String runwayID)
 	{
 		lblAirportName.setText(airportName);
 		lblRunwayID.setText(runwayID);
