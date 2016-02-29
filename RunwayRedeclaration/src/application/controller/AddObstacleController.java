@@ -131,16 +131,17 @@ public class AddObstacleController
 		String primaryID = runwayID.replaceAll("\\D+", "");
 		String primaryPosition = runwayID.replaceAll("\\d+", "");
 		String secondaryPosition = "";
-		if (Objects.equals(primaryPosition, "L")) //TODO: Extract these ifelse blocks into a method in Runway
+		
+		//TODO: Extract these into a method in Runway
+		switch (primaryPosition)
 		{
+		case "L":
 			secondaryPosition = "R";
-		}
-		else if (Objects.equals(primaryPosition, "C"))
-		{
+			break;
+		case "C:":
 			secondaryPosition = "C";
-		}
-		else if (Objects.equals(primaryPosition, "R"))
-		{
+			break;
+		case "R":
 			secondaryPosition = "L";
 		}
 
