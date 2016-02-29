@@ -25,6 +25,9 @@ public class Runway
 
 	public Runway(final int runwayID, final String alignment, final double TORA, final double TODA, final double ASDA, final double LDA, final double displacedThreshold)
 	{
+		if (alignment == null || alignment.equals(""))
+			throw new IllegalArgumentException();
+		
 		this.runwayID = runwayID;
 		this.alignment = alignment;
 		this.TORA = TORA;
