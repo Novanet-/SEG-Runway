@@ -102,7 +102,7 @@ public class MainScreenController
 			}
 			else
 			{
-				openAddObject();
+				openAddObstacle();
 			}
 		}
 		else
@@ -113,7 +113,6 @@ public class MainScreenController
 	}
 
 	//TODO: When obstacle is removed from one logical runway, it should remove it from both logical runways
-	//TODO: Rename all instances of object to obstacle
 
 	//TODO: Change add airport/runway buttons to + and - buttons as per obstacle for consistency and to allow for removal or airports and runways
 
@@ -297,9 +296,9 @@ public class MainScreenController
 	 *
 	 */
 	@FXML
-	private void openAddObject()
+	private void openAddObstacle()
 	{
-		mainApp.toggleAddObject(cmbAirports.getValue().getAirportName(), cmbRunways.getValue().getAlignment());
+		mainApp.toggleAddObstacle(cmbAirports.getValue().getAirportName(), cmbRunways.getValue().getAlignment());
 	}
 
 

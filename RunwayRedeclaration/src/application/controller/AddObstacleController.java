@@ -12,23 +12,23 @@ import javafx.scene.control.TextField;
 
 import java.util.Objects;
 
-public class AddObjectController
+public class AddObstacleController
 {
 
 	@FXML private Label     lblAirportName;
 	@FXML private Label     lblRunwayID;
-	@FXML private TextField txtPrimObjectName;
-	@FXML private TextField txtPrimObjectHeight;
-	@FXML private TextField txtPrimObjectDistFromThreshold;
-	@FXML private TextField txtPrimObjectDistFromCentre;
+	@FXML private TextField txtPrimObstacleName;
+	@FXML private TextField txtPrimObstacleHeight;
+	@FXML private TextField txtPrimObstacleDistFromThreshold;
+	@FXML private TextField txtPrimObstacleDistFromCentre;
 
 	@FXML private Label     lblSecondaryRunwayID;
-	@FXML private Label     lblSecObjectName;
-	@FXML private Label     lblSecObjectHeight;
-	@FXML private TextField txtSecObjectDistFromThreshold;
-	@FXML private Label     lblSecObjectDistFromCentre;
+	@FXML private Label     lblSecObstacleName;
+	@FXML private Label     lblSecObstacleHeight;
+	@FXML private TextField txtSecObstacleDistFromThreshold;
+	@FXML private Label     lblSecObstacleDistFromCentre;
 
-	@FXML private Button btnObjectSubmit;
+	@FXML private Button btnObstacleSubmit;
 
 	private Main                    mainApp;
 	private ObservableList<Airport> airportList;
@@ -41,14 +41,14 @@ public class AddObjectController
 	@FXML
 	private void initialize()
 	{
-		txtPrimObjectName.textProperty().addListener((observable, oldValue, newValue) -> {
-			lblSecObjectName.setText(newValue);
+		txtPrimObstacleName.textProperty().addListener((observable, oldValue, newValue) -> {
+			lblSecObstacleName.setText(newValue);
 		});
-		txtPrimObjectHeight.textProperty().addListener((observable, oldValue, newValue) -> {
-			lblSecObjectHeight.setText(newValue);
+		txtPrimObstacleHeight.textProperty().addListener((observable, oldValue, newValue) -> {
+			lblSecObstacleHeight.setText(newValue);
 		});
-		txtPrimObjectName.textProperty().addListener((observable, oldValue, newValue) -> {
-			lblSecObjectName.setText(newValue);
+		txtPrimObstacleName.textProperty().addListener((observable, oldValue, newValue) -> {
+			lblSecObstacleName.setText(newValue);
 		});
 	}
 
@@ -56,13 +56,13 @@ public class AddObjectController
 	@FXML
 	private void handleObstacleSubmitted()
 	{
-		final String obstacleName = txtPrimObjectName.getText();
-		final double objectHeight = Double.parseDouble(txtPrimObjectHeight.getText());
-		final double objectPrimaryPosition = Double.parseDouble(txtPrimObjectDistFromThreshold.getText());
-		final double objectSecondaryPosition = Double.parseDouble(txtSecObjectDistFromThreshold.getText());
+		final String obstacleName = txtPrimObstacleName.getText();
+		final double obstacleHeight = Double.parseDouble(txtPrimObstacleHeight.getText());
+		final double obstaclePrimaryPosition = Double.parseDouble(txtPrimObstacleDistFromThreshold.getText());
+		final double obstacleSecondaryPosition = Double.parseDouble(txtSecObstacleDistFromThreshold.getText());
 
-		final Obstacle primaryObstacle = new Obstacle(obstacleName, objectHeight, objectPrimaryPosition, 300.0);
-		final Obstacle secondaryObstacle = new Obstacle(obstacleName, objectHeight, objectSecondaryPosition, 300.0);
+		final Obstacle primaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstaclePrimaryPosition, 300.0);
+		final Obstacle secondaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstacleSecondaryPosition, 300.0);
 
 		for (final Airport a : airportList)
 		{
@@ -81,7 +81,7 @@ public class AddObjectController
 				}
 			}
 		}
-		mainApp.toggleAddObject(lblAirportName.getText(), lblRunwayID.getText());
+		mainApp.toggleAddObstacle(lblAirportName.getText(), lblRunwayID.getText());
 
 	}
 
@@ -89,21 +89,21 @@ public class AddObjectController
 	@FXML
 	private void handleNameChanged()
 	{
-		lblSecObjectName.setText(txtPrimObjectName.getText());
+		lblSecObstacleName.setText(txtPrimObstacleName.getText());
 	}
 
 
 	@FXML
 	private void handleHeightChanged()
 	{
-		lblSecObjectHeight.setText(txtPrimObjectHeight.getText());
+		lblSecObstacleHeight.setText(txtPrimObstacleHeight.getText());
 	}
 
 
 	@FXML
 	private void handleDistCentreChanged()
 	{
-		lblSecObjectDistFromCentre.setText(txtPrimObjectDistFromCentre.getText());
+		lblSecObstacleDistFromCentre.setText(txtPrimObstacleDistFromCentre.getText());
 	}
 
 

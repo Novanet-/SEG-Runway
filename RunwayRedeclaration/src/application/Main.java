@@ -1,7 +1,7 @@
 package application;
 
 import application.controller.AddAirportController;
-import application.controller.AddObjectController;
+import application.controller.AddObstacleController;
 import application.controller.AddRunwayController;
 import application.controller.MainScreenController;
 import application.model.Airport;
@@ -43,7 +43,7 @@ public class Main extends Application
 
 	private AddAirportController aaController;
 	private AddRunwayController  arController;
-	private AddObjectController  aoController;
+	private AddObstacleController  aoController;
 	private MainScreenController msController;
 
 
@@ -211,7 +211,7 @@ public class Main extends Application
 	}
 
 
-	public final void toggleAddObject(String airportName, String runwayID)
+	public final void toggleAddObstacle(String airportName, String runwayID)
 	{
 		if (aoStage.isShowing())
 		{
