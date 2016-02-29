@@ -109,5 +109,18 @@ public class Airport
 	{
 		return airportID + " - " + airportName;
 	}
+	
+	
+	@Override
+	public boolean equals(Object other)
+	{
+		if (! (other instanceof Airport))
+			return false;
+		
+		Airport o = (Airport)other;
+		return getAirportID() == o.getAirportID() &&
+				getAirportName().equals(o.getAirportName()) &&
+				getRunways().equals(o.getRunways());
+	}
 
 }

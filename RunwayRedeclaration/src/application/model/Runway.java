@@ -1,10 +1,10 @@
 package application.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
 import java.util.Collection;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Runway
 {
@@ -111,6 +111,24 @@ public class Runway
 	public final String toString()
 	{
 		return "Runway{" + getAlignment() + '}';
+	}
+	
+	
+	@Override
+	public boolean equals(Object other)
+	{
+		if (! (other instanceof Runway))
+			return false;
+		
+		Runway o = (Runway)other;
+		return getRunwayID() == o.getRunwayID() &&
+				getAlignment().equals(o.getAlignment()) &&
+				getTORA() == o.getTORA() &&
+				getTODA() == o.getTODA() &&
+				getASDA() == o.getASDA() &&
+				getLDA() == o.getLDA() &&
+				getDisplacedThreshold() == o.getDisplacedThreshold() &&
+				getObstacles().equals(o.getObstacles());
 	}
 
 }
