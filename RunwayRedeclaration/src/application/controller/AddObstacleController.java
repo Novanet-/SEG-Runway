@@ -10,8 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import java.util.Objects;
-
 public class AddObstacleController
 {
 
@@ -35,6 +33,42 @@ public class AddObstacleController
 
 
 	/**
+	 * Based on the alignment of the first runway entered, calculates the alignment for the logical runway for the given runway in the opposite direction
+	 *
+	 * @param firstPosition The alignment of the first runway
+	 * @return The alignment of the opposite logical runway
+	 */
+	public static Integer calculateSecondPosition(Integer firstPosition)
+	{
+		if (firstPosition > 17)
+		{
+			return firstPosition - 18;
+		}
+		else
+		{
+			return firstPosition + 18;
+		}
+	}
+
+
+	public static String getSecondaryPosition(final String primaryPosition, String secondaryPosition)
+	{
+		switch (primaryPosition)
+		{
+			case "L":
+				secondaryPosition = "R";
+				break;
+			case "C:":
+				secondaryPosition = "C";
+				break;
+			case "R":
+				secondaryPosition = "L";
+		}
+		return secondaryPosition;
+	}
+
+
+	/**
 	 * Initializes the controller class. This method is automatically called
 	 * after the fxml file has been loaded.
 	 */
@@ -47,8 +81,8 @@ public class AddObstacleController
 		txtPrimObstacleHeight.textProperty().addListener((observable, oldValue, newValue) -> {
 			lblSecObstacleHeight.setText(newValue);
 		});
-		txtPrimObstacleName.textProperty().addListener((observable, oldValue, newValue) -> {
-			lblSecObstacleName.setText(newValue);
+		txtPrimObstacleDistFromCentre.textProperty().addListener((observable, oldValue, newValue) -> {
+			lblSecObstacleDistFromCentre.setText(newValue);
 		});
 	}
 
@@ -133,19 +167,10 @@ public class AddObstacleController
 		String secondaryPosition = "";
 		
 		//TODO: Extract these into a method in Runway
-		switch (primaryPosition)
-		{
-		case "L":
-			secondaryPosition = "R";
-			break;
-		case "C:":
-			secondaryPosition = "C";
-			break;
-		case "R":
-			secondaryPosition = "L";
-		}
+		secondaryPosition = Runway.getSecondaryPosition(primaryPosition, secondaryPosition);
 
-		Integer secondaryID = AddRunwayController.calculateSecondPosition(Integer.parseInt(primaryID)); //TODO: Move this method to the Runway class
+		Integer secondaryID = Runway.calculateSecondPosition(Integer.parseInt(primaryID));
 		lblSecondaryRunwayID.setText(String.format("%02d", secondaryID) + secondaryPosition);
 	}
+
 }

@@ -10,7 +10,7 @@
             prefWidth = "400.0"
             style = "-fx-background-color: #363d43;"
             stylesheets = "@application.css"
-            xmlns = "http://javafx.com/javafx/8.0.65"
+            xmlns = "http://javafx.com/javafx/8.0.60"
             fx:controller = "application.controller.AddObstacleController">
     <children>
         <GridPane layoutX = "-14.0"
@@ -23,6 +23,16 @@
                   AnchorPane.rightAnchor = "14.0"
                   AnchorPane.topAnchor = "14.0">
             <children>
+                <Label fx:id = "lblAirportName"
+                       text = "Airport Name:"
+                       GridPane.halignment = "CENTER">
+                    <padding>
+                        <Insets bottom = "5.0"
+                                left = "5.0"
+                                right = "5.0"
+                                top = "5.0"/>
+                    </padding>
+                </Label>
                 <Label text = "Name:"
                        textFill = "#efefef"
                        GridPane.halignment = "RIGHT"
@@ -34,25 +44,6 @@
                                 top = "10.0"/>
                     </GridPane.margin>
                 </Label>
-                <Button fx:id = "btnObjectSubmit"
-                        mnemonicParsing = "false"
-                        onAction = "#handleObstacleSubmitted"
-                        style = "-fx-border-radius: 10; -fx-background-radius: 10; -fx-border-width: 0; -fx-background-color: #838383;"
-                        text = "Submit"
-                        GridPane.columnIndex = "1"
-                        GridPane.halignment = "CENTER"
-                        GridPane.rowIndex = "5"/>
-                <TextField fx:id = "txtPrimObjectName"
-                           onAction = "#handleNameChanged"
-                           GridPane.columnIndex = "1"
-                           GridPane.rowIndex = "1">
-                    <GridPane.margin>
-                        <Insets bottom = "5.0"
-                                left = "5.0"
-                                right = "5.0"
-                                top = "5.0"/>
-                    </GridPane.margin>
-                </TextField>
                 <Label text = "Height:"
                        GridPane.halignment = "RIGHT"
                        GridPane.rowIndex = "2">
@@ -63,51 +54,6 @@
                                 top = "10.0"/>
                     </GridPane.margin>
                 </Label>
-                <TextField fx:id = "txtPrimObjectHeight"
-                           onAction = "#handleHeightChanged"
-                           GridPane.columnIndex = "1"
-                           GridPane.rowIndex = "2">
-                    <GridPane.margin>
-                        <Insets bottom = "5.0"
-                                left = "5.0"
-                                right = "5.0"
-                                top = "5.0"/>
-                    </GridPane.margin>
-                </TextField>
-                <Label text = " m"
-                       GridPane.columnIndex = "2"
-                       GridPane.rowIndex = "2">
-                    <padding>
-                        <Insets top = "5.0"/>
-                    </padding>
-                </Label>
-                <TextField fx:id = "txtPrimObjectDistFromThreshold"
-                           GridPane.columnIndex = "1"
-                           GridPane.rowIndex = "3">
-                    <GridPane.margin>
-                        <Insets bottom = "5.0"
-                                left = "5.0"
-                                right = "5.0"
-                                top = "5.0"/>
-                    </GridPane.margin>
-                </TextField>
-                <TextField fx:id = "txtPrimObjectDistFromCentre"
-                           onAction = "#handleDistCentreChanged"
-                           GridPane.columnIndex = "1"
-                           GridPane.rowIndex = "4">
-                    <GridPane.margin>
-                        <Insets bottom = "5.0"
-                                left = "5.0"
-                                right = "5.0"
-                                top = "5.0"/>
-                    </GridPane.margin>
-                </TextField>
-                <Label text = " m"
-                       GridPane.columnIndex = "2"
-                       GridPane.rowIndex = "3"/>
-                <Label text = " m"
-                       GridPane.columnIndex = "2"
-                       GridPane.rowIndex = "4"/>
                 <Label text = "Distance from Threshold:"
                        GridPane.halignment = "RIGHT"
                        GridPane.rowIndex = "3">
@@ -128,18 +74,7 @@
                                 top = "10.0"/>
                     </GridPane.margin>
                 </Label>
-                <Label fx:id = "lblAirportName"
-                       text = "Airport Name"
-                       GridPane.halignment = "CENTER">
-                    <padding>
-                        <Insets bottom = "5.0"
-                                left = "5.0"
-                                right = "5.0"
-                                top = "5.0"/>
-                    </padding>
-                </Label>
                 <Label fx:id = "lblRunwayID"
-                       text = "RunwayID"
                        GridPane.columnIndex = "1">
                     <GridPane.margin>
                         <Insets bottom = "5.0"
@@ -148,7 +83,94 @@
                                 top = "5.0"/>
                     </GridPane.margin>
                 </Label>
-                <TextField fx:id = "txtSecObjectDistFromThreshold"
+                <TextField fx:id = "txtPrimObstacleName"
+                           onAction = "#handleNameChanged"
+                           GridPane.columnIndex = "1"
+                           GridPane.rowIndex = "1">
+                    <GridPane.margin>
+                        <Insets bottom = "5.0"
+                                left = "5.0"
+                                right = "5.0"
+                                top = "5.0"/>
+                    </GridPane.margin>
+                </TextField>
+                <TextField fx:id = "txtPrimObstacleHeight"
+                           onAction = "#handleHeightChanged"
+                           GridPane.columnIndex = "1"
+                           GridPane.rowIndex = "2">
+                    <GridPane.margin>
+                        <Insets bottom = "5.0"
+                                left = "5.0"
+                                right = "5.0"
+                                top = "5.0"/>
+                    </GridPane.margin>
+                </TextField>
+                <TextField fx:id = "txtPrimObstacleDistFromThreshold"
+                           GridPane.columnIndex = "1"
+                           GridPane.rowIndex = "3">
+                    <GridPane.margin>
+                        <Insets bottom = "5.0"
+                                left = "5.0"
+                                right = "5.0"
+                                top = "5.0"/>
+                    </GridPane.margin>
+                </TextField>
+                <TextField fx:id = "txtPrimObstacleDistFromCentre"
+                           onAction = "#handleDistCentreChanged"
+                           GridPane.columnIndex = "1"
+                           GridPane.rowIndex = "4">
+                    <GridPane.margin>
+                        <Insets bottom = "5.0"
+                                left = "5.0"
+                                right = "5.0"
+                                top = "5.0"/>
+                    </GridPane.margin>
+                </TextField>
+                <Label text = " m"
+                       GridPane.columnIndex = "2"
+                       GridPane.rowIndex = "2">
+                    <padding>
+                        <Insets top = "5.0"/>
+                    </padding>
+                </Label>
+                <Label text = " m"
+                       GridPane.columnIndex = "2"
+                       GridPane.rowIndex = "3"/>
+                <Label text = " m"
+                       GridPane.columnIndex = "2"
+                       GridPane.rowIndex = "4"/>
+                <Label fx:id = "lblSecondaryRunwayID"
+                       GridPane.columnIndex = "3">
+                    <GridPane.margin>
+                        <Insets bottom = "5.0"
+                                left = "5.0"
+                                right = "5.0"
+                                top = "5.0"/>
+                    </GridPane.margin>
+                </Label>
+                <Label fx:id = "lblSecObstacleName"
+                       styleClass = "label-bright"
+                       GridPane.columnIndex = "3"
+                       GridPane.rowIndex = "1">
+                    <padding>
+                        <Insets bottom = "5.0"
+                                left = "5.0"
+                                right = "5.0"
+                                top = "5.0"/>
+                    </padding>
+                </Label>
+                <Label fx:id = "lblSecObstacleHeight"
+                       styleClass = "label-bright"
+                       GridPane.columnIndex = "3"
+                       GridPane.rowIndex = "2">
+                    <padding>
+                        <Insets bottom = "5.0"
+                                left = "5.0"
+                                right = "5.0"
+                                top = "5.0"/>
+                    </padding>
+                </Label>
+                <TextField fx:id = "txtSecObstacleDistFromThreshold"
                            GridPane.columnIndex = "3"
                            GridPane.rowIndex = "3">
                     <GridPane.margin>
@@ -164,8 +186,8 @@
                                 top = "5.0"/>
                     </padding>
                 </TextField>
-                <Label fx:id = "lblSecObjectDistFromCentre"
-                       text = "RunwayID"
+                <Label fx:id = "lblSecObstacleDistFromCentre"
+                       styleClass = "label-bright"
                        GridPane.columnIndex = "3"
                        GridPane.rowIndex = "4">
                     <padding>
@@ -175,38 +197,35 @@
                                 top = "5.0"/>
                     </padding>
                 </Label>
-                <Label fx:id = "lblSecObjectHeight"
-                       text = "RunwayID"
-                       GridPane.columnIndex = "3"
+                <Label text = " m"
+                       GridPane.columnIndex = "4"
                        GridPane.rowIndex = "2">
                     <padding>
-                        <Insets bottom = "5.0"
-                                left = "5.0"
-                                right = "5.0"
-                                top = "5.0"/>
+                        <Insets top = "5.0"/>
                     </padding>
                 </Label>
-                <Label fx:id = "lblSecObjectName"
-                       text = "RunwayID"
-                       GridPane.columnIndex = "3"
-                       GridPane.rowIndex = "1">
+                <Label text = " m"
+                       GridPane.columnIndex = "4"
+                       GridPane.rowIndex = "3">
                     <padding>
-                        <Insets bottom = "5.0"
-                                left = "5.0"
-                                right = "5.0"
-                                top = "5.0"/>
+                        <Insets top = "5.0"/>
                     </padding>
                 </Label>
-                <Label fx:id = "lblSecondaryRunwayID"
-                       text = "RunwayID"
-                       GridPane.columnIndex = "3">
-                    <GridPane.margin>
-                        <Insets bottom = "5.0"
-                                left = "5.0"
-                                right = "5.0"
-                                top = "5.0"/>
-                    </GridPane.margin>
+                <Label text = " m"
+                       GridPane.columnIndex = "4"
+                       GridPane.rowIndex = "4">
+                    <padding>
+                        <Insets top = "5.0"/>
+                    </padding>
                 </Label>
+                <Button fx:id = "btnObstacleSubmit"
+                        mnemonicParsing = "false"
+                        onAction = "#handleObstacleSubmitted"
+                        style = "-fx-border-radius: 10; -fx-background-radius: 10; -fx-border-width: 0; -fx-background-color: #838383;"
+                        text = "Submit"
+                        GridPane.columnIndex = "1"
+                        GridPane.halignment = "CENTER"
+                        GridPane.rowIndex = "5"/>
             </children>
             <columnConstraints>
                 <ColumnConstraints hgrow = "SOMETIMES"
@@ -220,11 +239,15 @@
                 <ColumnConstraints hgrow = "SOMETIMES"
                                    maxWidth = "350.0"
                                    minWidth = "0.0"
-                                   prefWidth = "24.0"/>
+                                   prefWidth = "57.0"/>
                 <ColumnConstraints hgrow = "SOMETIMES"
-                                   maxWidth = "429.0"
+                                   maxWidth = "477.0"
                                    minWidth = "10.0"
-                                   prefWidth = "340.0"/>
+                                   prefWidth = "223.0"/>
+                <ColumnConstraints hgrow = "SOMETIMES"
+                                   maxWidth = "469.0"
+                                   minWidth = "10.0"
+                                   prefWidth = "149.0"/>
             </columnConstraints>
             <padding>
                 <Insets bottom = "10.0"

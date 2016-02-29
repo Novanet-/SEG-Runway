@@ -9,7 +9,7 @@
 <AnchorPane xmlns:fx = "http://javafx.com/fxml/1"
             style = "-fx-min-width: 1000; -fx-min-height: 450;"
             stylesheets = "@application.css"
-            xmlns = "http://javafx.com/javafx/8.0.65"
+            xmlns = "http://javafx.com/javafx/8.0.60"
             fx:controller = "application.controller.MainScreenController">
     <children>
         <SplitPane dividerPositions = "0.445"
@@ -150,7 +150,7 @@
                                                                 top = "5.0"/>
                                                     </GridPane.margin>
                                                 </ComboBox>
-                                                <Label text = "Object: "
+                                                <Label text = "Obstacle: "
                                                        textFill = "#efefef"
                                                        GridPane.columnIndex = "1"
                                                        GridPane.halignment = "RIGHT"

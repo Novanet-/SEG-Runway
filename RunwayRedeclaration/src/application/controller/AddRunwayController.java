@@ -1,8 +1,5 @@
 package application.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import application.Main;
 import application.model.Airport;
 import application.model.Runway;
@@ -13,6 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddRunwayController
 {
@@ -36,25 +36,6 @@ public class AddRunwayController
 	private       ObservableList<Airport> airportList;
 
 	//TODO: add stuff like strip end and Resa to gui
-
-
-	/**
-	 * Based on the alignment of the first runway entered, calculates the alignment for the logical runway for the given runway in the opposite direction
-	 *
-	 * @param firstPosition The alignment of the first runway
-	 * @return The alignment of the opposite logical runway
-	 */
-	public static Integer calculateSecondPosition(Integer firstPosition)
-	{
-		if (firstPosition > 17)
-		{
-			return firstPosition - 18;
-		}
-		else
-		{
-			return firstPosition + 18;
-		}
-	}
 
 
 	/**
@@ -133,8 +114,7 @@ public class AddRunwayController
 	@FXML
 	private void handleItemSelected()
 	{
-		updateSecondRunway(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue())),
-				(String) cmbRunwayPosition.getValue());
+		updateSecondRunway(Runway.calculateSecondPosition(Integer.parseInt(cmbRunwayAlignment.getValue())), cmbRunwayPosition.getValue());
 	}
 
 
@@ -144,8 +124,7 @@ public class AddRunwayController
 	@FXML
 	private void handlePositionSelected()
 	{
-		updateSecondRunway(calculateSecondPosition(Integer.parseInt((String) cmbRunwayAlignment.getValue())),
-				(String) cmbRunwayPosition.getValue());
+		updateSecondRunway(Runway.calculateSecondPosition(Integer.parseInt(cmbRunwayAlignment.getValue())), cmbRunwayPosition.getValue());
 	}
 
 

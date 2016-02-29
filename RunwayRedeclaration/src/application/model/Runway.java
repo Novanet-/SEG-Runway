@@ -1,10 +1,10 @@
 package application.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class Runway
 {
@@ -27,7 +27,7 @@ public class Runway
 	{
 		if (alignment == null || alignment.equals(""))
 			throw new IllegalArgumentException();
-		
+
 		this.runwayID = runwayID;
 		this.alignment = alignment;
 		this.TORA = TORA;
@@ -40,6 +40,36 @@ public class Runway
 		obstacles = FXCollections.observableArrayList(list);
 		final Obstacle obstacle = new Obstacle("Test1", 12.0, 3646.0, 300.0);
 		obstacles.add(obstacle);
+	}
+
+
+	public static Integer calculateSecondPosition(Integer firstPosition)
+	{
+		if (firstPosition > 17)
+		{
+			return firstPosition - 18;
+		}
+		else
+		{
+			return firstPosition + 18;
+		}
+	}
+
+
+	public static String getSecondaryPosition(final String primaryPosition, String secondaryPosition)
+	{
+		switch (primaryPosition)
+		{
+			case "L":
+				secondaryPosition = "R";
+				break;
+			case "C":
+				secondaryPosition = "C";
+				break;
+			case "R":
+				secondaryPosition = "L";
+		}
+		return secondaryPosition;
 	}
 
 
@@ -115,15 +145,15 @@ public class Runway
 	{
 		return "Runway{" + getAlignment() + '}';
 	}
-	
-	
+
+
 	@Override
 	public boolean equals(Object other)
 	{
-		if (! (other instanceof Runway))
+		if (!(other instanceof Runway))
 			return false;
-		
-		Runway o = (Runway)other;
+
+		Runway o = (Runway) other;
 		return getRunwayID() == o.getRunwayID() &&
 				getAlignment().equals(o.getAlignment()) &&
 				getTORA() == o.getTORA() &&
@@ -133,5 +163,4 @@ public class Runway
 				getDisplacedThreshold() == o.getDisplacedThreshold() &&
 				getObstacles().equals(o.getObstacles());
 	}
-
 }
