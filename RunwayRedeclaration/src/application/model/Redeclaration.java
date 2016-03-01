@@ -11,6 +11,7 @@ public class Redeclaration
 	private static final double blastProtection = 300.0; //300.0
 	private static final double runwayStrip     = 150.0; //150.0
 
+	//TODO: make obstacle distance from centreline matter
 
 	private Redeclaration()
 	{

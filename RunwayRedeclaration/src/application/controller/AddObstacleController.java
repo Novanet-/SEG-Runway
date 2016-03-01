@@ -31,6 +31,7 @@ public class AddObstacleController
 	private Main                    mainApp;
 	private ObservableList<Airport> airportList;
 
+	//TODO: make textboxes clear after submission
 
 	/**
 	 * Based on the alignment of the first runway entered, calculates the alignment for the logical runway for the given runway in the opposite direction
@@ -165,8 +166,7 @@ public class AddObstacleController
 		String primaryID = runwayID.replaceAll("\\D+", "");
 		String primaryPosition = runwayID.replaceAll("\\d+", "");
 		String secondaryPosition = "";
-		
-		//TODO: Extract these into a method in Runway
+
 		secondaryPosition = Runway.getSecondaryPosition(primaryPosition, secondaryPosition);
 
 		Integer secondaryID = Runway.calculateSecondPosition(Integer.parseInt(primaryID));

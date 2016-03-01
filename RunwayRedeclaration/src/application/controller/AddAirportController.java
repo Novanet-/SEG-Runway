@@ -15,6 +15,7 @@ public class AddAirportController
 	@FXML private Button                  btnSubmitAirport;
 	private       ObservableList<Airport> airportList;
 
+	//TODO: Make textbook clear after submissions
 
 	/**
 	 * Initializes the controller class. This method is automatically called

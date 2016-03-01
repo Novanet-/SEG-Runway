@@ -35,7 +35,9 @@ public class AddRunwayController
 	@FXML private TextField               txtSecondaryDisplacedThreshold;
 	private       ObservableList<Airport> airportList;
 
-	//TODO: add stuff like strip end and Resa to gui
+	//TODO: modify css to style dialog boxes
+
+	//TODO: make textboxes clear after submission
 
 
 	/**
@@ -61,7 +63,7 @@ public class AddRunwayController
 		cmbRunwayPosition.setItems(FXCollections.observableArrayList(positions));
 	}
 
-
+	//TODO: Add not-null/data type validation to input/submission
 	/**
 	 *
 	 */
@@ -82,12 +84,8 @@ public class AddRunwayController
 			final double secondaryLDA = Double.parseDouble(txtSecondaryLDA.textProperty().getValue());
 			final double secondaryDisplacedThreshold = Double.parseDouble(txtSecondaryDisplacedThreshold.textProperty().getValue());
 
-			// TODO: work out what to do with displaced threshold and the other
-			// paramters of RunwayDetails
-			// TODO: once the previous task is done, create a new Runway
-			// object with the paramters and details objects along with the
-			// runway alignment, then add that object to the list of the given
-			// airport
+			// TODO: Add strip width as a user declared property of runways
+			// TODO: Add angle of slope and clear and graded width as systemic runway constants
 
 			final String alignment = cmbRunwayAlignment.getValue().toString() + cmbRunwayPosition.getValue().toString();
 			final Runway primaryRunway = new Runway(0, alignment, primaryTORA, primaryTODA, primaryASDA, primaryLDA, primaryDisplacedThreshold);
