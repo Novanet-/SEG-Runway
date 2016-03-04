@@ -50,12 +50,6 @@ public class Airport
 		final double secondaryLDA = 3595.0;
 		final double secondaryDisplacedThreshold = 306.0;
 
-		// TODO: work out what to do with displaced threshold and the other
-		// paramters of RunwayDetails
-		// TODO: once the previous task is done, create a new Runway
-		// object with the paramters and details objects along with the
-		// runway alignment, then add that object to the list of the given
-		// airport
 
 		final Runway primaryRunway = new Runway(0, 27 + "R", primaryTORA, primaryTODA, primaryASDA, primaryLDA, primaryDisplacedThreshold);
 		final Runway secondaryRunway = new Runway(1, "09L", secondaryTORA, secondaryTODA, secondaryASDA, secondaryLDA, secondaryDisplacedThreshold);
