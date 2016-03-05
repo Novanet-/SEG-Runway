@@ -12,6 +12,10 @@ import javafx.stage.Stage;
  * Created by jackclarke on 05/03/2016.
  */
 public class Visualisation extends Application {
+    double tora = 2986.0;
+    double toda = 2986.0;
+    double asda = 2986.0;
+    double lda = 3346.0;
 
     public static void main(String[] args) {
         launch(args);
@@ -21,7 +25,7 @@ public class Visualisation extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Top Down Visualisation");
         Group root = new Group();
-        Canvas canvas = new Canvas(700, 300);
+        Canvas canvas = new Canvas(720, 300);
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         paintRunway(graphicsContext);
         root.getChildren().add(canvas);
@@ -50,7 +54,29 @@ public class Visualisation extends Application {
         graphicsContext.strokeLine(610, 150, 640, 150);
 
         //Calculate TORA, TODA, ASDA, LDA
-        //int tora =
+        double pixelRatio = 600.0/tora;
+        int toraPixel = 600;
+        int todaPixel = (int) Math.round(toda * pixelRatio);
+        int asdaPixel = (int) Math.round(asda * pixelRatio);
+        int ldaPixel = (int) Math.round(lda * pixelRatio);
+
+        System.out.println(pixelRatio);
+
+        //draw TORA
+        graphicsContext.setStroke(Color.rgb(255,138,138));
+        graphicsContext.strokeLine(50, 210, 50+toraPixel, 210);
+
+        //draw TODA
+        graphicsContext.setStroke(Color.rgb(255,190,50));
+        graphicsContext.strokeLine(50, 220, 50+todaPixel, 220);
+
+        //draw ASDA
+        graphicsContext.setStroke(Color.rgb(255,240,40));
+        graphicsContext.strokeLine(50, 230, 50+asdaPixel, 230);
+
+        //draw LDA
+        graphicsContext.setStroke(Color.rgb(180,225,35));
+        graphicsContext.strokeLine(50, 240, 50+ldaPixel, 240);
     }
 
 }
