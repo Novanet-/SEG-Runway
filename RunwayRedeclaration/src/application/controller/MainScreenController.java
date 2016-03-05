@@ -56,6 +56,8 @@ public class MainScreenController
 	private void initialize()
 	{
 		updateRunwayDetails();
+		btnRemoveObstacle.setVisible(false);
+		btnRemoveObstacle.setManaged(false);
 	}
 
 
@@ -138,6 +140,23 @@ public class MainScreenController
 		{
 			final Alert alert = new Alert(AlertType.INFORMATION, "No runway selected. Please select an airport.");
 			alert.showAndWait();
+		}
+	}
+
+	/**
+	 * Swaps add/remove obstacle button so only 1 shows at a time
+	 */
+	private void toggleObstacleButton() {
+		if(btnRemoveObstacle.isVisible()) {
+			btnRemoveObstacle.setVisible(false);
+			btnRemoveObstacle.setManaged(false);
+			btnAddObstacle.setVisible(true);
+			btnAddObstacle.setManaged(true);
+		} else if(btnAddObstacle.isVisible()) {
+			btnRemoveObstacle.setVisible(true);
+			btnRemoveObstacle.setManaged(true);
+			btnAddObstacle.setVisible(false);
+			btnAddObstacle.setManaged(false);
 		}
 	}
 
