@@ -16,7 +16,7 @@ public class Obstacle
 		this.name = name;
 		this.height = height;
 		this.position = position;
-		this.blastProtection = 50.0;
+		this.blastProtection = 300.0;
 	}
 
 
