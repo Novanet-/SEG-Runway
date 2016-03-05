@@ -107,11 +107,11 @@ public class AddObstacleController
 				{
 					if (r.getAlignment().equals(lblRunwayID.getText()))
 					{
-						r.addObstacle(primaryObstacle);
+						r.setObstacle(primaryObstacle);
 					}
 					if (r.getAlignment().equals(lblSecondaryRunwayID.getText()))
 					{
-						r.addObstacle(secondaryObstacle);
+						r.setObstacle(secondaryObstacle);
 					}
 				}
 			}

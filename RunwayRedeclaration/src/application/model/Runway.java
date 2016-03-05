@@ -1,26 +1,18 @@
 package application.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 public class Runway
 {
 
-	//TODO: Change obstacle array to a variable that contains one instance of an obstacle, either one obstacle or null
-
 	//private static final double stripEnd = 50.0;
 	//private static final double resa     = 200.0;
-	private final int                      runwayID;
-	private final String                   alignment;
-	private final double                   TORA;
-	private final double                   TODA;
-	private final double                   ASDA;
-	private final double                   LDA;
-	private final double                   displacedThreshold;
-	private final ObservableList<Obstacle> obstacles;
+	private final int			runwayID;
+	private final String		alignment;
+	private final double		TORA;
+	private final double		TODA;
+	private final double		ASDA;
+	private final double		LDA;
+	private final double		displacedThreshold;
+	private Obstacle		obstacle;
 	
 	// From Redeclaration
 	private static final double clearway        = 0.0; //75.0
@@ -43,10 +35,7 @@ public class Runway
 		this.LDA = LDA;
 		this.displacedThreshold = displacedThreshold;
 
-		final Collection<Obstacle> list = new ArrayList<Obstacle>();
-		obstacles = FXCollections.observableArrayList(list);
-		final Obstacle obstacle = new Obstacle("Test1", 12.0, 3646.0, 300.0);
-		obstacles.add(obstacle);
+		obstacle = new Obstacle("Test1", 12.0, 3646.0, 300.0);
 	}
 
 
@@ -80,21 +69,21 @@ public class Runway
 	}
 
 
-	public final void addObstacle(Obstacle obstacle)
+	public final void setObstacle(Obstacle obstacle)
 	{
-		obstacles.add(obstacle);
+		this.obstacle = obstacle;
 	}
 
 
 	public final void removeObstacle()
 	{
-		if (!obstacles.isEmpty())
+		if (obstacle != null)
 		{
-			obstacles.remove(0);
+			obstacle = null;
 		}
 		else
 		{
-			throw new NullPointerException("No obstacles in list");
+			throw new IllegalStateException("No obstacle to remove");
 		}
 	}
 
@@ -108,12 +97,6 @@ public class Runway
 	public final String getAlignment()
 	{
 		return alignment;
-	}
-
-
-	public final ObservableList<Obstacle> getObstacles()
-	{
-		return obstacles;
 	}
 
 
@@ -168,12 +151,18 @@ public class Runway
 				getASDA() == o.getASDA() &&
 				getLDA() == o.getLDA() &&
 				getDisplacedThreshold() == o.getDisplacedThreshold() &&
-				getObstacles().equals(o.getObstacles());
+				getObstacle().equals(o.getObstacle());
 	}
 	
+	public Obstacle getObstacle()
+	{
+		return obstacle;
+	}
+
+
 	public Runway redeclare()
 	{
-		final Obstacle o = obstacles.get(0);
+		final Obstacle o = getObstacle();
 		if (o.getPosition() > TORA / 2.0)
 		{
 			return redeclareTowards(o);

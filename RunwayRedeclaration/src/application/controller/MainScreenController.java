@@ -101,7 +101,7 @@ public class MainScreenController
 	{
 		if (cmbRunways.getValue() != null)
 		{
-			if (!cmbRunways.getValue().getObstacles().isEmpty())
+			if (cmbRunways.getValue().getObstacle() != null)
 			{
 				final Alert alert = new Alert(AlertType.INFORMATION, "Obstacle already exists. please remove before adding another");
 				alert.showAndWait();
@@ -129,7 +129,7 @@ public class MainScreenController
 	{
 		if (cmbRunways.getValue() != null)
 		{
-			if (!cmbRunways.getValue().getObstacles().isEmpty())
+			if (cmbRunways.getValue().getObstacle() != null)
 			{
 				cmbRunways.getValue().removeObstacle();
 				updateObstacleList();
@@ -201,7 +201,7 @@ public class MainScreenController
 		{
 			updateObstacleList();
 			final Runway currentRunway = cmbRunways.getValue();
-			if (!currentRunway.getObstacles().isEmpty())
+			if (currentRunway.getObstacle() != null)
 			{
 				newRunway = currentRunway.redeclare();
 			}
@@ -250,9 +250,9 @@ public class MainScreenController
 
 	public final void updateObstacleList()
 	{
-		if (!cmbRunways.getValue().getObstacles().isEmpty())
+		if (cmbRunways.getValue().getObstacle() != null)
 		{
-			txtObstacles.setText(cmbRunways.getValue().getObstacles().get(0).toString());
+			txtObstacles.setText(cmbRunways.getValue().getObstacle().toString());
 		}
 		else
 		{
