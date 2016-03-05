@@ -1,10 +1,10 @@
 package tests;
 
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Test;
+
 import application.model.Obstacle;
-import application.model.Redeclaration;
 import application.model.Runway;
 
 public class RedeclarationScenarios
@@ -37,7 +37,7 @@ public class RedeclarationScenarios
 		r.removeObstacle();
 		r.addObstacle(o);
 
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -72,7 +72,7 @@ public class RedeclarationScenarios
 		r.removeObstacle();
 		r.addObstacle(o);
 		
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 		
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -107,7 +107,7 @@ public class RedeclarationScenarios
 		r.removeObstacle();
 		r.addObstacle(o);
 
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -142,7 +142,7 @@ public class RedeclarationScenarios
 		r.removeObstacle();
 		r.addObstacle(o);
 		
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 		
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -177,7 +177,7 @@ public class RedeclarationScenarios
 		r.removeObstacle();
 		r.addObstacle(o);
 
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -212,7 +212,7 @@ public class RedeclarationScenarios
 		r.removeObstacle();
 		r.addObstacle(o);
 		
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 		
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -247,7 +247,7 @@ public class RedeclarationScenarios
 		r.removeObstacle();
 		r.addObstacle(o);
 
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -282,7 +282,7 @@ public class RedeclarationScenarios
 		r.removeObstacle();
 		r.addObstacle(o);
 		
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 		
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);

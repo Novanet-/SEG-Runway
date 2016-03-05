@@ -2,14 +2,18 @@ package application.controller;
 
 import application.Main;
 import application.model.Airport;
-import application.model.Redeclaration;
 import application.model.Runway;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 
 public class MainScreenController
 {
@@ -180,7 +184,7 @@ public class MainScreenController
 			final Runway currentRunway = cmbRunways.getValue();
 			if (!currentRunway.getObstacles().isEmpty())
 			{
-				newRunway = Redeclaration.redeclareParameters(currentRunway);
+				newRunway = currentRunway.redeclare();
 			}
 		}
 		updateNewParameters(newRunway);
@@ -219,9 +223,9 @@ public class MainScreenController
 
 	private void updateRunwayDetails()
 	{
-		lblStopway.setText(Double.toString(Redeclaration.getStopway()));
-		lblBlastProtection.setText(Double.toString(Redeclaration.getBlastProtection()));
-		lblResa.setText(Double.toString(Redeclaration.getResa()));
+		lblStopway.setText(Double.toString(Runway.getStopway()));
+		lblBlastProtection.setText(Double.toString(Runway.getBlastProtection()));
+		lblResa.setText(Double.toString(Runway.getResa()));
 	}
 
 
