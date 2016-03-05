@@ -1,10 +1,10 @@
 package tests;
 
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Test;
+
 import application.model.Obstacle;
-import application.model.Redeclaration;
 import application.model.Runway;
 
 public class RedeclarationScenarios
@@ -35,9 +35,9 @@ public class RedeclarationScenarios
 		Runway r = new Runway(0, "09L", TORA, TODA, ASDA, LDA, displacedThresh);
 		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
 		r.removeObstacle();
-		r.addObstacle(o);
+		r.setObstacle(o);
 
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -70,9 +70,9 @@ public class RedeclarationScenarios
 		Runway r = new Runway(0, "27R", TORA, TODA, ASDA, LDA, displacedThresh);
 		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
 		r.removeObstacle();
-		r.addObstacle(o);
+		r.setObstacle(o);
 		
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 		
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -105,9 +105,9 @@ public class RedeclarationScenarios
 		Runway r = new Runway(0, "09R", TORA, TODA, ASDA, LDA, displacedThresh);
 		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
 		r.removeObstacle();
-		r.addObstacle(o);
+		r.setObstacle(o);
 
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -140,9 +140,9 @@ public class RedeclarationScenarios
 		Runway r = new Runway(0, "27L", TORA, TODA, ASDA, LDA, displacedThresh);
 		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
 		r.removeObstacle();
-		r.addObstacle(o);
+		r.setObstacle(o);
 		
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 		
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -175,9 +175,9 @@ public class RedeclarationScenarios
 		Runway r = new Runway(0, "09L", TORA, TODA, ASDA, LDA, displacedThresh);
 		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
 		r.removeObstacle();
-		r.addObstacle(o);
+		r.setObstacle(o);
 
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -210,9 +210,9 @@ public class RedeclarationScenarios
 		Runway r = new Runway(0, "27R", TORA, TODA, ASDA, LDA, displacedThresh);
 		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
 		r.removeObstacle();
-		r.addObstacle(o);
+		r.setObstacle(o);
 		
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 		
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -245,9 +245,9 @@ public class RedeclarationScenarios
 		Runway r = new Runway(0, "09L", TORA, TODA, ASDA, LDA, displacedThresh);
 		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
 		r.removeObstacle();
-		r.addObstacle(o);
+		r.setObstacle(o);
 
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
@@ -280,9 +280,9 @@ public class RedeclarationScenarios
 		Runway r = new Runway(0, "27R", TORA, TODA, ASDA, LDA, displacedThresh);
 		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
 		r.removeObstacle();
-		r.addObstacle(o);
+		r.setObstacle(o);
 		
-		Runway newR = Redeclaration.redeclareParameters(r);
+		Runway newR = r.redeclare();
 		
 		assertEquals(newTORA, newR.getTORA(), delta);
 		assertEquals(newTODA, newR.getTODA(), delta);
