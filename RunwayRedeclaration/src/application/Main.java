@@ -76,8 +76,9 @@ public class Main extends Application
 		msStage.setScene(mainScene);
 		msStage.getIcons().add(new Image(PLANE_ICON));
 		msStage.setTitle(APPLICATION_TITLE);
-		msStage.setMinWidth(1000.0);
-		msStage.setMinHeight(600.0);
+		msStage.setMinWidth(1280.0);
+		msStage.setMinHeight(700.0);
+		msStage.setResizable(false);
 
 		final FXMLLoader aaLoader = loadAAStage();
 		final FXMLLoader arLoader = loadARStage();
