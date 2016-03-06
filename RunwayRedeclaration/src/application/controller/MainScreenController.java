@@ -9,14 +9,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+
+import java.util.Objects;
 
 public class MainScreenController
 {
@@ -51,7 +48,7 @@ public class MainScreenController
 	@FXML private Button                  btnAddObstacle;
 	@FXML private Button                  btnRemoveObstacle;
 
-	@FXML private Canvas				  topDownCanvas; //870x345
+	@FXML private Canvas cnvTop; //870x345
 
 	// Reference to the main application.
 	private Main mainApp;
@@ -68,7 +65,7 @@ public class MainScreenController
 		btnRemoveObstacle.setVisible(false);
 		btnRemoveObstacle.setManaged(false);
 
-		GraphicsContext graphicsContext = topDownCanvas.getGraphicsContext2D();
+		GraphicsContext graphicsContext = cnvTop.getGraphicsContext2D();
 		paintTopDown(graphicsContext);
 	}
 
@@ -131,7 +128,6 @@ public class MainScreenController
 	//TODO: Change add airport/runway buttons to + and - buttons as per obstacle for consistency and to allow for removal or airports and runways
 
 
-
 	@FXML
 	private void handleBtnRemoveObstacle()
 	{
@@ -155,16 +151,21 @@ public class MainScreenController
 		}
 	}
 
+
 	/**
 	 * Swaps add/remove obstacle button so only 1 shows at a time
 	 */
-	private void toggleObstacleButton() {
-		if(btnRemoveObstacle.isVisible()) {
+	private void toggleObstacleButton()
+	{
+		if (btnRemoveObstacle.isVisible())
+		{
 			btnRemoveObstacle.setVisible(false);
 			btnRemoveObstacle.setManaged(false);
 			btnAddObstacle.setVisible(true);
 			btnAddObstacle.setManaged(true);
-		} else if(btnAddObstacle.isVisible()) {
+		}
+		else if (btnAddObstacle.isVisible())
+		{
 			btnRemoveObstacle.setVisible(true);
 			btnRemoveObstacle.setManaged(true);
 			btnAddObstacle.setVisible(false);
@@ -236,6 +237,7 @@ public class MainScreenController
 			lblRecalcAsda.setText(Double.toString(newRunway.getASDA()));
 			lblRecalcLda.setText(Double.toString(newRunway.getLDA()));
 			lblRecalcDisplacedThreshold.setText(Double.toString(newRunway.getDisplacedThreshold()));
+			paintTopDown(cnvTop.getGraphicsContext2D());
 		}
 		else
 		{
@@ -244,6 +246,7 @@ public class MainScreenController
 			lblRecalcAsda.setText("");
 			lblRecalcLda.setText("");
 			lblRecalcDisplacedThreshold.setText("");
+			paintTopDown(cnvTop.getGraphicsContext2D());
 		}
 	}
 
@@ -282,6 +285,7 @@ public class MainScreenController
 			lblOrigAsda.setText(Double.toString(currentRunway.getASDA()));
 			lblOrigLda.setText(Double.toString(currentRunway.getLDA()));
 			lblOrigDisplacedThreshold.setText(Double.toString(currentRunway.getDisplacedThreshold()));
+			paintTopDown(cnvTop.getGraphicsContext2D());
 		}
 		else
 		{
@@ -290,6 +294,7 @@ public class MainScreenController
 			lblOrigAsda.setText("");
 			lblOrigLda.setText("");
 			lblOrigDisplacedThreshold.setText("");
+			paintTopDown(cnvTop.getGraphicsContext2D());
 		}
 	}
 
@@ -356,74 +361,137 @@ public class MainScreenController
 		});
 	}
 
+
 	/**
 	 * Generates the top-down visualisation of the Runway
+	 *
 	 * @param graphicsContext
 	 */
-	public void paintTopDown(GraphicsContext graphicsContext) {
+	public void paintTopDown(GraphicsContext graphicsContext)
+	{
 		double tora = 3902.0; //2986.0;
 		double toda = 3902.0; //2986.0;
 		double asda = 3902.0; //2986.0;
 		double lda = 3595.0; //3346.0;
 		double displacedThreshold = 306.0;
-		double stripWidth = 150.0;
 
-		graphicsContext.setFill(Color.rgb(77,77,77)); //Runway colour
-		graphicsContext.fillRect(100, 122, 620, 100);
+		drawRunwaySurface(graphicsContext);
+		drawRunwayStripLines(graphicsContext);
+		drawParameterLines(graphicsContext);
 
-		//Draw lines
-		graphicsContext.setStroke(Color.WHITE);
-		graphicsContext.setLineWidth(5);
-		graphicsContext.strokeLine(130, 172, 160, 172);
-		graphicsContext.strokeLine(190, 172, 220, 172);
-		graphicsContext.strokeLine(250, 172, 280, 172);
-		graphicsContext.strokeLine(310, 172, 340, 172);
-		graphicsContext.strokeLine(370, 172, 400, 172);
-		graphicsContext.strokeLine(430, 172, 460, 172);
-		graphicsContext.strokeLine(490, 172, 520, 172);
-		graphicsContext.strokeLine(550, 172, 580, 172);
-		graphicsContext.strokeLine(610, 172, 640, 172);
-		graphicsContext.strokeLine(670, 172, 700, 172);
+	}
 
-		//Calculate TORA, TODA, ASDA, LDA
-		double pixelRatio = 620.0/tora;
+
+	private void drawParameterLines(final GraphicsContext graphicsContext)
+	{
+		if (!Objects.equals(lblOrigTora.getText(), ""))
+		{
+			final double tora = Objects.equals(lblRecalcTora.getText(), "") ? Double.parseDouble(lblOrigTora.getText()) : Double.parseDouble(lblRecalcTora.getText());
+			final double toda = Objects.equals(lblRecalcToda.getText(), "") ? Double.parseDouble(lblOrigToda.getText()) : Double.parseDouble(lblRecalcToda.getText());
+			final double asda = Objects.equals(lblRecalcAsda.getText(), "") ? Double.parseDouble(lblOrigAsda.getText()) : Double.parseDouble(lblRecalcAsda.getText());
+			final double lda = Objects.equals(lblRecalcLda.getText(), "") ? Double.parseDouble(lblOrigLda.getText()) : Double.parseDouble(lblRecalcLda.getText());
+			final double displacedThreshold = Objects.equals(lblRecalcDisplacedThreshold.getText(), "") ?
+					Double.parseDouble(lblOrigDisplacedThreshold.getText()) :
+					Double.parseDouble(lblRecalcDisplacedThreshold.getText());
+
+			//Calculate TORA, TODA, ASDA, LDA
+			final double pixelRatio = 620.0 / tora;
+			final double toraPixel = 620.0;
+			final double todaPixel = toda * pixelRatio;
+			final double asdaPixel = asda * pixelRatio;
+			final double ldaPixel = lda * pixelRatio;
+			final double displacedThresholdPixel = displacedThreshold * pixelRatio;
+
+			System.out.println(pixelRatio);
+
+			//draw TORA
+			//			graphicsContext.setStroke(Color.rgb(255, 138, 138));
+			//			graphicsContext.strokeLine(100.0, 210.0, 100.0 + toraPixel, 210);
+			graphicsContext.setFill(Color.rgb(255, 138, 138));
+			graphicsContext.fillRect(100.0, 210.0, 100.0 + toraPixel, 3);
+
+			//draw TODA
+			//			graphicsContext.setStroke(Color.rgb(255, 190, 50));
+			//			graphicsContext.strokeLine(100, 215, 100 + todaPixel, 215);
+			graphicsContext.setFill(Color.rgb(255, 190, 50));
+			graphicsContext.fillRect(100.0, 215.0, 100.0 + todaPixel, 3);
+
+			//draw ASDA
+			//			graphicsContext.setStroke(Color.rgb(255, 240, 40));
+			//			graphicsContext.strokeLine(100, 220, 100 + asdaPixel, 220);
+			graphicsContext.setFill(Color.rgb(255, 240, 40));
+			graphicsContext.fillRect(100.0, 220.0, 100.0 + asdaPixel, 3);
+
+			//draw LDA
+			//			graphicsContext.setStroke(Color.rgb(180, 225, 35));
+			//			graphicsContext.strokeLine(100 + (toraPixel - ldaPixel), 225, 100 + toraPixel, 225);
+			graphicsContext.setFill(Color.rgb(180, 225, 35));
+			graphicsContext.fillRect(100.0 + displacedThresholdPixel, 225.0, 100.0 + ldaPixel, 3);
+
+			//draw Displaced Threshold
+			//			graphicsContext.setStroke(Color.rgb(150, 210, 255));
+			//			graphicsContext.strokeLine(100, 230, 100 + displacedThresholdPixel, 230);
+			graphicsContext.setFill(Color.rgb(150, 210, 255));
+			graphicsContext.fillRect(100.0, 230.0, 100.0 + displacedThresholdPixel, 3);
+		}
+	}
+
+
+	private void drawDebugParameterLines(final GraphicsContext graphicsContext, final double tora, final double toda, final double asda, final double lda,
+			final double displacedThreshold)
+	{//Calculate TORA, TODA, ASDA, LDA
+		double pixelRatio = 620.0 / tora;
 		int toraPixel = 620;
 		int todaPixel = (int) Math.round(toda * pixelRatio);
 		int asdaPixel = (int) Math.round(asda * pixelRatio);
 		int ldaPixel = (int) Math.round(lda * pixelRatio);
 		int displacedThresholdPixel = (int) Math.round(displacedThreshold * pixelRatio);
-		int stripWidthPixel = 345;
 
 		System.out.println(pixelRatio);
 
 		//draw TORA
-		//graphicsContext.setStroke(Color.rgb(255,138,138));
-		//graphicsContext.strokeLine(100, 210, 100+toraPixel, 210);
-		graphicsContext.setFill(Color.rgb(255,138,138));
-		graphicsContext.fillRect(100, 105, toraPixel, 5);
+		graphicsContext.setStroke(Color.rgb(255, 138, 138));
+		graphicsContext.strokeLine(100, 210, 100 + toraPixel, 210);
 
 		//draw TODA
-		//graphicsContext.setStroke(Color.rgb(255,190,50));
-		//graphicsContext.strokeLine(100, 215, 100+todaPixel, 215);
-		graphicsContext.setFill(Color.rgb(255,190,50));
-		graphicsContext.fillRect(100, 110, todaPixel, 5);
+		graphicsContext.setStroke(Color.rgb(255, 190, 50));
+		graphicsContext.strokeLine(100, 215, 100 + todaPixel, 215);
 
 		//draw ASDA
-		//graphicsContext.setStroke(Color.rgb(255,240,40));
-		//graphicsContext.strokeLine(100, 220, 100+asdaPixel, 220);
-		graphicsContext.setFill(Color.rgb(255,240,40));
-		graphicsContext.fillRect(100, 115, asdaPixel, 5);
+		graphicsContext.setStroke(Color.rgb(255, 240, 40));
+		graphicsContext.strokeLine(100, 220, 100 + asdaPixel, 220);
 
 		//draw LDA
-		//graphicsContext.setStroke(Color.rgb(180,225,35));
-		//graphicsContext.strokeLine(100 + (toraPixel-ldaPixel), 225, 100+toraPixel, 225);
-		graphicsContext.setFill(Color.rgb(180,225,35));
-		graphicsContext.fillRect(100 + (toraPixel-ldaPixel), 225, ldaPixel, 5);
+		graphicsContext.setStroke(Color.rgb(180, 225, 35));
+		graphicsContext.strokeLine(100 + (toraPixel - ldaPixel), 225, 100 + toraPixel, 225);
 
 		//draw Displaced Threshold
-		//graphicsContext.setStroke(Color.rgb(150,210,255));
-		//graphicsContext.strokeLine(100, 230, 100+displacedThresholdPixel, 230);
-		graphicsContext.setFill(Color.rgb(150,210,255));
-		graphicsContext.fillRect(100, 230, displacedThresholdPixel, 5);
+		graphicsContext.setStroke(Color.rgb(150, 210, 255));
+		graphicsContext.strokeLine(100, 230, 100 + displacedThresholdPixel, 230);
+	}
+
+
+	private void drawRunwaySurface(final GraphicsContext graphicsContext)
+	{//graphicsContext.setFill(Color.rgb(214,218,219)); //Background colour
+		graphicsContext.setFill(Color.rgb(77, 77, 77)); //Runway colour
+		//graphicsContext.strokeLine(10, 10, 10, 50);
+		graphicsContext.fillRect(100, 100, 620, 100);
+	}
+
+
+	private void drawRunwayStripLines(final GraphicsContext graphicsContext)
+	{//Draw lines
+		graphicsContext.setStroke(Color.WHITE);
+		graphicsContext.setLineWidth(5);
+		graphicsContext.strokeLine(130, 150, 160, 150);
+		graphicsContext.strokeLine(190, 150, 220, 150);
+		graphicsContext.strokeLine(250, 150, 280, 150);
+		graphicsContext.strokeLine(310, 150, 340, 150);
+		graphicsContext.strokeLine(370, 150, 400, 150);
+		graphicsContext.strokeLine(430, 150, 460, 150);
+		graphicsContext.strokeLine(490, 150, 520, 150);
+		graphicsContext.strokeLine(550, 150, 580, 150);
+		graphicsContext.strokeLine(610, 150, 640, 150);
+		graphicsContext.strokeLine(670, 150, 700, 150);
 	}
 }
