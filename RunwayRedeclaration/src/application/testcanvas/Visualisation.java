@@ -12,10 +12,11 @@ import javafx.stage.Stage;
  * Created by jackclarke on 05/03/2016.
  */
 public class Visualisation extends Application {
-    double tora = 2986.0;
-    double toda = 2986.0;
-    double asda = 2986.0;
-    double lda = 3346.0;
+    double tora = 3902.0; //2986.0;
+    double toda = 3902.0; //2986.0;
+    double asda = 3902.0; //2986.0;
+    double lda = 3595.0; //3346.0;
+    double displacedThreshold = 306.0;
 
     public static void main(String[] args) {
         launch(args);
@@ -54,8 +55,8 @@ public class Visualisation extends Application {
         graphicsContext.strokeLine(610, 150, 640, 150);
 
         //Calculate TORA, TODA, ASDA, LDA
-        double pixelRatio = 600.0/tora;
-        int toraPixel = 600;
+        double pixelRatio = 620.0/tora;
+        int toraPixel = 620;
         int todaPixel = (int) Math.round(toda * pixelRatio);
         int asdaPixel = (int) Math.round(asda * pixelRatio);
         int ldaPixel = (int) Math.round(lda * pixelRatio);
@@ -68,15 +69,19 @@ public class Visualisation extends Application {
 
         //draw TODA
         graphicsContext.setStroke(Color.rgb(255,190,50));
-        graphicsContext.strokeLine(50, 220, 50+todaPixel, 220);
+        graphicsContext.strokeLine(50, 215, 50+todaPixel, 215);
 
         //draw ASDA
         graphicsContext.setStroke(Color.rgb(255,240,40));
-        graphicsContext.strokeLine(50, 230, 50+asdaPixel, 230);
+        graphicsContext.strokeLine(50, 220, 50+asdaPixel, 220);
 
         //draw LDA
         graphicsContext.setStroke(Color.rgb(180,225,35));
-        graphicsContext.strokeLine(50, 240, 50+ldaPixel, 240);
+        graphicsContext.strokeLine(50 + (toraPixel-ldaPixel), 225, 50+toraPixel, 225);
+
+        //draw Displaced Threshold
+        graphicsContext.setStroke(Color.rgb(150,210,255));
+        graphicsContext.strokeLine(50, 230, 52, 230);
     }
 
 }

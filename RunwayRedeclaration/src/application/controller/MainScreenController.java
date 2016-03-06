@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -47,6 +48,8 @@ public class MainScreenController
 	@FXML private Label                   lblCAndGWidth;
 	@FXML private Button                  btnAddObstacle;
 	@FXML private Button                  btnRemoveObstacle;
+
+	@FXML private Canvas				  topDownCanvas;
 
 	// Reference to the main application.
 	private Main mainApp;
@@ -346,5 +349,12 @@ public class MainScreenController
 		airportList.addListener((ListChangeListener) change -> {
 			updateCmbAirports();
 		});
+	}
+
+	/**
+	 * Draws the top-down visualisation of the Runway
+	 */
+	public void drawTopDown() {
+
 	}
 }
