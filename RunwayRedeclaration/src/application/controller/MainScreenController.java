@@ -108,6 +108,9 @@ public class MainScreenController
 		{
 			if (cmbRunways.getValue().getObstacle() != null)
 			{
+				if(btnAddObstacle.isVisible()) {
+					toggleObstacleButton();
+				}
 				final Alert alert = new Alert(AlertType.INFORMATION, "Obstacle already exists. please remove before adding another");
 				alert.showAndWait();
 			}
@@ -408,19 +411,20 @@ public class MainScreenController
 
 			//draw TORA
 			graphicsContext.setFill(Color.rgb(255, 138, 138));
-			graphicsContext.fillRect(100.0, 210.0, toraPixel, 3);
+			graphicsContext.fillRect(100.0, 105.0, toraPixel, 3);
 
 			//draw TODA
 			graphicsContext.setFill(Color.rgb(255, 190, 50));
-			graphicsContext.fillRect(100.0, 215.0, todaPixel, 3);
+			graphicsContext.fillRect(100.0, 110.0, todaPixel, 3);
 
 			//draw ASDA
 			graphicsContext.setFill(Color.rgb(255, 240, 40));
-			graphicsContext.fillRect(100.0, 220.0, asdaPixel, 3);
+			graphicsContext.fillRect(100.0, 115.0, asdaPixel, 3);
 
 			//draw LDA
 			graphicsContext.setFill(Color.rgb(180, 225, 35));
-			graphicsContext.fillRect(100.0 + displacedThresholdPixel, 225.0, ldaPixel-displacedThresholdPixel, 3);
+			graphicsContext.fillRect(100.0 + displacedThresholdPixel, 225.0, (ldaPixel-displacedThresholdPixel), 3);
+
 
 			//draw Displaced Threshold
 			graphicsContext.setFill(Color.rgb(150, 210, 255));
@@ -467,7 +471,7 @@ public class MainScreenController
 	{//graphicsContext.setFill(Color.rgb(214,218,219)); //Background colour
 		graphicsContext.setFill(Color.rgb(77, 77, 77)); //Runway colour
 		//graphicsContext.strokeLine(10, 10, 10, 50);
-		graphicsContext.fillRect(100, 100, 620, 100);
+		graphicsContext.fillRect(100, 122, 620, 100);
 	}
 
 
@@ -475,15 +479,15 @@ public class MainScreenController
 	{//Draw lines
 		graphicsContext.setStroke(Color.WHITE);
 		graphicsContext.setLineWidth(5);
-		graphicsContext.strokeLine(130, 150, 160, 150);
-		graphicsContext.strokeLine(190, 150, 220, 150);
-		graphicsContext.strokeLine(250, 150, 280, 150);
-		graphicsContext.strokeLine(310, 150, 340, 150);
-		graphicsContext.strokeLine(370, 150, 400, 150);
-		graphicsContext.strokeLine(430, 150, 460, 150);
-		graphicsContext.strokeLine(490, 150, 520, 150);
-		graphicsContext.strokeLine(550, 150, 580, 150);
-		graphicsContext.strokeLine(610, 150, 640, 150);
-		graphicsContext.strokeLine(670, 150, 700, 150);
+		graphicsContext.strokeLine(130, 172, 160, 172);
+		graphicsContext.strokeLine(190, 172, 220, 172);
+		graphicsContext.strokeLine(250, 172, 280, 172);
+		graphicsContext.strokeLine(310, 172, 340, 172);
+		graphicsContext.strokeLine(370, 172, 400, 172);
+		graphicsContext.strokeLine(430, 172, 460, 172);
+		graphicsContext.strokeLine(490, 172, 520, 172);
+		graphicsContext.strokeLine(550, 172, 580, 172);
+		graphicsContext.strokeLine(610, 172, 640, 172);
+		graphicsContext.strokeLine(670, 172, 700, 172);
 	}
 }
