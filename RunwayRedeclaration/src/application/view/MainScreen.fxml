@@ -361,7 +361,7 @@
                             <items>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #ededed;">
                            <children>
-                               <Canvas fx:id="cnvTop" height="283.0" width="551.0" />
+                               <Canvas fx:id="cnvTop" height="345.0" width="870.0" />
                            </children></AnchorPane>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #d6dadb;" />
                             </items>

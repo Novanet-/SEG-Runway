@@ -375,6 +375,8 @@ public class MainScreenController
 		double lda = 3595.0; //3346.0;
 		double displacedThreshold = 306.0;
 
+		graphicsContext.clearRect(0,0,870,345); //Clears canvas for new runway
+
 		drawRunwaySurface(graphicsContext);
 		drawRunwayStripLines(graphicsContext);
 		drawParameterLines(graphicsContext);
@@ -405,34 +407,24 @@ public class MainScreenController
 			System.out.println(pixelRatio);
 
 			//draw TORA
-			//			graphicsContext.setStroke(Color.rgb(255, 138, 138));
-			//			graphicsContext.strokeLine(100.0, 210.0, 100.0 + toraPixel, 210);
 			graphicsContext.setFill(Color.rgb(255, 138, 138));
-			graphicsContext.fillRect(100.0, 210.0, 100.0 + toraPixel, 3);
+			graphicsContext.fillRect(100.0, 210.0, toraPixel, 3);
 
 			//draw TODA
-			//			graphicsContext.setStroke(Color.rgb(255, 190, 50));
-			//			graphicsContext.strokeLine(100, 215, 100 + todaPixel, 215);
 			graphicsContext.setFill(Color.rgb(255, 190, 50));
-			graphicsContext.fillRect(100.0, 215.0, 100.0 + todaPixel, 3);
+			graphicsContext.fillRect(100.0, 215.0, todaPixel, 3);
 
 			//draw ASDA
-			//			graphicsContext.setStroke(Color.rgb(255, 240, 40));
-			//			graphicsContext.strokeLine(100, 220, 100 + asdaPixel, 220);
 			graphicsContext.setFill(Color.rgb(255, 240, 40));
-			graphicsContext.fillRect(100.0, 220.0, 100.0 + asdaPixel, 3);
+			graphicsContext.fillRect(100.0, 220.0, asdaPixel, 3);
 
 			//draw LDA
-			//			graphicsContext.setStroke(Color.rgb(180, 225, 35));
-			//			graphicsContext.strokeLine(100 + (toraPixel - ldaPixel), 225, 100 + toraPixel, 225);
 			graphicsContext.setFill(Color.rgb(180, 225, 35));
-			graphicsContext.fillRect(100.0 + displacedThresholdPixel, 225.0, 100.0 + ldaPixel, 3);
+			graphicsContext.fillRect(100.0 + displacedThresholdPixel, 225.0, ldaPixel-displacedThresholdPixel, 3);
 
 			//draw Displaced Threshold
-			//			graphicsContext.setStroke(Color.rgb(150, 210, 255));
-			//			graphicsContext.strokeLine(100, 230, 100 + displacedThresholdPixel, 230);
 			graphicsContext.setFill(Color.rgb(150, 210, 255));
-			graphicsContext.fillRect(100.0, 230.0, 100.0 + displacedThresholdPixel, 3);
+			graphicsContext.fillRect(100.0, 230.0, displacedThresholdPixel, 3);
 		}
 	}
 
