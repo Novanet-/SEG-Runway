@@ -176,7 +176,9 @@ public class Runway
 	private Runway redeclareTowards(Obstacle o)
 	{
 		// Distance from Threshold - Slope Calculation - Strip End
-		final double newTORA = o.getPosition() - (o.getHeight() * 50.0) - stripEnd;
+		// + getDisplacedThreshold() term seems to make sense
+		// based on scenarios
+		final double newTORA = o.getPosition() + getDisplacedThreshold() - (o.getHeight() * 50.0) - stripEnd;
 		
 		// Distance from Threshold - RESA - Strip End
 		final double newLDA = o.getPosition() - resa - stripEnd;
