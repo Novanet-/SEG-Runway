@@ -183,6 +183,32 @@ public class Runway
 		// Distance from Threshold - RESA - Strip End
 		final double newLDA = o.getPosition() - resa - stripEnd;
 		
+		StringBuilder sb = new StringBuilder("Here's how the runway was recalculated:\n");
+		sb.append("New_TORA = Obstacle_distance_from_threshold + Displaced_Threshold - Slope - Strip_End\n");
+		sb.append("Where slope = obstacle_height * height_ratio\n");
+		sb.append("New_TORA = ");
+		sb.append(o.getPosition());
+		sb.append(" + ");
+		sb.append(getDisplacedThreshold());
+		sb.append(" - (");
+		sb.append(o.getHeight());
+		sb.append(" * 50) - ");
+		sb.append(stripEnd);
+		sb.append(" = ");
+		sb.append(newTORA);
+		sb.append("\nNew_TODA = New_TORA\nNew_ASDA = New_TORA\n");
+		sb.append("New_LDA = Obstacle_distance_from_threshold - RESA - strip_end\n");
+		sb.append("New_LDA = ");
+		sb.append(o.getPosition());
+		sb.append(" - ");
+		sb.append(resa);
+		sb.append(" - ");
+		sb.append(stripEnd);
+		sb.append(" = ");
+		sb.append(newLDA);
+		System.out.println(sb);
+		// TODO: do something with this explanation - save it to the new Runway object, print to screen 
+		
 		return new Runway(getRunwayID(), getAlignment(), newTORA, newTORA, newTORA, newLDA, getDisplacedThreshold());
 	}
 
@@ -200,6 +226,8 @@ public class Runway
 		
 		// Original LDA - Dist from Threshold - Strip End - Slop Calculation
 		final double newLDA = getLDA() - o.getPosition() - stripEnd - (o.getHeight() * 50.0);
+		
+		// TODO: write explanation of calculations
 		
 		return new Runway(getRunwayID(), getAlignment(), newTORA, newTODA, newASDA, newLDA, getDisplacedThreshold());
 	}
