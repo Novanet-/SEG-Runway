@@ -96,6 +96,18 @@ public class AddRunwayController
 			selectedAirport.addRunway(primaryRunway);
 			selectedAirport.addRunway(secondaryRunway);
 
+			//Clears textboxes after runways added
+			txtPrimaryTORA.setText("");
+			txtPrimaryTODA.setText("");
+			txtPrimaryASDA.setText("");
+			txtPrimaryLDA.setText("");
+			txtPrimaryDisplacedThreshold.setText("");
+			txtSecondaryTORA.setText("");
+			txtSecondaryTODA.setText("");
+			txtSecondaryASDA.setText("");
+			txtSecondaryLDA.setText("");
+			txtSecondaryDisplacedThreshold.setText("");
+
 			mainApp.toggleAddRunway(lblAirportName.getText());
 
 		}
