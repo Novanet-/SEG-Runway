@@ -60,7 +60,6 @@ public class Main extends Application
 	public final void start(Stage primaryStage)
 	{
 		Font font = Font.loadFont(getClass().getResourceAsStream(ICON_FONT), 13);
-		System.out.println(font.getName());
 
 		airportList = FXCollections.observableArrayList(new ArrayList<Airport>());
 
