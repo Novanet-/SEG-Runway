@@ -20,6 +20,7 @@ import java.util.Objects;
 public class MainScreenController
 {
 
+	public static final double SCALING = 0.60;
 	/**
 	 * Used to prevent adding a runway without
 	 * an airport selected.
@@ -406,8 +407,8 @@ public class MainScreenController
 					Double.parseDouble(lblRecalcDisplacedThreshold.getText());
 
 			//Calculate TORA, TODA, ASDA, LDA
-			final double pixelRatio = (0.80 * graphicsContext.getCanvas().getWidth()) / tora;
-			final double toraPixel = 0.80 * graphicsContext.getCanvas().getWidth();
+			final double pixelRatio = (SCALING * graphicsContext.getCanvas().getWidth()) / tora;
+			final double toraPixel = SCALING * graphicsContext.getCanvas().getWidth();
 			final double todaPixel = toda * pixelRatio;
 			final double asdaPixel = asda * pixelRatio;
 			final double ldaPixel = lda * pixelRatio;
@@ -417,70 +418,69 @@ public class MainScreenController
 
 			//draw TORA
 			graphicsContext.setFill(Color.rgb(255, 138, 138));
-			graphicsContext.fillRect(100.0, 210.0, toraPixel, 10);
+			graphicsContext.fillRect(150, 210.0, toraPixel, 5);
 
 			//draw TODA
 			graphicsContext.setFill(Color.rgb(255, 190, 50));
-			graphicsContext.fillRect(100.0, 225.0, todaPixel, 10);
+			graphicsContext.fillRect(150, 225.0, todaPixel, 5);
 
 			//draw ASDA
 			graphicsContext.setFill(Color.rgb(255, 240, 40));
-			graphicsContext.fillRect(100.0, 240.0, asdaPixel, 10);
+			graphicsContext.fillRect(150, 240.0, asdaPixel, 5);
 
 			//draw LDA
 			graphicsContext.setFill(Color.rgb(180, 225, 35));
-			graphicsContext.fillRect(100.0 + displacedThresholdPixel, 255.0, ldaPixel - displacedThresholdPixel, 10);
+			graphicsContext.fillRect(150 + displacedThresholdPixel, 255.0, ldaPixel - displacedThresholdPixel, 5);
 
 			//draw Displaced Threshold
 			graphicsContext.setFill(Color.rgb(150, 210, 255));
-			graphicsContext.fillRect(100.0, 270.0, displacedThresholdPixel, 10);
+			graphicsContext.fillRect(150, 270.0, displacedThresholdPixel, 5);
 		}
 	}
 
-
-	private void drawDebugParameterLines(final GraphicsContext graphicsContext, final double tora, final double toda, final double asda, final double lda,
-			final double displacedThreshold)
-	{//Calculate TORA, TODA, ASDA, LDA
-		final double runwayLength = 0.75 * graphicsContext.getCanvas().getWidth();
-		double pixelRatio = runwayLength / tora;
-		int toraPixel = (int) Math.round(runwayLength);
-		int todaPixel = (int) Math.round(toda * pixelRatio);
-		int asdaPixel = (int) Math.round(asda * pixelRatio);
-		int ldaPixel = (int) Math.round(lda * pixelRatio);
-		int displacedThresholdPixel = (int) Math.round(displacedThreshold * pixelRatio);
-
-		System.out.println(pixelRatio);
-
-		//draw TORA
-		graphicsContext.setStroke(Color.rgb(255, 138, 138));
-		graphicsContext.strokeLine(100, 210, 100 + toraPixel, 210);
-
-		//draw TODA
-		graphicsContext.setStroke(Color.rgb(255, 190, 50));
-		graphicsContext.strokeLine(100, 215, 100 + todaPixel, 215);
-
-		//draw ASDA
-		graphicsContext.setStroke(Color.rgb(255, 240, 40));
-		graphicsContext.strokeLine(100, 220, 100 + asdaPixel, 220);
-
-		//draw LDA
-		graphicsContext.setStroke(Color.rgb(180, 225, 35));
-		graphicsContext.strokeLine(100 + (toraPixel - ldaPixel), 225, 100 - toraPixel, 225);
-
-		//draw Displaced Threshold
-		graphicsContext.setStroke(Color.rgb(150, 210, 255));
-		graphicsContext.strokeLine(100, 230, 100 + displacedThresholdPixel, 230);
-	}
+	//	private void drawDebugParameterLines(final GraphicsContext graphicsContext, final double tora, final double toda, final double asda, final double lda,
+	//			final double displacedThreshold)
+	//	{//Calculate TORA, TODA, ASDA, LDA
+	//		final double runwayLength = 0.75 * graphicsContext.getCanvas().getWidth();
+	//		double pixelRatio = runwayLength / tora;
+	//		int toraPixel = (int) Math.round(runwayLength);
+	//		int todaPixel = (int) Math.round(toda * pixelRatio);
+	//		int asdaPixel = (int) Math.round(asda * pixelRatio);
+	//		int ldaPixel = (int) Math.round(lda * pixelRatio);
+	//		int displacedThresholdPixel = (int) Math.round(displacedThreshold * pixelRatio);
+	//
+	//		System.out.println(pixelRatio);
+	//
+	//		//draw TORA
+	//		graphicsContext.setStroke(Color.rgb(255, 138, 138));
+	//		graphicsContext.strokeLine(00, 210, 100 + toraPixel, 210);
+	//
+	//		//draw TODA
+	//		graphicsContext.setStroke(Color.rgb(255, 190, 50));
+	//		graphicsContext.strokeLine(100, 215, 100 + todaPixel, 215);
+	//
+	//		//draw ASDA
+	//		graphicsContext.setStroke(Color.rgb(255, 240, 40));
+	//		graphicsContext.strokeLine(100, 220, 100 + asdaPixel, 220);
+	//
+	//		//draw LDA
+	//		graphicsContext.setStroke(Color.rgb(180, 225, 35));
+	//		graphicsContext.strokeLine(100 + (toraPixel - ldaPixel), 225, 100 - toraPixel, 225);
+	//
+	//		//draw Displaced Threshold
+	//		graphicsContext.setStroke(Color.rgb(150, 210, 255));
+	//		graphicsContext.strokeLine(100, 230, 100 + displacedThresholdPixel, 230);
+	//	}
 
 
 	private void drawRunwaySurface(final GraphicsContext graphicsContext)
 	{
 		Canvas canvas = graphicsContext.getCanvas();
-		graphicsContext.setFill(Color.rgb(214, 218, 219)); //Background colour
+		graphicsContext.setFill(Color.rgb(0, 51, 0)); //Background colour
 		graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		graphicsContext.setFill(Color.rgb(77, 77, 77)); //Runway colour
 		//graphicsContext.strokeLine(10, 10, 10, 50);
-		graphicsContext.fillRect(100, 100, 0.80 * graphicsContext.getCanvas().getWidth(), 100);
+		graphicsContext.fillRect(150, 100, SCALING * graphicsContext.getCanvas().getWidth(), 100);
 	}
 
 
@@ -488,7 +488,7 @@ public class MainScreenController
 	{//Draw lines
 		graphicsContext.setStroke(Color.WHITE);
 		graphicsContext.setLineWidth(5);
-		graphicsContext.strokeLine(130, 150, 160, 150);
+		//		graphicsContext.strokeLine(130, 150, 160, 150);
 		graphicsContext.strokeLine(190, 150, 220, 150);
 		graphicsContext.strokeLine(250, 150, 280, 150);
 		graphicsContext.strokeLine(310, 150, 340, 150);
@@ -497,7 +497,6 @@ public class MainScreenController
 		graphicsContext.strokeLine(490, 150, 520, 150);
 		graphicsContext.strokeLine(550, 150, 580, 150);
 		graphicsContext.strokeLine(610, 150, 640, 150);
-		graphicsContext.strokeLine(670, 150, 700, 150);
-		graphicsContext.strokeLine(730, 150, 760, 150);
+		//		graphicsContext.strokeLine(670, 150, 700, 150);
 	}
 }
