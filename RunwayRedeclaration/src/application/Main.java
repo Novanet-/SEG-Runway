@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,7 +28,8 @@ public class Main extends Application
 	//TODO: readme file, help document
 
 
-	private static final String PLANE_ICON        = "file:resources/images/planeicon.png";
+	private static final String PLANE_ICON        = "file:resources/planeicon.png";
+	private static final String ICON_FONT		  = "resources/fontawesome-webfont.ttf";
 	private static final String APPLICATION_TITLE = "Runway Redeclaration";
 	private static final String MAIN_FXML         = "view/MainScreen.fxml";
 	private static final String ADD_AIRPORT_FXML  = "view/AddAirport.fxml";
@@ -47,6 +49,7 @@ public class Main extends Application
 	private MainScreenController msController;
 
 
+
 	public static void main(String[] args)
 	{
 		launch(args);
@@ -56,6 +59,9 @@ public class Main extends Application
 	@Override
 	public final void start(Stage primaryStage)
 	{
+		Font font = Font.loadFont(getClass().getResourceAsStream(ICON_FONT), 13);
+		System.out.println(font.getName());
+
 		airportList = FXCollections.observableArrayList(new ArrayList<Airport>());
 
 		final FXMLLoader msLoader = new FXMLLoader();
