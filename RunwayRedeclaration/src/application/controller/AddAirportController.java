@@ -15,8 +15,6 @@ public class AddAirportController
 	@FXML private Button                  btnSubmitAirport;
 	private       ObservableList<Airport> airportList;
 
-	//TODO: Make textbook clear after submissions
-
 	/**
 	 * Initializes the controller class. This method is automatically called
 	 * after the fxml file has been loaded.
@@ -31,6 +29,7 @@ public class AddAirportController
 	private void handleBtnSubmitAirport()
 	{
 		airportList.add(new Airport(airportList.size(), txtAirportName.getText()));
+		txtAirportName.setText(""); //Clears textbox
 		mainApp.toggleAddAirport();
 	}
 
