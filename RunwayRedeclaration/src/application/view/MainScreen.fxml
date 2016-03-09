@@ -345,7 +345,7 @@
                                         </GridPane>
                                     </children>
                                 </AnchorPane>
-                                <TextArea fx:id="txtCalculations" prefHeight="158.0" prefWidth="390.0" style="-fx-background-color: #41464d; -fx-text-fill: .text-area .content{  -fx-background-color:  #41464d; -fx-font-size: 7pt; -fx-font-family: &quot;Helvetica Neue&quot;, &quot;Segoe UI Semibold&quot;; -fx-text-fill: #d6dadb; }: ;" styleClass="text-area" stylesheets="@application.css" GridPane.rowIndex="4" />
+                                <TextArea fx:id="txtCalculations" prefHeight="158.0" prefWidth="390.0" style="-fx-background-color: #41464d; -fx-text-fill: #d6dadb; }: ;" styleClass="text-area" stylesheets="@application.css" GridPane.rowIndex="4" />
                             </children>
                         </GridPane>
                     </children>
