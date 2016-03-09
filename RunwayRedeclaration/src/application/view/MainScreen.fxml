@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.canvas.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
@@ -9,8 +7,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-
-<AnchorPane style="-fx-min-width: 1000; -fx-min-height: 450;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainScreenController">
+<AnchorPane xmlns:fx = "http://javafx.com/fxml/1"
+            style = "-fx-min-width: 1000; -fx-min-height: 450;"
+            stylesheets = "@application.css"
+            xmlns = "http://javafx.com/javafx/8.0.60"
+            fx:controller = "application.controller.MainScreenController">
     <children>
         <SplitPane dividerPositions="0.445" layoutY="27.0" minHeight="700.0" minWidth="1280.0" prefHeight="700.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
             <items>
@@ -357,13 +358,65 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <children>
-                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="572.0" prefWidth="551.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions = "0.5"
+                                   maxHeight = "-Infinity"
+                                   maxWidth = "-Infinity"
+                                   minHeight = "-Infinity"
+                                   minWidth = "-Infinity"
+                                   orientation = "VERTICAL"
+                                   prefHeight = "700.0"
+                                   prefWidth = "875.0"
+                                   AnchorPane.bottomAnchor = "0.0"
+                                   AnchorPane.leftAnchor = "0.0"
+                                   AnchorPane.rightAnchor = "0.0"
+                                   AnchorPane.topAnchor = "0.0">
                             <items>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #ededed;">
+                                <AnchorPane prefHeight = "350.0"
+                                            prefWidth = "875.0">
                            <children>
-                               <Canvas fx:id="cnvTop" height="345.0" width="870.0" />
-                           </children></AnchorPane>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #d6dadb;" />
+                               <AnchorPane layoutX = "-32.0"
+                                           minHeight = "-Infinity"
+                                           minWidth = "-Infinity"
+                                           prefHeight = "350.0"
+                                           prefWidth = "875.0"
+                                           style = "-fx-background-color: #ededed;"
+                                           AnchorPane.bottomAnchor = "0.0"
+                                           AnchorPane.leftAnchor = "0.0"
+                                           AnchorPane.rightAnchor = "0.0"
+                                           AnchorPane.topAnchor = "0.0">
+                                   <children>
+                                       <Canvas fx:id = "cnvTop"
+                                               height = "700.0"
+                                               width = "875.0"/>
+                                   </children>
+                               </AnchorPane>
+                           </children>
+                                </AnchorPane>
+                                <AnchorPane maxHeight = "0.0"
+                                            maxWidth = "0.0"
+                                            minHeight = "0.0"
+                                            minWidth = "0.0"
+                                            prefHeight = "0.0"
+                                            prefWidth = "0.0">
+                                    <children>
+                                        <AnchorPane layoutX = "-6.0"
+                                                    minHeight = "-Infinity"
+                                                    minWidth = "-Infinity"
+                                                    prefHeight = "350.0"
+                                                    prefWidth = "875.0"
+                                                    style = "-fx-background-color: #d6dadb;"
+                                                    AnchorPane.bottomAnchor = "0.0"
+                                                    AnchorPane.leftAnchor = "0.0"
+                                                    AnchorPane.rightAnchor = "0.0"
+                                                    AnchorPane.topAnchor = "0.0">
+                                            <children>
+                                                <Canvas fx:id = "cnvSide"
+                                                        height = "350.0"
+                                                        width = "875.0"/>
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
                             </items>
                         </SplitPane>
                     </children>

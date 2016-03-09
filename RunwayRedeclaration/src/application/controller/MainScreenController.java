@@ -21,7 +21,10 @@ import java.util.Objects;
 public class MainScreenController
 {
 
-	public static final double SCALING = 0.60;
+	public static final double SCALING                = 0.575;
+	public static final double RUNWAY_START_X_SCALING = 0.175;
+	public static final double RUNWAY_START_Y_SCALING = 0.4;
+	public static final double RUNWAY_HEIGHT_SCALING  = 0.14;
 	/**
 	 * Used to prevent adding a runway without
 	 * an airport selected.
@@ -53,6 +56,7 @@ public class MainScreenController
 	@FXML private Button                  btnRemoveObstacle;
 
 	@FXML private Canvas cnvTop; //870x345
+	@FXML private Canvas cnvSide; //870x345
 
 	// Reference to the main application.
 	private Main mainApp;
@@ -70,7 +74,7 @@ public class MainScreenController
 		btnRemoveObstacle.setManaged(false);
 
 		GraphicsContext graphicsContext = cnvTop.getGraphicsContext2D();
-		paintTopDown(graphicsContext);
+		paintVisualisation();
 
 		lblOrigToda.setFont(Font.font("FontAwesome Regular", FontWeight.NORMAL, 13));
 	}
@@ -114,7 +118,8 @@ public class MainScreenController
 		{
 			if (cmbRunways.getValue().getObstacle() != null)
 			{
-				if(btnAddObstacle.isVisible()) {
+				if (btnAddObstacle.isVisible())
+				{
 					toggleObstacleButton();
 				}
 				final Alert alert = new Alert(AlertType.INFORMATION, "Obstacle already exists. please remove before adding another");
@@ -246,7 +251,6 @@ public class MainScreenController
 			lblRecalcAsda.setText(Double.toString(newRunway.getASDA()));
 			lblRecalcLda.setText(Double.toString(newRunway.getLDA()));
 			lblRecalcDisplacedThreshold.setText(Double.toString(newRunway.getDisplacedThreshold()));
-			paintTopDown(cnvTop.getGraphicsContext2D());
 		}
 		else
 		{
@@ -255,8 +259,8 @@ public class MainScreenController
 			lblRecalcAsda.setText("");
 			lblRecalcLda.setText("");
 			lblRecalcDisplacedThreshold.setText("");
-			paintTopDown(cnvTop.getGraphicsContext2D());
 		}
+		paintVisualisation();
 	}
 
 
@@ -273,7 +277,7 @@ public class MainScreenController
 		if (cmbRunways.getValue().getObstacle() != null)
 		{
 			txtObstacles.setText(cmbRunways.getValue().getObstacle().toString());
-			paintTopDown(cnvTop.getGraphicsContext2D());
+			paintVisualisation();
 		}
 		else
 		{
@@ -295,7 +299,6 @@ public class MainScreenController
 			lblOrigAsda.setText(Double.toString(currentRunway.getASDA()));
 			lblOrigLda.setText(Double.toString(currentRunway.getLDA()));
 			lblOrigDisplacedThreshold.setText(Double.toString(currentRunway.getDisplacedThreshold()));
-			paintTopDown(cnvTop.getGraphicsContext2D());
 		}
 		else
 		{
@@ -304,8 +307,8 @@ public class MainScreenController
 			lblOrigAsda.setText("");
 			lblOrigLda.setText("");
 			lblOrigDisplacedThreshold.setText("");
-			paintTopDown(cnvTop.getGraphicsContext2D());
 		}
+		paintVisualisation();
 	}
 
 
@@ -372,6 +375,13 @@ public class MainScreenController
 	}
 
 
+	public void paintVisualisation()
+	{
+		paintTopDown(cnvTop.getGraphicsContext2D());
+		paintSideOn(cnvSide.getGraphicsContext2D());
+	}
+
+
 	/**
 	 * Generates the top-down visualisation of the Runway
 	 *
@@ -379,12 +389,6 @@ public class MainScreenController
 	 */
 	public void paintTopDown(GraphicsContext graphicsContext)
 	{
-		double tora = 3902.0; //2986.0;
-		double toda = 3902.0; //2986.0;
-		double asda = 3902.0; //2986.0;
-		double lda = 3595.0; //3346.0;
-		double displacedThreshold = 306.0;
-
 		graphicsContext.clearRect(0, 0, 870, 345); //Clears canvas for new runway
 		graphicsContext.setFill(Color.rgb(255, 255, 255));
 		graphicsContext.fill();
@@ -393,6 +397,24 @@ public class MainScreenController
 		drawRunwayStripLines(graphicsContext);
 		drawParameterLines(graphicsContext);
 		drawObstacle(graphicsContext);
+
+	}
+
+
+	/**
+	 * Generates the top-down visualisation of the Runway
+	 *
+	 * @param graphicsContext
+	 */
+	public void paintSideOn(GraphicsContext graphicsContext)
+	{
+		graphicsContext.clearRect(0, 0, 870, 345); //Clears canvas for new runway
+		graphicsContext.setFill(Color.rgb(255, 255, 255));
+		graphicsContext.fill();
+
+		Canvas canvas = graphicsContext.getCanvas();
+		graphicsContext.setFill(Color.rgb(0, 51, 0)); //Background colour
+		graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
 	}
 
@@ -408,7 +430,7 @@ public class MainScreenController
 			final double pixelRatio = (SCALING * graphicsContext.getCanvas().getWidth()) / tora;
 
 			graphicsContext.setFill(Color.rgb(179, 45, 0)); //Background colour
-			graphicsContext.fillRect((obstacle.getPosition() * pixelRatio) + 25, 150 - 25, 50, 50);
+			graphicsContext.fillRect((obstacle.getPosition() * pixelRatio) + 20, (RUNWAY_START_Y_SCALING * canvas.getHeight()) + 30, 40, 40);
 			//			graphicsContext.fillRect(250, 150, 50, 50);
 		}
 	}
@@ -418,6 +440,8 @@ public class MainScreenController
 	{
 		if (!Objects.equals(lblOrigTora.getText(), ""))
 		{
+			Canvas canvas = graphicsContext.getCanvas();
+
 			final double tora = Objects.equals(lblRecalcTora.getText(), "") ? Double.parseDouble(lblOrigTora.getText()) : Double.parseDouble(lblRecalcTora.getText());
 			final double toda = Objects.equals(lblRecalcToda.getText(), "") ? Double.parseDouble(lblOrigToda.getText()) : Double.parseDouble(lblRecalcToda.getText());
 			final double asda = Objects.equals(lblRecalcAsda.getText(), "") ? Double.parseDouble(lblOrigAsda.getText()) : Double.parseDouble(lblRecalcAsda.getText());
@@ -436,26 +460,29 @@ public class MainScreenController
 
 			System.out.println(pixelRatio);
 
+
 			//draw TORA
 			graphicsContext.setFill(Color.rgb(255, 138, 138));
-			graphicsContext.fillRect(150, 210.0, toraPixel, 5);
+			graphicsContext.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()), 0.55 * canvas.getHeight(), toraPixel, 5);
 
 			//draw TODA
 			graphicsContext.setFill(Color.rgb(255, 190, 50));
-			graphicsContext.fillRect(150, 225.0, todaPixel, 5);
+			graphicsContext.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()), 0.575 * canvas.getHeight(), todaPixel, 5);
 
 			//draw ASDA
 			graphicsContext.setFill(Color.rgb(255, 240, 40));
-			graphicsContext.fillRect(150, 240.0, asdaPixel, 5);
+			graphicsContext.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()), 0.6 * canvas.getHeight(), asdaPixel, 5);
 
 			//draw LDA
 			graphicsContext.setFill(Color.rgb(180, 225, 35));
-			graphicsContext.fillRect(150 + displacedThresholdPixel, 255.0, ldaPixel - displacedThresholdPixel, 5);
+			graphicsContext.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()) + displacedThresholdPixel, 0.625 * canvas.getHeight(), ldaPixel - displacedThresholdPixel, 5);
 
 			//draw Displaced Threshold
 			graphicsContext.setFill(Color.rgb(150, 210, 255));
-			graphicsContext.fillRect(150, 270.0, displacedThresholdPixel, 5);
+			graphicsContext.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()), 0.65 * canvas.getHeight(), displacedThresholdPixel, 5);
 		}
+
+
 	}
 
 	//	private void drawDebugParameterLines(final GraphicsContext graphicsContext, final double tora, final double toda, final double asda, final double lda,
@@ -500,23 +527,36 @@ public class MainScreenController
 		graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		graphicsContext.setFill(Color.rgb(77, 77, 77)); //Runway colour
 		//graphicsContext.strokeLine(10, 10, 10, 50);
-		graphicsContext.fillRect(150, 100, SCALING * graphicsContext.getCanvas().getWidth(), 100);
+		graphicsContext.fillRect(RUNWAY_START_X_SCALING * canvas.getWidth(), RUNWAY_START_Y_SCALING * canvas.getHeight(), SCALING * canvas.getWidth(),
+				RUNWAY_HEIGHT_SCALING * canvas.getHeight());
 	}
 
 
 	private void drawRunwayStripLines(final GraphicsContext graphicsContext)
 	{//Draw lines
+		Canvas canvas = graphicsContext.getCanvas();
 		graphicsContext.setStroke(Color.WHITE);
 		graphicsContext.setLineWidth(5);
-		//		graphicsContext.strokeLine(130, 150, 160, 150);
-		graphicsContext.strokeLine(190, 150, 220, 150);
-		graphicsContext.strokeLine(250, 150, 280, 150);
-		graphicsContext.strokeLine(310, 150, 340, 150);
-		graphicsContext.strokeLine(370, 150, 400, 150);
-		graphicsContext.strokeLine(430, 150, 460, 150);
-		graphicsContext.strokeLine(490, 150, 520, 150);
-		graphicsContext.strokeLine(550, 150, 580, 150);
-		graphicsContext.strokeLine(610, 150, 640, 150);
+		//		graphicsContext.strokeLine(0.20 * canvas.getWidth(), 0.4 * canvas.getHeight() + 50, 0.20 * canvas.getWidth() + 30, 0.4 * canvas.getHeight() + 50);
+		//		graphicsContext.strokeLine(0.20 * canvas.getWidth() + 60, 0.4 * canvas.getHeight() + 50, 220, 0.4 * canvas.getHeight() + 50);
+		//		graphicsContext.strokeLine(250, 0.4 * canvas.getHeight() + 50, 280, 0.4 * canvas.getHeight() + 50);
+		//		graphicsContext.strokeLine(310, 0.4 * canvas.getHeight() + 50, 340, 0.4 * canvas.getHeight() + 50);
+		//		graphicsContext.strokeLine(370, 0.4 * canvas.getHeight() + 50, 400, 0.4 * canvas.getHeight() + 50);
+		//		graphicsContext.strokeLine(430, 0.4 * canvas.getHeight() + 50, 460, 0.4 * canvas.getHeight() + 50);
+		//		graphicsContext.strokeLine(490, 0.4 * canvas.getHeight() + 50, 520, 0.4 * canvas.getHeight() + 50);
+		//		graphicsContext.strokeLine(550, 0.4 * canvas.getHeight() + 50, 580, 0.4 * canvas.getHeight() + 50);
+		//		graphicsContext.strokeLine(610, 0.4 * canvas.getHeight() + 50, 640, 0.4 * canvas.getHeight() + 50);
 		//		graphicsContext.strokeLine(670, 150, 700, 150);
+
+		double firstLineX = (RUNWAY_START_X_SCALING * canvas.getWidth()) + 40;
+		double centreline = (RUNWAY_START_Y_SCALING * canvas.getHeight()) + 50;
+		for (int i = 1; i < canvas.getWidth() / 100; i++)
+		{
+			double lineStart = firstLineX + (60 * (i - 1));
+			double lineEnd = lineStart + 30;
+
+			graphicsContext.strokeLine(lineStart, centreline, lineEnd, centreline);
+
+		}
 	}
 }
