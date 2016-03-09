@@ -89,7 +89,13 @@
 
 .text-field-small {
     -fx-font-size: 8.0pt;
-    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+        -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+}
+
+.text-area .content{
+  -fx-background-color:  #41464d;
+  -fx-font-size: 12.0pt;
+      -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
 }
 
 /* 

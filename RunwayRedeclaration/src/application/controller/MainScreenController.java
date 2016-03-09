@@ -165,6 +165,7 @@ public class MainScreenController
 		}
 	}
 
+	//TODO: fix weirdness with reclaration after removing then adding a new obstacle
 
 	/**
 	 * Swaps add/remove obstacle button so only 1 shows at a time
@@ -218,11 +219,13 @@ public class MainScreenController
 	@FXML
 	private void handleRunwaySelected()
 	{
+		txtObstacles.setText("");
 		updateOriginalParameters();
 		Runway newRunway = null;
+		updateObstacleList();
 		if (cmbRunways.getValue() != null)
 		{
-			updateObstacleList();
+			//			updateObstacleList();
 			final Runway currentRunway = cmbRunways.getValue();
 			if (currentRunway.getObstacle() != null)
 			{
@@ -269,20 +272,38 @@ public class MainScreenController
 		lblStopway.setText(Double.toString(Runway.getStopway()));
 		lblBlastProtection.setText(Double.toString(Runway.getBlastProtection()));
 		lblResa.setText(Double.toString(Runway.getResa()));
+		lblAngleOfSlope.setText(Double.toString(Runway.getAngleOfSlope()));
+		lblStripWidth.setText(Double.toString(Runway.getStripWidth()));
+		lblCAndGWidth.setText(Double.toString(Runway.getCagWidth()));
+
 	}
 
 
 	public final void updateObstacleList()
 	{
-		if (cmbRunways.getValue().getObstacle() != null)
+		txtObstacles.setText("");
+
+		final Runway currentRunway = cmbRunways.getValue();
+		if (currentRunway.getObstacle() != null)
 		{
-			txtObstacles.setText(cmbRunways.getValue().getObstacle().toString());
+			txtObstacles.setText(currentRunway.getObstacle().toString());
+			updateNewParameters(currentRunway.redeclare());
 			paintVisualisation();
 		}
 		else
 		{
 			txtObstacles.setText("");
 		}
+
+		if (!Objects.equals(txtObstacles.getText(), "") && !btnRemoveObstacle.isVisible())
+		{
+			toggleObstacleButton();
+		}
+		else if (Objects.equals(txtObstacles.getText(), "") && !btnAddObstacle.isVisible())
+		{
+			toggleObstacleButton();
+		}
+
 	}
 
 
@@ -460,7 +481,6 @@ public class MainScreenController
 
 			System.out.println(pixelRatio);
 
-
 			//draw TORA
 			graphicsContext.setFill(Color.rgb(255, 138, 138));
 			graphicsContext.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()), 0.55 * canvas.getHeight(), toraPixel, 5);
@@ -475,13 +495,13 @@ public class MainScreenController
 
 			//draw LDA
 			graphicsContext.setFill(Color.rgb(180, 225, 35));
-			graphicsContext.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()) + displacedThresholdPixel, 0.625 * canvas.getHeight(), ldaPixel - displacedThresholdPixel, 5);
+			graphicsContext
+					.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()) + displacedThresholdPixel, 0.625 * canvas.getHeight(), ldaPixel - displacedThresholdPixel, 5);
 
 			//draw Displaced Threshold
 			graphicsContext.setFill(Color.rgb(150, 210, 255));
 			graphicsContext.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()), 0.65 * canvas.getHeight(), displacedThresholdPixel, 5);
 		}
-
 
 	}
 
@@ -548,7 +568,7 @@ public class MainScreenController
 		//		graphicsContext.strokeLine(610, 0.4 * canvas.getHeight() + 50, 640, 0.4 * canvas.getHeight() + 50);
 		//		graphicsContext.strokeLine(670, 150, 700, 150);
 
-		double firstLineX = (RUNWAY_START_X_SCALING * canvas.getWidth()) + 40;
+		double firstLineX = (RUNWAY_START_X_SCALING * canvas.getWidth()) + 30;
 		double centreline = (RUNWAY_START_Y_SCALING * canvas.getHeight()) + 50;
 		for (int i = 1; i < canvas.getWidth() / 100; i++)
 		{

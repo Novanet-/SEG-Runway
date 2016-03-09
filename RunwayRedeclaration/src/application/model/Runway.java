@@ -3,28 +3,30 @@ package application.model;
 public class Runway
 {
 
-	//private static final double stripEnd = 50.0;
-	//private static final double resa     = 200.0;
-	private final int			runwayID;
-	private final String		alignment;
-	private final double		TORA;
-	private final double		TODA;
-	private final double		ASDA;
-	private final double		LDA;
-	private final double		displacedThreshold;
-	private Obstacle			obstacle;
-	private final String		explanation;
-	
 	// From Redeclaration
-	private static final double clearway        = 0.0; //75.0
-	private static final double stopway         = 0.0; //60.0
-	private static final double resa            = 240.0; //240.0
-	private static final double stripEnd        = 60.0;
-	private static final double blastProtection = 300.0; //300.0
-	private static final double runwayStrip     = 150.0; //150.0
+	private static final double CLEARWAY         = 0.0; //75.0
+	private static final double STOPWAY          = 0.0; //60.0
+	private static final double RESA             = 240.0; //240.0
+	private static final double STRIP_END        = 60.0;
+	private static final double STRIP_WIDTH      = 50.0;
+	private static final double CAG_WIDTH        = 75.0;
+	private static final double BLAST_PROTECTION = 300.0; //300.0
+	private static final double RUNWAY_STRIP     = 150.0; //150.0
+	private static final double ANGLE_OF_SLOPE   = 50.0;
+	//private static final double STRIP_END = 50.0;
+	//private static final double RESA     = 200.0;
+	private final int      runwayID;
+	private final String   alignment;
+	private final double   TORA;
+	private final double   TODA;
+	private final double   ASDA;
+	private final double   LDA;
+	private final double   displacedThreshold;
+	private final String   explanation;
+	private       Obstacle obstacle;
 
-	public Runway(final int runwayID, final String alignment, final double TORA, final double TODA, final double ASDA,
-			final double LDA, final double displacedThreshold)
+
+	public Runway(final int runwayID, final String alignment, final double TORA, final double TODA, final double ASDA, final double LDA, final double displacedThreshold)
 	{
 		if (alignment == null || alignment.equals(""))
 			throw new IllegalArgumentException();
@@ -40,9 +42,10 @@ public class Runway
 
 		obstacle = new Obstacle("Test1", 12.0, 3646.0, 300.0);
 	}
-	
-	public Runway(final int runwayID, final String alignment, final double TORA, final double TODA, final double ASDA,
-			final double LDA, final double displacedThreshold, final String explanation)
+
+
+	public Runway(final int runwayID, final String alignment, final double TORA, final double TODA, final double ASDA, final double LDA, final double displacedThreshold,
+			final String explanation)
 	{
 		if (alignment == null || alignment.equals(""))
 			throw new IllegalArgumentException();
@@ -90,9 +93,57 @@ public class Runway
 	}
 
 
-	public final void setObstacle(Obstacle obstacle)
+	public static double getClearway()
 	{
-		this.obstacle = obstacle;
+		return CLEARWAY;
+	}
+
+
+	public static double getStopway()
+	{
+		return STOPWAY;
+	}
+
+
+	public static double getResa()
+	{
+		return RESA;
+	}
+
+
+	public static double getStripEnd()
+	{
+		return STRIP_END;
+	}
+
+
+	public static double getBlastProtection()
+	{
+		return BLAST_PROTECTION;
+	}
+
+
+	public static double getRunwayStrip()
+	{
+		return RUNWAY_STRIP;
+	}
+
+
+	public static double getAngleOfSlope()
+	{
+		return ANGLE_OF_SLOPE;
+	}
+
+
+	public static double getStripWidth()
+	{
+		return STRIP_WIDTH;
+	}
+
+
+	public static double getCagWidth()
+	{
+		return CAG_WIDTH;
 	}
 
 
@@ -166,18 +217,25 @@ public class Runway
 
 		Runway o = (Runway) other;
 		return getRunwayID() == o.getRunwayID() &&
-				getAlignment().equals(o.getAlignment()) &&
+				java.util.Objects.equals(getAlignment(), o.getAlignment()) &&
 				getTORA() == o.getTORA() &&
 				getTODA() == o.getTODA() &&
 				getASDA() == o.getASDA() &&
 				getLDA() == o.getLDA() &&
 				getDisplacedThreshold() == o.getDisplacedThreshold() &&
-				getObstacle().equals(o.getObstacle());
+				java.util.Objects.equals(getObstacle(), o.getObstacle());
 	}
-	
+
+
 	public Obstacle getObstacle()
 	{
 		return obstacle;
+	}
+
+
+	public final void setObstacle(Obstacle obstacle)
+	{
+		this.obstacle = obstacle;
 	}
 
 
@@ -194,16 +252,17 @@ public class Runway
 		}
 	}
 
+
 	private Runway redeclareTowards(Obstacle o)
 	{
 		// Distance from Threshold - Slope Calculation - Strip End
 		// + getDisplacedThreshold() term seems to make sense
 		// based on scenarios
-		final double newTORA = o.getPosition() + getDisplacedThreshold() - (o.getHeight() * 50.0) - stripEnd;
-		
+		final double newTORA = o.getPosition() + getDisplacedThreshold() - (o.getHeight() * ANGLE_OF_SLOPE) - STRIP_END;
+
 		// Distance from Threshold - RESA - Strip End
-		final double newLDA = o.getPosition() - resa - stripEnd;
-		
+		final double newLDA = o.getPosition() - RESA - STRIP_END;
+
 		StringBuilder sb = new StringBuilder("This Redeclaration Explained:\n");
 		sb.append("New_TORA = obstacle_distance_from_threshold + displaced_Threshold - slope - strip_End\n");
 		sb.append("Where slope = obstacle_height * height_ratio\n");
@@ -214,7 +273,7 @@ public class Runway
 		sb.append(" - (");
 		sb.append(o.getHeight());
 		sb.append(" * 50) - ");
-		sb.append(stripEnd);
+		sb.append(STRIP_END);
 		sb.append(" = ");
 		sb.append(newTORA);
 		sb.append("\nNew_TODA = New_TORA\nNew_ASDA = New_TORA\n");
@@ -222,33 +281,33 @@ public class Runway
 		sb.append("New_LDA = ");
 		sb.append(o.getPosition());
 		sb.append(" - ");
-		sb.append(resa);
+		sb.append(RESA);
 		sb.append(" - ");
-		sb.append(stripEnd);
+		sb.append(STRIP_END);
 		sb.append(" = ");
-		sb.append(newLDA); 
-		
-		Runway ret = new Runway(getRunwayID(), getAlignment(), newTORA, newTORA, newTORA, newLDA,
-				getDisplacedThreshold(), sb.toString());
+		sb.append(newLDA);
+
+		Runway ret = new Runway(getRunwayID(), getAlignment(), newTORA, newTORA, newTORA, newLDA, getDisplacedThreshold(), sb.toString());
 		ret.setObstacle(o);
 		return ret;
 	}
+
 
 	private Runway redeclareAway(Obstacle o)
 	{
 		// Original TORA - Blast Protection - Dist from Threshold -
 		// Displaced Threshold
 		final double newTORA = getTORA() - o.getBlastProtection() - o.getPosition() - getDisplacedThreshold();
-		
+
 		// (R) TORA + STOPWAY
-		final double newTODA = newTORA + stopway;
-		
+		final double newTODA = newTORA + STOPWAY;
+
 		// (R) TORA + CLEARWAY
-		final double newASDA = newTORA + clearway;
-		
-		// Original LDA - Dist from Threshold - Strip End - Slop Calculation
-		final double newLDA = getLDA() - o.getPosition() - stripEnd - (o.getHeight() * 50.0);
-		
+		final double newASDA = newTORA + CLEARWAY;
+
+		// Original LDA - Dist from Threshold - Strip End - Slope Calculation
+		final double newLDA = getLDA() - o.getPosition() - STRIP_END - (o.getHeight() * ANGLE_OF_SLOPE);
+
 		StringBuilder sb = new StringBuilder("This Redeclaration Explained:\n");
 		sb.append("New_TORA = TORA - blast_protection - obstacle_position - displaced_threshold\n");
 		sb.append("New_TORA = ");
@@ -261,18 +320,18 @@ public class Runway
 		sb.append(getDisplacedThreshold());
 		sb.append(" = ");
 		sb.append(newTORA);
-		sb.append("\nNew_TODA = New_TORA + stopway\n");
+		sb.append("\nNew_TODA = New_TORA + STOPWAY\n");
 		sb.append("New_TODA = ");
 		sb.append(newTORA);
 		sb.append(" + ");
-		sb.append(stopway);
+		sb.append(STOPWAY);
 		sb.append(" = ");
 		sb.append(newTODA);
-		sb.append("\nNew_ASDA = New_TORA + clearway\n");
+		sb.append("\nNew_ASDA = New_TORA + CLEARWAY\n");
 		sb.append("New_ASDA = ");
 		sb.append(newTODA);
 		sb.append(" + ");
-		sb.append(clearway);
+		sb.append(CLEARWAY);
 		sb.append(" = ");
 		sb.append(newASDA);
 		sb.append("\nNew_LDA = LDA - obstacle_positon - strip_end - slope\n");
@@ -282,54 +341,18 @@ public class Runway
 		sb.append(" - ");
 		sb.append(o.getPosition());
 		sb.append(" - ");
-		sb.append(stripEnd);
+		sb.append(STRIP_END);
 		sb.append(" - (");
 		sb.append(o.getHeight());
 		sb.append(" * 50) = ");
 		sb.append(newLDA);
-		
-		Runway ret = new Runway(getRunwayID(), getAlignment(), newTORA, newTODA, newASDA, newLDA,
-				getDisplacedThreshold(), sb.toString());
+
+		Runway ret = new Runway(getRunwayID(), getAlignment(), newTORA, newTODA, newASDA, newLDA, getDisplacedThreshold(), sb.toString());
 		ret.setObstacle(o);
 		return ret;
 	}
 
 
-	public static double getClearway()
-	{
-		return clearway;
-	}
-
-
-	public static double getStopway()
-	{
-		return stopway;
-	}
-
-
-	public static double getResa()
-	{
-		return resa;
-	}
-
-
-	public static double getStripEnd()
-	{
-		return stripEnd;
-	}
-
-
-	public static double getBlastProtection()
-	{
-		return blastProtection;
-	}
-
-
-	public static double getRunwayStrip()
-	{
-		return runwayStrip;
-	}
-	
 	public String getExplanation()
 	{
 		return explanation;

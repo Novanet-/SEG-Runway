@@ -53,6 +53,6 @@ public class Obstacle
 	@Override
 	public final String toString()
 	{
-		return "Obs{" + name + ", h=" + height + ", p=" + position + '}';
+		return name + ": Height =" + height;
 	}
 }
