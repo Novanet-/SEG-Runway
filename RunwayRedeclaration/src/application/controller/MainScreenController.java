@@ -2,6 +2,7 @@ package application.controller;
 
 import application.Main;
 import application.model.Airport;
+import application.model.Obstacle;
 import application.model.Runway;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -272,6 +273,7 @@ public class MainScreenController
 		if (cmbRunways.getValue().getObstacle() != null)
 		{
 			txtObstacles.setText(cmbRunways.getValue().getObstacle().toString());
+			paintTopDown(cnvTop.getGraphicsContext2D());
 		}
 		else
 		{
@@ -390,7 +392,25 @@ public class MainScreenController
 		drawRunwaySurface(graphicsContext);
 		drawRunwayStripLines(graphicsContext);
 		drawParameterLines(graphicsContext);
+		drawObstacle(graphicsContext);
 
+	}
+
+
+	private void drawObstacle(final GraphicsContext graphicsContext)
+	{
+		if (!Objects.equals(txtObstacles.getText(), ""))
+		{
+			Canvas canvas = graphicsContext.getCanvas();
+			Obstacle obstacle = cmbRunways.getValue().getObstacle();
+
+			final double tora = Objects.equals(lblRecalcTora.getText(), "") ? Double.parseDouble(lblOrigTora.getText()) : Double.parseDouble(lblRecalcTora.getText());
+			final double pixelRatio = (SCALING * graphicsContext.getCanvas().getWidth()) / tora;
+
+			graphicsContext.setFill(Color.rgb(179, 45, 0)); //Background colour
+			graphicsContext.fillRect((obstacle.getPosition() * pixelRatio) + 25, 150 - 25, 50, 50);
+			//			graphicsContext.fillRect(250, 150, 50, 50);
+		}
 	}
 
 
