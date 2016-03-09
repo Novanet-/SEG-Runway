@@ -40,7 +40,14 @@ public class Runway
 		this.displacedThreshold = displacedThreshold;
 		this.explanation = null;
 
-		obstacle = new Obstacle("Test1", 12.0, 3646.0, 300.0);
+		if (alignment.equals("27R"))
+		{
+			obstacle = new Obstacle("27RTest", 12.0, 3646.0, 300.0);
+		}
+		if (alignment.equals("09L"))
+		{
+			obstacle = new Obstacle("09LTest", 12.0, -50.0, 300.0);
+		}
 	}
 
 
@@ -59,11 +66,19 @@ public class Runway
 		this.displacedThreshold = displacedThreshold;
 		this.explanation = explanation;
 
-		obstacle = new Obstacle("Test1", 12.0, 3646.0, 300.0);
+		if (alignment.equals("27R"))
+		{
+			obstacle = new Obstacle("27RTest", 12.0, 3646.0, 300.0);
+		}
+		if (alignment.equals("09L"))
+		{
+			obstacle = new Obstacle("09LTest", 12.0, -50.0, 300.0);
+		}
+
 	}
 
 
-	public static Integer calculateSecondPosition(Integer firstPosition)
+	public static Integer calculateSecondaryAlignment(Integer firstPosition)
 	{
 		if (firstPosition > 17)
 		{
@@ -76,8 +91,9 @@ public class Runway
 	}
 
 
-	public static String getSecondaryPosition(final String primaryPosition, String secondaryPosition)
+	public static String calculateSecondaryPosition(final String primaryPosition)
 	{
+		String secondaryPosition = "";
 		switch (primaryPosition)
 		{
 			case "L":
@@ -263,7 +279,7 @@ public class Runway
 		// Distance from Threshold - RESA - Strip End
 		final double newLDA = o.getPosition() - RESA - STRIP_END;
 
-		StringBuilder sb = new StringBuilder("This Redeclaration Explained:\n");
+		StringBuilder sb = new StringBuilder("This Redeclaration (Towards) Explained:\n");
 		sb.append("New_TORA = obstacle_distance_from_threshold + displaced_Threshold - slope - strip_End\n");
 		sb.append("Where slope = obstacle_height * height_ratio\n");
 		sb.append("New_TORA = ");
@@ -308,7 +324,7 @@ public class Runway
 		// Original LDA - Dist from Threshold - Strip End - Slope Calculation
 		final double newLDA = getLDA() - o.getPosition() - STRIP_END - (o.getHeight() * ANGLE_OF_SLOPE);
 
-		StringBuilder sb = new StringBuilder("This Redeclaration Explained:\n");
+		StringBuilder sb = new StringBuilder("This Redeclaration (Away) Explained:\n");
 		sb.append("New_TORA = TORA - blast_protection - obstacle_position - displaced_threshold\n");
 		sb.append("New_TORA = ");
 		sb.append(getTORA());

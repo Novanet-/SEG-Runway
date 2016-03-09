@@ -31,42 +31,6 @@ public class AddObstacleController
 	private Main                    mainApp;
 	private ObservableList<Airport> airportList;
 
-	//TODO: make textboxes clear after submission
-
-	/**
-	 * Based on the alignment of the first runway entered, calculates the alignment for the logical runway for the given runway in the opposite direction
-	 *
-	 * @param firstPosition The alignment of the first runway
-	 * @return The alignment of the opposite logical runway
-	 */
-	public static Integer calculateSecondPosition(Integer firstPosition)
-	{
-		if (firstPosition > 17)
-		{
-			return firstPosition - 18;
-		}
-		else
-		{
-			return firstPosition + 18;
-		}
-	}
-
-
-	public static String getSecondaryPosition(final String primaryPosition, String secondaryPosition)
-	{
-		switch (primaryPosition)
-		{
-			case "L":
-				secondaryPosition = "R";
-				break;
-			case "C:":
-				secondaryPosition = "C";
-				break;
-			case "R":
-				secondaryPosition = "L";
-		}
-		return secondaryPosition;
-	}
 
 
 	/**
@@ -163,14 +127,13 @@ public class AddObstacleController
 	{
 		lblAirportName.setText(airportName);
 		lblRunwayID.setText(runwayID);
-		String primaryID = runwayID.replaceAll("\\D+", "");
+		String primaryAlignment = runwayID.replaceAll("\\D+", "");
 		String primaryPosition = runwayID.replaceAll("\\d+", "");
-		String secondaryPosition = "";
 
-		secondaryPosition = Runway.getSecondaryPosition(primaryPosition, secondaryPosition);
+		final String secondaryPosition = Runway.calculateSecondaryPosition(primaryPosition);
 
-		Integer secondaryID = Runway.calculateSecondPosition(Integer.parseInt(primaryID));
-		lblSecondaryRunwayID.setText(String.format("%02d", secondaryID) + secondaryPosition);
+		Integer secondaryAlignment = Runway.calculateSecondaryAlignment(Integer.parseInt(primaryAlignment));
+		lblSecondaryRunwayID.setText(String.format("%02d", secondaryAlignment) + secondaryPosition);
 	}
 
 }

@@ -24,7 +24,6 @@ public class Main extends Application
 	//TODO: Add obstacle JUNIT tests
 	//TODO: Add more null/validity checking
 	//TODO: look into XML
-	//TODO: look into java graphics
 	//TODO: readme file, help document
 
 

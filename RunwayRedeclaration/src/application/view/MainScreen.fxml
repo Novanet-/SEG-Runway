@@ -41,10 +41,22 @@
                                     <children>
                                         <GridPane prefHeight="132.0" prefWidth="390.0" vgap="5.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="57.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.0" minWidth="10.0" prefWidth="81.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="147.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="115.0" />
+                                                <ColumnConstraints hgrow = "SOMETIMES"
+                                                                   maxWidth = "92.0"
+                                                                   minWidth = "10.0"
+                                                                   prefWidth = "22.0"/>
+                                                <ColumnConstraints hgrow = "SOMETIMES"
+                                                                   maxWidth = "112.0"
+                                                                   minWidth = "10.0"
+                                                                   prefWidth = "83.0"/>
+                                                <ColumnConstraints hgrow = "SOMETIMES"
+                                                                   maxWidth = "215.0"
+                                                                   minWidth = "10.0"
+                                                                   prefWidth = "215.0"/>
+                                                <ColumnConstraints hgrow = "SOMETIMES"
+                                                                   maxWidth = "151.0"
+                                                                   minWidth = "10.0"
+                                                                   prefWidth = "71.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
                                                 <RowConstraints maxHeight="62.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES" />
@@ -83,9 +95,6 @@
                                                     </effect>
                                                 </Label>
                                                 <TextField fx:id="txtObstacles" onAction="#handleObjectSelected" prefHeight="50.0" prefWidth="145.0" styleClass="text-field-small" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                                    <padding>
-                                                        <Insets bottom="5.0" left="5.0" right="5.0" />
-                                                    </padding>
                                                     <GridPane.margin>
                                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                     </GridPane.margin>
@@ -100,12 +109,30 @@
                                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                     </GridPane.margin>
                                                 </ComboBox>
-                                                <Button fx:id="btnAddObstacle" mnemonicParsing="false" onAction="#handleBtnAddObstacle" prefHeight="33.0" prefWidth="59.0" text="+" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                                                <Button fx:id = "btnAddObstacle"
+                                                        alignment = "CENTER"
+                                                        mnemonicParsing = "false"
+                                                        onAction = "#handleBtnAddObstacle"
+                                                        prefWidth = "60.0"
+                                                        text = "+"
+                                                        textAlignment = "CENTER"
+                                                        GridPane.columnIndex = "3"
+                                                        GridPane.halignment = "LEFT"
+                                                        GridPane.rowIndex = "2">
                                                     <GridPane.margin>
                                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                     </GridPane.margin>
                                                 </Button>
-                                                <Button fx:id="btnRemoveObstacle" mnemonicParsing="false" onAction="#handleBtnRemoveObstacle" prefHeight="33.0" prefWidth="0.0" text="-" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                                <Button fx:id = "btnRemoveObstacle"
+                                                        alignment = "CENTER"
+                                                        mnemonicParsing = "false"
+                                                        onAction = "#handleBtnRemoveObstacle"
+                                                        prefWidth = "60.0"
+                                                        text = "-"
+                                                        textAlignment = "CENTER"
+                                                        GridPane.columnIndex = "3"
+                                                        GridPane.halignment = "RIGHT"
+                                                        GridPane.rowIndex = "2">
                                                     <GridPane.margin>
                                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                     </GridPane.margin>
@@ -357,9 +384,11 @@
                                         </GridPane>
                                     </children>
                                 </AnchorPane>
-                                <TextArea prefHeight = "158.0"
+                                <TextArea fx:id = "txtCalculations"
+                                          prefHeight = "158.0"
                                           prefWidth = "390.0"
-                                          style = "-fx-background-color: #41464d;"
+                                          style = "-fx-background-color: #41464d; -fx-text-fill: .text-area .content{  -fx-background-color:  #41464d; -fx-font-size: 7pt; -fx-font-family: &quot;Helvetica Neue&quot;, &quot;Segoe UI Semibold&quot;; -fx-text-fill: #d6dadb; }: ;"
+                                          styleClass = "text-area"
                                           stylesheets = "@application.css"
                                           GridPane.rowIndex = "4"/>
                             </children>

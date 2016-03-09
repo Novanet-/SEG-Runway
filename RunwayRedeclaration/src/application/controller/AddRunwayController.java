@@ -37,7 +37,6 @@ public class AddRunwayController
 
 	//TODO: modify css to style dialog boxes
 
-	//TODO: make textboxes clear after submission
 
 
 	/**
@@ -85,7 +84,6 @@ public class AddRunwayController
 			final double secondaryDisplacedThreshold = Double.parseDouble(txtSecondaryDisplacedThreshold.textProperty().getValue());
 
 			// TODO: Add strip width as a user declared property of runways
-			// TODO: Add angle of slope and clear and graded width as systemic runway constants
 
 			final String alignment = cmbRunwayAlignment.getValue().toString() + cmbRunwayPosition.getValue().toString();
 			final Runway primaryRunway = new Runway(0, alignment, primaryTORA, primaryTODA, primaryASDA, primaryLDA, primaryDisplacedThreshold);
@@ -124,7 +122,7 @@ public class AddRunwayController
 	@FXML
 	private void handleItemSelected()
 	{
-		updateSecondRunway(Runway.calculateSecondPosition(Integer.parseInt(cmbRunwayAlignment.getValue())), cmbRunwayPosition.getValue());
+		updateSecondRunway(Runway.calculateSecondaryAlignment(Integer.parseInt(cmbRunwayAlignment.getValue())), cmbRunwayPosition.getValue());
 	}
 
 
@@ -134,7 +132,7 @@ public class AddRunwayController
 	@FXML
 	private void handlePositionSelected()
 	{
-		updateSecondRunway(Runway.calculateSecondPosition(Integer.parseInt(cmbRunwayAlignment.getValue())), cmbRunwayPosition.getValue());
+		updateSecondRunway(Runway.calculateSecondaryAlignment(Integer.parseInt(cmbRunwayAlignment.getValue())), cmbRunwayPosition.getValue());
 	}
 
 

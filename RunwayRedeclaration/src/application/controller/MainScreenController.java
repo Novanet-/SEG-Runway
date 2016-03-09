@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.util.Iterator;
 import java.util.Objects;
 
 public class MainScreenController
@@ -54,6 +55,7 @@ public class MainScreenController
 	@FXML private Label                   lblCAndGWidth;
 	@FXML private Button                  btnAddObstacle;
 	@FXML private Button                  btnRemoveObstacle;
+	@FXML private TextArea                txtCalculations;
 
 	@FXML private Canvas cnvTop; //870x345
 	@FXML private Canvas cnvSide; //870x345
@@ -137,7 +139,6 @@ public class MainScreenController
 		}
 	}
 
-	//TODO: When obstacle is removed from one logical runway, it should remove it from both logical runways
 
 	//TODO: Change add airport/runway buttons to + and - buttons as per obstacle for consistency and to allow for removal or airports and runways
 
@@ -145,11 +146,35 @@ public class MainScreenController
 	@FXML
 	private void handleBtnRemoveObstacle()
 	{
-		if (cmbRunways.getValue() != null)
+		final Runway currentRunway = cmbRunways.getValue();
+		if (currentRunway != null)
 		{
-			if (cmbRunways.getValue().getObstacle() != null)
+			if (currentRunway.getObstacle() != null)
 			{
-				cmbRunways.getValue().removeObstacle();
+				String secondaryRunwayID = getSecondaryRunwayID(currentRunway);
+				System.out.println(secondaryRunwayID);
+
+				Runway secondaryRunway = null;
+				try
+				{
+					secondaryRunway = getRequestedRunway(secondaryRunwayID);
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+
+				currentRunway.removeObstacle();
+				if (secondaryRunway != null)
+				{
+					secondaryRunway.removeObstacle();
+				}
+				else
+				{
+					System.out.println("MainScreenController.handleBtnRemoveObstacle");
+					System.out.println("secondaryRunway = " + secondaryRunway);
+				}
+
 				updateObstacleList();
 			}
 			else
@@ -165,7 +190,35 @@ public class MainScreenController
 		}
 	}
 
-	//TODO: fix weirdness with reclaration after removing then adding a new obstacle
+
+	private String getSecondaryRunwayID(final Runway currentRunway)
+	{
+		final int primaryAlignment = Integer.parseInt(currentRunway.getAlignment().replaceAll("\\D+", ""));
+		final String primaryPosition = currentRunway.getAlignment().replaceAll("\\d+", "");
+		return String.format("%02d", Runway.calculateSecondaryAlignment(primaryAlignment)) + Runway.calculateSecondaryPosition(primaryPosition);
+	}
+
+
+	private Runway getRequestedRunway(final String secondaryRunwayID) throws Exception
+	{
+		Iterator<Airport> airportList = mainApp.getAirportList().iterator();
+		while (airportList.hasNext())
+		{
+			Airport currentAirport = airportList.next();
+			Iterator<Runway> runwayList = currentAirport.getRunways().iterator();
+			while (runwayList.hasNext())
+			{
+				Runway currRunway = runwayList.next();
+				if (Objects.equals(currRunway.getAlignment(), secondaryRunwayID))
+				{
+					return currRunway;
+				}
+			}
+		}
+		throw new Exception("Runway not found");
+	}
+
+
 
 	/**
 	 * Swaps add/remove obstacle button so only 1 shows at a time
@@ -230,6 +283,7 @@ public class MainScreenController
 			if (currentRunway.getObstacle() != null)
 			{
 				newRunway = currentRunway.redeclare();
+				txtCalculations.setText(newRunway.getExplanation());
 			}
 		}
 		updateNewParameters(newRunway);
@@ -281,29 +335,32 @@ public class MainScreenController
 
 	public final void updateObstacleList()
 	{
-		txtObstacles.setText("");
 
-		final Runway currentRunway = cmbRunways.getValue();
-		if (currentRunway.getObstacle() != null)
+		if (cmbRunways.getValue() != null)
 		{
-			txtObstacles.setText(currentRunway.getObstacle().toString());
-			updateNewParameters(currentRunway.redeclare());
-			paintVisualisation();
-		}
-		else
-		{
-			txtObstacles.setText("");
-		}
+			final Runway currentRunway = cmbRunways.getValue();
+			if (currentRunway.getObstacle() != null)
+			{
+				txtObstacles.setText(currentRunway.getObstacle().toString());
+				final Runway newRunway = currentRunway.redeclare();
+				updateNewParameters(newRunway);
+				txtCalculations.setText(newRunway.getExplanation());
+				paintVisualisation();
+			}
+			else
+			{
+				txtObstacles.setText("");
+			}
 
-		if (!Objects.equals(txtObstacles.getText(), "") && !btnRemoveObstacle.isVisible())
-		{
-			toggleObstacleButton();
+			if (!Objects.equals(txtObstacles.getText(), "") && !btnRemoveObstacle.isVisible())
+			{
+				toggleObstacleButton();
+			}
+			else if (Objects.equals(txtObstacles.getText(), "") && !btnAddObstacle.isVisible())
+			{
+				toggleObstacleButton();
+			}
 		}
-		else if (Objects.equals(txtObstacles.getText(), "") && !btnAddObstacle.isVisible())
-		{
-			toggleObstacleButton();
-		}
-
 	}
 
 
@@ -448,10 +505,15 @@ public class MainScreenController
 			Obstacle obstacle = cmbRunways.getValue().getObstacle();
 
 			final double tora = Objects.equals(lblRecalcTora.getText(), "") ? Double.parseDouble(lblOrigTora.getText()) : Double.parseDouble(lblRecalcTora.getText());
-			final double pixelRatio = (SCALING * graphicsContext.getCanvas().getWidth()) / tora;
+			final double pixelRatio = (SCALING * canvas.getWidth()) / Double.parseDouble(lblOrigTora.getText());
 
 			graphicsContext.setFill(Color.rgb(179, 45, 0)); //Background colour
-			graphicsContext.fillRect((obstacle.getPosition() * pixelRatio) + 20, (RUNWAY_START_Y_SCALING * canvas.getHeight()) + 30, 40, 40);
+			//			graphicsContext.fillRect((obstacle.getPosition() * pixelRatio) + 20, (RUNWAY_START_Y_SCALING * canvas.getHeight()) + 30, 40, 40);
+			final double centreAdjustmentX = (obstacle.getPosition() < 0) ? -40 : 20;
+			final double centreAdjustmentY = 30.0;
+			final double runwayStartX = RUNWAY_START_X_SCALING * canvas.getWidth();
+			final double runwayStartY = RUNWAY_START_Y_SCALING * canvas.getHeight();
+			graphicsContext.fillRect(runwayStartX + (obstacle.getPosition() * pixelRatio) + centreAdjustmentX, runwayStartY + centreAdjustmentY, 40, 40);
 			//			graphicsContext.fillRect(250, 150, 50, 50);
 		}
 	}
@@ -472,8 +534,8 @@ public class MainScreenController
 					Double.parseDouble(lblRecalcDisplacedThreshold.getText());
 
 			//Calculate TORA, TODA, ASDA, LDA
-			final double pixelRatio = (SCALING * graphicsContext.getCanvas().getWidth()) / tora;
-			final double toraPixel = SCALING * graphicsContext.getCanvas().getWidth();
+			final double pixelRatio = (SCALING * canvas.getWidth()) / Double.parseDouble(lblOrigTora.getText());
+			final double toraPixel = tora * pixelRatio;
 			final double todaPixel = toda * pixelRatio;
 			final double asdaPixel = asda * pixelRatio;
 			final double ldaPixel = lda * pixelRatio;
@@ -495,8 +557,7 @@ public class MainScreenController
 
 			//draw LDA
 			graphicsContext.setFill(Color.rgb(180, 225, 35));
-			graphicsContext
-					.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()) + displacedThresholdPixel, 0.625 * canvas.getHeight(), ldaPixel - displacedThresholdPixel, 5);
+			graphicsContext.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()) + displacedThresholdPixel, 0.625 * canvas.getHeight(), ldaPixel, 5);
 
 			//draw Displaced Threshold
 			graphicsContext.setFill(Color.rgb(150, 210, 255));

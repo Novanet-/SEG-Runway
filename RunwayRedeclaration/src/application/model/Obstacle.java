@@ -53,6 +53,6 @@ public class Obstacle
 	@Override
 	public final String toString()
 	{
-		return name + ": Height =" + height;
+		return name + ": Height =" + height + ", Pos = " + position;
 	}
 }
