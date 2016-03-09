@@ -9,7 +9,7 @@ import application.model.Runway;
 
 public class RedeclarationScenarios
 {
-	// TODO: finish and check values for scenarios 2-4
+	
 	@Test
 	public void test1Scenario09L()
 	{
