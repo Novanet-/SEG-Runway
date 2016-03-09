@@ -541,19 +541,21 @@ public class MainScreenController
 			final double ldaPixel = lda * pixelRatio;
 			final double displacedThresholdPixel = displacedThreshold * pixelRatio;
 
-			System.out.println(pixelRatio);
+			//System.out.println(pixelRatio);
+
+			final double toraStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth() + displacedThresholdPixel;
 
 			//draw TORA
 			graphicsContext.setFill(Color.rgb(255, 138, 138));
-			graphicsContext.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()), 0.55 * canvas.getHeight(), toraPixel, 5);
+			graphicsContext.fillRect(toraStartPixel, 0.55 * canvas.getHeight(), toraPixel, 5);
 
 			//draw TODA
 			graphicsContext.setFill(Color.rgb(255, 190, 50));
-			graphicsContext.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()), 0.575 * canvas.getHeight(), todaPixel, 5);
+			graphicsContext.fillRect(toraStartPixel, 0.575 * canvas.getHeight(), todaPixel, 5);
 
 			//draw ASDA
 			graphicsContext.setFill(Color.rgb(255, 240, 40));
-			graphicsContext.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()), 0.6 * canvas.getHeight(), asdaPixel, 5);
+			graphicsContext.fillRect(toraStartPixel, 0.6 * canvas.getHeight(), asdaPixel, 5);
 
 			//draw LDA
 			graphicsContext.setFill(Color.rgb(180, 225, 35));
