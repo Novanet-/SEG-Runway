@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import java.lang.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.geometry.*?>
@@ -43,21 +44,6 @@
                                                 <RowConstraints maxHeight="42.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
-                                                <Label text="" textFill="#efefef" GridPane.halignment="RIGHT">
-                                                    <font>
-                                                        <Font name="FontAwesome" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label text="" textFill="#efefef" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                                                    <font>
-                                                        <Font name="FontAwesome" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label text="" textFill="#efefef" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-                                                    <font>
-                                                        <Font name="FontAwesome" size="13.0" />
-                                                    </font>
-                                                </Label>
                                                 <Label text="Runway: " textFill="#efefef" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                                                     <effect>
                                                         <Blend />
@@ -98,6 +84,9 @@
                                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                     </GridPane.margin>
                                                 </Button>
+                                    <FontAwesomeIcon fill="#d6dadb" glyphName="PLANE" GridPane.halignment="RIGHT" />
+                                    <FontAwesomeIcon fill="#d6dadb" glyphName="ROAD" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                    <FontAwesomeIcon fill="#d6dadb" glyphName="CUBE" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                                             </children>
                                         </GridPane>
                                     </children>
