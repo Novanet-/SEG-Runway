@@ -12,7 +12,8 @@ public class Runway
 	private final double		ASDA;
 	private final double		LDA;
 	private final double		displacedThreshold;
-	private Obstacle		obstacle;
+	private Obstacle			obstacle;
+	private final String		explanation;
 	
 	// From Redeclaration
 	private static final double clearway        = 0.0; //75.0
@@ -22,7 +23,8 @@ public class Runway
 	private static final double blastProtection = 300.0; //300.0
 	private static final double runwayStrip     = 150.0; //150.0
 
-	public Runway(final int runwayID, final String alignment, final double TORA, final double TODA, final double ASDA, final double LDA, final double displacedThreshold)
+	public Runway(final int runwayID, final String alignment, final double TORA, final double TODA, final double ASDA,
+			final double LDA, final double displacedThreshold)
 	{
 		if (alignment == null || alignment.equals(""))
 			throw new IllegalArgumentException();
@@ -34,6 +36,25 @@ public class Runway
 		this.ASDA = ASDA;
 		this.LDA = LDA;
 		this.displacedThreshold = displacedThreshold;
+		this.explanation = null;
+
+		obstacle = new Obstacle("Test1", 12.0, 3646.0, 300.0);
+	}
+	
+	public Runway(final int runwayID, final String alignment, final double TORA, final double TODA, final double ASDA,
+			final double LDA, final double displacedThreshold, final String explanation)
+	{
+		if (alignment == null || alignment.equals(""))
+			throw new IllegalArgumentException();
+
+		this.runwayID = runwayID;
+		this.alignment = alignment;
+		this.TORA = TORA;
+		this.TODA = TODA;
+		this.ASDA = ASDA;
+		this.LDA = LDA;
+		this.displacedThreshold = displacedThreshold;
+		this.explanation = explanation;
 
 		obstacle = new Obstacle("Test1", 12.0, 3646.0, 300.0);
 	}
@@ -205,12 +226,12 @@ public class Runway
 		sb.append(" - ");
 		sb.append(stripEnd);
 		sb.append(" = ");
-		sb.append(newLDA);
-		System.out.println(sb);
-		// TODO: do something with this explanation - save it to the new Runway object, print to screen 
+		sb.append(newLDA); 
 		
-		// TODO: return original obstacle
-		return new Runway(getRunwayID(), getAlignment(), newTORA, newTORA, newTORA, newLDA, getDisplacedThreshold());
+		Runway ret = new Runway(getRunwayID(), getAlignment(), newTORA, newTORA, newTORA, newLDA,
+				getDisplacedThreshold(), sb.toString());
+		ret.setObstacle(o);
+		return ret;
 	}
 
 	private Runway redeclareAway(Obstacle o)
@@ -266,10 +287,11 @@ public class Runway
 		sb.append(o.getHeight());
 		sb.append(" * 50) = ");
 		sb.append(newLDA);
-		System.out.println(sb);
-		// TODO: do something with this explanation - save it to the new Runway object, print to screen
 		
-		return new Runway(getRunwayID(), getAlignment(), newTORA, newTODA, newASDA, newLDA, getDisplacedThreshold());
+		Runway ret = new Runway(getRunwayID(), getAlignment(), newTORA, newTODA, newASDA, newLDA,
+				getDisplacedThreshold(), sb.toString());
+		ret.setObstacle(o);
+		return ret;
 	}
 
 
@@ -306,5 +328,10 @@ public class Runway
 	public static double getRunwayStrip()
 	{
 		return runwayStrip;
+	}
+	
+	public String getExplanation()
+	{
+		return explanation;
 	}
 }
