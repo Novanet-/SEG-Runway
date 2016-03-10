@@ -30,7 +30,7 @@ public class Main extends Application
 	private static final String MAIN_FXML         = "view/MainScreen.fxml";
 	private static final String ADD_AIRPORT_FXML  = "view/AddAirport.fxml";
 	private static final String ADD_RUNWAY_FXML   = "view/AddRunway.fxml";
-	private static final String ADD_OBJECT_FXML   = "view/AddObject.fxml";
+	private static final String ADD_OBJECT_FXML   = "view/AddObstacle.fxml";
 
 	private ObservableList<Airport> airportList;
 
