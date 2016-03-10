@@ -567,8 +567,9 @@ public class MainScreenController
 					ldaStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + ((SCALING * canvas.getWidth()) - ldaPixel);
 					displacedThresholdStartPixel = toraStartPixel;
 				} else {
-					ldaStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth();
-					displacedThresholdStartPixel = ldaStartPixel + ldaPixel;
+					//displacement threshold stays in same position on runway
+					//ldaStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth();
+					//displacedThresholdStartPixel = ldaStartPixel + ldaPixel;
 				}
 
 			}
