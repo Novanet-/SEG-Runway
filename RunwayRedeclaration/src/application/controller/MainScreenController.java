@@ -555,6 +555,7 @@ public class MainScreenController
 
 			//System.out.println(pixelRatio);
 
+			//TODO: If obstacle nearer start of runway, parameters should finish at end of runway
 			final double toraStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth() + displacedThresholdPixel;
 
 			//draw TORA
