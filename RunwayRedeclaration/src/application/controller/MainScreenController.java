@@ -564,8 +564,9 @@ public class MainScreenController
 
 				if(obstacle.getPosition() < (Double.parseDouble(lblOrigTora.getText())/2.0)) {
 					toraStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + ((SCALING * canvas.getWidth()) - toraPixel);
+					//ldaStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + displacedThresholdPixel;
 					ldaStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + ((SCALING * canvas.getWidth()) - ldaPixel);
-					displacedThresholdStartPixel = toraStartPixel;
+					displacedThresholdStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth();
 				} else {
 					//displacement threshold stays in same position on runway
 					//ldaStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth();
