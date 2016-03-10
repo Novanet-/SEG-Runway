@@ -7,10 +7,12 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,8 +129,8 @@ public class AddRunwayController
 		}
 		catch (final NumberFormatException e)
 		{
-			System.out.print("Error adding runway");
-			e.printStackTrace();
+			final Alert alert = new Alert(AlertType.ERROR, "Please enter only numerical values.");
+			alert.showAndWait();
 		}
 	}
 
