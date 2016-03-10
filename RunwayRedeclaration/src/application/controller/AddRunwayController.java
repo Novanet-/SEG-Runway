@@ -3,6 +3,7 @@ package application.controller;
 import application.Main;
 import application.model.Airport;
 import application.model.Runway;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -38,7 +39,6 @@ public class AddRunwayController
 	//TODO: modify css to style dialog boxes
 
 
-
 	/**
 	 * Initializes the controller class. This method is automatically called
 	 * after the fxml file has been loaded.
@@ -60,12 +60,25 @@ public class AddRunwayController
 
 		cmbRunwayAlignment.setItems(FXCollections.observableArrayList(alignments));
 		cmbRunwayPosition.setItems(FXCollections.observableArrayList(positions));
+
+		final BooleanBinding needInputsFilled = txtPrimaryTORA.textProperty().isEmpty().or(txtPrimaryTODA.textProperty().isEmpty()).or(txtPrimaryASDA.textProperty().isEmpty())
+				.or(txtPrimaryLDA.textProperty().isEmpty()).or(txtPrimaryDisplacedThreshold.textProperty().isEmpty()).or(txtSecondaryTORA.textProperty().isEmpty())
+				.or(txtSecondaryTODA.textProperty().isEmpty()).or(txtSecondaryASDA.textProperty().isEmpty()).or(txtSecondaryLDA.textProperty().isEmpty())
+				.or(txtSecondaryDisplacedThreshold.textProperty().isEmpty());
+		btnSubmitRunway.disableProperty().bind(needInputsFilled);
+
+		// I have added 2 textFields, you can add more...
+		final BooleanBinding needAlignmentSelected = cmbRunwayAlignment.valueProperty().isNull();
+		cmbRunwayPosition.disableProperty().bind(needAlignmentSelected);
 		cmbRunwayAlignment.setValue("00");
 		cmbRunwayPosition.setValue("");
 	}
 
 	//TODO: Add not-null/data type validation to input/submission
+
 	//TODO: Ensure integers are accepted
+
+
 	/**
 	 *
 	 */
@@ -143,8 +156,10 @@ public class AddRunwayController
 	{
 		String newPosition = "";
 
-		if(!position.isEmpty()) {
-			switch (position) {
+		if (!position.isEmpty())
+		{
+			switch (position)
+			{
 				case "L":
 					newPosition = "R";
 					break;
