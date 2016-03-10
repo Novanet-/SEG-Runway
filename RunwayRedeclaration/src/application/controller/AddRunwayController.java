@@ -7,11 +7,7 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 
 import java.util.ArrayList;
@@ -48,7 +44,7 @@ public class AddRunwayController
 	@FXML
 	private void initialize()
 	{
-		final List<String> alignments = new ArrayList<String>();
+		final List<String> alignments = new ArrayList<>();
 		for (int i = 0; i < 35; i++)
 		{
 			alignments.add(String.format("%02d", i));
@@ -103,12 +99,13 @@ public class AddRunwayController
 
 			// TODO: Add strip width as a user declared property of runways
 
-			final String alignment = cmbRunwayAlignment.getValue().toString() + cmbRunwayPosition.getValue().toString();
+			final String alignment = cmbRunwayAlignment.getValue() + cmbRunwayPosition.getValue();
 			final Runway primaryRunway = new Runway(0, alignment, primaryTORA, primaryTODA, primaryASDA, primaryLDA, primaryDisplacedThreshold);
 			final Runway secondaryRunway = new Runway(1, lblSecondRunwayAlignment.getText(), secondaryTORA, secondaryTODA, secondaryASDA, secondaryLDA,
 					secondaryDisplacedThreshold);
 
 			final Airport selectedAirport = getSelectedAirport();
+			assert selectedAirport != null;
 			selectedAirport.addRunway(primaryRunway);
 			selectedAirport.addRunway(secondaryRunway);
 
@@ -200,7 +197,7 @@ public class AddRunwayController
 	/**
 	 * Is called by the main application to give a reference back to itself.
 	 *
-	 * @param mainApp
+	 * @param mainApp The main application
 	 */
 	public final void setMainApp(Main mainApp)
 	{

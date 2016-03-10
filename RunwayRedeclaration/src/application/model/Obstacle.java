@@ -11,6 +11,7 @@ public class Obstacle
 	private final double blastProtection;
 
 
+	@SuppressWarnings("UnusedParameters")
 	public Obstacle(final String name, final double height, final double position, final double blastProtection)
 	{
 		this.name = name;
@@ -20,18 +21,12 @@ public class Obstacle
 	}
 
 
-	/**
-	 * @return
-	 */
 	public String getName()
 	{
 		return name;
 	}
 
 
-	/**
-	 * @return
-	 */
 	public final double getHeight()
 	{
 		return height;

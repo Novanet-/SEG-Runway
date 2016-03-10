@@ -62,23 +62,19 @@ public class AddObstacleController
 		final Obstacle primaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstaclePrimaryPosition, 300.0);
 		final Obstacle secondaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstacleSecondaryPosition, 300.0);
 
-		for (final Airport a : airportList)
-		{
-			if (a.getAirportName().equals(lblAirportName.getText()))
+		airportList.stream().filter(a -> a.getAirportName().equals(lblAirportName.getText())).forEach(a -> {
+			for (final Runway r : a.getRunways())
 			{
-				for (final Runway r : a.getRunways())
+				if (r.getAlignment().equals(lblRunwayID.getText()))
 				{
-					if (r.getAlignment().equals(lblRunwayID.getText()))
-					{
-						r.setObstacle(primaryObstacle);
-					}
-					if (r.getAlignment().equals(lblSecondaryRunwayID.getText()))
-					{
-						r.setObstacle(secondaryObstacle);
-					}
+					r.setObstacle(primaryObstacle);
+				}
+				if (r.getAlignment().equals(lblSecondaryRunwayID.getText()))
+				{
+					r.setObstacle(secondaryObstacle);
 				}
 			}
-		}
+		});
 		mainApp.toggleAddObstacle(lblAirportName.getText(), lblRunwayID.getText());
 
 	}
@@ -108,7 +104,7 @@ public class AddObstacleController
 	/**
 	 * Is called by the main application to give a reference back to itself.
 	 *
-	 * @param mainApp
+	 * @param mainApp The main application
 	 */
 	public final void setMainApp(Main mainApp)
 	{

@@ -20,6 +20,7 @@ public class AddAirportController
 	 * Initializes the controller class. This method is automatically called
 	 * after the fxml file has been loaded.
 	 */
+	@SuppressWarnings("EmptyMethod")
 	@FXML
 	private void initialize()
 	{
@@ -38,7 +39,7 @@ public class AddAirportController
 	/**
 	 * Is called by the main application to give a reference back to itself.
 	 *
-	 * @param mainApp
+	 * @param mainApp The main application
 	 */
 	public final void setMainApp(Main mainApp)
 	{

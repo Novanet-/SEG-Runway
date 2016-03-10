@@ -14,16 +14,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 
-import java.util.Iterator;
 import java.util.Objects;
 
 public class MainScreenController
 {
 
-	public static final double SCALING                = 0.575;
-	public static final double RUNWAY_START_X_SCALING = 0.175;
-	public static final double RUNWAY_START_Y_SCALING = 0.4;
-	public static final double RUNWAY_HEIGHT_SCALING  = 0.14;
+	private static final double SCALING                = 0.575;
+	private static final double RUNWAY_START_X_SCALING = 0.175;
+	private static final double RUNWAY_START_Y_SCALING = 0.4;
+	private static final double RUNWAY_HEIGHT_SCALING  = 0.14;
 	/**
 	 * Used to prevent adding a runway without
 	 * an airport selected.
@@ -73,7 +72,6 @@ public class MainScreenController
 		btnRemoveObstacle.setVisible(false);
 		btnRemoveObstacle.setManaged(false);
 
-		GraphicsContext graphicsContext = cnvTop.getGraphicsContext2D();
 		paintVisualisation();
 	}
 
@@ -163,9 +161,10 @@ public class MainScreenController
 				{
 					secondaryRunway.removeObstacle();
 				}
-				else {
+				else
+				{
 					System.out.println("MainScreenController.handleBtnRemoveObstacle");
-					System.out.println("secondaryRunway = " + secondaryRunway);
+					System.out.println("secondaryRunway = " + null);
 				}
 				updateObstacleList();
 				updateOriginalParameters();
@@ -194,14 +193,10 @@ public class MainScreenController
 
 	private Runway getRequestedRunway(final String secondaryRunwayID) throws Exception
 	{
-		Iterator<Airport> airportList = mainApp.getAirportList().iterator();
-		while (airportList.hasNext())
+		for (final Airport currentAirport : mainApp.getAirportList())
 		{
-			Airport currentAirport = airportList.next();
-			Iterator<Runway> runwayList = currentAirport.getRunways().iterator();
-			while (runwayList.hasNext())
+			for (final Runway currRunway : currentAirport.getRunways())
 			{
-				Runway currRunway = runwayList.next();
 				if (Objects.equals(currRunway.getAlignment(), secondaryRunwayID))
 				{
 					return currRunway;
@@ -451,7 +446,7 @@ public class MainScreenController
 	/**
 	 * Is called by the main application to give a reference back to itself.
 	 *
-	 * @param mainApp
+	 * @param mainApp The main application
 	 */
 	public final void setMainApp(Main mainApp)
 	{
@@ -466,13 +461,11 @@ public class MainScreenController
 	{
 		airportList = mainApp.getAirportList();
 		updateCmbAirports();
-		airportList.addListener((ListChangeListener) change -> {
-			updateCmbAirports();
-		});
+		airportList.addListener((ListChangeListener<Airport>) change -> updateCmbAirports());
 	}
 
 
-	public void paintVisualisation()
+	private void paintVisualisation()
 	{
 		paintTopDown(cnvTop.getGraphicsContext2D());
 		paintSideOn(cnvSide.getGraphicsContext2D());
@@ -482,9 +475,9 @@ public class MainScreenController
 	/**
 	 * Generates the top-down visualisation of the Runway
 	 *
-	 * @param graphicsContext
+	 * @param graphicsContext The graphics context to paint to
 	 */
-	public void paintTopDown(GraphicsContext graphicsContext)
+	private void paintTopDown(GraphicsContext graphicsContext)
 	{
 		graphicsContext.clearRect(0, 0, 870, 345); //Clears canvas for new runway
 		graphicsContext.setFill(Color.rgb(255, 255, 255));
@@ -501,9 +494,9 @@ public class MainScreenController
 	/**
 	 * Generates the top-down visualisation of the Runway
 	 *
-	 * @param graphicsContext
+	 * @param graphicsContext The graphics content to paint to
 	 */
-	public void paintSideOn(GraphicsContext graphicsContext)
+	private void paintSideOn(GraphicsContext graphicsContext)
 	{
 		graphicsContext.clearRect(0, 0, 870, 345); //Clears canvas for new runway
 		graphicsContext.setFill(Color.rgb(255, 255, 255));
@@ -523,7 +516,6 @@ public class MainScreenController
 			Canvas canvas = graphicsContext.getCanvas();
 			Obstacle obstacle = cmbRunways.getValue().getObstacle();
 
-			final double tora = Objects.equals(lblRecalcTora.getText(), "") ? Double.parseDouble(lblOrigTora.getText()) : Double.parseDouble(lblRecalcTora.getText());
 			final double pixelRatio = (SCALING * canvas.getWidth()) / Double.parseDouble(lblOrigTora.getText());
 
 			graphicsContext.setFill(Color.rgb(179, 45, 0)); //Background colour
@@ -544,7 +536,7 @@ public class MainScreenController
 		{
 			Canvas canvas = graphicsContext.getCanvas();
 
-			Obstacle obstacle = null;
+			Obstacle obstacle;
 
 			final double tora = Objects.equals(lblRecalcTora.getText(), "") ? Double.parseDouble(lblOrigTora.getText()) : Double.parseDouble(lblRecalcTora.getText());
 			final double toda = Objects.equals(lblRecalcToda.getText(), "") ? Double.parseDouble(lblOrigToda.getText()) : Double.parseDouble(lblRecalcToda.getText());
@@ -564,10 +556,12 @@ public class MainScreenController
 
 			double toraStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth();
 
-			if(cmbRunways.getValue().getObstacle() != null) {
+			if (cmbRunways.getValue().getObstacle() != null)
+			{
 				obstacle = cmbRunways.getValue().getObstacle();
 
-				if(obstacle.getPosition() < (Double.parseDouble(lblOrigTora.getText())/2.0)) {
+				if (obstacle.getPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0))
+				{
 					toraStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + displacedThresholdPixel;
 				}
 
@@ -633,18 +627,13 @@ public class MainScreenController
 
 	private void drawRunwaySurface(final GraphicsContext graphicsContext)
 	{
-		double displacedThresholdPixel;
-
-		displacedThresholdPixel = getDisplacedThresholdPixel(graphicsContext);
-
 		Canvas canvas = graphicsContext.getCanvas();
 		graphicsContext.setFill(Color.rgb(0, 51, 0)); //Background colour
 		graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		graphicsContext.setFill(Color.rgb(77, 77, 77)); //Runway colour
 		//graphicsContext.strokeLine(10, 10, 10, 50);
-		graphicsContext
-				.fillRect(RUNWAY_START_X_SCALING * canvas.getWidth(), RUNWAY_START_Y_SCALING * canvas.getHeight(), (SCALING * canvas.getWidth()),
-						RUNWAY_HEIGHT_SCALING * canvas.getHeight());
+		graphicsContext.fillRect(RUNWAY_START_X_SCALING * canvas.getWidth(), RUNWAY_START_Y_SCALING * canvas.getHeight(), (SCALING * canvas.getWidth()),
+				RUNWAY_HEIGHT_SCALING * canvas.getHeight());
 	}
 
 

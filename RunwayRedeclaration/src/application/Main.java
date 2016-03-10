@@ -24,29 +24,28 @@ public class Main extends Application
 	//TODO: look into XML
 	//TODO: readme file, help document
 
-
 	private static final String PLANE_ICON        = "file:resources/planeicon.png";
 	private static final String APPLICATION_TITLE = "Runway Redeclaration";
 	private static final String MAIN_FXML         = "view/MainScreen.fxml";
 	private static final String ADD_AIRPORT_FXML  = "view/AddAirport.fxml";
 	private static final String ADD_RUNWAY_FXML   = "view/AddRunway.fxml";
-	private static final String ADD_OBSTACLE_FXML   = "view/AddObstacle.fxml";
+	private static final String ADD_OBSTACLE_FXML = "view/AddObstacle.fxml";
 
 	private ObservableList<Airport> airportList;
 
-	private Stage msStage;
-	private Stage aaStage;
-	private Stage arStage;
-	private Stage aoStage;
+	@SuppressWarnings("FieldCanBeLocal") private Stage msStage;
+	private                                      Stage aaStage;
+	private                                      Stage arStage;
+	private                                      Stage aoStage;
 
-	private AddAirportController aaController;
-	private AddRunwayController  arController;
-	private AddObstacleController  aoController;
-	private MainScreenController msController;
+	@SuppressWarnings("FieldCanBeLocal") private AddAirportController  aaController;
+	private                                      AddRunwayController   arController;
+	private                                      AddObstacleController aoController;
+	private                                      MainScreenController  msController;
 
 
 	/**
-	 * @param args
+	 * @param args Command line arguments
 	 */
 	public static void main(String[] args)
 	{
@@ -55,14 +54,14 @@ public class Main extends Application
 
 
 	/**
-	 * @param primaryStage
+	 * @param primaryStage The starting stage of the program
 	 */
 	@Override
 	public final void start(Stage primaryStage)
 	{
 		primaryStage.getStyle();
 
-		airportList = FXCollections.observableArrayList(new ArrayList<Airport>());
+		airportList = FXCollections.observableArrayList(new ArrayList<>());
 
 		final FXMLLoader msLoader = new FXMLLoader();
 		msLoader.setLocation(Main.class.getResource(MAIN_FXML));
@@ -164,7 +163,7 @@ public class Main extends Application
 
 
 	/**
-	 * @return
+	 * @return The loader for the Add Object stage
 	 */
 	private FXMLLoader loadAOStage()
 	{
@@ -212,7 +211,7 @@ public class Main extends Application
 
 
 	/**
-	 * @param airportName
+	 * @param airportName The airport to add the runway to
 	 */
 	public final void toggleAddRunway(String airportName)
 	{
@@ -237,8 +236,8 @@ public class Main extends Application
 
 
 	/**
-	 * @param airportName
-	 * @param runwayID
+	 * @param airportName The airport that contains the runway that the obstacle is being added to
+	 * @param runwayID    The string alignment+position of the runway that will be the owner of the obstacle
 	 */
 	public final void toggleAddObstacle(String airportName, String runwayID)
 	{

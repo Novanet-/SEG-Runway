@@ -6,9 +6,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+@SuppressWarnings("unused")
 public class RedeclarationScenarios
 {
 
+	@SuppressWarnings("UnnecessaryLocalVariable")
 	@Test
 	public void test1Scenario09L()
 	{
@@ -45,6 +47,7 @@ public class RedeclarationScenarios
 	}
 
 
+	@SuppressWarnings("UnnecessaryLocalVariable")
 	@Test
 	public void test1Scenario27R()
 	{
@@ -81,6 +84,7 @@ public class RedeclarationScenarios
 	}
 
 
+	@SuppressWarnings("UnnecessaryLocalVariable")
 	@Test
 	public void test2Scenario09R()
 	{
@@ -117,6 +121,7 @@ public class RedeclarationScenarios
 	}
 
 
+	@SuppressWarnings("UnnecessaryLocalVariable")
 	@Test
 	public void test2Scenario27L()
 	{
@@ -127,7 +132,7 @@ public class RedeclarationScenarios
 
 		double TORA = 3660;
 		double TODA = TORA;
-		double ASDA = TORA;
+		@SuppressWarnings("UnnecessaryLocalVariable") double ASDA = TORA;
 		double displacedThresh = 0;
 		double LDA = TORA - displacedThresh;
 		double blastProtect = 300.0;
@@ -153,6 +158,7 @@ public class RedeclarationScenarios
 	}
 
 
+	@SuppressWarnings("UnnecessaryLocalVariable")
 	@Test
 	public void test3Scenario09R()
 	{
@@ -162,7 +168,7 @@ public class RedeclarationScenarios
 		double delta = 0.01;
 
 		double TORA = 3660;
-		double TODA = TORA;
+		@SuppressWarnings("UnnecessaryLocalVariable") double TODA = TORA;
 		double ASDA = TORA;
 		double displacedThresh = 307;
 		double LDA = TORA - displacedThresh;
@@ -189,6 +195,7 @@ public class RedeclarationScenarios
 	}
 
 
+	@SuppressWarnings("UnnecessaryLocalVariable")
 	@Test
 	public void test3Scenario27L()
 	{
@@ -225,6 +232,7 @@ public class RedeclarationScenarios
 	}
 
 
+	@SuppressWarnings("UnnecessaryLocalVariable")
 	@Test
 	public void test4Scenario09L()
 	{
@@ -261,6 +269,7 @@ public class RedeclarationScenarios
 	}
 
 
+	@SuppressWarnings("UnnecessaryLocalVariable")
 	@Test
 	public void test4Scenario27R()
 	{

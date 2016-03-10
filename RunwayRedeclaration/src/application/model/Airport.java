@@ -17,8 +17,8 @@ public class Airport
 
 
 	/**
-	 * @param airportID
-	 * @param airportName
+	 * @param airportID   Unique numerical identifier for the airport
+	 * @param airportName String identifier for the airport
 	 */
 	public Airport(final int airportID, final String airportName)
 	{
@@ -30,7 +30,7 @@ public class Airport
 		this.airportID = airportID;
 		this.airportName = airportName;
 
-		final Collection<Runway> list = new ArrayList<Runway>();
+		final Collection<Runway> list = new ArrayList<>();
 		runways = FXCollections.observableArrayList(list);
 		//createTestRunway(this);
 	}
@@ -59,7 +59,7 @@ public class Airport
 
 
 	/**
-	 * @return
+	 * @return Numerical airport id
 	 */
 	public int getAirportID()
 	{
@@ -68,7 +68,7 @@ public class Airport
 
 
 	/**
-	 * @return
+	 * @return String airport name
 	 */
 	public final String getAirportName()
 	{
@@ -77,7 +77,7 @@ public class Airport
 
 
 	/**
-	 * @return
+	 * @return A list of runways controlled by the airport
 	 */
 	public final List<Runway> getRunways()
 	{
@@ -86,7 +86,7 @@ public class Airport
 
 
 	/**
-	 * @param runway
+	 * @param runway The runway to be added to the airport
 	 */
 	public final void addRunway(Runway runway)
 	{
@@ -95,7 +95,7 @@ public class Airport
 
 
 	/**
-	 * @return
+	 * @return A string representation of the airport
 	 */
 	@Override
 	public final String toString()

@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+@SuppressWarnings("unused")
 public class AirportModel
 {
 
@@ -40,7 +41,7 @@ public class AirportModel
 	@Test
 	public void testAirportIDBoundaries()
 	{
-		Airport a = null;
+		Airport a;
 		a = new Airport(Integer.MAX_VALUE, "Test");
 		assertEquals("Should allow all positive integers", Integer.MAX_VALUE, a.getAirportID());
 		a = new Airport(0, "Test");
