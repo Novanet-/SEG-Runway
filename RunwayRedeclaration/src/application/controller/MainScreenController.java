@@ -528,7 +528,7 @@ public class MainScreenController
 					Double.parseDouble(lblRecalcDisplacedThreshold.getText());
 
 			//Calculate TORA, TODA, ASDA, LDA
-			final double pixelRatio = (SCALING * canvas.getWidth()) / Double.parseDouble(lblOrigTora.getText());
+			final double pixelRatio = (SCALING * canvas.getWidth()) / (Double.parseDouble(lblOrigTora.getText()) + Double.parseDouble(lblOrigDisplacedThreshold.getText()));
 			final double toraPixel = tora * pixelRatio;
 			final double todaPixel = toda * pixelRatio;
 			final double asdaPixel = asda * pixelRatio;
