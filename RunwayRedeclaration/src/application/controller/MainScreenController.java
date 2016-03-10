@@ -147,7 +147,6 @@ public class MainScreenController
 			if (currentRunway.getObstacle() != null)
 			{
 				String secondaryRunwayID = getSecondaryRunwayID(currentRunway);
-				System.out.println(secondaryRunwayID);
 
 				Runway secondaryRunway = null;
 				try
