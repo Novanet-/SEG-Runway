@@ -30,7 +30,7 @@ public class Main extends Application
 	private static final String MAIN_FXML         = "view/MainScreen.fxml";
 	private static final String ADD_AIRPORT_FXML  = "view/AddAirport.fxml";
 	private static final String ADD_RUNWAY_FXML   = "view/AddRunway.fxml";
-	private static final String ADD_OBJECT_FXML   = "view/AddObstacle.fxml";
+	private static final String ADD_OBSTACLE_FXML   = "view/AddObstacle.fxml";
 
 	private ObservableList<Airport> airportList;
 
@@ -169,7 +169,7 @@ public class Main extends Application
 	private FXMLLoader loadAOStage()
 	{
 		final FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource(ADD_OBJECT_FXML));
+		loader.setLocation(Main.class.getResource(ADD_OBSTACLE_FXML));
 		AnchorPane page = null;
 
 		try
@@ -185,7 +185,7 @@ public class Main extends Application
 		assert page != null;
 		final Scene scene = new Scene(page);
 		aoStage.setScene(scene);
-		aoStage.setTitle("Add Object");
+		aoStage.setTitle("Add Obstacle");
 		// TODO: plane icon doesn't show - set path relative to other files
 		aoStage.getIcons().add(new Image(PLANE_ICON));
 		aoStage.setMinWidth(300.0);
