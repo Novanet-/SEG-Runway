@@ -164,13 +164,12 @@ public class MainScreenController
 				{
 					secondaryRunway.removeObstacle();
 				}
-				else
-				{
+				else {
 					System.out.println("MainScreenController.handleBtnRemoveObstacle");
 					System.out.println("secondaryRunway = " + secondaryRunway);
 				}
-
 				updateObstacleList();
+				updateOriginalParameters();
 			}
 			else
 			{
@@ -341,7 +340,6 @@ public class MainScreenController
 		lblAngleOfSlope.setText(Double.toString(Runway.getAngleOfSlope()));
 		lblStripWidth.setText(Double.toString(Runway.getStripWidth()));
 		lblCAndGWidth.setText(Double.toString(Runway.getCagWidth()));
-
 	}
 
 
@@ -389,6 +387,11 @@ public class MainScreenController
 			lblOrigAsda.setText(Double.toString(currentRunway.getASDA()));
 			lblOrigLda.setText(Double.toString(currentRunway.getLDA()));
 			lblOrigDisplacedThreshold.setText(Double.toString(currentRunway.getDisplacedThreshold()));
+			lblRecalcTora.setText(Double.toString(currentRunway.getTORA()));
+			lblRecalcToda.setText(Double.toString(currentRunway.getTODA()));
+			lblRecalcAsda.setText(Double.toString(currentRunway.getASDA()));
+			lblRecalcLda.setText(Double.toString(currentRunway.getLDA()));
+			lblRecalcDisplacedThreshold.setText(Double.toString(currentRunway.getDisplacedThreshold()));
 		}
 		else
 		{
@@ -397,6 +400,11 @@ public class MainScreenController
 			lblOrigAsda.setText("");
 			lblOrigLda.setText("");
 			lblOrigDisplacedThreshold.setText("");
+			lblRecalcTora.setText("");
+			lblRecalcToda.setText("");
+			lblRecalcAsda.setText("");
+			lblRecalcLda.setText("");
+			lblRecalcDisplacedThreshold.setText("");
 		}
 		paintVisualisation();
 	}
@@ -537,6 +545,8 @@ public class MainScreenController
 		{
 			Canvas canvas = graphicsContext.getCanvas();
 
+			Obstacle obstacle = null;
+
 			final double tora = Objects.equals(lblRecalcTora.getText(), "") ? Double.parseDouble(lblOrigTora.getText()) : Double.parseDouble(lblRecalcTora.getText());
 			final double toda = Objects.equals(lblRecalcToda.getText(), "") ? Double.parseDouble(lblOrigToda.getText()) : Double.parseDouble(lblRecalcToda.getText());
 			final double asda = Objects.equals(lblRecalcAsda.getText(), "") ? Double.parseDouble(lblOrigAsda.getText()) : Double.parseDouble(lblRecalcAsda.getText());
@@ -546,7 +556,7 @@ public class MainScreenController
 					Double.parseDouble(lblRecalcDisplacedThreshold.getText());
 
 			//Calculate TORA, TODA, ASDA, LDA
-			final double pixelRatio = (SCALING * canvas.getWidth()) / (Double.parseDouble(lblOrigTora.getText()) + Double.parseDouble(lblOrigDisplacedThreshold.getText()));
+			final double pixelRatio = (SCALING * canvas.getWidth()) / Double.parseDouble(lblOrigTora.getText());
 			final double toraPixel = tora * pixelRatio;
 			final double todaPixel = toda * pixelRatio;
 			final double asdaPixel = asda * pixelRatio;
@@ -556,7 +566,17 @@ public class MainScreenController
 			//System.out.println(pixelRatio);
 
 			//TODO: If obstacle nearer start of runway, parameters should finish at end of runway
-			final double toraStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth() + displacedThresholdPixel;
+
+			double toraStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth();
+
+			if(cmbRunways.getValue().getObstacle() != null) {
+				obstacle = cmbRunways.getValue().getObstacle();
+
+				if(obstacle.getPosition() < (Double.parseDouble(lblOrigTora.getText())/2.0)) {
+					toraStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + displacedThresholdPixel;
+				}
+
+			}
 
 			//draw TORA
 			graphicsContext.setFill(Color.rgb(255, 138, 138));
@@ -628,7 +648,7 @@ public class MainScreenController
 		graphicsContext.setFill(Color.rgb(77, 77, 77)); //Runway colour
 		//graphicsContext.strokeLine(10, 10, 10, 50);
 		graphicsContext
-				.fillRect(RUNWAY_START_X_SCALING * canvas.getWidth(), RUNWAY_START_Y_SCALING * canvas.getHeight(), (SCALING * canvas.getWidth()) + displacedThresholdPixel,
+				.fillRect(RUNWAY_START_X_SCALING * canvas.getWidth(), RUNWAY_START_Y_SCALING * canvas.getHeight(), (SCALING * canvas.getWidth()),
 						RUNWAY_HEIGHT_SCALING * canvas.getHeight());
 	}
 
