@@ -562,10 +562,6 @@ public class MainScreenController
 			final double ldaPixel = lda * pixelRatio;
 			final double displacedThresholdPixel = displacedThreshold * pixelRatio;
 
-			//System.out.println(pixelRatio);
-
-			//TODO: If obstacle nearer start of runway, parameters should finish at end of runway
-
 			double toraStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth();
 
 			if(cmbRunways.getValue().getObstacle() != null) {
