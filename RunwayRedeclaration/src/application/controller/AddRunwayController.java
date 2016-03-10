@@ -60,6 +60,8 @@ public class AddRunwayController
 
 		cmbRunwayAlignment.setItems(FXCollections.observableArrayList(alignments));
 		cmbRunwayPosition.setItems(FXCollections.observableArrayList(positions));
+		cmbRunwayAlignment.setValue("00");
+		cmbRunwayPosition.setValue("");
 	}
 
 	//TODO: Add not-null/data type validation to input/submission
@@ -139,17 +141,18 @@ public class AddRunwayController
 	private void updateSecondRunway(int alignment, String position)
 	{
 		String newPosition = "";
-		
-		switch (position)
-		{
-		case "L":
-			newPosition = "R";
-			break;
-		case "C":
-			newPosition = "C";
-			break;
-		case "R":
-			newPosition = "L";
+
+		if(!position.isEmpty()) {
+			switch (position) {
+				case "L":
+					newPosition = "R";
+					break;
+				case "C":
+					newPosition = "C";
+					break;
+				case "R":
+					newPosition = "L";
+			}
 		}
 
 		lblSecondRunwayAlignment.setText(Integer.toString(alignment) + newPosition);
