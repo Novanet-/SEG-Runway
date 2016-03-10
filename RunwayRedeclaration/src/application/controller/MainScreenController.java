@@ -256,10 +256,28 @@ public class MainScreenController
 	private void handleAirportSelected()
 	{
 		airportSelected = cmbAirports.getValue() != null;
-		cmbRunways.setValue(null);
-		cmbRunways.setItems(FXCollections.observableArrayList(cmbAirports.getValue().getRunways()));
+		try
+		{
+			updateRunwayList();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		txtObstacles.setText("");
 
+	}
+
+
+	public void updateRunwayList() throws Exception
+	{
+		if (cmbAirports.getValue() != null)
+		{
+			cmbRunways.setValue(null);
+			cmbRunways.setItems(FXCollections.observableArrayList(cmbAirports.getValue().getRunways()));
+		}
+		else
+			throw new Exception("No airport selected");
 	}
 
 

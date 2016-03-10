@@ -50,7 +50,6 @@ public class Airport
 		final double secondaryLDA = 3595.0;
 		final double secondaryDisplacedThreshold = 306.0;
 
-
 		final Runway primaryRunway = new Runway(0, 27 + "R", primaryTORA, primaryTODA, primaryASDA, primaryLDA, primaryDisplacedThreshold);
 		final Runway secondaryRunway = new Runway(1, "09L", secondaryTORA, secondaryTODA, secondaryASDA, secondaryLDA, secondaryDisplacedThreshold);
 		airport.addRunway(primaryRunway);
@@ -103,15 +102,15 @@ public class Airport
 	{
 		return airportID + " - " + airportName;
 	}
-	
-	
+
+
 	@Override
 	public boolean equals(Object other)
 	{
-		if (! (other instanceof Airport))
+		if (!(other instanceof Airport))
 			return false;
-		
-		Airport o = (Airport)other;
+
+		Airport o = (Airport) other;
 		return getAirportID() == o.getAirportID() &&
 				getAirportName().equals(o.getAirportName()) &&
 				getRunways().equals(o.getRunways());

@@ -1,11 +1,10 @@
 package tests;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
 import application.model.Airport;
 import application.model.Runway;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class AirportModel
 {
@@ -20,14 +19,14 @@ public class AirportModel
 		assertEquals("Airport string representation correct", "42 - Brussels", a.toString());
 	}
 
-	
+
 	@Test
 	public void testAirportAddRunway()
 	{
 		Airport a = new Airport(20, "JFK International");
 		Runway r = new Runway(0, "C", 0.0, 0.0, 0.0, 0.0, 0.0);
 		a.addRunway(r);
-		assertEquals("Should get runway back", r, a.getRunways().get(a.getRunways().size()-1));
+		assertEquals("Should get runway back", r, a.getRunways().get(a.getRunways().size() - 1));
 	}
 
 

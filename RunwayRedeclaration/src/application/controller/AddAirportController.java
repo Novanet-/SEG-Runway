@@ -15,6 +15,7 @@ public class AddAirportController
 	@FXML private Button                  btnSubmitAirport;
 	private       ObservableList<Airport> airportList;
 
+
 	/**
 	 * Initializes the controller class. This method is automatically called
 	 * after the fxml file has been loaded.
