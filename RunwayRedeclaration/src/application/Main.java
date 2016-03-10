@@ -46,13 +46,18 @@ public class Main extends Application
 	private MainScreenController msController;
 
 
-
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args)
 	{
 		launch(args);
 	}
 
 
+	/**
+	 * @param primaryStage
+	 */
 	@Override
 	public final void start(Stage primaryStage)
 	{
@@ -159,6 +164,9 @@ public class Main extends Application
 	}
 
 
+	/**
+	 * @return
+	 */
 	private FXMLLoader loadAOStage()
 	{
 		final FXMLLoader loader = new FXMLLoader();
@@ -188,6 +196,9 @@ public class Main extends Application
 	}
 
 
+	/**
+	 *
+	 */
 	public final void toggleAddAirport()
 	{
 		if (aaStage.isShowing())
@@ -201,11 +212,22 @@ public class Main extends Application
 	}
 
 
+	/**
+	 * @param airportName
+	 */
 	public final void toggleAddRunway(String airportName)
 	{
 		if (arStage.isShowing())
 		{
 			arStage.hide();
+			try
+			{
+				msController.updateRunwayList();
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 		else
 		{
@@ -215,6 +237,10 @@ public class Main extends Application
 	}
 
 
+	/**
+	 * @param airportName
+	 * @param runwayID
+	 */
 	public final void toggleAddObstacle(String airportName, String runwayID)
 	{
 		if (aoStage.isShowing())

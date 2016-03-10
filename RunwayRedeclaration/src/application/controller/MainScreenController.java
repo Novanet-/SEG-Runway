@@ -256,10 +256,28 @@ public class MainScreenController
 	private void handleAirportSelected()
 	{
 		airportSelected = cmbAirports.getValue() != null;
-		cmbRunways.setValue(null);
-		cmbRunways.setItems(FXCollections.observableArrayList(cmbAirports.getValue().getRunways()));
+		try
+		{
+			updateRunwayList();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		txtObstacles.setText("");
 
+	}
+
+
+	public void updateRunwayList() throws Exception
+	{
+		if (cmbAirports.getValue() != null)
+		{
+			cmbRunways.setValue(null);
+			cmbRunways.setItems(FXCollections.observableArrayList(cmbAirports.getValue().getRunways()));
+		}
+		else
+			throw new Exception("No airport selected");
 	}
 
 
@@ -528,7 +546,7 @@ public class MainScreenController
 					Double.parseDouble(lblRecalcDisplacedThreshold.getText());
 
 			//Calculate TORA, TODA, ASDA, LDA
-			final double pixelRatio = (SCALING * canvas.getWidth()) / Double.parseDouble(lblOrigTora.getText());
+			final double pixelRatio = (SCALING * canvas.getWidth()) / (Double.parseDouble(lblOrigTora.getText()) + Double.parseDouble(lblOrigDisplacedThreshold.getText()));
 			final double toraPixel = tora * pixelRatio;
 			final double todaPixel = toda * pixelRatio;
 			final double asdaPixel = asda * pixelRatio;

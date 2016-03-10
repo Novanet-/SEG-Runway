@@ -1,10 +1,9 @@
 package tests;
 
-import static org.junit.Assert.assertEquals;
-
+import application.model.Runway;
 import org.junit.Test;
 
-import application.model.Runway;
+import static org.junit.Assert.assertEquals;
 
 public class RunwayModel
 {
@@ -34,6 +33,7 @@ public class RunwayModel
 		assertEquals(displacedThreshold, r.getDisplacedThreshold(), 0.0);
 	}
 
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testRunwayNullAlignment()
 	{
@@ -46,6 +46,7 @@ public class RunwayModel
 		int runwayID = 14;
 		new Runway(runwayID, null, TORA, TODA, ASDA, LDA, displacedThreshold);
 	}
+
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testRunwayEmptyAlignment()

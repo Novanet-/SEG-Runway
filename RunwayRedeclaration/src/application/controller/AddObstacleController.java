@@ -32,7 +32,6 @@ public class AddObstacleController
 	private ObservableList<Airport> airportList;
 
 
-
 	/**
 	 * Initializes the controller class. This method is automatically called
 	 * after the fxml file has been loaded.
