@@ -555,14 +555,16 @@ public class MainScreenController
 			final double displacedThresholdPixel = displacedThreshold * pixelRatio;
 
 			double toraStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth();
+			double ldaStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + displacedThresholdPixel;
+			//displacedThresholdStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth();
 
 			if (cmbRunways.getValue().getObstacle() != null)
 			{
 				obstacle = cmbRunways.getValue().getObstacle();
 
-				if (obstacle.getPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0))
-				{
-					toraStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + displacedThresholdPixel;
+				if(obstacle.getPosition() < (Double.parseDouble(lblOrigTora.getText())/2.0)) {
+					toraStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + ((SCALING * canvas.getWidth()) - toraPixel);
+					ldaStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + ((SCALING * canvas.getWidth()) - ldaPixel);
 				}
 
 			}
@@ -581,11 +583,11 @@ public class MainScreenController
 
 			//draw LDA
 			graphicsContext.setFill(Color.rgb(180, 225, 35));
-			graphicsContext.fillRect((RUNWAY_START_X_SCALING * canvas.getWidth()) + displacedThresholdPixel, 0.625 * canvas.getHeight(), ldaPixel, 5);
+			graphicsContext.fillRect(ldaStartPixel, 0.625 * canvas.getHeight(), ldaPixel, 5);
 
 			//draw Displaced Threshold
 			graphicsContext.setFill(Color.rgb(150, 210, 255));
-			graphicsContext.fillRect(RUNWAY_START_X_SCALING * canvas.getWidth(), 0.65 * canvas.getHeight(), displacedThresholdPixel, 5);
+			graphicsContext.fillRect(toraStartPixel, 0.65 * canvas.getHeight(), displacedThresholdPixel, 5);
 		}
 
 	}
