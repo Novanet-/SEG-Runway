@@ -341,7 +341,7 @@ public class MainScreenController
 			final Runway currentRunway = cmbRunways.getValue();
 			if (currentRunway.getObstacle() != null)
 			{
-				txtObstacles.setText(currentRunway.getObstacle().toString());
+				txtObstacles.setText(currentRunway.getObstacle().getName());
 				final Runway newRunway = currentRunway.redeclare();
 				updateNewParameters(newRunway);
 				txtCalculations.setText(newRunway.getExplanation());

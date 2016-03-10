@@ -5,6 +5,7 @@
 .label {
     -fx-font-size: 11.0pt;
     -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-font-weight: 300;
     -fx-text-fill: #d6dadb;
     -fx-opacity: 0.6;
 }
