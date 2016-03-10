@@ -32,7 +32,7 @@ public class Airport
 
 		final Collection<Runway> list = new ArrayList<Runway>();
 		runways = FXCollections.observableArrayList(list);
-		createTestRunway(this);
+		//createTestRunway(this);
 	}
 
 

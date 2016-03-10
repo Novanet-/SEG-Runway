@@ -87,6 +87,7 @@ public class AddRunwayController
 	{
 		try
 		{
+			System.out.println("Attempting to add Runway");
 			final double primaryTORA = Double.parseDouble(txtPrimaryTORA.textProperty().getValue());
 			final double primaryTODA = Double.parseDouble(txtPrimaryTODA.textProperty().getValue());
 			final double primaryASDA = Double.parseDouble(txtPrimaryASDA.textProperty().getValue());
@@ -110,6 +111,8 @@ public class AddRunwayController
 			selectedAirport.addRunway(primaryRunway);
 			selectedAirport.addRunway(secondaryRunway);
 
+			System.out.println("Runways added to list");
+
 			//Clears textboxes after runways added
 			txtPrimaryTORA.setText("");
 			txtPrimaryTODA.setText("");
@@ -127,6 +130,7 @@ public class AddRunwayController
 		}
 		catch (final NumberFormatException e)
 		{
+			System.out.print("Error adding runway");
 			e.printStackTrace();
 		}
 	}
