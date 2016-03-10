@@ -13,8 +13,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 import java.util.Iterator;
 import java.util.Objects;
@@ -77,8 +75,6 @@ public class MainScreenController
 
 		GraphicsContext graphicsContext = cnvTop.getGraphicsContext2D();
 		paintVisualisation();
-
-		lblOrigToda.setFont(Font.font("FontAwesome Regular", FontWeight.NORMAL, 13));
 	}
 
 
