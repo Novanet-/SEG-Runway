@@ -66,7 +66,7 @@
                                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                     </GridPane.margin>
                                                 </TextField>
-                                                <Label text="Airport: " textFill="#d6dadb" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                <Label styleClass="thin-txt" text="Airport: " textFill="#d6dadb" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                                                     <effect>
                                                         <Blend />
                                                     </effect>

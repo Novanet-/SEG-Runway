@@ -6,22 +6,28 @@
     -fx-font-size: 11.0pt;
     -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
     -fx-font-weight: 300;
-    -fx-text-fill: #d6dadb;
-    -fx-opacity: 0.6;
+    -fx-text-fill: #c0c4c5;
+    -fx-opacity: 1.0;
 }
 
 .label-bright {
     -fx-font-size: 11.0pt;
     -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
-    -fx-text-fill: #d6dadb;
+    -fx-font-weight: 300;
+    -fx-text-fill: #c0c4c5;
     -fx-opacity: 1.0;
 }
 
 .label-header {
     -fx-font-size: 32.0pt;
     -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
-    -fx-text-fill: #d6dadb;
+    -fx-font-weight: 300;
+    -fx-text-fill: #c0c4c5;
     -fx-opacity: 1.0;
+}
+
+.thin-txt {
+    -fx-font-weight: 300;
 }
 
 .table-view {
@@ -46,7 +52,7 @@
 .table-view .column-header .label {
     -fx-font-size: 20.0pt;
     -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
-    -fx-text-fill: #d6dadb;
+    -fx-text-fill: #c0c4c5;
     -fx-alignment: center-left;
     -fx-opacity: 1.0;
 }
@@ -76,6 +82,7 @@
     -fx-font-size: 14.0pt;
     -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
     -fx-text-fill: #d6dadb;
+    -fx-font-weight: 300;
     -fx-opacity: 0.9;
 }
 
@@ -86,11 +93,13 @@
 .text-field {
     -fx-font-size: 12.0pt;
     -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-font-weight: 300;
 }
 
 .text-field-small {
     -fx-font-size: 8.0pt;
-        -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-font-weight: 300;
 }
 
 .text-area .content{
@@ -98,6 +107,7 @@
   -fx-font-size: 11.0pt;
   -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
   -fx-text-fill: #d6dadb;
+  -fx-font-weight: 300;
 }
 
 /* 
