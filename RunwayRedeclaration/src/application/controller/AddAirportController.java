@@ -22,7 +22,6 @@ public class AddAirportController
 	 * Initializes the controller class. This method is automatically called
 	 * after the fxml file has been loaded.
 	 */
-	@SuppressWarnings("EmptyMethod")
 	@FXML
 	private void initialize()
 	{

@@ -109,7 +109,6 @@ public class Runway
 	}
 
 
-	@SuppressWarnings("unused")
 	public static double getClearway()
 	{
 		return CLEARWAY;
@@ -128,7 +127,6 @@ public class Runway
 	}
 
 
-	@SuppressWarnings("unused")
 	public static double getStripEnd()
 	{
 		return STRIP_END;
@@ -141,7 +139,6 @@ public class Runway
 	}
 
 
-	@SuppressWarnings("unused")
 	public static double getRunwayStrip()
 	{
 		return RUNWAY_STRIP;

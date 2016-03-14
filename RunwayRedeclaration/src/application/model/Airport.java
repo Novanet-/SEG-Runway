@@ -36,6 +36,7 @@ public class Airport
 	}
 
 
+	@SuppressWarnings("unused")
 	private static void createTestRunway(final Airport airport)
 	{
 		final double primaryTORA = 3884.0;

@@ -33,12 +33,12 @@ public class Main extends Application
 
 	private ObservableList<Airport> airportList;
 
-	@SuppressWarnings("FieldCanBeLocal") private Stage msStage;
+	private Stage msStage;
 	private                                      Stage aaStage;
 	private                                      Stage arStage;
 	private                                      Stage aoStage;
 
-	@SuppressWarnings("FieldCanBeLocal") private AddAirportController  aaController;
+	private AddAirportController  aaController;
 	private                                      AddRunwayController   arController;
 	private                                      AddObstacleController aoController;
 	private                                      MainScreenController  msController;
