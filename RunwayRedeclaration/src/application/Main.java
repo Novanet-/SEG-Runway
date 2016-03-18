@@ -33,16 +33,15 @@ public class Main extends Application
 
 	private ObservableList<Airport> airportList;
 
-	private Stage msStage;
-	private                                      Stage aaStage;
-	private                                      Stage arStage;
-	private                                      Stage aoStage;
+	private Stage					msStage;
+	private Stage					aaStage;
+	private Stage					arStage;
+	private Stage					aoStage;
 
-	private AddAirportController  aaController;
-	private                                      AddRunwayController   arController;
-	private                                      AddObstacleController aoController;
-	private                                      MainScreenController  msController;
-
+	private AddAirportController	aaController;
+	private AddRunwayController		arController;
+	private AddObstacleController	aoController;
+	private MainScreenController	msController;
 
 	/**
 	 * @param args Command line arguments
