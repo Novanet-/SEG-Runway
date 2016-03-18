@@ -6,9 +6,11 @@ import application.model.Obstacle;
 import application.model.Runway;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class AddObstacleController
 {
@@ -54,29 +56,33 @@ public class AddObstacleController
 	@FXML
 	private void handleObstacleSubmitted()
 	{
-		final String obstacleName = txtPrimObstacleName.getText();
-		final double obstacleHeight = Double.parseDouble(txtPrimObstacleHeight.getText());
-		final double obstaclePrimaryPosition = Double.parseDouble(txtPrimObstacleDistFromThreshold.getText());
-		final double obstacleSecondaryPosition = Double.parseDouble(txtSecObstacleDistFromThreshold.getText());
-
-		final Obstacle primaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstaclePrimaryPosition, 300.0);
-		final Obstacle secondaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstacleSecondaryPosition, 300.0);
-
-		airportList.stream().filter(a -> a.getAirportName().equals(lblAirportName.getText())).forEach(a -> {
-			for (final Runway r : a.getRunways())
-			{
-				if (r.getAlignment().equals(lblRunwayID.getText()))
+		try {
+			final String obstacleName = txtPrimObstacleName.getText();
+			final double obstacleHeight = Double.parseDouble(txtPrimObstacleHeight.getText());
+			final double obstaclePrimaryPosition = Double.parseDouble(txtPrimObstacleDistFromThreshold.getText());
+			final double obstacleSecondaryPosition = Double.parseDouble(txtSecObstacleDistFromThreshold.getText());
+	
+			final Obstacle primaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstaclePrimaryPosition, 300.0);
+			final Obstacle secondaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstacleSecondaryPosition, 300.0);
+	
+			airportList.stream().filter(a -> a.getAirportName().equals(lblAirportName.getText())).forEach(a -> {
+				for (final Runway r : a.getRunways())
 				{
-					r.setObstacle(primaryObstacle);
+					if (r.getAlignment().equals(lblRunwayID.getText()))
+					{
+						r.setObstacle(primaryObstacle);
+					}
+					if (r.getAlignment().equals(lblSecondaryRunwayID.getText()))
+					{
+						r.setObstacle(secondaryObstacle);
+					}
 				}
-				if (r.getAlignment().equals(lblSecondaryRunwayID.getText()))
-				{
-					r.setObstacle(secondaryObstacle);
-				}
-			}
-		});
-		mainApp.toggleAddObstacle(lblAirportName.getText(), lblRunwayID.getText());
-
+			});
+			mainApp.toggleAddObstacle(lblAirportName.getText(), lblRunwayID.getText());
+		} catch (NumberFormatException e) {
+			final Alert alert = new Alert(AlertType.ERROR, "Please enter only numerical values.");
+			alert.showAndWait();
+		}
 	}
 
 
