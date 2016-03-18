@@ -52,6 +52,9 @@ public class MainScreenController
 	@FXML private Label                   lblCAndGWidth;
 	@FXML private Button                  btnAddObstacle;
 	@FXML private Button                  btnRemoveObstacle;
+	@FXML private MenuItem				  btnImportAirport;
+	@FXML private MenuItem				  btnImportRunway;
+	@FXML private MenuItem				  btnImportObstacle;
 	@FXML private TextArea                txtCalculations;
 
 	@FXML private Canvas cnvTop; //870x345
@@ -695,5 +698,23 @@ public class MainScreenController
 			graphicsContext.strokeLine(lineStart, centreline, lineEnd, centreline);
 
 		}
+	}
+	
+	
+	public void handleBtnImportAirport()
+	{
+		
+	}
+	
+	
+	public void handleBtnImportRunway()
+	{
+		
+	}
+	
+	
+	public void handleBtnImportObstacle()
+	{
+		
 	}
 }

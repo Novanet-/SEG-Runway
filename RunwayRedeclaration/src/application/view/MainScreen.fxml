@@ -852,6 +852,15 @@
                               mnemonicParsing = "false"
                               onAction = "#handleBtnAddRunway"
                               text = "Add Runway"/>
+                    <MenuItem fx:id = "btnImportAirport"
+                              onAction = "#handleBtnImportAirport"
+                              text = "Import Airport from XML file" />
+                    <MenuItem fx:id = "btnImportRunway"
+                              onAction = "#handleBtnImportRunway"
+                              text = "Import Runway from XML file" />
+                    <MenuItem fx:id = "btnImportObstacle"
+                              onAction = "#handleBtnImportObstacle"
+                              text = "Import Obstacle from XML file" />
                     <MenuItem mnemonicParsing = "false"
                               onAction = "#handleBtnClose"
                               text = "Close"/>
