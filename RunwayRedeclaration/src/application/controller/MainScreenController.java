@@ -1,5 +1,18 @@
 package application.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import application.Main;
 import application.model.Airport;
 import application.model.Obstacle;
@@ -10,11 +23,16 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-
-import java.util.Objects;
+import javafx.stage.FileChooser;
 
 public class MainScreenController
 {
@@ -59,6 +77,9 @@ public class MainScreenController
 
 	@FXML private Canvas cnvTop; //870x345
 	@FXML private Canvas cnvSide; //870x345
+	
+	// Used for XML handling
+	private DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
 	// Reference to the main application.
 	private Main mainApp;
@@ -701,20 +722,95 @@ public class MainScreenController
 	}
 	
 	
+	//TODO: refactor, possibly move to another file
 	public void handleBtnImportAirport()
 	{
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Import Airport from XML File");
+		File file = fileChooser.showOpenDialog(mainApp.getMsStage());
 		
+		try {
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document dom = db.parse(file);
+			Element root = dom.getDocumentElement();
+			
+			String idString = getTextValue(root, "id");
+			String name = getTextValue(root, "name");
+			// TODO: handle runways
+			
+			final Airport a = new Airport(Integer.parseInt(idString), name);
+			airportList.add(a);
+			
+			// TODO: handle these exceptions properly
+		} catch(ParserConfigurationException pce) {
+			pce.printStackTrace();
+		} catch(SAXException se) {
+			se.printStackTrace();
+		} catch(IOException ioe) {
+			ioe.printStackTrace();
+		} catch (NumberFormatException nfe) {
+			nfe.printStackTrace();
+		}
 	}
 	
 	
 	public void handleBtnImportRunway()
 	{
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Import Runway from XML File");
+		File file = fileChooser.showOpenDialog(mainApp.getMsStage());
 		
+		try {
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document dom = db.parse(file);
+			Element root = dom.getDocumentElement();
+			
+			String idS = getTextValue(root, "id");
+			String alignment = getTextValue(root, "alignment");
+			String toraS = getTextValue(root, "tora");
+			String todaS = getTextValue(root, "toda");
+			String asdaS = getTextValue(root, "asda");
+			String ldaS = getTextValue(root, "lda");
+			String dTS = getTextValue(root, "displaced_threshold");
+			
+			int id = Integer.parseInt(idS);
+			int tora = Integer.parseInt(toraS);
+			int toda = Integer.parseInt(todaS);
+			int asda = Integer.parseInt(asdaS);
+			int lda = Integer.parseInt(ldaS);
+			int displacedThreshold = Integer.parseInt(dTS);
+			
+			final Runway r = new Runway(id, alignment, tora, toda, asda, lda, displacedThreshold);
+			final Airport selected = cmbAirports.getValue();
+			selected.addRunway(r);
+			updateRunwayList();
+			
+			// TODO: handle these exceptions properly
+		} catch(ParserConfigurationException pce) {
+			pce.printStackTrace();
+		} catch(SAXException se) {
+			se.printStackTrace();
+		} catch(IOException ioe) {
+			ioe.printStackTrace();
+		} catch (NumberFormatException nfe) {
+			nfe.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
 	public void handleBtnImportObstacle()
 	{
-		
+		// TODO: import obstacle xml files based on other xml methods
+		// XML obstacle standard is defined in google doc 
+	}
+	
+	private String getTextValue(Element elem, String tag)
+	{
+		// TODO: no null checks!
+		NodeList nodes = elem.getElementsByTagName(tag);
+		Element e = (Element) nodes.item(0);
+		return e.getFirstChild().getNodeValue();
 	}
 }

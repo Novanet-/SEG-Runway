@@ -273,4 +273,10 @@ public class Main extends Application
 		System.exit(0);
 	}
 
+
+	public Stage getMsStage()
+	{
+		return msStage;
+	}
+
 }
