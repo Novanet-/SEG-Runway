@@ -68,11 +68,11 @@ public class Runway
 
 		if (alignment.equals("27R"))
 		{
-			obstacle = new Obstacle("27RTest", 12.0, 3646.0, 300.0, 0.0);
+			obstacle = new Obstacle("27RTest", 12.0, 3646.0, 0.0, 300.0);
 		}
 		if (alignment.equals("09L"))
 		{
-			obstacle = new Obstacle("09LTest", 12.0, -50.0, 300.0, 0.0);
+			obstacle = new Obstacle("09LTest", 12.0, -50.0, 0.0, 300.0);
 		}
 
 	}

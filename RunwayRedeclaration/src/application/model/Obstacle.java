@@ -12,7 +12,7 @@ public class Obstacle
 	private final double blastProtection;
 
 
-	public Obstacle(final String name, final double height, final double displacementPosition, final double blastProtection, double centrePosition)
+	public Obstacle(final String name, final double height, final double displacementPosition, double centrePosition, final double blastProtection)
 	{
 		this.name = name;
 		this.height = height;

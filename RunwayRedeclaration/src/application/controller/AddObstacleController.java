@@ -63,8 +63,8 @@ public class AddObstacleController
 			final double obstacleSecondaryPosition = Double.parseDouble(txtSecObstacleDistFromThreshold.getText());
 			final double obstacleCentrePosition = Double.parseDouble(txtPrimObstacleDistFromCentre.getText());
 
-			final Obstacle primaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstaclePrimaryPosition, 300.0, obstacleCentrePosition);
-			final Obstacle secondaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstacleSecondaryPosition, 300.0, obstacleCentrePosition);
+			final Obstacle primaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstaclePrimaryPosition, obstacleCentrePosition, 300.0);
+			final Obstacle secondaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstacleSecondaryPosition, obstacleCentrePosition, 300.0);
 	
 			airportList.stream().filter(a -> a.getAirportName().equals(lblAirportName.getText())).forEach(a -> {
 				for (final Runway r : a.getRunways())

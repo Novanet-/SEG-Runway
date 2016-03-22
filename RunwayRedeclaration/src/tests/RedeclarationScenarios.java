@@ -25,6 +25,7 @@ public class RedeclarationScenarios
 		double LDA = TORA - displacedThresh;
 		double blastProtect = 300.0;
 		double distFromThresh = -50; // Negative - before thresh
+		double distFromCentre = 0;
 		double obstHeight = 12.0;
 
 		double newTORA = 3346;
@@ -33,7 +34,7 @@ public class RedeclarationScenarios
 		double newLDA = 2986; //
 
 		Runway r = new Runway(0, "09L", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, distFromCentre, blastProtect);
 
 		r.setObstacle(o);
 
@@ -61,6 +62,7 @@ public class RedeclarationScenarios
 		double LDA = TORA - displacedThresh;
 		double blastProtect = 300.0;
 		double distFromThresh = 3646; // Positive - after thresh
+		double distFromCentre = 0;
 		double obstHeight = 12;
 
 		double newTORA = 2986;
@@ -69,7 +71,7 @@ public class RedeclarationScenarios
 		double newLDA = 3346;
 
 		Runway r = new Runway(0, "27R", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, distFromCentre, blastProtect);
 
 		r.setObstacle(o);
 
@@ -97,6 +99,7 @@ public class RedeclarationScenarios
 		double LDA = TORA - displacedThresh;
 		double blastProtect = 300.0;
 		double distFromThresh = 2853;
+		double distFromCentre = -20; //South
 		double obstHeight = 25.0;
 
 		double newTORA = 1850;
@@ -105,7 +108,7 @@ public class RedeclarationScenarios
 		double newLDA = 2553;
 
 		Runway r = new Runway(0, "09R", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, distFromCentre, blastProtect);
 
 		r.setObstacle(o);
 
@@ -133,6 +136,7 @@ public class RedeclarationScenarios
 		double LDA = TORA - displacedThresh;
 		double blastProtect = 300.0;
 		double distFromThresh = 500;
+		double distFromCentre = -20; //South
 		double obstHeight = 25;
 
 		double newTORA = 2860;
@@ -141,7 +145,7 @@ public class RedeclarationScenarios
 		double newLDA = 1850;
 
 		Runway r = new Runway(0, "27L", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, distFromCentre, blastProtect);
 
 		r.setObstacle(o);
 
@@ -169,6 +173,7 @@ public class RedeclarationScenarios
 		double LDA = TORA - displacedThresh;
 		double blastProtect = 300.0;
 		double distFromThresh = 150;
+		double distFromCentre = 60; //North
 		double obstHeight = 15.0;
 
 		double newTORA = 2903;
@@ -177,7 +182,7 @@ public class RedeclarationScenarios
 		double newLDA = 2393;
 
 		Runway r = new Runway(0, "09L", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, distFromCentre, blastProtect);
 
 		r.setObstacle(o);
 
@@ -205,6 +210,7 @@ public class RedeclarationScenarios
 		double LDA = TORA - displacedThresh;
 		double blastProtect = 300.0;
 		double distFromThresh = 3203;
+		double distFromCentre = 60; //North
 		double obstHeight = 15;
 
 		double newTORA = 2393;
@@ -213,7 +219,7 @@ public class RedeclarationScenarios
 		double newLDA = 2903;
 
 		Runway r = new Runway(0, "27R", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, distFromCentre, blastProtect);
 
 		r.setObstacle(o);
 
@@ -241,6 +247,7 @@ public class RedeclarationScenarios
 		double LDA = TORA - displacedThresh;
 		double blastProtect = 300.0;
 		double distFromThresh = 3546;
+		double distFromCentre = 20;
 		double obstHeight = 20.0;
 
 		double newTORA = 2792;
@@ -249,7 +256,7 @@ public class RedeclarationScenarios
 		double newLDA = 3246;
 
 		Runway r = new Runway(0, "09L", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, distFromCentre, blastProtect);
 
 		r.setObstacle(o);
 
@@ -277,6 +284,7 @@ public class RedeclarationScenarios
 		double LDA = TORA - displacedThresh;
 		double blastProtect = 300.0;
 		double distFromThresh = 50;
+		double distFromCentre = 20;
 		double obstHeight = 20;
 
 		double newTORA = 3534;
@@ -285,7 +293,7 @@ public class RedeclarationScenarios
 		double newLDA = 2774;
 
 		Runway r = new Runway(0, "27R", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, distFromCentre, blastProtect);
 
 		r.setObstacle(o);
 
