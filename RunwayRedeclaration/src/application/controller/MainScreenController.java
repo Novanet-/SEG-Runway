@@ -1,18 +1,5 @@
 package application.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
 import application.Main;
 import application.model.Airport;
 import application.model.Obstacle;
@@ -23,16 +10,21 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
 
 public class MainScreenController
 {
@@ -75,8 +67,10 @@ public class MainScreenController
 	@FXML private MenuItem				  btnImportObstacle;
 	@FXML private TextArea                txtCalculations;
 
-	@FXML private Canvas cnvTop; //870x345
-	@FXML private Canvas cnvSide; //870x345
+	@FXML
+	private Canvas cnvTop; //875x345
+	@FXML
+	private Canvas cnvSide; //875x345
 	
 	// Used for XML handling
 	private DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -545,7 +539,7 @@ public class MainScreenController
 			graphicsContext.setFill(Color.rgb(179, 45, 0)); //Background colour
 			//			graphicsContext.fillRect((obstacle.getPosition() * pixelRatio) + 20, (RUNWAY_START_Y_SCALING * canvas.getHeight()) + 30, 40, 40);
 			final double centreAdjustmentX = (obstacle.getPosition() < 0) ? -40 : 20;
-			final double centreAdjustmentY = 30.0;
+			final double centreAdjustmentY = 5.0;
 			final double runwayStartX = RUNWAY_START_X_SCALING * canvas.getWidth();
 			final double runwayStartY = RUNWAY_START_Y_SCALING * canvas.getHeight();
 			graphicsContext.fillRect(runwayStartX + (obstacle.getPosition() * pixelRatio) + centreAdjustmentX, runwayStartY + centreAdjustmentY, 40, 40);
@@ -601,60 +595,26 @@ public class MainScreenController
 
 			//draw TORA
 			graphicsContext.setFill(Color.rgb(255, 138, 138));
-			graphicsContext.fillRect(toraStartPixel, 0.55 * canvas.getHeight(), toraPixel, 5);
+			graphicsContext.fillRect(toraStartPixel, 0.55 * canvas.getHeight(), toraPixel, 3);
 
 			//draw TODA
 			graphicsContext.setFill(Color.rgb(255, 190, 50));
-			graphicsContext.fillRect(toraStartPixel, 0.575 * canvas.getHeight(), todaPixel, 5);
+			graphicsContext.fillRect(toraStartPixel, 0.575 * canvas.getHeight(), todaPixel, 3);
 
 			//draw ASDA
 			graphicsContext.setFill(Color.rgb(255, 240, 40));
-			graphicsContext.fillRect(toraStartPixel, 0.6 * canvas.getHeight(), asdaPixel, 5);
+			graphicsContext.fillRect(toraStartPixel, 0.6 * canvas.getHeight(), asdaPixel, 3);
 
 			//draw LDA
 			graphicsContext.setFill(Color.rgb(180, 225, 35));
-			graphicsContext.fillRect(ldaStartPixel, 0.625 * canvas.getHeight(), ldaPixel, 5);
+			graphicsContext.fillRect(ldaStartPixel, 0.625 * canvas.getHeight(), ldaPixel, 3);
 
 			//draw Displaced Threshold
 			graphicsContext.setFill(Color.rgb(150, 210, 255));
-			graphicsContext.fillRect(displacedThresholdStartPixel, 0.65 * canvas.getHeight(), displacedThresholdPixel, 5);
+			graphicsContext.fillRect(displacedThresholdStartPixel, 0.65 * canvas.getHeight(), displacedThresholdPixel, 3);
 		}
 
 	}
-
-	//	private void drawDebugParameterLines(final GraphicsContext graphicsContext, final double tora, final double toda, final double asda, final double lda,
-	//			final double displacedThreshold)
-	//	{//Calculate TORA, TODA, ASDA, LDA
-	//		final double runwayLength = 0.75 * graphicsContext.getCanvas().getWidth();
-	//		double pixelRatio = runwayLength / tora;
-	//		int toraPixel = (int) Math.round(runwayLength);
-	//		int todaPixel = (int) Math.round(toda * pixelRatio);
-	//		int asdaPixel = (int) Math.round(asda * pixelRatio);
-	//		int ldaPixel = (int) Math.round(lda * pixelRatio);
-	//		int displacedThresholdPixel = (int) Math.round(displacedThreshold * pixelRatio);
-	//
-	//		System.out.println(pixelRatio);
-	//
-	//		//draw TORA
-	//		graphicsContext.setStroke(Color.rgb(255, 138, 138));
-	//		graphicsContext.strokeLine(00, 210, 100 + toraPixel, 210);
-	//
-	//		//draw TODA
-	//		graphicsContext.setStroke(Color.rgb(255, 190, 50));
-	//		graphicsContext.strokeLine(100, 215, 100 + todaPixel, 215);
-	//
-	//		//draw ASDA
-	//		graphicsContext.setStroke(Color.rgb(255, 240, 40));
-	//		graphicsContext.strokeLine(100, 220, 100 + asdaPixel, 220);
-	//
-	//		//draw LDA
-	//		graphicsContext.setStroke(Color.rgb(180, 225, 35));
-	//		graphicsContext.strokeLine(100 + (toraPixel - ldaPixel), 225, 100 - toraPixel, 225);
-	//
-	//		//draw Displaced Threshold
-	//		graphicsContext.setStroke(Color.rgb(150, 210, 255));
-	//		graphicsContext.strokeLine(100, 230, 100 + displacedThresholdPixel, 230);
-	//	}
 
 
 	private void drawRunwaySurface(final GraphicsContext graphicsContext)
@@ -697,20 +657,20 @@ public class MainScreenController
 	{//Draw lines
 		Canvas canvas = graphicsContext.getCanvas();
 		graphicsContext.setStroke(Color.WHITE);
-		graphicsContext.setLineWidth(5);
-		//		graphicsContext.strokeLine(0.20 * canvas.getWidth(), 0.4 * canvas.getHeight() + 50, 0.20 * canvas.getWidth() + 30, 0.4 * canvas.getHeight() + 50);ge
-		//		graphicsContext.strokeLine(0.20 * canvas.getWidth() + 60, 0.4 * canvas.getHeight() + 50, 220, 0.4 * canvas.getHeight() + 50);
-		//		graphicsContext.strokeLine(250, 0.4 * canvas.getHeight() + 50, 280, 0.4 * canvas.getHeight() + 50);
-		//		graphicsContext.strokeLine(310, 0.4 * canvas.getHeight() + 50, 340, 0.4 * canvas.getHeight() + 50);
-		//		graphicsContext.strokeLine(370, 0.4 * canvas.getHeight() + 50, 400, 0.4 * canvas.getHeight() + 50);
-		//		graphicsContext.strokeLine(430, 0.4 * canvas.getHeight() + 50, 460, 0.4 * canvas.getHeight() + 50);
-		//		graphicsContext.strokeLine(490, 0.4 * canvas.getHeight() + 50, 520, 0.4 * canvas.getHeight() + 50);
-		//		graphicsContext.strokeLine(550, 0.4 * canvas.getHeight() + 50, 580, 0.4 * canvas.getHeight() + 50);
-		//		graphicsContext.strokeLine(610, 0.4 * canvas.getHeight() + 50, 640, 0.4 * canvas.getHeight() + 50);
-		//		graphicsContext.strokeLine(670, 150, 700, 150);
+		graphicsContext.setLineWidth(2);
 
-		double firstLineX = (RUNWAY_START_X_SCALING * canvas.getWidth()) + 30;
-		double centreline = (RUNWAY_START_Y_SCALING * canvas.getHeight()) + 50;
+		double lineLength = (SCALING * canvas.getWidth()) / 15;
+
+
+		double lineStart = (RUNWAY_START_X_SCALING * canvas.getWidth()) + lineLength;
+		double centreline = (RUNWAY_START_Y_SCALING * canvas.getHeight()) + 25;
+
+
+		for (int i = 0; i < 7; i++) {
+			graphicsContext.strokeLine(lineStart, centreline, lineStart + lineLength, centreline);
+			lineStart = lineStart + 2 * lineLength;
+		}
+/*
 		for (int i = 1; i < (canvas.getWidth() + getDisplacedThresholdPixel(graphicsContext)) / 105; i++)
 		{
 			double lineStart = firstLineX + (60 * (i - 1));
@@ -719,6 +679,7 @@ public class MainScreenController
 			graphicsContext.strokeLine(lineStart, centreline, lineEnd, centreline);
 
 		}
+*/
 	}
 	
 	
