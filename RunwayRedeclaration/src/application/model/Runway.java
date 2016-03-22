@@ -68,11 +68,11 @@ public class Runway
 
 		if (alignment.equals("27R"))
 		{
-			obstacle = new Obstacle("27RTest", 12.0, 3646.0, 300.0);
+			obstacle = new Obstacle("27RTest", 12.0, 3646.0, 300.0, 0.0);
 		}
 		if (alignment.equals("09L"))
 		{
-			obstacle = new Obstacle("09LTest", 12.0, -50.0, 300.0);
+			obstacle = new Obstacle("09LTest", 12.0, -50.0, 300.0, 0.0);
 		}
 
 	}
@@ -258,7 +258,7 @@ public class Runway
 	public Runway redeclare()
 	{
 		final Obstacle o = getObstacle();
-		if (o.getPosition() > TORA / 2.0)
+		if (o.getDisplacementPosition() > TORA / 2.0)
 		{
 			return redeclareTowards(o);
 		}
@@ -274,15 +274,15 @@ public class Runway
 		// Distance from Threshold - Slope Calculation - Strip End
 		// + getDisplacedThreshold() term seems to make sense
 		// based on scenarios
-		final double newTORA = o.getPosition() + getDisplacedThreshold() - (o.getHeight() * ANGLE_OF_SLOPE) - STRIP_END;
+		final double newTORA = o.getDisplacementPosition() + getDisplacedThreshold() - (o.getHeight() * ANGLE_OF_SLOPE) - STRIP_END;
 
 		// Distance from Threshold - RESA - Strip End
-		final double newLDA = o.getPosition() - RESA - STRIP_END;
+		final double newLDA = o.getDisplacementPosition() - RESA - STRIP_END;
 
 		String sb = "This Redeclaration (Towards) Explained:\n" + "New_TORA = obstacle_distance_from_threshold + displaced_Threshold - slope - strip_End\n" +
 				"Where slope = obstacle_height * height_ratio\n" +
 				"New_TORA = " +
-				o.getPosition() +
+				o.getDisplacementPosition() +
 				" + " +
 				getDisplacedThreshold() +
 				" - (" +
@@ -294,7 +294,7 @@ public class Runway
 				"\nNew_TODA = New_TORA\nNew_ASDA = New_TORA\n" +
 				"New_LDA = obstacle_distance_from_threshold - RESA - strip_end\n" +
 				"New_LDA = " +
-				o.getPosition() +
+				o.getDisplacementPosition() +
 				" - " +
 				RESA +
 				" - " +
@@ -312,7 +312,7 @@ public class Runway
 	{
 		// Original TORA - Blast Protection - Dist from Threshold -
 		// Displaced Threshold
-		final double newTORA = getTORA() - o.getBlastProtection() - o.getPosition() - getDisplacedThreshold();
+		final double newTORA = getTORA() - o.getBlastProtection() - o.getDisplacementPosition() - getDisplacedThreshold();
 
 		// (R) TORA + STOPWAY
 		final double newTODA = newTORA + STOPWAY;
@@ -321,7 +321,7 @@ public class Runway
 		final double newASDA = newTORA + CLEARWAY;
 
 		// Original LDA - Dist from Threshold - Strip End - Slope Calculation
-		final double newLDA = getLDA() - o.getPosition() - STRIP_END - (o.getHeight() * ANGLE_OF_SLOPE);
+		final double newLDA = getLDA() - o.getDisplacementPosition() - STRIP_END - (o.getHeight() * ANGLE_OF_SLOPE);
 
 		String sb = "This Redeclaration (Away) Explained:\n" + "New_TORA = TORA - blast_protection - obstacle_position - displaced_threshold\n" +
 				"New_TORA = " +
@@ -329,7 +329,7 @@ public class Runway
 				" - " +
 				o.getBlastProtection() +
 				" - " +
-				o.getPosition() +
+				o.getDisplacementPosition() +
 				" - " +
 				getDisplacedThreshold() +
 				" = " +
@@ -353,7 +353,7 @@ public class Runway
 				"New_LDA = " +
 				LDA +
 				" - " +
-				o.getPosition() +
+				o.getDisplacementPosition() +
 				" - " +
 				STRIP_END +
 				" - (" +

@@ -33,7 +33,7 @@ public class RedeclarationScenarios
 		double newLDA = 2986; //
 
 		Runway r = new Runway(0, "09L", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
 
 		r.setObstacle(o);
 
@@ -69,7 +69,7 @@ public class RedeclarationScenarios
 		double newLDA = 3346;
 
 		Runway r = new Runway(0, "27R", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
 
 		r.setObstacle(o);
 
@@ -105,7 +105,7 @@ public class RedeclarationScenarios
 		double newLDA = 2553;
 
 		Runway r = new Runway(0, "09R", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
 
 		r.setObstacle(o);
 
@@ -141,7 +141,7 @@ public class RedeclarationScenarios
 		double newLDA = 1850;
 
 		Runway r = new Runway(0, "27L", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
 
 		r.setObstacle(o);
 
@@ -177,7 +177,7 @@ public class RedeclarationScenarios
 		double newLDA = 2393;
 
 		Runway r = new Runway(0, "09L", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
 
 		r.setObstacle(o);
 
@@ -213,7 +213,7 @@ public class RedeclarationScenarios
 		double newLDA = 2903;
 
 		Runway r = new Runway(0, "27R", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
 
 		r.setObstacle(o);
 
@@ -249,7 +249,7 @@ public class RedeclarationScenarios
 		double newLDA = 3246;
 
 		Runway r = new Runway(0, "09L", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
 
 		r.setObstacle(o);
 
@@ -285,7 +285,7 @@ public class RedeclarationScenarios
 		double newLDA = 2774;
 
 		Runway r = new Runway(0, "27R", TORA, TODA, ASDA, LDA, displacedThresh);
-		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect);
+		Obstacle o = new Obstacle("tiny_plane", obstHeight, distFromThresh, blastProtect, centrePosition);
 
 		r.setObstacle(o);
 

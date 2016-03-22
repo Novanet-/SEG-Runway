@@ -7,15 +7,17 @@ public class Obstacle
 
 	private final String name;
 	private final double height;
-	private final double position;
+	private final double displacementPosition;
+	private final double centrePosition;
 	private final double blastProtection;
 
 
-	public Obstacle(final String name, final double height, final double position, final double blastProtection)
+	public Obstacle(final String name, final double height, final double displacementPosition, final double blastProtection, double centrePosition)
 	{
 		this.name = name;
 		this.height = height;
-		this.position = position;
+		this.displacementPosition = displacementPosition;
+		this.centrePosition = centrePosition;
 		this.blastProtection = 300.0;
 	}
 
@@ -32,11 +34,14 @@ public class Obstacle
 	}
 
 
-	public final double getPosition()
+	public final double getDisplacementPosition()
 	{
-		return position;
+		return displacementPosition;
 	}
 
+	public final double getCentrePosition() {
+		return centrePosition;
+	}
 
 	public final double getBlastProtection()
 	{
@@ -47,6 +52,6 @@ public class Obstacle
 	@Override
 	public final String toString()
 	{
-		return name + ": Height =" + height + ", Pos = " + position;
+		return name + ": Height =" + height + ", Pos = " + displacementPosition;
 	}
 }

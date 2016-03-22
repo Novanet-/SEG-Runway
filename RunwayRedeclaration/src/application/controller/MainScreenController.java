@@ -152,8 +152,6 @@ public class MainScreenController
 		}
 	}
 
-	//TODO: Change add airport/runway buttons to + and - buttons as per obstacle for consistency and to allow for removal or airports and runways
-
 
 	@FXML
 	private void handleBtnRemoveObstacle()
@@ -538,12 +536,12 @@ public class MainScreenController
 			final double pixelRatio = (SCALING * canvas.getWidth()) / Double.parseDouble(lblOrigTora.getText());
 
 			graphicsContext.setFill(Color.rgb(179, 45, 0)); //Background colour
-			//			graphicsContext.fillRect((obstacle.getPosition() * pixelRatio) + 20, (RUNWAY_START_Y_SCALING * canvas.getHeight()) + 30, 40, 40);
-			final double centreAdjustmentX = (obstacle.getPosition() < 0) ? -40 : 20;
+			//			graphicsContext.fillRect((obstacle.getDisplacementPosition() * pixelRatio) + 20, (RUNWAY_START_Y_SCALING * canvas.getHeight()) + 30, 40, 40);
+			final double centreAdjustmentX = (obstacle.getDisplacementPosition() < 0) ? -40 : 20;
 			final double centreAdjustmentY = 5.0;
 			final double runwayStartX = RUNWAY_START_X_SCALING * canvas.getWidth();
 			final double runwayStartY = RUNWAY_START_Y_SCALING * canvas.getHeight();
-			graphicsContext.fillRect(runwayStartX + (obstacle.getPosition() * pixelRatio) + centreAdjustmentX, runwayStartY + centreAdjustmentY, 40, 40);
+			graphicsContext.fillRect(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX, runwayStartY + centreAdjustmentY, 40, 40);
 			//			graphicsContext.fillRect(250, 150, 50, 50);
 		}
 	}
@@ -581,7 +579,7 @@ public class MainScreenController
 			{
 				obstacle = cmbRunways.getValue().getObstacle();
 
-				if(obstacle.getPosition() < (Double.parseDouble(lblOrigTora.getText())/2.0)) {
+				if (obstacle.getDisplacementPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0)) {
 					toraStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + ((SCALING * canvas.getWidth()) - toraPixel);
 					//ldaStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + displacedThresholdPixel;
 					ldaStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + ((SCALING * canvas.getWidth()) - ldaPixel);
