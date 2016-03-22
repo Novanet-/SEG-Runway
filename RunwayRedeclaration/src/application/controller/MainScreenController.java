@@ -13,6 +13,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -505,7 +506,7 @@ public class MainScreenController
 		drawRunwayStripLines(graphicsContext);
 		drawParameterLines(graphicsContext);
 		drawObstacle(graphicsContext);
-
+		drawAdditionalComponents(graphicsContext);
 	}
 
 
@@ -524,6 +525,11 @@ public class MainScreenController
 		graphicsContext.setFill(Color.rgb(0, 51, 0)); //Background colour
 		graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
+		drawRunwaySurface(graphicsContext);
+		drawRunwayStripLines(graphicsContext);
+		drawParameterLines(graphicsContext);
+		drawObstacle(graphicsContext);
+		drawAdditionalComponents(graphicsContext);
 	}
 
 
@@ -680,6 +686,34 @@ public class MainScreenController
 
 		}
 */
+	}
+
+	/* Draws directional arrow and scale
+	 *
+	 * @param graphicsContext The graphics content to paint to
+	 */
+	private void drawAdditionalComponents(final GraphicsContext graphicsContext) {
+		Canvas canvas = graphicsContext.getCanvas();
+		graphicsContext.setStroke(Color.WHITE);
+		graphicsContext.setLineWidth(2);
+
+		graphicsContext.strokeLine(canvas.getWidth() - 60, canvas.getHeight() * 0.1 - 10, canvas.getWidth() - 50, canvas.getHeight() * 0.1);
+		graphicsContext.strokeLine(canvas.getWidth() - 350, canvas.getHeight() * 0.1, canvas.getWidth() - 50, canvas.getHeight() * 0.1);
+		graphicsContext.strokeLine(canvas.getWidth() - 60, canvas.getHeight() * 0.1 + 10, canvas.getWidth() - 50, canvas.getHeight() * 0.1);
+
+		Font font = new Font(12);
+		graphicsContext.setFont(font);
+		graphicsContext.setFill(Color.WHITE);
+		graphicsContext.fillText("Direction: Landing Towards/Take-off Away", canvas.getWidth() - 330, canvas.getHeight() * 0.1 - 10);
+
+		double scaleLength = 100;
+		if (!lblOrigTora.getText().isEmpty())
+			scaleLength = (SCALING * canvas.getWidth()) / Double.valueOf(lblOrigTora.getText()) * 500;
+
+		graphicsContext.strokeLine(canvas.getWidth() - 50 - scaleLength, canvas.getHeight() * 0.9, canvas.getWidth() - 50, canvas.getHeight() * 0.9);
+		graphicsContext.strokeLine(canvas.getWidth() - 50, canvas.getHeight() * 0.9 - 10, canvas.getWidth() - 50, canvas.getHeight() * 0.9);
+		graphicsContext.strokeLine(canvas.getWidth() - 50 - scaleLength, canvas.getHeight() * 0.9 - 10, canvas.getWidth() - 50 - scaleLength, canvas.getHeight() * 0.9);
+		graphicsContext.fillText("500m", canvas.getWidth() - 65, canvas.getHeight() * 0.9 - 20);
 	}
 	
 	
