@@ -713,7 +713,9 @@ public class MainScreenController
 		graphicsContext.strokeLine(canvas.getWidth() - 50 - scaleLength, canvas.getHeight() * 0.9, canvas.getWidth() - 50, canvas.getHeight() * 0.9);
 		graphicsContext.strokeLine(canvas.getWidth() - 50, canvas.getHeight() * 0.9 - 10, canvas.getWidth() - 50, canvas.getHeight() * 0.9);
 		graphicsContext.strokeLine(canvas.getWidth() - 50 - scaleLength, canvas.getHeight() * 0.9 - 10, canvas.getWidth() - 50 - scaleLength, canvas.getHeight() * 0.9);
-		graphicsContext.fillText("500m", canvas.getWidth() - 65, canvas.getHeight() * 0.9 - 20);
+
+
+		graphicsContext.fillText("500m", canvas.getWidth() - scaleLength / 2 - 65, canvas.getHeight() * 0.9 - 10);
 	}
 	
 	
