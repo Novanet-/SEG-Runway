@@ -30,8 +30,8 @@ import java.util.Objects;
 public class MainScreenController
 {
 
-	private static final double SCALING                = 0.575;
-	private static final double RUNWAY_START_X_SCALING = 0.175;
+	private static final double SCALING = 0.6;
+	private static final double RUNWAY_START_X_SCALING = 0.2;
 	private static final double RUNWAY_START_Y_SCALING = 0.4;
 	private static final double RUNWAY_HEIGHT_SCALING  = 0.14;
 	/**
@@ -521,7 +521,7 @@ public class MainScreenController
 
 		drawSideRunwaySurface(graphicsContext);
 		drawParameterLines(graphicsContext);
-		drawObstacle(graphicsContext);
+		drawObstacleSide(graphicsContext);
 		drawAdditionalComponents(graphicsContext);
 	}
 
@@ -536,16 +536,29 @@ public class MainScreenController
 			final double pixelRatio = (SCALING * canvas.getWidth()) / Double.parseDouble(lblOrigTora.getText());
 
 			graphicsContext.setFill(Color.rgb(179, 45, 0)); //Background colour
-			//			graphicsContext.fillRect((obstacle.getDisplacementPosition() * pixelRatio) + 20, (RUNWAY_START_Y_SCALING * canvas.getHeight()) + 30, 40, 40);
 			final double centreAdjustmentX = (obstacle.getDisplacementPosition() < 0) ? -40 : 20;
 			final double centreAdjustmentY = 5.0;
 			final double runwayStartX = RUNWAY_START_X_SCALING * canvas.getWidth();
 			final double runwayStartY = RUNWAY_START_Y_SCALING * canvas.getHeight();
 			graphicsContext.fillRect(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX, runwayStartY + centreAdjustmentY, 40, 40);
-			//			graphicsContext.fillRect(250, 150, 50, 50);
 		}
 	}
 
+	private void drawObstacleSide(final GraphicsContext graphicsContext) {
+		if (!Objects.equals(txtObstacles.getText(), "")) {
+			Canvas canvas = graphicsContext.getCanvas();
+			Obstacle obstacle = cmbRunways.getValue().getObstacle();
+
+			final double pixelRatio = (SCALING * canvas.getWidth()) / Double.parseDouble(lblOrigTora.getText());
+
+			graphicsContext.setFill(Color.rgb(179, 45, 0)); //Background colour
+			final double centreAdjustmentX = (obstacle.getDisplacementPosition() < 0) ? -40 : 20;
+			final double centreAdjustmentY = 5.0;
+			final double runwayStartX = RUNWAY_START_X_SCALING * canvas.getWidth();
+			final double runwayStartY = canvas.getHeight() / 2 - 40;
+			graphicsContext.fillRect(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX, runwayStartY, 40, 40);
+		}
+	}
 
 	private void drawParameterLines(final GraphicsContext graphicsContext)
 	{
