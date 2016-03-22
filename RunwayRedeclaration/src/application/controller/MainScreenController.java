@@ -499,10 +499,10 @@ public class MainScreenController
 	private void paintTopDown(GraphicsContext graphicsContext)
 	{
 		graphicsContext.clearRect(0, 0, 870, 345); //Clears canvas for new runway
-		graphicsContext.setFill(Color.rgb(255, 255, 255));
+		graphicsContext.setFill(Color.WHITE);
 		graphicsContext.fill();
 
-		drawRunwaySurface(graphicsContext);
+		drawTopRunwaySurface(graphicsContext);
 		drawRunwayStripLines(graphicsContext);
 		drawParameterLines(graphicsContext);
 		drawObstacle(graphicsContext);
@@ -518,15 +518,10 @@ public class MainScreenController
 	private void paintSideOn(GraphicsContext graphicsContext)
 	{
 		graphicsContext.clearRect(0, 0, 870, 345); //Clears canvas for new runway
-		graphicsContext.setFill(Color.rgb(255, 255, 255));
+		graphicsContext.setFill(Color.WHITE);
 		graphicsContext.fill();
 
-		Canvas canvas = graphicsContext.getCanvas();
-		graphicsContext.setFill(Color.rgb(0, 51, 0)); //Background colour
-		graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
-		drawRunwaySurface(graphicsContext);
-		drawRunwayStripLines(graphicsContext);
+		drawSideRunwaySurface(graphicsContext);
 		drawParameterLines(graphicsContext);
 		drawObstacle(graphicsContext);
 		drawAdditionalComponents(graphicsContext);
@@ -623,15 +618,25 @@ public class MainScreenController
 	}
 
 
-	private void drawRunwaySurface(final GraphicsContext graphicsContext)
+	private void drawTopRunwaySurface(final GraphicsContext graphicsContext)
 	{
 		Canvas canvas = graphicsContext.getCanvas();
 		graphicsContext.setFill(Color.rgb(0, 51, 0)); //Background colour
 		graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		graphicsContext.setFill(Color.rgb(77, 77, 77)); //Runway colour
-		//graphicsContext.strokeLine(10, 10, 10, 50);
 		graphicsContext.fillRect(RUNWAY_START_X_SCALING * canvas.getWidth(), RUNWAY_START_Y_SCALING * canvas.getHeight(), (SCALING * canvas.getWidth()),
 				RUNWAY_HEIGHT_SCALING * canvas.getHeight());
+	}
+
+	private void drawSideRunwaySurface(final GraphicsContext graphicsContext) {
+		Canvas canvas = graphicsContext.getCanvas();
+		graphicsContext.setFill(Color.rgb(0, 51, 51)); //Background colour
+		graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight() / 2);
+		graphicsContext.setFill(Color.rgb(0, 51, 0)); //Background colour
+		graphicsContext.fillRect(0, canvas.getHeight() / 2, canvas.getWidth(), canvas.getHeight() / 2);
+		graphicsContext.setFill(Color.rgb(77, 77, 77)); //Runway colour
+		graphicsContext.fillRect(RUNWAY_START_X_SCALING * canvas.getWidth(), canvas.getHeight() / 2, (SCALING * canvas.getWidth()),
+				(RUNWAY_HEIGHT_SCALING * canvas.getHeight()) / 3.5);
 	}
 
 
