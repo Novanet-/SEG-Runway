@@ -739,7 +739,7 @@ public class MainScreenController
 	public void handleBtnImportAirport()
 	{
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Import Airport from XML File");
+		fileChooser.setTitle("Import Airport");
 		File file = fileChooser.showOpenDialog(mainApp.getMsStage());
 		
 		try {
@@ -770,7 +770,7 @@ public class MainScreenController
 	public void handleBtnImportRunway()
 	{
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Import Runway from XML File");
+		fileChooser.setTitle("Import Runway");
 		File file = fileChooser.showOpenDialog(mainApp.getMsStage());
 		
 		try {
@@ -794,6 +794,8 @@ public class MainScreenController
 			int displacedThreshold = Integer.parseInt(dTS);
 			
 			final Runway r = new Runway(id, alignment, tora, toda, asda, lda, displacedThreshold);
+
+			//TODO: handle obstacles
 			final Airport selected = cmbAirports.getValue();
 			selected.addRunway(r);
 			updateRunwayList();
@@ -815,8 +817,48 @@ public class MainScreenController
 	
 	public void handleBtnImportObstacle()
 	{
-		// TODO: import obstacle xml files based on other xml methods
-		// XML obstacle standard is defined in google doc 
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Import Obstacle");
+		File file = fileChooser.showOpenDialog(mainApp.getMsStage());
+
+		try {
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document dom = db.parse(file);
+			Element root = dom.getDocumentElement();
+
+			String idS = getTextValue(root, "id");
+			String name = getTextValue(root, "name");
+			String heightS = getTextValue(root, "height");
+			String displacementPositionS = getTextValue(root, "displacement_position");
+			String centrePositionS = getTextValue(root, "centre_position");
+			String blastProtectionS = getTextValue(root, "blast_protection");
+
+			double id = Double.parseDouble(idS);
+			double height = Double.parseDouble(heightS);
+			double displacementPosition = Double.parseDouble(displacementPositionS);
+			double centrePosition = Double.parseDouble(centrePositionS);
+			double blastProtection = Double.parseDouble(blastProtectionS);
+
+			final Airport selected = cmbAirports.getValue();
+			final Runway runway = cmbRunways.getValue();
+
+			Obstacle obstacle = new Obstacle(name, height, displacementPosition, centrePosition, blastProtection);
+
+			runway.setObstacle(obstacle);
+			updateObstacleList();
+
+			// TODO: handle these exceptions properly
+		} catch (ParserConfigurationException pce) {
+			pce.printStackTrace();
+		} catch (SAXException se) {
+			se.printStackTrace();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		} catch (NumberFormatException nfe) {
+			nfe.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private String getTextValue(Element elem, String tag)
