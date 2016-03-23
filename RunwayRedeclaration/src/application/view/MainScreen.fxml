@@ -505,16 +505,42 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem fx:id="btnAddAirport" mnemonicParsing="false" onAction="#handleBtnAddAirport"
-                                  text="Add Airport"/>
-                        <MenuItem fx:id="btnAddRunway" mnemonicParsing="false" onAction="#handleBtnAddRunway"
-                                  text="Add Runway"/>
-                        <MenuItem fx:id="btnImportAirport" onAction="#handleBtnImportAirport"
-                                  text="Import Airport from XML file"/>
-                        <MenuItem fx:id="btnImportRunway" onAction="#handleBtnImportRunway"
-                                  text="Import Runway from XML file"/>
-                        <MenuItem fx:id="btnImportObstacle" onAction="#handleBtnImportObstacle"
-                                  text="Import Obstacle from XML file"/>
+                        <Menu mnemonicParsing="false" text="Add">
+                            <items>
+                                <MenuItem fx:id="btnAddAirport" mnemonicParsing="false" onAction="#handleBtnAddAirport"
+                                          text="Add Airport"/>
+                                <MenuItem fx:id="btnAddRunway" mnemonicParsing="false" onAction="#handleBtnAddRunway"
+                                          text="Add Runway"/>
+                    </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Import">
+                            <items>
+                                <MenuItem fx:id="btnImportAirport" onAction="#handleBtnImportAirport"
+                                          text="Import Airport"/>
+                                <MenuItem fx:id="btnImportRunway" onAction="#handleBtnImportRunway"
+                                          text="Import Runway"/>
+                                <MenuItem fx:id="btnImportObstacle" onAction="#handleBtnImportObstacle"
+                                          text="Import Obstacle"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Export">
+                            <items>
+                                <Menu mnemonicParsing="false" text="Export Airport">
+                                    <items>
+                                        <MenuItem mnemonicParsing="false" text="Airport Only"/>
+                                        <MenuItem mnemonicParsing="false" text="Include Runways"/>
+                                        <MenuItem mnemonicParsing="false" text="Include Obstacles"/>
+                                    </items>
+                                </Menu>
+                                <Menu mnemonicParsing="false" text="Export Runway">
+                                    <items>
+                                        <MenuItem mnemonicParsing="false" text="Runway Only"/>
+                                        <MenuItem mnemonicParsing="false" text="Include Obstacles"/>
+                                    </items>
+                                </Menu>
+                                <MenuItem mnemonicParsing="false" text="Export Obstacle"/>
+                            </items>
+                        </Menu>
                         <MenuItem mnemonicParsing="false" onAction="#handleBtnClose" text="Close"/>
                     </items>
                 </Menu>
