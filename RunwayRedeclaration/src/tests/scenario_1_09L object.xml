@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <obstacle>
-    <id>24</id>
     <name>Scenario 1</name>
     <height>12</height>
     <displacement_position>-50</displacement_position>

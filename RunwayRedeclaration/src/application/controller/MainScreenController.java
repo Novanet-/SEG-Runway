@@ -528,6 +528,9 @@ public class MainScreenController
 
 	private void drawObstacle(final GraphicsContext graphicsContext)
 	{
+		//TODO: Implement obstacle distance from centre line in visualisation
+		//TODO: Implement obstacle height in visualisation
+		//
 		if (!Objects.equals(txtObstacles.getText(), ""))
 		{
 			Canvas canvas = graphicsContext.getCanvas();
@@ -826,14 +829,12 @@ public class MainScreenController
 			Document dom = db.parse(file);
 			Element root = dom.getDocumentElement();
 
-			String idS = getTextValue(root, "id");
 			String name = getTextValue(root, "name");
 			String heightS = getTextValue(root, "height");
 			String displacementPositionS = getTextValue(root, "displacement_position");
 			String centrePositionS = getTextValue(root, "centre_position");
 			String blastProtectionS = getTextValue(root, "blast_protection");
 
-			double id = Double.parseDouble(idS);
 			double height = Double.parseDouble(heightS);
 			double displacementPosition = Double.parseDouble(displacementPositionS);
 			double centrePosition = Double.parseDouble(centrePositionS);
@@ -858,6 +859,38 @@ public class MainScreenController
 			nfe.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	//TODO: export airport
+
+	//TODO: export runway
+
+	public void handleBtnExportObstacle() {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Export Obstacle");
+		File file = fileChooser.showSaveDialog(mainApp.getMsStage());
+
+		final Runway runway = cmbRunways.getValue();
+		Obstacle obstacle = runway.getObstacle();
+
+
+		try {
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document dom = db.parse(file);
+			Element root = dom.getDocumentElement();
+
+			// TODO: export obstacle
+
+			// TODO: handle these exceptions properly
+		} catch (ParserConfigurationException pce) {
+			pce.printStackTrace();
+		} catch (SAXException se) {
+			se.printStackTrace();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		} catch (NumberFormatException nfe) {
+			nfe.printStackTrace();
 		}
 	}
 	

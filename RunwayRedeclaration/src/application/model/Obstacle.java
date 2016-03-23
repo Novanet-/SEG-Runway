@@ -3,8 +3,6 @@ package application.model;
 public class Obstacle
 {
 
-	//TODO: implement distance from centreline
-
 	private final String name;
 	private final double height;
 	private final double displacementPosition;
