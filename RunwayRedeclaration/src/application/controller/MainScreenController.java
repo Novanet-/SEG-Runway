@@ -904,7 +904,7 @@ public class MainScreenController
 			root.appendChild(getTextElements(dom, "name", currentObstacle.getName()));
 			root.appendChild(getTextElements(dom, "height", Double.toString(currentObstacle.getHeight())));
 			root.appendChild(getTextElements(dom, "displacement_position", Double.toString(currentObstacle.getDisplacementPosition())));
-			root.appendChild(getTextElements(dom, "centre_position", Double.toString(currentObstacle.getDisplacementPosition())));
+			root.appendChild(getTextElements(dom, "centre_position", Double.toString(currentObstacle.getCentrePosition())));
 			root.appendChild(getTextElements(dom, "blast_protection", Double.toString(currentObstacle.getBlastProtection())));
 
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
