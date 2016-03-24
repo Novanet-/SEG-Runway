@@ -895,18 +895,17 @@ public class MainScreenController
 
 		try {
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document dom = db.newDocument(); //db.parse(file);
-			Element root = dom.getDocumentElement();
+			Document dom = db.newDocument();
 
-			Element rootElement = dom.createElement("obstacle");
+			Element root = dom.createElement("obstacle");
 
-			dom.appendChild(rootElement);
+			dom.appendChild(root);
 
-			rootElement.appendChild(getTextElements(dom, "name", currentObstacle.getName()));
-			rootElement.appendChild(getTextElements(dom, "height", Double.toString(currentObstacle.getHeight())));
-			rootElement.appendChild(getTextElements(dom, "displacement_position", Double.toString(currentObstacle.getDisplacementPosition())));
-			rootElement.appendChild(getTextElements(dom, "centre_position", Double.toString(currentObstacle.getDisplacementPosition())));
-			rootElement.appendChild(getTextElements(dom, "blast_protection", Double.toString(currentObstacle.getBlastProtection())));
+			root.appendChild(getTextElements(dom, "name", currentObstacle.getName()));
+			root.appendChild(getTextElements(dom, "height", Double.toString(currentObstacle.getHeight())));
+			root.appendChild(getTextElements(dom, "displacement_position", Double.toString(currentObstacle.getDisplacementPosition())));
+			root.appendChild(getTextElements(dom, "centre_position", Double.toString(currentObstacle.getDisplacementPosition())));
+			root.appendChild(getTextElements(dom, "blast_protection", Double.toString(currentObstacle.getBlastProtection())));
 
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -915,8 +914,6 @@ public class MainScreenController
 			DOMSource source = new DOMSource(dom);
 			StreamResult newfile = new StreamResult(file);
 			transformer.transform(source, newfile);
-
-			// TODO: force xml extension
 
 			// TODO: handle these exceptions properly
 		} catch (ParserConfigurationException pce) {
