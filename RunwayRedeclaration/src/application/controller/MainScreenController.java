@@ -754,7 +754,6 @@ public class MainScreenController
 		}
 	}
 	
-	
 	public void handleBtnImportRunway()
 	{
 		Runway importedRunway = importController.importRunway(mainApp, dbf);
@@ -770,8 +769,8 @@ public class MainScreenController
 			//TODO: Error message
 		}
 	}
-	
-	
+
+
 	public void handleBtnImportObstacle()
 	{
 		Obstacle importedObstacle = importController.importObstacle(mainApp, dbf);

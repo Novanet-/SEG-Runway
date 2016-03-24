@@ -7,7 +7,6 @@ import application.model.Runway;
 import javafx.stage.FileChooser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -37,9 +36,24 @@ public class ImportController {
 
             String idString = getTextValue(root, "id");
             String name = getTextValue(root, "name");
-            // TODO: handle runways
 
             final Airport a = new Airport(Integer.parseInt(idString), name);
+
+            Element runwaysNode = (Element) root.getElementsByTagName("runways").item(0);
+
+            for (int i = 0; i < runwaysNode.getElementsByTagName("runway").getLength(); i++) {
+                Element runwayElement = (Element) runwaysNode.getElementsByTagName("runway").item(i);
+                a.addRunway(new Runway(
+                        Integer.parseInt(getTextValue(runwayElement, "id")),
+                        getTextValue(runwayElement, "alignment"),
+                        Double.parseDouble(getTextValue(runwayElement, "tora")),
+                        Double.parseDouble(getTextValue(runwayElement, "toda")),
+                        Double.parseDouble(getTextValue(runwayElement, "asda")),
+                        Double.parseDouble(getTextValue(runwayElement, "lda")),
+                        Double.parseDouble(getTextValue(runwayElement, "displaced_threshold"))
+                ));
+            }
+
             return a;
 
             // TODO: handle these exceptions properly
@@ -54,6 +68,7 @@ public class ImportController {
         }
         return null;
     }
+
 
     public Runway importRunway(Main mainApp, DocumentBuilderFactory dbf) {
         FileChooser fileChooser = new FileChooser();
@@ -157,10 +172,4 @@ public class ImportController {
         return e.getFirstChild().getNodeValue();
     }
 
-    //utility method to create text node
-    private Node getTextElements(Document doc, String name, String value) {
-        Element node = doc.createElement(name);
-        node.appendChild(doc.createTextNode(value));
-        return node;
-    }
 }
