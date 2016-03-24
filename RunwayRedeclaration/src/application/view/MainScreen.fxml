@@ -505,12 +505,12 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <Menu mnemonicParsing="false" text="Add">
+                        <Menu mnemonicParsing="false" text="New">
                             <items>
                                 <MenuItem fx:id="btnAddAirport" mnemonicParsing="false" onAction="#handleBtnAddAirport"
-                                          text="Add Airport"/>
+                                          text="New Airport"/>
                                 <MenuItem fx:id="btnAddRunway" mnemonicParsing="false" onAction="#handleBtnAddRunway"
-                                          text="Add Runway"/>
+                                          text="New Runway"/>
                     </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Import">
@@ -527,15 +527,20 @@
                             <items>
                                 <Menu mnemonicParsing="false" text="Export Airport">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" text="Airport Only"/>
-                                        <MenuItem mnemonicParsing="false" text="Include Runways"/>
-                                        <MenuItem mnemonicParsing="false" text="Include Obstacles"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportAirportOnly"
+                                                  text="Airport Only"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportAirportRunways"
+                                                  text="Include Runways"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportAirport"
+                                                  text="Include Obstacles"/>
                                     </items>
                                 </Menu>
                                 <Menu mnemonicParsing="false" text="Export Runway">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" text="Runway Only"/>
-                                        <MenuItem mnemonicParsing="false" text="Include Obstacles"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportRunwayOnly"
+                                                  text="Runway Only"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportRunway"
+                                                  text="Include Obstacles"/>
                                     </items>
                                 </Menu>
                                 <MenuItem mnemonicParsing="false" onAction="#handleBtnExportObstacle"

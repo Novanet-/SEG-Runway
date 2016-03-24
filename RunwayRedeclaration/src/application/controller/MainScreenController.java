@@ -877,20 +877,123 @@ public class MainScreenController
 		}
 	}
 
-	//TODO: export airport
+	public void handleBtnExportAirportOnly() {
+		final Airport airport = cmbAirports.getValue();
 
-	//TODO: export runway
-
-	public void handleBtnExportObstacle() {
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Export Obstacle");
+		fileChooser.setTitle("Export Airport");
+		fileChooser.setInitialFileName(airport.getAirportName());
+
 		fileChooser.getExtensionFilters().addAll(
 				new FileChooser.ExtensionFilter("XML Files", "*.xml"),
 				new FileChooser.ExtensionFilter("All Files", "*.*"));
 		File file = fileChooser.showSaveDialog(mainApp.getMsStage());
 
+		try {
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document dom = db.newDocument();
+
+			Element root = dom.createElement("airport");
+
+			dom.appendChild(root);
+
+			root.appendChild(getTextElements(dom, "id", Integer.toString(airport.getAirportID())));
+			root.appendChild(getTextElements(dom, "name", airport.getAirportName()));
+
+			Transformer transformer = TransformerFactory.newInstance().newTransformer();
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+			DOMSource source = new DOMSource(dom);
+			StreamResult newfile = new StreamResult(file);
+			transformer.transform(source, newfile);
+
+			// TODO: handle these exceptions properly
+		} catch (ParserConfigurationException pce) {
+			pce.printStackTrace();
+		} catch (NumberFormatException nfe) {
+			nfe.printStackTrace();
+		} catch (javax.xml.transform.TransformerException te) {
+			te.printStackTrace();
+		}
+
+
+	}
+
+	//TODO export airport fully
+	public void handleBtnExportAirportRunways() {
+	}
+
+	public void handleBtnExportAirport() {
+	}
+
+	//TODO: export runway fully
+
+	public void handleBtnExportRunway() {
+	}
+
+	public void handleBtnExportRunwayOnly() {
+		final Airport airport = cmbAirports.getValue();
+		final Runway runway = cmbRunways.getValue();
+
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Export Runway");
+		fileChooser.setInitialFileName(airport.getAirportName() + " - " + runway.getAlignment());
+
+		fileChooser.getExtensionFilters().addAll(
+				new FileChooser.ExtensionFilter("XML Files", "*.xml"),
+				new FileChooser.ExtensionFilter("All Files", "*.*"));
+		File file = fileChooser.showSaveDialog(mainApp.getMsStage());
+
+
+		try {
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document dom = db.newDocument();
+
+			Element root = dom.createElement("runway");
+
+			dom.appendChild(root);
+
+			root.appendChild(getTextElements(dom, "id", Integer.toString(runway.getRunwayID())));
+			root.appendChild(getTextElements(dom, "alignment", runway.getAlignment()));
+			root.appendChild(getTextElements(dom, "tora", Double.toString(runway.getTORA())));
+			root.appendChild(getTextElements(dom, "toda", Double.toString(runway.getTODA())));
+			root.appendChild(getTextElements(dom, "asda", Double.toString(runway.getASDA())));
+			root.appendChild(getTextElements(dom, "lda", Double.toString(runway.getLDA())));
+			root.appendChild(getTextElements(dom, "displaced_threshold", Double.toString(runway.getDisplacedThreshold())));
+
+			Transformer transformer = TransformerFactory.newInstance().newTransformer();
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+			DOMSource source = new DOMSource(dom);
+			StreamResult newfile = new StreamResult(file);
+			transformer.transform(source, newfile);
+
+			// TODO: handle these exceptions properly
+		} catch (ParserConfigurationException pce) {
+			pce.printStackTrace();
+		} catch (NumberFormatException nfe) {
+			nfe.printStackTrace();
+		} catch (javax.xml.transform.TransformerException te) {
+			te.printStackTrace();
+		}
+
+
+	}
+
+	public void handleBtnExportObstacle() {
 		final Runway runway = cmbRunways.getValue();
 		Obstacle currentObstacle = runway.getObstacle();
+
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Export Obstacle");
+		fileChooser.setInitialFileName(currentObstacle.getName());
+
+		fileChooser.getExtensionFilters().addAll(
+				new FileChooser.ExtensionFilter("XML Files", "*.xml"),
+				new FileChooser.ExtensionFilter("All Files", "*.*"));
+		File file = fileChooser.showSaveDialog(mainApp.getMsStage());
 
 
 		try {
@@ -923,7 +1026,6 @@ public class MainScreenController
 		} catch (javax.xml.transform.TransformerException te) {
 			te.printStackTrace();
 		}
-
 
 	}
 	
