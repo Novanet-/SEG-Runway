@@ -749,6 +749,9 @@ public class MainScreenController
 	{
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Import Airport");
+		fileChooser.getExtensionFilters().addAll(
+				new FileChooser.ExtensionFilter("XML Files", "*.xml"),
+				new FileChooser.ExtensionFilter("All Files", "*.*"));
 		File file = fileChooser.showOpenDialog(mainApp.getMsStage());
 		
 		try {
@@ -780,6 +783,9 @@ public class MainScreenController
 	{
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Import Runway");
+		fileChooser.getExtensionFilters().addAll(
+				new FileChooser.ExtensionFilter("XML Files", "*.xml"),
+				new FileChooser.ExtensionFilter("All Files", "*.*"));
 		File file = fileChooser.showOpenDialog(mainApp.getMsStage());
 		
 		try {
@@ -828,6 +834,9 @@ public class MainScreenController
 	{
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Import Obstacle");
+		fileChooser.getExtensionFilters().addAll(
+				new FileChooser.ExtensionFilter("XML Files", "*.xml"),
+				new FileChooser.ExtensionFilter("All Files", "*.*"));
 		File file = fileChooser.showOpenDialog(mainApp.getMsStage());
 
 		try {
@@ -875,6 +884,9 @@ public class MainScreenController
 	public void handleBtnExportObstacle() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Export Obstacle");
+		fileChooser.getExtensionFilters().addAll(
+				new FileChooser.ExtensionFilter("XML Files", "*.xml"),
+				new FileChooser.ExtensionFilter("All Files", "*.*"));
 		File file = fileChooser.showSaveDialog(mainApp.getMsStage());
 
 		final Runway runway = cmbRunways.getValue();
@@ -904,7 +916,7 @@ public class MainScreenController
 			StreamResult newfile = new StreamResult(file);
 			transformer.transform(source, newfile);
 
-			// TODO: export obstacle
+			// TODO: force xml extension
 
 			// TODO: handle these exceptions properly
 		} catch (ParserConfigurationException pce) {
