@@ -2,7 +2,8 @@ package application.model;
 
 public class Runway
 {
-
+	//TODO: take these values from runway creation
+	//TODO: add these values to XML (imports and exports)
 	// From Redeclaration
 	private static final double CLEARWAY         = 0.0; //75.0
 	private static final double STOPWAY          = 0.0; //60.0
