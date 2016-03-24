@@ -540,7 +540,7 @@
                                         <MenuItem mnemonicParsing="false" onAction="#handleBtnExportRunwayOnly"
                                                   text="Runway Only"/>
                                         <MenuItem mnemonicParsing="false" onAction="#handleBtnExportRunway"
-                                                  text="Include Obstacles"/>
+                                                  text="Include Obstacle"/>
                                     </items>
                                 </Menu>
                                 <MenuItem mnemonicParsing="false" onAction="#handleBtnExportObstacle"

@@ -39,7 +39,7 @@ public class ExportController {
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document dom = db.newDocument();
 
-            exportAirportElement(dom, airport, exportType);
+            dom.appendChild(exportAirportElement(dom, airport, exportType));
 
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -59,13 +59,11 @@ public class ExportController {
         }
     }
 
-    public void exportAirportElement(Document dom, Airport airport, int exportType) {
+    public Node exportAirportElement(Document dom, Airport airport, int exportType) {
         Element airportElement = dom.createElement("airport");
 
         airportElement.appendChild(getTextElements(dom, "id", Integer.toString(airport.getAirportID())));
         airportElement.appendChild(getTextElements(dom, "name", airport.getAirportName()));
-
-        dom.appendChild(airportElement);
 
         Element runwaysElement = dom.createElement("runways");
 
@@ -85,6 +83,8 @@ public class ExportController {
             case 2:
                 break;
         }
+
+        return airportElement;
     }
 
     public void exportRunway(Main mainApp, DocumentBuilderFactory dbf, String airportName, Runway runway, int exportType) {
@@ -134,8 +134,6 @@ public class ExportController {
         runwayElement.appendChild(getTextElements(dom, "lda", Double.toString(runway.getLDA())));
         runwayElement.appendChild(getTextElements(dom, "displaced_threshold", Double.toString(runway.getDisplacedThreshold())));
 
-        dom.appendChild(runwayElement);
-
         switch (exportType) {
             case 0: //TODO: Fix this
                 runwayElement.appendChild(exportObstacleElement(dom, runway.getObstacle()));
@@ -145,7 +143,6 @@ public class ExportController {
         }
 
         return runwayElement;
-
     }
 
     public void exportObstacle(Main mainApp, DocumentBuilderFactory dbf, Obstacle obstacle) {
@@ -184,7 +181,7 @@ public class ExportController {
         }
     }
 
-    public Element exportObstacleElement(Document dom, Obstacle obstacle) {
+    public Node exportObstacleElement(Document dom, Obstacle obstacle) {
         Element obstacleElement = dom.createElement("obstacle");
 
         obstacleElement.appendChild(getTextElements(dom, "name", obstacle.getName()));
