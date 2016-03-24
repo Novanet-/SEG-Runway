@@ -229,7 +229,6 @@ public class ExportController {
 
         try {
             ImageIO.write(SwingFXUtils.fromFXImage(generateImage(canvas), null), "png", file);
-
             // TODO: handle these exceptions properly
         } catch (NumberFormatException nfe) {
             nfe.printStackTrace();
@@ -251,8 +250,7 @@ public class ExportController {
         return wim;
     }
 
-
-    public void exportPDF(Main mainApp, Canvas topDownCanvas, Canvas sideOnCanvas) {
+    public void exportPDF(Main mainApp, Canvas topDownCanvas, Canvas sideOnCanvas, String airportName, Runway runway) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Export PDF");
 
@@ -281,11 +279,11 @@ public class ExportController {
             Paragraph description;
             // We add one empty line
             // Lets write a big header
-            firstPage.add(new Paragraph("Redeclaration for Heathrow Airport", fontHeader));
+            firstPage.add(new Paragraph("Redeclaration for " + airportName, fontHeader));
 
             addEmptyLine(firstPage, 1);
 
-            firstPage.add(new Paragraph("Calculations for runway 27R\n", fontBodyHead));
+            firstPage.add(new Paragraph("Calculations for runway " + runway.getAlignment() + "\n", fontBodyHead));
 
             addEmptyLine(firstPage, 1);
 
@@ -294,10 +292,10 @@ public class ExportController {
 
 
             Paragraph c1Para = new Paragraph(
-                    "Obstacle name: Scenario 1\n" +
-                            "Obstacle height: 12m\n" +
-                            "Distance from Threshold: -50m\n" +
-                            "Distance from Centre Line: 0m\n",
+                    "Obstacle name: " + runway.getObstacle().getName() + "\n" +
+                            "Obstacle height: " + runway.getObstacle().getHeight() + "m\n" +
+                            "Distance from Threshold: " + runway.getObstacle().getDisplacementPosition() + "m\n" +
+                            "Distance from Centre Line: " + runway.getObstacle().getCentrePosition() + "m\n",
                     fontBody);
 
             PdfPCell c1 = new PdfPCell(c1Para);
@@ -305,12 +303,12 @@ public class ExportController {
             table.addCell(c1);
 
             Paragraph c2Para = new Paragraph(
-                    "Displaced Threshold: 306m\n" +
-                            "Angle of Slope: 50.0°\n" +
-                            "Blast Allowance: 300m\n" +
-                            "Stopway: 60m\n" +
-                            "Strip Width: 150m\n" +
-                            "Clear and Graded Area Width: 75m\n",
+                    "Displaced Threshold: " + runway.getDisplacedThreshold() + "m\n" +
+                            "Angle of Slope: " + runway.getAngleOfSlope() + "°\n" +
+                            "Blast Allowance: " + runway.getObstacle().getBlastProtection() + "m\n" +
+                            "Stopway: " + runway.getStopway() + "m\n" +
+                            "Strip Width: " + runway.getStripWidth() + "m\n" +
+                            "Clear and Graded Area Width: " + runway.getCagWidth() + "m\n",
                     fontBody
 
             );
@@ -323,6 +321,7 @@ public class ExportController {
 
             addEmptyLine(firstPage, 1);
 
+            //TODO export actual recalculated values
             Paragraph toraCalc = new Paragraph("New TORA = 3902.0 - 0.0 - (12.51 * 50.0) - 60.0 - 0.0 = 3216.5m", fontBody);
             Paragraph todaCalc = new Paragraph("New TODA = 3902.0 - 0.0 - (12.51 * 50.0) - 60.0 - 0.0 = 3216.5m", fontBody);
             Paragraph asdaCalc = new Paragraph("New ASDA = 3902.0 - 0.0 - (12.51 * 50.0) - 60.0 - 0.0 = 3216.5m", fontBody);
