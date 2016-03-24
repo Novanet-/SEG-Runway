@@ -327,10 +327,56 @@ public class ExportController {
 
             //TODO export actual recalculated values
 
-            Paragraph toraCalc = new Paragraph("New TORA = 3902.0 - 300.0 - -50.0 - 306.0 = 3346.0m", fontBody);
-            Paragraph todaCalc = new Paragraph("New TODA = 3902.0 - 300.0 - -50.0 - 306.0 + 0.0 = 3346.0m", fontBody);
-            Paragraph asdaCalc = new Paragraph("New ASDA = 3902.0 - 300.0 - -50.0 - 306.0 + 0.0 = 3346.0m", fontBody);
-            Paragraph ldaCalc = new Paragraph("New LDA = 3595.0 - -50.0 - 60.0 - (12.0 * 50) = 2985.0m", fontBody);
+            Runway recalcRunway = runway.redeclare();
+
+            Paragraph toraCalc = new Paragraph("New TORA = " +
+                    runway.getTORA() +
+                    " - " +
+                    runway.getObstacle().getBlastProtection() +
+                    " - " +
+                    runway.getObstacle().getDisplacementPosition() +
+                    " - " +
+                    runway.getDisplacedThreshold() +
+                    " = " +
+                    recalcRunway.getTORA() +
+                    "m", fontBody);
+            Paragraph todaCalc = new Paragraph("New TODA = " +
+                    runway.getTORA() +
+                    " - " +
+                    runway.getObstacle().getBlastProtection() +
+                    " - " +
+                    runway.getObstacle().getDisplacementPosition() +
+                    " - " +
+                    runway.getDisplacedThreshold() +
+                    " + " +
+                    runway.getStopway() +
+                    " = " +
+                    recalcRunway.getTODA() +
+                    "m", fontBody);
+            Paragraph asdaCalc = new Paragraph("New ASDA = " +
+                    runway.getTORA() +
+                    " - " +
+                    runway.getObstacle().getBlastProtection() +
+                    " - " +
+                    runway.getObstacle().getDisplacementPosition() +
+                    " - " +
+                    runway.getDisplacedThreshold() +
+                    " + " +
+                    runway.getClearway() +
+                    " = " +
+                    recalcRunway.getASDA(), fontBody);
+            Paragraph ldaCalc = new Paragraph("New LDA = " +
+                    runway.getLDA() +
+                    " - " +
+                    runway.getObstacle().getDisplacementPosition() +
+                    " - " +
+                    runway.getStripEnd() +
+                    " - (" +
+                    runway.getObstacle().getHeight() +
+                    " * " +
+                    runway.getAngleOfSlope() +
+                    " = " +
+                    recalcRunway.getLDA(), fontBody);
 
             firstPage.add(toraCalc);
             firstPage.add(todaCalc);
