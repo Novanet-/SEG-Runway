@@ -50,6 +50,7 @@ public class ExportController {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("XML Files", "*.xml"),
                 new FileChooser.ExtensionFilter("All Files", "*.*"));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         File file = fileChooser.showSaveDialog(mainApp.getMsStage());
 
         try {
@@ -112,6 +113,7 @@ public class ExportController {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("XML Files", "*.xml"),
                 new FileChooser.ExtensionFilter("All Files", "*.*"));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         File file = fileChooser.showSaveDialog(mainApp.getMsStage());
 
 
@@ -171,6 +173,7 @@ public class ExportController {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("XML Files", "*.xml"),
                 new FileChooser.ExtensionFilter("All Files", "*.*"));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         File file = fileChooser.showSaveDialog(mainApp.getMsStage());
 
 
@@ -224,6 +227,7 @@ public class ExportController {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("PNG Files", "*.png"),
                 new FileChooser.ExtensionFilter("All Files", "*.*"));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         File file = fileChooser.showSaveDialog(mainApp.getMsStage());
 
 
