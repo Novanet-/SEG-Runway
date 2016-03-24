@@ -898,11 +898,11 @@ public class MainScreenController
 
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 
 			DOMSource source = new DOMSource(dom);
-			StreamResult console = new StreamResult(System.out);
-			transformer.transform(source, console);
+			StreamResult newfile = new StreamResult(file);
+			transformer.transform(source, newfile);
 
 			// TODO: export obstacle
 
