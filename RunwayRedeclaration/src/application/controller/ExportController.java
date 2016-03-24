@@ -375,7 +375,7 @@ public class ExportController {
                     runway.getObstacle().getHeight() +
                     " * " +
                     runway.getAngleOfSlope() +
-                    " = " +
+                    ") = " +
                     recalcRunway.getLDA(), fontBody);
 
             firstPage.add(toraCalc);
