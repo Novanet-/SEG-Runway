@@ -40,11 +40,17 @@ public class ImportController {
             final Airport a = new Airport(Integer.parseInt(idString), name);
 
             Element runwaysNode = (Element) root.getElementsByTagName("runways").item(0);
+            Element obstacleElement;
 
             for (int i = 0; i < runwaysNode.getElementsByTagName("runway").getLength(); i++) {
                 Element runwayElement = (Element) runwaysNode.getElementsByTagName("runway").item(i);
+
+                obstacleElement = (Element) runwayElement.getElementsByTagName("obstacle").item(0);
+
+                int runwayID = Integer.parseInt(getTextValue(runwayElement, "id"));
+
                 a.addRunway(new Runway(
-                        Integer.parseInt(getTextValue(runwayElement, "id")),
+                        runwayID,
                         getTextValue(runwayElement, "alignment"),
                         Double.parseDouble(getTextValue(runwayElement, "tora")),
                         Double.parseDouble(getTextValue(runwayElement, "toda")),
@@ -52,6 +58,17 @@ public class ImportController {
                         Double.parseDouble(getTextValue(runwayElement, "lda")),
                         Double.parseDouble(getTextValue(runwayElement, "displaced_threshold"))
                 ));
+
+                if (obstacleElement != null) {
+                    Runway runway = a.getRunways().get(a.getRunways().size() - 1);
+                    runway.setObstacle(new Obstacle(
+                            getTextValue(obstacleElement, "name"),
+                            Double.parseDouble(getTextValue(obstacleElement, "height")),
+                            Double.parseDouble(getTextValue(obstacleElement, "displacement_position")),
+                            Double.parseDouble(getTextValue(obstacleElement, "centre_position")),
+                            Double.parseDouble(getTextValue(obstacleElement, "blast_protection"))
+                    ));
+                }
             }
 
             return a;
@@ -120,6 +137,7 @@ public class ImportController {
         return null;
     }
 
+    //TODO: Make obstacles import to Primary and Secondary runway
     public Obstacle importObstacle(Main mainApp, DocumentBuilderFactory dbf) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Import Obstacle");

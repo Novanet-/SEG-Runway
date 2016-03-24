@@ -76,7 +76,9 @@ public class MainScreenController
 	private Canvas cnvTop; //875x345
 	@FXML
 	private Canvas cnvSide; //875x345
-	
+
+	//TODO: Make program save and restore current state
+
 	// Used for XML handling
 	private DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
