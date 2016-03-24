@@ -132,7 +132,7 @@ public class MainScreenController
 				{
 					toggleObstacleButton();
 				}
-				final Alert alert = new Alert(AlertType.INFORMATION, "Obstacle already exists. please remove before adding another");
+				final Alert alert = new Alert(AlertType.INFORMATION, "Obstacle already exists. Please remove before adding another.");
 				alert.showAndWait();
 			}
 			else
