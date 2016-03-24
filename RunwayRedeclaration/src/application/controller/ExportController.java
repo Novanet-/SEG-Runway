@@ -4,11 +4,15 @@ import application.Main;
 import application.model.Airport;
 import application.model.Obstacle;
 import application.model.Runway;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,6 +22,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by jackclarke on 24/03/2016.
@@ -197,5 +202,35 @@ public class ExportController {
         Element node = dom.createElement(name);
         node.appendChild(dom.createTextNode(value));
         return node;
+    }
+
+    public void exportImage(Main mainApp, Canvas canvas) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Visualisation");
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PNG Files", "*.png"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        File file = fileChooser.showSaveDialog(mainApp.getMsStage());
+
+
+        try {
+            Double canvasWidth = canvas.getWidth();
+            Double canvasHeight = canvas.getHeight();
+
+            WritableImage wim = new WritableImage(
+                    canvasWidth.intValue(),
+                    canvasHeight.intValue());
+
+            canvas.snapshot(null, wim);
+            ImageIO.write(SwingFXUtils.fromFXImage(wim, null), "png", file);
+
+            // TODO: handle these exceptions properly
+        } catch (NumberFormatException nfe) {
+            nfe.printStackTrace();
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
     }
 }

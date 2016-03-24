@@ -14,9 +14,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.util.Objects;
@@ -805,9 +802,11 @@ public class MainScreenController
 		exportController.exportObstacle(mainApp, dbf, runway.getObstacle());
 	}
 
-	private Node getTextElements(Document doc, String name, String value) {
-		Element node = doc.createElement(name);
-		node.appendChild(doc.createTextNode(value));
-		return node;
+	public void handleBtnExportTopDown() {
+		exportController.exportImage(mainApp, cnvTop);
+	}
+
+	public void handleBtnExportSideOn() {
+		exportController.exportImage(mainApp, cnvSide);
 	}
 }

@@ -545,6 +545,14 @@
                                 </Menu>
                                 <MenuItem mnemonicParsing="false" onAction="#handleBtnExportObstacle"
                                           text="Export Obstacle"/>
+                                <Menu mnemonicParsing="false" text="Export Visualisation">
+                                    <items>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportTopDown"
+                                                  text="Top-Down View"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportSideOn"
+                                                  text="Side-On Visualisation"/>
+                                    </items>
+                                </Menu>
                             </items>
                         </Menu>
                         <MenuItem mnemonicParsing="false" onAction="#handleBtnClose" text="Close"/>
