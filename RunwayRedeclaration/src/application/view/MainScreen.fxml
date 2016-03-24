@@ -553,6 +553,7 @@
                                                   text="Side-On Visualisation"/>
                                     </items>
                                 </Menu>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnExportPDF" text="Export PDF"/>
                             </items>
                         </Menu>
                         <MenuItem mnemonicParsing="false" onAction="#handleBtnClose" text="Close"/>

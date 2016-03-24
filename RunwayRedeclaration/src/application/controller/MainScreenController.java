@@ -809,4 +809,12 @@ public class MainScreenController
 	public void handleBtnExportSideOn() {
 		exportController.exportImage(mainApp, cnvSide);
 	}
+
+	public void handleBtnExportPDF() {
+		if (cmbRunways.getValue().getObstacle() != null) {
+			exportController.exportPDF(mainApp, cnvTop, cnvSide, cmbAirports.getValue().getAirportName(), cmbRunways.getValue());
+		} else {
+			//TODO: Error can't export PDF
+		}
+	}
 }
