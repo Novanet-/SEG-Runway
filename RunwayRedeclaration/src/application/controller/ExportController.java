@@ -9,6 +9,8 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.Canvas;
@@ -283,20 +285,53 @@ public class ExportController {
 
             addEmptyLine(firstPage, 1);
 
-            firstPage.add(new Paragraph("Calculations for runway 27R", fontBodyHead));
-            firstPage.add(new Paragraph("Obstacle name: Scenario 1", fontBody));
-            firstPage.add(new Paragraph("Obstacle height: 12m", fontBody));
-            firstPage.add(new Paragraph("Distance from Threshold: -50m", fontBody));
-            firstPage.add(new Paragraph("Distance from Centre Line: 0m", fontBody));
+            firstPage.add(new Paragraph("Calculations for runway 27R\n", fontBodyHead));
 
             addEmptyLine(firstPage, 1);
 
-            firstPage.add(new Paragraph("Displaced Threshold: 306m", fontBody));
-            firstPage.add(new Paragraph("Angle of Slope: 50.0\u00b0", fontBody));
-            firstPage.add(new Paragraph("Blast Allowance: 300m", fontBody));
-            firstPage.add(new Paragraph("Stopway: 60m", fontBody));
-            firstPage.add(new Paragraph("Strip Width: 150m", fontBody));
-            firstPage.add(new Paragraph("Clear and Graded Area Width: 75m", fontBody));
+            PdfPTable table = new PdfPTable(2);
+            table.setWidthPercentage(100);
+
+
+            Paragraph c1Para = new Paragraph(
+                    "Obstacle name: Scenario 1\n" +
+                            "Obstacle height: 12m\n" +
+                            "Distance from Threshold: -50m\n" +
+                            "Distance from Centre Line: 0m\n",
+                    fontBody);
+
+            PdfPCell c1 = new PdfPCell(c1Para);
+            c1.setBorder(0);
+            table.addCell(c1);
+
+            Paragraph c2Para = new Paragraph(
+                    "Displaced Threshold: 306m\n" +
+                            "Angle of Slope: 50.0°\n" +
+                            "Blast Allowance: 300m\n" +
+                            "Stopway: 60m\n" +
+                            "Strip Width: 150m\n" +
+                            "Clear and Graded Area Width: 75m\n",
+                    fontBody
+
+            );
+
+            PdfPCell c2 = new PdfPCell(c2Para);
+            c2.setBorder(0);
+            table.addCell(c2);
+
+            firstPage.add(table);
+
+            addEmptyLine(firstPage, 1);
+
+            Paragraph toraCalc = new Paragraph("New TORA = 3902.0 - 0.0 - (12.51 * 50.0) - 60.0 - 0.0 = 3216.5m", fontBody);
+            Paragraph todaCalc = new Paragraph("New TODA = 3902.0 - 0.0 - (12.51 * 50.0) - 60.0 - 0.0 = 3216.5m", fontBody);
+            Paragraph asdaCalc = new Paragraph("New ASDA = 3902.0 - 0.0 - (12.51 * 50.0) - 60.0 - 0.0 = 3216.5m", fontBody);
+            Paragraph ldaCalc = new Paragraph("New LDA = 3595.0 - 0.0 - 0.0 - 240.0 - 60.0 = 3295.0m", fontBody);
+
+            firstPage.add(toraCalc);
+            firstPage.add(todaCalc);
+            firstPage.add(asdaCalc);
+            firstPage.add(ldaCalc);
 
             addEmptyLine(firstPage, 2);
 
