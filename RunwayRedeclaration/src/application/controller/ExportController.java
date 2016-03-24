@@ -24,8 +24,6 @@ import java.io.File;
  */
 public class ExportController {
 
-    //TODO: Fix bug that only allows 1 export
-
     public void exportAirport(Main mainApp, DocumentBuilderFactory dbf, Airport airport, int exportType) {
 
         FileChooser fileChooser = new FileChooser();
@@ -72,13 +70,13 @@ public class ExportController {
         Element runwaysElement = dom.createElement("runways");
 
         switch (exportType) {
-            case 0:
+            case 0: //TODO: Fix this
                 for (Runway runway : airport.getRunways()) {
                     runwaysElement.appendChild(exportRunwayElement(dom, runway, 0));
                 }
                 airportElement.appendChild(runwaysElement);
                 break;
-            case 1:
+            case 1: //TODO: Fix this
                 for (Runway runway : airport.getRunways()) {
                     runwaysElement.appendChild(exportRunwayElement(dom, runway, 1));
                 }
@@ -139,10 +137,10 @@ public class ExportController {
         dom.appendChild(runwayElement);
 
         switch (exportType) {
-            case 0:
+            case 0: //TODO: Fix this
                 runwayElement.appendChild(exportObstacleElement(dom, runway.getObstacle()));
                 break;
-            case 1:
+            case 1: //TODO: Fix this
                 break;
         }
 
