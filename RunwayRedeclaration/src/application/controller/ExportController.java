@@ -4,6 +4,12 @@ import application.Main;
 import application.model.Airport;
 import application.model.Obstacle;
 import application.model.Runway;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfWriter;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.WritableImage;
@@ -21,8 +27,12 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
+
 
 /**
  * Created by jackclarke on 24/03/2016.
@@ -216,21 +226,122 @@ public class ExportController {
 
 
         try {
-            Double canvasWidth = canvas.getWidth();
-            Double canvasHeight = canvas.getHeight();
-
-            WritableImage wim = new WritableImage(
-                    canvasWidth.intValue(),
-                    canvasHeight.intValue());
-
-            canvas.snapshot(null, wim);
-            ImageIO.write(SwingFXUtils.fromFXImage(wim, null), "png", file);
+            ImageIO.write(SwingFXUtils.fromFXImage(generateImage(canvas), null), "png", file);
 
             // TODO: handle these exceptions properly
         } catch (NumberFormatException nfe) {
             nfe.printStackTrace();
         } catch (IOException io) {
             io.printStackTrace();
+        }
+    }
+
+    public WritableImage generateImage(Canvas canvas) {
+        Double canvasWidth = canvas.getWidth();
+        Double canvasHeight = canvas.getHeight();
+
+        WritableImage wim = new WritableImage(
+                canvasWidth.intValue(),
+                canvasHeight.intValue());
+
+        canvas.snapshot(null, wim);
+
+        return wim;
+    }
+
+
+    public void exportPDF(Main mainApp, Canvas topDownCanvas, Canvas sideOnCanvas) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Export PDF");
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PDF Files", "*.pdf"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        File file = fileChooser.showSaveDialog(mainApp.getMsStage());
+
+
+        try {
+            com.itextpdf.text.Document document = new com.itextpdf.text.Document();
+
+            FileOutputStream fop = new FileOutputStream(file);
+            PdfWriter writer = PdfWriter.getInstance(document, fop);
+            document.open();
+
+            PdfContentByte cb = writer.getDirectContent();
+
+            Font fontHeader = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
+            Font fontBodyHead = new Font(Font.FontFamily.HELVETICA, 10, Font.UNDERLINE);
+            Font fontBody = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL);
+            Font fontDesc = new Font(Font.FontFamily.HELVETICA, 10, Font.ITALIC);
+            Font fontFoot = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL);
+
+            Paragraph firstPage = new Paragraph();
+            Paragraph description;
+            // We add one empty line
+            // Lets write a big header
+            firstPage.add(new Paragraph("Redeclaration for Heathrow Airport", fontHeader));
+
+            addEmptyLine(firstPage, 1);
+
+            firstPage.add(new Paragraph("Calculations for runway 27R", fontBodyHead));
+            firstPage.add(new Paragraph("Obstacle name: Scenario 1", fontBody));
+            firstPage.add(new Paragraph("Obstacle height: 12m", fontBody));
+            firstPage.add(new Paragraph("Distance from Threshold: -50m", fontBody));
+            firstPage.add(new Paragraph("Distance from Centre Line: 0m", fontBody));
+
+            addEmptyLine(firstPage, 1);
+
+            firstPage.add(new Paragraph("Displaced Threshold: 306m", fontBody));
+            firstPage.add(new Paragraph("Angle of Slope: 50.0\u00b0", fontBody));
+            firstPage.add(new Paragraph("Blast Allowance: 300m", fontBody));
+            firstPage.add(new Paragraph("Stopway: 60m", fontBody));
+            firstPage.add(new Paragraph("Strip Width: 150m", fontBody));
+            firstPage.add(new Paragraph("Clear and Graded Area Width: 75m", fontBody));
+
+            addEmptyLine(firstPage, 2);
+
+            ByteArrayOutputStream byteOutput = new ByteArrayOutputStream();
+            ImageIO.write(SwingFXUtils.fromFXImage(generateImage(topDownCanvas), null), "png", byteOutput);
+            Image topView = Image.getInstance(byteOutput.toByteArray());
+            topView.scaleToFit(520, 400);
+            firstPage.add(topView);
+            description = new Paragraph("Top-down visualisation", fontDesc);
+            description.setAlignment(1);
+            firstPage.add(description);
+
+            byteOutput.reset();
+            ImageIO.write(SwingFXUtils.fromFXImage(generateImage(sideOnCanvas), null), "png", byteOutput);
+            Image sideView = Image.getInstance(byteOutput.toByteArray());
+            sideView.scaleToFit(520, 400);
+            firstPage.add(sideView);
+            description = new Paragraph("Side-on visualisation", fontDesc);
+            description.setAlignment(1);
+            firstPage.add(description);
+
+
+            addEmptyLine(firstPage, 1);
+            // Will create: Report generated by: _name, _date
+            firstPage.add(new Paragraph("Report generated by: " + System.getProperty("user.name") + ", " + new Date(), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                    fontFoot));
+
+            document.add(firstPage);
+
+            // Start a new page
+            //document.newPage();
+
+            document.close();
+            fop.flush();
+            fop.close();
+        } catch (IOException io) {
+            io.printStackTrace();
+        } catch (DocumentException de) {
+            de.printStackTrace();
+        }
+    }
+
+    private static void addEmptyLine(Paragraph paragraph, int number) {
+        for (int i = 0; i < number; i++) {
+            paragraph.add(new Paragraph(" "));
         }
     }
 }

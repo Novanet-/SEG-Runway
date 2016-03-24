@@ -809,4 +809,8 @@ public class MainScreenController
 	public void handleBtnExportSideOn() {
 		exportController.exportImage(mainApp, cnvSide);
 	}
+
+	public void handleBtnExportPDF() {
+		exportController.exportPDF(mainApp, cnvTop, cnvSide);
+	}
 }
