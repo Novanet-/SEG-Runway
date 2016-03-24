@@ -14,21 +14,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.FileChooser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.io.File;
 import java.util.Objects;
 
 public class MainScreenController
@@ -85,6 +75,7 @@ public class MainScreenController
 	// Reference to the main application.
 	private Main mainApp;
 	private ImportController importController = new ImportController();
+	private ExportController exportController = new ExportController();
 
 
 	/**
@@ -787,166 +778,33 @@ public class MainScreenController
 	}
 
 	public void handleBtnExportAirportOnly() {
-		final Airport airport = cmbAirports.getValue();
-
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Export Airport");
-		fileChooser.setInitialFileName(airport.getAirportName());
-
-		fileChooser.getExtensionFilters().addAll(
-				new FileChooser.ExtensionFilter("XML Files", "*.xml"),
-				new FileChooser.ExtensionFilter("All Files", "*.*"));
-		File file = fileChooser.showSaveDialog(mainApp.getMsStage());
-
-		try {
-			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document dom = db.newDocument();
-
-			Element root = dom.createElement("airport");
-
-			dom.appendChild(root);
-
-			root.appendChild(getTextElements(dom, "id", Integer.toString(airport.getAirportID())));
-			root.appendChild(getTextElements(dom, "name", airport.getAirportName()));
-
-			Transformer transformer = TransformerFactory.newInstance().newTransformer();
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-
-			DOMSource source = new DOMSource(dom);
-			StreamResult newfile = new StreamResult(file);
-			transformer.transform(source, newfile);
-
-			// TODO: handle these exceptions properly
-		} catch (ParserConfigurationException pce) {
-			pce.printStackTrace();
-		} catch (NumberFormatException nfe) {
-			nfe.printStackTrace();
-		} catch (javax.xml.transform.TransformerException te) {
-			te.printStackTrace();
-		}
-
-
+		exportController.exportAirport(mainApp, dbf, cmbAirports.getValue(), 2);
 	}
 
 	//TODO export airport fully
 	public void handleBtnExportAirportRunways() {
+		exportController.exportAirport(mainApp, dbf, cmbAirports.getValue(), 1);
 	}
 
 	public void handleBtnExportAirport() {
+		exportController.exportAirport(mainApp, dbf, cmbAirports.getValue(), 0);
 	}
 
 	//TODO: export runway fully
 
 	public void handleBtnExportRunway() {
+		exportController.exportRunway(mainApp, dbf, cmbAirports.getValue().getAirportName(), cmbRunways.getValue(), 0);
 	}
 
 	public void handleBtnExportRunwayOnly() {
-		final Airport airport = cmbAirports.getValue();
-		final Runway runway = cmbRunways.getValue();
-
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Export Runway");
-		fileChooser.setInitialFileName(airport.getAirportName() + " - " + runway.getAlignment());
-
-		fileChooser.getExtensionFilters().addAll(
-				new FileChooser.ExtensionFilter("XML Files", "*.xml"),
-				new FileChooser.ExtensionFilter("All Files", "*.*"));
-		File file = fileChooser.showSaveDialog(mainApp.getMsStage());
-
-
-		try {
-			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document dom = db.newDocument();
-
-			Element root = dom.createElement("runway");
-
-			dom.appendChild(root);
-
-			root.appendChild(getTextElements(dom, "id", Integer.toString(runway.getRunwayID())));
-			root.appendChild(getTextElements(dom, "alignment", runway.getAlignment()));
-			root.appendChild(getTextElements(dom, "tora", Double.toString(runway.getTORA())));
-			root.appendChild(getTextElements(dom, "toda", Double.toString(runway.getTODA())));
-			root.appendChild(getTextElements(dom, "asda", Double.toString(runway.getASDA())));
-			root.appendChild(getTextElements(dom, "lda", Double.toString(runway.getLDA())));
-			root.appendChild(getTextElements(dom, "displaced_threshold", Double.toString(runway.getDisplacedThreshold())));
-
-			Transformer transformer = TransformerFactory.newInstance().newTransformer();
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-
-			DOMSource source = new DOMSource(dom);
-			StreamResult newfile = new StreamResult(file);
-			transformer.transform(source, newfile);
-
-			// TODO: handle these exceptions properly
-		} catch (ParserConfigurationException pce) {
-			pce.printStackTrace();
-		} catch (NumberFormatException nfe) {
-			nfe.printStackTrace();
-		} catch (javax.xml.transform.TransformerException te) {
-			te.printStackTrace();
-		}
-
-
+		exportController.exportRunway(mainApp, dbf, cmbAirports.getValue().getAirportName(), cmbRunways.getValue(), 1);
 	}
 
 	public void handleBtnExportObstacle() {
 		final Runway runway = cmbRunways.getValue();
-		Obstacle currentObstacle = runway.getObstacle();
-
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Export Obstacle");
-		fileChooser.setInitialFileName(currentObstacle.getName());
-
-		fileChooser.getExtensionFilters().addAll(
-				new FileChooser.ExtensionFilter("XML Files", "*.xml"),
-				new FileChooser.ExtensionFilter("All Files", "*.*"));
-		File file = fileChooser.showSaveDialog(mainApp.getMsStage());
-
-
-		try {
-			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document dom = db.newDocument();
-
-			Element root = dom.createElement("obstacle");
-
-			dom.appendChild(root);
-
-			root.appendChild(getTextElements(dom, "name", currentObstacle.getName()));
-			root.appendChild(getTextElements(dom, "height", Double.toString(currentObstacle.getHeight())));
-			root.appendChild(getTextElements(dom, "displacement_position", Double.toString(currentObstacle.getDisplacementPosition())));
-			root.appendChild(getTextElements(dom, "centre_position", Double.toString(currentObstacle.getCentrePosition())));
-			root.appendChild(getTextElements(dom, "blast_protection", Double.toString(currentObstacle.getBlastProtection())));
-
-			Transformer transformer = TransformerFactory.newInstance().newTransformer();
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-
-			DOMSource source = new DOMSource(dom);
-			StreamResult newfile = new StreamResult(file);
-			transformer.transform(source, newfile);
-
-			// TODO: handle these exceptions properly
-		} catch (ParserConfigurationException pce) {
-			pce.printStackTrace();
-		} catch (NumberFormatException nfe) {
-			nfe.printStackTrace();
-		} catch (javax.xml.transform.TransformerException te) {
-			te.printStackTrace();
-		}
-
-	}
-	
-	private String getTextValue(Element elem, String tag)
-	{
-		// TODO: no null checks!
-		NodeList nodes = elem.getElementsByTagName(tag);
-		Element e = (Element) nodes.item(0);
-		return e.getFirstChild().getNodeValue();
+		exportController.exportObstacle(mainApp, dbf, runway.getObstacle());
 	}
 
-	//utility method to create text node
 	private Node getTextElements(Document doc, String name, String value) {
 		Element node = doc.createElement(name);
 		node.appendChild(doc.createTextNode(value));
