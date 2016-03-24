@@ -538,7 +538,8 @@
                                         <MenuItem mnemonicParsing="false" text="Include Obstacles"/>
                                     </items>
                                 </Menu>
-                                <MenuItem mnemonicParsing="false" text="Export Obstacle"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnExportObstacle"
+                                          text="Export Obstacle"/>
                             </items>
                         </Menu>
                         <MenuItem mnemonicParsing="false" onAction="#handleBtnClose" text="Close"/>

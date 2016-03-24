@@ -17,12 +17,18 @@ import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -872,26 +878,44 @@ public class MainScreenController
 		File file = fileChooser.showSaveDialog(mainApp.getMsStage());
 
 		final Runway runway = cmbRunways.getValue();
-		Obstacle obstacle = runway.getObstacle();
+		Obstacle currentObstacle = runway.getObstacle();
 
 
 		try {
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document dom = db.parse(file);
+			Document dom = db.newDocument(); //db.parse(file);
 			Element root = dom.getDocumentElement();
+
+			Element rootElement = dom.createElement("obstacle");
+
+			dom.appendChild(rootElement);
+
+			rootElement.appendChild(getTextElements(dom, "name", currentObstacle.getName()));
+			rootElement.appendChild(getTextElements(dom, "height", Double.toString(currentObstacle.getHeight())));
+			rootElement.appendChild(getTextElements(dom, "displacement_position", Double.toString(currentObstacle.getDisplacementPosition())));
+			rootElement.appendChild(getTextElements(dom, "centre_position", Double.toString(currentObstacle.getDisplacementPosition())));
+			rootElement.appendChild(getTextElements(dom, "blast_protection", Double.toString(currentObstacle.getBlastProtection())));
+
+			Transformer transformer = TransformerFactory.newInstance().newTransformer();
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+
+			DOMSource source = new DOMSource(dom);
+			StreamResult console = new StreamResult(System.out);
+			transformer.transform(source, console);
 
 			// TODO: export obstacle
 
 			// TODO: handle these exceptions properly
 		} catch (ParserConfigurationException pce) {
 			pce.printStackTrace();
-		} catch (SAXException se) {
-			se.printStackTrace();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
 		} catch (NumberFormatException nfe) {
 			nfe.printStackTrace();
+		} catch (javax.xml.transform.TransformerException te) {
+			te.printStackTrace();
 		}
+
+
 	}
 	
 	private String getTextValue(Element elem, String tag)
@@ -900,5 +924,12 @@ public class MainScreenController
 		NodeList nodes = elem.getElementsByTagName(tag);
 		Element e = (Element) nodes.item(0);
 		return e.getFirstChild().getNodeValue();
+	}
+
+	//utility method to create text node
+	private Node getTextElements(Document doc, String name, String value) {
+		Element node = doc.createElement(name);
+		node.appendChild(doc.createTextNode(value));
+		return node;
 	}
 }
