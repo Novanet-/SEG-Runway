@@ -19,7 +19,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -30,7 +29,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.io.IOException;
 import java.util.Objects;
 
 public class MainScreenController
@@ -84,6 +82,7 @@ public class MainScreenController
 
 	// Reference to the main application.
 	private Main mainApp;
+	private ImportController importController = new ImportController();
 
 
 	/**
@@ -747,133 +746,42 @@ public class MainScreenController
 	//TODO: refactor, possibly move to another file
 	public void handleBtnImportAirport()
 	{
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Import Airport");
-		fileChooser.getExtensionFilters().addAll(
-				new FileChooser.ExtensionFilter("XML Files", "*.xml"),
-				new FileChooser.ExtensionFilter("All Files", "*.*"));
-		File file = fileChooser.showOpenDialog(mainApp.getMsStage());
-		
-		try {
-			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document dom = db.parse(file);
-			Element root = dom.getDocumentElement();
-			
-			String idString = getTextValue(root, "id");
-			String name = getTextValue(root, "name");
-			// TODO: handle runways
-			
-			final Airport a = new Airport(Integer.parseInt(idString), name);
-			airportList.add(a);
-			
-			// TODO: handle these exceptions properly
-		} catch(ParserConfigurationException pce) {
-			pce.printStackTrace();
-		} catch(SAXException se) {
-			se.printStackTrace();
-		} catch(IOException ioe) {
-			ioe.printStackTrace();
-		} catch (NumberFormatException nfe) {
-			nfe.printStackTrace();
+		Airport importedAirport = importController.importAirport(mainApp, dbf);
+		if (importedAirport != null) {
+			airportList.add(importedAirport);
+		} else {
+			//TODO: Error message
 		}
 	}
 	
 	
 	public void handleBtnImportRunway()
 	{
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Import Runway");
-		fileChooser.getExtensionFilters().addAll(
-				new FileChooser.ExtensionFilter("XML Files", "*.xml"),
-				new FileChooser.ExtensionFilter("All Files", "*.*"));
-		File file = fileChooser.showOpenDialog(mainApp.getMsStage());
-		
-		try {
-			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document dom = db.parse(file);
-			Element root = dom.getDocumentElement();
-			
-			String idS = getTextValue(root, "id");
-			String alignment = getTextValue(root, "alignment");
-			String toraS = getTextValue(root, "tora");
-			String todaS = getTextValue(root, "toda");
-			String asdaS = getTextValue(root, "asda");
-			String ldaS = getTextValue(root, "lda");
-			String dTS = getTextValue(root, "displaced_threshold");
-			
-			int id = Integer.parseInt(idS);
-			int tora = Integer.parseInt(toraS);
-			int toda = Integer.parseInt(todaS);
-			int asda = Integer.parseInt(asdaS);
-			int lda = Integer.parseInt(ldaS);
-			int displacedThreshold = Integer.parseInt(dTS);
-			
-			final Runway r = new Runway(id, alignment, tora, toda, asda, lda, displacedThreshold);
-
-			//TODO: handle obstacles
+		Runway importedRunway = importController.importRunway(mainApp, dbf);
+		if (importedRunway != null) {
 			final Airport selected = cmbAirports.getValue();
-			selected.addRunway(r);
-			updateRunwayList();
-			
-			// TODO: handle these exceptions properly
-		} catch(ParserConfigurationException pce) {
-			pce.printStackTrace();
-		} catch(SAXException se) {
-			se.printStackTrace();
-		} catch(IOException ioe) {
-			ioe.printStackTrace();
-		} catch (NumberFormatException nfe) {
-			nfe.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
+			selected.addRunway(importedRunway);
+			try {
+				updateRunwayList();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			//TODO: Error message
 		}
 	}
 	
 	
 	public void handleBtnImportObstacle()
 	{
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Import Obstacle");
-		fileChooser.getExtensionFilters().addAll(
-				new FileChooser.ExtensionFilter("XML Files", "*.xml"),
-				new FileChooser.ExtensionFilter("All Files", "*.*"));
-		File file = fileChooser.showOpenDialog(mainApp.getMsStage());
-
-		try {
-			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document dom = db.parse(file);
-			Element root = dom.getDocumentElement();
-
-			String name = getTextValue(root, "name");
-			String heightS = getTextValue(root, "height");
-			String displacementPositionS = getTextValue(root, "displacement_position");
-			String centrePositionS = getTextValue(root, "centre_position");
-			String blastProtectionS = getTextValue(root, "blast_protection");
-
-			double height = Double.parseDouble(heightS);
-			double displacementPosition = Double.parseDouble(displacementPositionS);
-			double centrePosition = Double.parseDouble(centrePositionS);
-			double blastProtection = Double.parseDouble(blastProtectionS);
-
+		Obstacle importedObstacle = importController.importObstacle(mainApp, dbf);
+		if (importedObstacle != null) {
 			final Airport selected = cmbAirports.getValue();
 			final Runway runway = cmbRunways.getValue();
-
-			Obstacle obstacle = new Obstacle(name, height, displacementPosition, centrePosition, blastProtection);
-
-			runway.setObstacle(obstacle);
+			runway.setObstacle(importedObstacle);
 			updateObstacleList();
-
-			// TODO: handle these exceptions properly
-		} catch (ParserConfigurationException pce) {
-			pce.printStackTrace();
-		} catch (SAXException se) {
-			se.printStackTrace();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		} catch (NumberFormatException nfe) {
-			nfe.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
+			//TODO: Error message
 		}
 	}
 
