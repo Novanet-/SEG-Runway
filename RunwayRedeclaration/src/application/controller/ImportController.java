@@ -21,6 +21,8 @@ import java.io.IOException;
  */
 public class ImportController {
 
+    //TODO: Reject bad XML files
+
     public Airport importAirport(Main mainApp, DocumentBuilderFactory dbf) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Import Airport");
@@ -150,9 +152,9 @@ public class ImportController {
         return new Obstacle(
                 getTextValue(obstacleElement, "name"),
                 Double.parseDouble(getTextValue(obstacleElement, "height")),
-                Double.parseDouble(getTextValue(obstacleElement, "displacementPosition")),
-                Double.parseDouble(getTextValue(obstacleElement, "centrePosition")),
-                Double.parseDouble(getTextValue(obstacleElement, "blastProtection")));
+                Double.parseDouble(getTextValue(obstacleElement, "displacement_position")),
+                Double.parseDouble(getTextValue(obstacleElement, "centre_position")),
+                Double.parseDouble(getTextValue(obstacleElement, "blast_protection")));
     }
 
 
