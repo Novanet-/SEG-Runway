@@ -322,10 +322,11 @@ public class ExportController {
             addEmptyLine(firstPage, 1);
 
             //TODO export actual recalculated values
-            Paragraph toraCalc = new Paragraph("New TORA = 3902.0 - 0.0 - (12.51 * 50.0) - 60.0 - 0.0 = 3216.5m", fontBody);
-            Paragraph todaCalc = new Paragraph("New TODA = 3902.0 - 0.0 - (12.51 * 50.0) - 60.0 - 0.0 = 3216.5m", fontBody);
-            Paragraph asdaCalc = new Paragraph("New ASDA = 3902.0 - 0.0 - (12.51 * 50.0) - 60.0 - 0.0 = 3216.5m", fontBody);
-            Paragraph ldaCalc = new Paragraph("New LDA = 3595.0 - 0.0 - 0.0 - 240.0 - 60.0 = 3295.0m", fontBody);
+
+            Paragraph toraCalc = new Paragraph("New TORA = 3902.0 - 300.0 - -50.0 - 306.0 = 3346.0m", fontBody);
+            Paragraph todaCalc = new Paragraph("New TODA = 3902.0 - 300.0 - -50.0 - 306.0 + 0.0 = 3346.0m", fontBody);
+            Paragraph asdaCalc = new Paragraph("New ASDA = 3902.0 - 300.0 - -50.0 - 306.0 + 0.0 = 3346.0m", fontBody);
+            Paragraph ldaCalc = new Paragraph("New LDA = 3595.0 - -50.0 - 60.0 - (12.0 * 50) = 2985.0m", fontBody);
 
             firstPage.add(toraCalc);
             firstPage.add(todaCalc);
