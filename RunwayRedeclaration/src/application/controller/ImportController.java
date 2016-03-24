@@ -40,35 +40,11 @@ public class ImportController {
             final Airport a = new Airport(Integer.parseInt(idString), name);
 
             Element runwaysNode = (Element) root.getElementsByTagName("runways").item(0);
-            Element obstacleElement;
 
             for (int i = 0; i < runwaysNode.getElementsByTagName("runway").getLength(); i++) {
                 Element runwayElement = (Element) runwaysNode.getElementsByTagName("runway").item(i);
 
-                obstacleElement = (Element) runwayElement.getElementsByTagName("obstacle").item(0);
-
-                int runwayID = Integer.parseInt(getTextValue(runwayElement, "id"));
-
-                a.addRunway(new Runway(
-                        runwayID,
-                        getTextValue(runwayElement, "alignment"),
-                        Double.parseDouble(getTextValue(runwayElement, "tora")),
-                        Double.parseDouble(getTextValue(runwayElement, "toda")),
-                        Double.parseDouble(getTextValue(runwayElement, "asda")),
-                        Double.parseDouble(getTextValue(runwayElement, "lda")),
-                        Double.parseDouble(getTextValue(runwayElement, "displaced_threshold"))
-                ));
-
-                if (obstacleElement != null) {
-                    Runway runway = a.getRunways().get(a.getRunways().size() - 1);
-                    runway.setObstacle(new Obstacle(
-                            getTextValue(obstacleElement, "name"),
-                            Double.parseDouble(getTextValue(obstacleElement, "height")),
-                            Double.parseDouble(getTextValue(obstacleElement, "displacement_position")),
-                            Double.parseDouble(getTextValue(obstacleElement, "centre_position")),
-                            Double.parseDouble(getTextValue(obstacleElement, "blast_protection"))
-                    ));
-                }
+                a.addRunway(importRunwayElement(runwayElement));
             }
 
             return a;
@@ -86,7 +62,6 @@ public class ImportController {
         return null;
     }
 
-
     public Runway importRunway(Main mainApp, DocumentBuilderFactory dbf) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Import Runway");
@@ -100,26 +75,9 @@ public class ImportController {
             Document dom = db.parse(file);
             Element root = dom.getDocumentElement();
 
-            String idS = getTextValue(root, "id");
-            String alignment = getTextValue(root, "alignment");
-            String toraS = getTextValue(root, "tora");
-            String todaS = getTextValue(root, "toda");
-            String asdaS = getTextValue(root, "asda");
-            String ldaS = getTextValue(root, "lda");
-            String dTS = getTextValue(root, "displaced_threshold");
-
-            int id = Integer.parseInt(idS);
-            int tora = Integer.parseInt(toraS);
-            int toda = Integer.parseInt(todaS);
-            int asda = Integer.parseInt(asdaS);
-            int lda = Integer.parseInt(ldaS);
-            int displacedThreshold = Integer.parseInt(dTS);
-
-            final Runway r = new Runway(id, alignment, tora, toda, asda, lda, displacedThreshold);
+            return importRunwayElement(root);
 
             //TODO: handle obstacles
-
-            return r;
 
             // TODO: handle these exceptions properly
         } catch (ParserConfigurationException pce) {
@@ -137,6 +95,25 @@ public class ImportController {
         return null;
     }
 
+    public Runway importRunwayElement(Element runwayElement) {
+        Runway runway = new Runway(
+                Integer.parseInt(getTextValue(runwayElement, "id")),
+                getTextValue(runwayElement, "alignment"),
+                Double.parseDouble(getTextValue(runwayElement, "tora")),
+                Double.parseDouble(getTextValue(runwayElement, "toda")),
+                Double.parseDouble(getTextValue(runwayElement, "asda")),
+                Double.parseDouble(getTextValue(runwayElement, "lda")),
+                Double.parseDouble(getTextValue(runwayElement, "displaced_threshold")));
+
+        Element obstacleElement = (Element) runwayElement.getElementsByTagName("obstacle").item(0);
+
+        if (obstacleElement != null) {
+            runway.setObstacle(importObstacleElement(obstacleElement));
+        }
+
+        return runway;
+    }
+
     //TODO: Make obstacles import to Primary and Secondary runway
     public Obstacle importObstacle(Main mainApp, DocumentBuilderFactory dbf) {
         FileChooser fileChooser = new FileChooser();
@@ -151,20 +128,7 @@ public class ImportController {
             Document dom = db.parse(file);
             Element root = dom.getDocumentElement();
 
-            String name = getTextValue(root, "name");
-            String heightS = getTextValue(root, "height");
-            String displacementPositionS = getTextValue(root, "displacement_position");
-            String centrePositionS = getTextValue(root, "centre_position");
-            String blastProtectionS = getTextValue(root, "blast_protection");
-
-            double height = Double.parseDouble(heightS);
-            double displacementPosition = Double.parseDouble(displacementPositionS);
-            double centrePosition = Double.parseDouble(centrePositionS);
-            double blastProtection = Double.parseDouble(blastProtectionS);
-
-            Obstacle obstacle = new Obstacle(name, height, displacementPosition, centrePosition, blastProtection);
-
-            return obstacle;
+            return importObstacleElement(root);
 
             // TODO: handle these exceptions properly
         } catch (ParserConfigurationException pce) {
@@ -180,6 +144,15 @@ public class ImportController {
         }
 
         return null;
+    }
+
+    public Obstacle importObstacleElement(Element obstacleElement) {
+        return new Obstacle(
+                getTextValue(obstacleElement, "name"),
+                Double.parseDouble(getTextValue(obstacleElement, "height")),
+                Double.parseDouble(getTextValue(obstacleElement, "displacementPosition")),
+                Double.parseDouble(getTextValue(obstacleElement, "centrePosition")),
+                Double.parseDouble(getTextValue(obstacleElement, "blastProtection")));
     }
 
 
