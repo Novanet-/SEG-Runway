@@ -74,9 +74,6 @@ public class AddRunwayController
 
 	//TODO: Add not-null/data type validation to input/submission
 
-	//TODO: Ensure integers are accepted
-
-
 	/**
 	 *
 	 */
@@ -97,7 +94,7 @@ public class AddRunwayController
 			final double secondaryLDA = Double.parseDouble(txtSecondaryLDA.textProperty().getValue());
 			final double secondaryDisplacedThreshold = Double.parseDouble(txtSecondaryDisplacedThreshold.textProperty().getValue());
 
-			// TODO: Add strip width as a user declared property of runways
+			// TODO: Add all runways properties (incl. strip width) as a user declared property of runways
 
 			final String alignment = cmbRunwayAlignment.getValue() + cmbRunwayPosition.getValue();
 			final Runway primaryRunway = new Runway(0, alignment, primaryTORA, primaryTODA, primaryASDA, primaryLDA, primaryDisplacedThreshold);
