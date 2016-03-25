@@ -534,7 +534,7 @@ public class MainScreenController
 			final double pixelRatio = (SCALING * canvas.getWidth()) / Double.parseDouble(lblOrigTora.getText());
 
 			graphicsContext.setFill(Color.rgb(179, 45, 0)); //Background colour
-			final double centreAdjustmentX = (obstacle.getDisplacementPosition() < 0) ? -40 : 20;
+			final double centreAdjustmentX = (obstacle.getDisplacementPosition() < 0) ? -20 : 20;
 			final double centreAdjustmentY = 5.0;
 			final double runwayStartX = RUNWAY_START_X_SCALING * canvas.getWidth();
 			final double runwayStartY = RUNWAY_START_Y_SCALING * canvas.getHeight();
@@ -547,14 +547,30 @@ public class MainScreenController
 			Canvas canvas = graphicsContext.getCanvas();
 			Obstacle obstacle = cmbRunways.getValue().getObstacle();
 
+			double obstacleHeight = obstacle.getHeight() * 4;
+
 			final double pixelRatio = (SCALING * canvas.getWidth()) / Double.parseDouble(lblOrigTora.getText());
 
 			graphicsContext.setFill(Color.rgb(179, 45, 0)); //Background colour
-			final double centreAdjustmentX = (obstacle.getDisplacementPosition() < 0) ? -40 : 20;
+			final double centreAdjustmentX = (obstacle.getDisplacementPosition() < 0) ? -20 : 20;
 			final double centreAdjustmentY = 5.0;
 			final double runwayStartX = RUNWAY_START_X_SCALING * canvas.getWidth();
-			final double runwayStartY = canvas.getHeight() / 2 - 40;
-			graphicsContext.fillRect(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX, runwayStartY, 40, 40);
+			final double runwayStartY = canvas.getHeight() / 2 - obstacleHeight;
+			graphicsContext.fillRect(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX, runwayStartY, 40, obstacleHeight);
+
+			graphicsContext.setStroke(Color.WHITE);
+			graphicsContext.setLineWidth(1);
+
+			graphicsContext.strokeLine(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 25, runwayStartY + 5, runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 20, runwayStartY);
+			graphicsContext.strokeLine(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 20, runwayStartY, runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 20, runwayStartY + obstacleHeight);
+			graphicsContext.strokeLine(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 20, runwayStartY, runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 15, runwayStartY + 5);
+
+			Font font = new Font(12);
+			graphicsContext.setFont(font);
+			graphicsContext.setFill(Color.WHITE);
+
+			//TODO calculate number of digits to move height so it doesn't overlap arrow
+			graphicsContext.fillText(obstacle.getHeight() + "m", runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 30 - 8 * String.valueOf(obstacle.getHeight()).length(), runwayStartY + obstacleHeight / 2);
 		}
 	}
 
