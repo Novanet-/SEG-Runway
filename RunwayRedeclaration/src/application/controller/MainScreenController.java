@@ -734,11 +734,22 @@ public class MainScreenController
 		graphicsContext.strokeLine(canvas.getWidth() - 350, canvas.getHeight() * 0.1, canvas.getWidth() - 50, canvas.getHeight() * 0.1);
 		graphicsContext.strokeLine(canvas.getWidth() - 60, canvas.getHeight() * 0.1 + 10, canvas.getWidth() - 50, canvas.getHeight() * 0.1);
 
-		//TODO: Work out if landing towards/take-off away etc
+
+		//TODO: Work out direction descriptor
 		Font font = new Font(12);
 		graphicsContext.setFont(font);
 		graphicsContext.setFill(Color.WHITE);
-		graphicsContext.fillText("Direction: Landing Towards/Take-off Away", canvas.getWidth() - 330, canvas.getHeight() * 0.1 - 10);
+
+		try {
+			Obstacle obstacle = cmbRunways.getValue().getObstacle();
+			if (obstacle.getDisplacementPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0)) {
+				graphicsContext.fillText("Direction: Landing Towards/Take-off Away", canvas.getWidth() - 330, canvas.getHeight() * 0.1 - 10);
+			} else {
+				graphicsContext.fillText("Direction: Landing Away/Take-off Over", canvas.getWidth() - 324, canvas.getHeight() * 0.1 - 10);
+			}
+		} catch (NullPointerException e) {
+			graphicsContext.fillText("Direction: Landing/Take-off", canvas.getWidth() - 287, canvas.getHeight() * 0.1 - 10);
+		}
 
 		double scaleLength = 100;
 		if (!lblOrigTora.getText().isEmpty())
