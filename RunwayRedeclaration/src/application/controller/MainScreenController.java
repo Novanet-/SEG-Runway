@@ -561,6 +561,7 @@ public class MainScreenController
 			graphicsContext.setStroke(Color.WHITE);
 			graphicsContext.setLineWidth(1);
 
+			//Draw obstacle height
 			graphicsContext.strokeLine(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 25, runwayStartY + 5, runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 20, runwayStartY);
 			graphicsContext.strokeLine(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 20, runwayStartY, runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 20, runwayStartY + obstacleHeight);
 			graphicsContext.strokeLine(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 20, runwayStartY, runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 15, runwayStartY + 5);
@@ -568,9 +569,11 @@ public class MainScreenController
 			Font font = new Font(12);
 			graphicsContext.setFont(font);
 			graphicsContext.setFill(Color.WHITE);
-
-			//TODO calculate number of digits to move height so it doesn't overlap arrow
 			graphicsContext.fillText(obstacle.getHeight() + "m", runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 30 - 8 * String.valueOf(obstacle.getHeight()).length(), runwayStartY + obstacleHeight / 2);
+
+			//TODO: Draw slope caused over obstacle
+			//Draw slope caused over obstacle
+			graphicsContext.strokeLine(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 40, runwayStartY, runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 140, runwayStartY + obstacleHeight);
 		}
 	}
 
