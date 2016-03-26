@@ -734,6 +734,7 @@ public class MainScreenController
 		graphicsContext.strokeLine(canvas.getWidth() - 350, canvas.getHeight() * 0.1, canvas.getWidth() - 50, canvas.getHeight() * 0.1);
 		graphicsContext.strokeLine(canvas.getWidth() - 60, canvas.getHeight() * 0.1 + 10, canvas.getWidth() - 50, canvas.getHeight() * 0.1);
 
+		//TODO: Work out if landing towards/take-off away etc
 		Font font = new Font(12);
 		graphicsContext.setFont(font);
 		graphicsContext.setFill(Color.WHITE);

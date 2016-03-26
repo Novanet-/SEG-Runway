@@ -4,10 +4,7 @@ import application.Main;
 import application.model.Airport;
 import application.model.Obstacle;
 import application.model.Runway;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -86,13 +83,13 @@ public class ExportController {
         Element runwaysElement = dom.createElement("runways");
 
         switch (exportType) {
-            case 0: //TODO: Fix this
+            case 0:
                 for (Runway runway : airport.getRunways()) {
                     runwaysElement.appendChild(exportRunwayElement(dom, runway, 0));
                 }
                 airportElement.appendChild(runwaysElement);
                 break;
-            case 1: //TODO: Fix this
+            case 1:
                 for (Runway runway : airport.getRunways()) {
                     runwaysElement.appendChild(exportRunwayElement(dom, runway, 1));
                 }
@@ -154,10 +151,10 @@ public class ExportController {
         runwayElement.appendChild(getTextElements(dom, "displaced_threshold", Double.toString(runway.getDisplacedThreshold())));
 
         switch (exportType) {
-            case 0: //TODO: Fix this
+            case 0:
                 runwayElement.appendChild(exportObstacleElement(dom, runway.getObstacle()));
                 break;
-            case 1: //TODO: Fix this
+            case 1:
                 break;
         }
 
@@ -279,6 +276,13 @@ public class ExportController {
             Font fontDesc = new Font(Font.FontFamily.HELVETICA, 10, Font.ITALIC);
             Font fontFoot = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL);
 
+            Font toraColor = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, new BaseColor(255, 138, 138));
+            Font todaColor = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, new BaseColor(255, 190, 50));
+            Font asdaColor = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, new BaseColor(255, 240, 40));
+            Font ldaColor = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, new BaseColor(180, 225, 35));
+            Font dtColor = new Font(Font.FontFamily.HELVETICA, 10, Font.ITALIC, new BaseColor(150, 210, 255));
+            Font obstacleColor = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, new BaseColor(179, 45, 0));
+
             Paragraph firstPage = new Paragraph();
             Paragraph description;
             // We add one empty line
@@ -295,12 +299,13 @@ public class ExportController {
             table.setWidthPercentage(100);
 
 
-            Paragraph c1Para = new Paragraph(
-                    "Obstacle name: " + runway.getObstacle().getName() + "\n" +
-                            "Obstacle height: " + runway.getObstacle().getHeight() + "m\n" +
+            Paragraph c1Para = new Paragraph();
+            c1Para.add(new Chunk("Obstacle\n", obstacleColor));
+            c1Para.add(new Chunk("Name: " + runway.getObstacle().getName() + "\n" +
+                    "Height: " + runway.getObstacle().getHeight() + "m\n" +
                             "Distance from Threshold: " + runway.getObstacle().getDisplacementPosition() + "m\n" +
                             "Distance from Centre Line: " + runway.getObstacle().getCentrePosition() + "m\n",
-                    fontBody);
+                    fontBody));
 
             PdfPCell c1 = new PdfPCell(c1Para);
             c1.setBorder(0);
@@ -323,13 +328,14 @@ public class ExportController {
 
             firstPage.add(table);
 
-            addEmptyLine(firstPage, 1);
-
-            //TODO export actual recalculated values
-
             Runway recalcRunway = runway.redeclare();
 
-            Paragraph toraCalc = new Paragraph("New TORA = " +
+            firstPage.add(new Paragraph("Recalculated values", fontBodyHead));
+
+            Paragraph recalcValues = new Paragraph();
+
+            recalcValues.add(new Chunk("TORA", toraColor));
+            recalcValues.add(new Chunk(" = " +
                     runway.getTORA() +
                     " - " +
                     runway.getObstacle().getBlastProtection() +
@@ -339,8 +345,9 @@ public class ExportController {
                     runway.getDisplacedThreshold() +
                     " = " +
                     recalcRunway.getTORA() +
-                    "m", fontBody);
-            Paragraph todaCalc = new Paragraph("New TODA = " +
+                    "m\n", fontBody));
+            recalcValues.add(new Chunk("TODA", todaColor));
+            recalcValues.add(new Chunk(" = " +
                     runway.getTORA() +
                     " - " +
                     runway.getObstacle().getBlastProtection() +
@@ -352,8 +359,9 @@ public class ExportController {
                     runway.getStopway() +
                     " = " +
                     recalcRunway.getTODA() +
-                    "m", fontBody);
-            Paragraph asdaCalc = new Paragraph("New ASDA = " +
+                    "m\n", fontBody));
+            recalcValues.add(new Chunk("ASDA", asdaColor));
+            recalcValues.add(new Chunk(" = " +
                     runway.getTORA() +
                     " - " +
                     runway.getObstacle().getBlastProtection() +
@@ -364,8 +372,10 @@ public class ExportController {
                     " + " +
                     runway.getClearway() +
                     " = " +
-                    recalcRunway.getASDA(), fontBody);
-            Paragraph ldaCalc = new Paragraph("New LDA = " +
+                    recalcRunway.getASDA() +
+                    "m\n", fontBody));
+            recalcValues.add(new Chunk("LDA", ldaColor));
+            recalcValues.add(new Chunk(" = " +
                     runway.getLDA() +
                     " - " +
                     runway.getObstacle().getDisplacementPosition() +
@@ -376,14 +386,14 @@ public class ExportController {
                     " * " +
                     runway.getAngleOfSlope() +
                     ") = " +
-                    recalcRunway.getLDA(), fontBody);
+                    recalcRunway.getLDA() +
+                    "m\n", fontBody));
 
-            firstPage.add(toraCalc);
-            firstPage.add(todaCalc);
-            firstPage.add(asdaCalc);
-            firstPage.add(ldaCalc);
+            recalcValues.add(new Chunk("Displacement Threshold ", dtColor));
+            recalcValues.add(new Chunk("may also be shown in visualisation", fontDesc));
+            firstPage.add(recalcValues);
 
-            addEmptyLine(firstPage, 2);
+            addEmptyLine(firstPage, 1);
 
             ByteArrayOutputStream byteOutput = new ByteArrayOutputStream();
             ImageIO.write(SwingFXUtils.fromFXImage(generateImage(topDownCanvas), null), "png", byteOutput);
