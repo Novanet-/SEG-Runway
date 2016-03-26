@@ -524,8 +524,7 @@ public class MainScreenController
 	private void drawObstacle(final GraphicsContext graphicsContext)
 	{
 		//TODO: Implement obstacle distance from centre line in visualisation
-		//TODO: Implement obstacle height in visualisation
-		//
+
 		if (!Objects.equals(txtObstacles.getText(), ""))
 		{
 			Canvas canvas = graphicsContext.getCanvas();
@@ -561,6 +560,13 @@ public class MainScreenController
 			graphicsContext.setStroke(Color.WHITE);
 			graphicsContext.setLineWidth(1);
 
+
+			final double tora = Objects.equals(lblRecalcTora.getText(), "") ? Double.parseDouble(lblOrigTora.getText()) : Double.parseDouble(lblRecalcTora.getText());
+			final double lda = Objects.equals(lblRecalcLda.getText(), "") ? Double.parseDouble(lblOrigLda.getText()) : Double.parseDouble(lblRecalcLda.getText());
+
+			final double toraPixel = tora * pixelRatio;
+			final double ldaPixel = lda * pixelRatio;
+
 			double slopeStartX, slopeStartY, slopeEndX, slopeEndY;
 			double obstacleHeightX, obstacleHeightTextX;
 
@@ -569,13 +575,13 @@ public class MainScreenController
 			slopeEndY = runwayStartY + obstacleHeight;
 			if (obstacle.getDisplacementPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0)) {
 				slopeStartX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 40;
-				slopeEndX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 140; // start of lda
+				slopeEndX = (RUNWAY_START_X_SCALING * canvas.getWidth()) + ((SCALING * canvas.getWidth()) - ldaPixel); // start of lda
 
 				obstacleHeightX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 10;
 				obstacleHeightTextX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 30 - 8 * String.valueOf(obstacle.getHeight()).length();
 			} else {
 				slopeStartX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX;
-				slopeEndX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 100; // end of tora/toda/asda
+				slopeEndX = (RUNWAY_START_X_SCALING * canvas.getWidth()) + toraPixel; // end of tora
 
 				obstacleHeightX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 50;
 				obstacleHeightTextX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 70;
