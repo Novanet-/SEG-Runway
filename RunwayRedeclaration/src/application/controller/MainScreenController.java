@@ -564,6 +564,7 @@ public class MainScreenController
 			double slopeStartX, slopeStartY, slopeEndX, slopeEndY;
 			double obstacleHeightX, obstacleHeightTextX;
 
+			//TODO: Make slope end at correct point
 			slopeStartY = runwayStartY;
 			slopeEndY = runwayStartY + obstacleHeight;
 			if (obstacle.getDisplacementPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0)) {
@@ -581,7 +582,7 @@ public class MainScreenController
 			}
 
 
-			//TODO: Draw slope caused over obstacle
+			//Draw slope caused over obstacle
 			graphicsContext.strokeLine(slopeStartX, slopeStartY, slopeEndX, slopeEndY);
 
 			//Draw obstacle height
@@ -753,10 +754,16 @@ public class MainScreenController
 		graphicsContext.strokeLine(canvas.getWidth() - 350, canvas.getHeight() * 0.1, canvas.getWidth() - 50, canvas.getHeight() * 0.1);
 		graphicsContext.strokeLine(canvas.getWidth() - 60, canvas.getHeight() * 0.1 + 10, canvas.getWidth() - 50, canvas.getHeight() * 0.1);
 
-
 		Font font = new Font(12);
 		graphicsContext.setFont(font);
 		graphicsContext.setFill(Color.WHITE);
+
+		try {
+			Obstacle obstacle = cmbRunways.getValue().getObstacle();
+
+		} catch (NullPointerException e) {
+
+		}
 
 		double scaleLength = 100;
 		if (!lblOrigTora.getText().isEmpty())
