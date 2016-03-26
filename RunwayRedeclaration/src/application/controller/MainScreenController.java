@@ -561,19 +561,38 @@ public class MainScreenController
 			graphicsContext.setStroke(Color.WHITE);
 			graphicsContext.setLineWidth(1);
 
+			double slopeStartX, slopeStartY, slopeEndX, slopeEndY;
+			double obstacleHeightX, obstacleHeightTextX;
+
+			slopeStartY = runwayStartY;
+			slopeEndY = runwayStartY + obstacleHeight;
+			if (obstacle.getDisplacementPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0)) {
+				slopeStartX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 40;
+				slopeEndX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 140; // start of lda
+
+				obstacleHeightX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 10;
+				obstacleHeightTextX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 30 - 8 * String.valueOf(obstacle.getHeight()).length();
+			} else {
+				slopeStartX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX;
+				slopeEndX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 100; // end of tora/toda/asda
+
+				obstacleHeightX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 50;
+				obstacleHeightTextX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 70;
+			}
+
+
+			//TODO: Draw slope caused over obstacle
+			graphicsContext.strokeLine(slopeStartX, slopeStartY, slopeEndX, slopeEndY);
+
 			//Draw obstacle height
-			graphicsContext.strokeLine(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 25, runwayStartY + 5, runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 20, runwayStartY);
-			graphicsContext.strokeLine(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 20, runwayStartY, runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 20, runwayStartY + obstacleHeight);
-			graphicsContext.strokeLine(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 20, runwayStartY, runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 15, runwayStartY + 5);
+			graphicsContext.strokeLine(obstacleHeightX - 5, runwayStartY + 5, obstacleHeightX, runwayStartY);
+			graphicsContext.strokeLine(obstacleHeightX, runwayStartY, obstacleHeightX, runwayStartY + obstacleHeight);
+			graphicsContext.strokeLine(obstacleHeightX, runwayStartY, obstacleHeightX + 5, runwayStartY + 5);
 
 			Font font = new Font(12);
 			graphicsContext.setFont(font);
 			graphicsContext.setFill(Color.WHITE);
-			graphicsContext.fillText(obstacle.getHeight() + "m", runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 30 - 8 * String.valueOf(obstacle.getHeight()).length(), runwayStartY + obstacleHeight / 2);
-
-			//TODO: Draw slope caused over obstacle
-			//Draw slope caused over obstacle
-			graphicsContext.strokeLine(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 40, runwayStartY, runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 140, runwayStartY + obstacleHeight);
+			graphicsContext.fillText(obstacle.getHeight() + "m", obstacleHeightTextX, runwayStartY + obstacleHeight / 2);
 		}
 	}
 
@@ -735,21 +754,9 @@ public class MainScreenController
 		graphicsContext.strokeLine(canvas.getWidth() - 60, canvas.getHeight() * 0.1 + 10, canvas.getWidth() - 50, canvas.getHeight() * 0.1);
 
 
-		//TODO: Work out direction descriptor
 		Font font = new Font(12);
 		graphicsContext.setFont(font);
 		graphicsContext.setFill(Color.WHITE);
-
-		try {
-			Obstacle obstacle = cmbRunways.getValue().getObstacle();
-			if (obstacle.getDisplacementPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0)) {
-				graphicsContext.fillText("Direction: Landing Towards/Take-off Away", canvas.getWidth() - 330, canvas.getHeight() * 0.1 - 10);
-			} else {
-				graphicsContext.fillText("Direction: Landing Away/Take-off Over", canvas.getWidth() - 324, canvas.getHeight() * 0.1 - 10);
-			}
-		} catch (NullPointerException e) {
-			graphicsContext.fillText("Direction: Landing/Take-off", canvas.getWidth() - 287, canvas.getHeight() * 0.1 - 10);
-		}
 
 		double scaleLength = 100;
 		if (!lblOrigTora.getText().isEmpty())
