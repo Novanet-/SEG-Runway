@@ -107,6 +107,16 @@ public class AddObstacleController
 		lblSecObstacleDistFromCentre.setText(txtPrimObstacleDistFromCentre.getText());
 	}
 
+	public void updateObstacleParameters(Obstacle obstacle) {
+		txtPrimObstacleName.setText(obstacle.getName());
+		txtPrimObstacleHeight.setText(String.valueOf(obstacle.getHeight()));
+		txtPrimObstacleDistFromThreshold.setText(String.valueOf(obstacle.getDisplacementPosition()));
+		txtPrimObstacleDistFromCentre.setText(String.valueOf(obstacle.getCentrePosition()));
+
+		//TODO: deal with secondary runway
+		txtSecObstacleDistFromThreshold.setText("");
+	}
+
 
 	/**
 	 * Is called by the main application to give a reference back to itself.

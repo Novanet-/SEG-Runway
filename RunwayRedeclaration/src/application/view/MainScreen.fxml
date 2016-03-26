@@ -95,7 +95,9 @@
                                                     </effect>
                                                 </Label>
                                                 <TextField fx:id="txtObstacles" editable="false"
-                                                           onAction="#handleObjectSelected" prefHeight="50.0"
+                                                           onAction="#handleObstacleSelected"
+                                                           onMouseClicked="#handleObstacleSelected"
+                                                           onTouchReleased="#handleObstacleSelected" prefHeight="50.0"
                                                            prefWidth="145.0" styleClass="text-field-small"
                                                            GridPane.columnIndex="2" GridPane.rowIndex="3">
                                                     <GridPane.margin>
@@ -561,7 +563,26 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Delete"/>
+                        <Menu mnemonicParsing="false" text="Delete">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnDeleteAirport"
+                                          text="Delete Airport"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnDeleteRunway"
+                                          text="Delete Runway"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnDeleteObstacle"
+                                          text="Delete Obstacle"/>
+                    </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Update">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateAirport"
+                                          text="Update Airport"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateRunway"
+                                          text="Update Runway"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateObstacle"
+                                          text="Update Obstacle"/>
+                            </items>
+                        </Menu>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">

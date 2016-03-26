@@ -308,13 +308,44 @@ public class MainScreenController
 
 
 	@FXML
-	private void handleObjectSelected()
-
+	private void handleObstacleSelected()
 	{
-		final Runway currentRunway = cmbRunways.getValue();
-		updateNewParameters(currentRunway);
+		try {
+			mainApp.toggleAddObstacle(cmbAirports.getValue().getAirportName(), cmbRunways.getValue().getAlignment(), cmbRunways.getValue().getObstacle());
+
+		} catch (NullPointerException e) {
+			handleBtnAddObstacle();
+		}
+		//final Runway currentRunway = cmbRunways.getValue();
+		//updateNewParameters(currentRunway);
 	}
 
+	//TODO: Delete airports, runways and obstacles
+	@FXML
+	private void handleBtnDeleteAirport() {
+	}
+
+	@FXML
+	private void handleBtnDeleteRunway() {
+	}
+
+	@FXML
+	private void handleBtnDeleteObstacle() {
+	}
+
+	//TODO: Update airports and runways
+	@FXML
+	private void handleBtnUpdateAirport() {
+	}
+
+	@FXML
+	private void handleBtnUpdateRunway() {
+	}
+
+	@FXML
+	private void handleBtnUpdateObstacle() {
+		handleObstacleSelected();
+	}
 
 	private void updateNewParameters(Runway newRunway)
 	{

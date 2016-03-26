@@ -5,6 +5,7 @@ import application.controller.AddObstacleController;
 import application.controller.AddRunwayController;
 import application.controller.MainScreenController;
 import application.model.Airport;
+import application.model.Obstacle;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -237,7 +238,21 @@ public class Main extends Application
 	 * @param airportName The airport that contains the runway that the obstacle is being added to
 	 * @param runwayID    The string alignment+position of the runway that will be the owner of the obstacle
 	 */
-	public final void toggleAddObstacle(String airportName, String runwayID)
+	public final void toggleAddObstacle(String airportName, String runwayID) {
+		if (aoStage.isShowing()) {
+			aoStage.hide();
+			msController.updateObstacleList();
+		} else {
+			aoController.updateSelectedAirportRunway(airportName, runwayID);
+			aoStage.show();
+		}
+	}
+
+	/**
+	 * @param airportName The airport that contains the runway that the obstacle is being added to
+	 * @param runwayID    The string alignment+position of the runway that will be the owner of the obstacle
+	 */
+	public final void toggleAddObstacle(String airportName, String runwayID, Obstacle obstacle)
 	{
 		if (aoStage.isShowing())
 		{
@@ -247,6 +262,7 @@ public class Main extends Application
 		else
 		{
 			aoController.updateSelectedAirportRunway(airportName, runwayID);
+			aoController.updateObstacleParameters(obstacle);
 			aoStage.show();
 		}
 	}
