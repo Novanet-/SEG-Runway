@@ -760,9 +760,13 @@ public class MainScreenController
 
 		try {
 			Obstacle obstacle = cmbRunways.getValue().getObstacle();
-
+			if (obstacle.getDisplacementPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0)) {
+				graphicsContext.fillText("Direction: Landing Towards/Take-off Away", canvas.getWidth() - 330, canvas.getHeight() * 0.1 - 10);
+			} else {
+				graphicsContext.fillText("Direction: Landing Away/Take-off Over", canvas.getWidth() - 324, canvas.getHeight() * 0.1 - 10);
+			}
 		} catch (NullPointerException e) {
-
+			graphicsContext.fillText("Direction: Landing/Take-off", canvas.getWidth() - 287, canvas.getHeight() * 0.1 - 10);
 		}
 
 		double scaleLength = 100;
