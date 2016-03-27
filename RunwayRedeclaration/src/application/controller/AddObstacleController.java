@@ -11,6 +11,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.Notifications;
 
 public class AddObstacleController
 {
@@ -67,20 +68,32 @@ public class AddObstacleController
 			final Obstacle primaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstaclePrimaryPosition, obstacleCentrePosition, 300.0);
 			final Obstacle secondaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstacleSecondaryPosition, obstacleCentrePosition, 300.0);
 
+			String[] runwayIdentifiers = new String[2];
+
 			airportList.stream().filter(a -> a.getAirportName().equals(lblAirportName.getText())).forEach(a -> {
 				for (final Runway r : a.getRunways())
 				{
 					if (r.getAlignment().equals(lblRunwayID.getText()))
 					{
 						r.setObstacle(primaryObstacle);
+						runwayIdentifiers[0] = r.getAlignment();
 					}
 					if (r.getAlignment().equals(lblSecondaryRunwayID.getText()))
 					{
 						r.setObstacle(secondaryObstacle);
+						runwayIdentifiers[1] = r.getAlignment();
 					}
 				}
 			});
 			mainApp.toggleAddObstacle(lblAirportName.getText(), lblRunwayID.getText());
+			String notificationText = lblAirportName.getText() + " runway " + runwayIdentifiers[0];
+			if (runwayIdentifiers[1] != null) {
+				notificationText += " and runway " + runwayIdentifiers[1];
+			}
+			Notifications.create()
+					.title("Obstacle added/updated")
+					.text(notificationText)
+					.showWarning();
 		}
 		catch (NumberFormatException e)
 		{
