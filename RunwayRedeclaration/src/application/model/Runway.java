@@ -2,6 +2,7 @@ package application.model;
 
 public class Runway
 {
+
 	//TODO: take these values from runway creation
 	//TODO: add these values to XML (imports and exports)
 	// From Redeclaration
@@ -67,6 +68,7 @@ public class Runway
 		this.displacedThreshold = displacedThreshold;
 		this.explanation = explanation;
 	}
+
 
 	public static Integer calculateSecondaryAlignment(Integer firstPosition)
 	{

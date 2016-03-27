@@ -5,9 +5,9 @@ import application.model.Airport;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 public class AddAirportController
 {
@@ -31,11 +31,14 @@ public class AddAirportController
 	@FXML
 	private void handleBtnSubmitAirport()
 	{
-		try {
+		try
+		{
 			airportList.add(new Airport(airportList.size(), txtAirportName.getText()));
 			txtAirportName.setText(""); //Clears textbox
 			mainApp.toggleAddAirport();
-		} catch (IllegalArgumentException e) {
+		}
+		catch (IllegalArgumentException e)
+		{
 			final Alert alert = new Alert(AlertType.ERROR, "Airport name cannot be blank.");
 			alert.showAndWait();
 		}

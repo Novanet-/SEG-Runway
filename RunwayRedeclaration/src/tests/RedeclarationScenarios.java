@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-
 public class RedeclarationScenarios
 {
 
@@ -46,7 +45,7 @@ public class RedeclarationScenarios
 		assertEquals(newLDA, newR.getLDA(), delta);
 	}
 
-	
+
 	@Test
 	public void test1Scenario27R()
 	{

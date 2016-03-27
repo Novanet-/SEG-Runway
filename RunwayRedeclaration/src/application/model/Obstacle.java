@@ -37,9 +37,12 @@ public class Obstacle
 		return displacementPosition;
 	}
 
-	public final double getCentrePosition() {
+
+	public final double getCentrePosition()
+	{
 		return centrePosition;
 	}
+
 
 	public final double getBlastProtection()
 	{

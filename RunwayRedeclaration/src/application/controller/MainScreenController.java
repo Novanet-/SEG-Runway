@@ -21,7 +21,7 @@ import java.util.Objects;
 public class MainScreenController
 {
 
-	private static final double SCALING = 0.6;
+	private static final double SCALING                = 0.6;
 	private static final double RUNWAY_START_X_SCALING = 0.2;
 	private static final double RUNWAY_START_Y_SCALING = 0.4;
 	private static final double RUNWAY_HEIGHT_SCALING  = 0.14;
@@ -54,15 +54,14 @@ public class MainScreenController
 	@FXML private Label                   lblCAndGWidth;
 	@FXML private Button                  btnAddObstacle;
 	@FXML private Button                  btnRemoveObstacle;
-	@FXML private MenuItem				  btnImportAirport;
-	@FXML private MenuItem				  btnImportRunway;
-	@FXML private MenuItem				  btnImportObstacle;
+	@FXML private MenuItem                btnImportAirport;
+	@FXML private MenuItem                btnImportRunway;
+	@FXML private MenuItem                btnImportObstacle;
 	@FXML private TextArea                txtCalculations;
+	@FXML private MenuItem                  btnShowRotation;
 
-	@FXML
-	private Canvas cnvTop; //875x345
-	@FXML
-	private Canvas cnvSide; //875x345
+	@FXML private Canvas cnvTop; //875x345
+	@FXML private Canvas cnvSide; //875x345
 
 	//TODO: Make program save and restore current state
 
@@ -73,6 +72,30 @@ public class MainScreenController
 	private Main mainApp;
 	private ImportController importController = new ImportController();
 	private ExportController exportController = new ExportController();
+
+
+	public static double getSCALING()
+	{
+		return SCALING;
+	}
+
+
+	public static double getRunwayStartXScaling()
+	{
+		return RUNWAY_START_X_SCALING;
+	}
+
+
+	public static double getRunwayStartYScaling()
+	{
+		return RUNWAY_START_Y_SCALING;
+	}
+
+
+	public static double getRunwayHeightScaling()
+	{
+		return RUNWAY_HEIGHT_SCALING;
+	}
 
 
 	/**
@@ -310,42 +333,58 @@ public class MainScreenController
 	@FXML
 	private void handleObstacleSelected()
 	{
-		try {
+		try
+		{
 			mainApp.toggleAddObstacle(cmbAirports.getValue().getAirportName(), cmbRunways.getValue().getAlignment(), cmbRunways.getValue().getObstacle());
 
-		} catch (NullPointerException e) {
+		}
+		catch (NullPointerException e)
+		{
 			handleBtnAddObstacle();
 		}
 		//final Runway currentRunway = cmbRunways.getValue();
 		//updateNewParameters(currentRunway);
 	}
 
+
 	//TODO: Delete airports, runways and obstacles
 	@FXML
-	private void handleBtnDeleteAirport() {
+	private void handleBtnDeleteAirport()
+	{
 	}
 
-	@FXML
-	private void handleBtnDeleteRunway() {
-	}
 
 	@FXML
-	private void handleBtnDeleteObstacle() {
+	private void handleBtnDeleteRunway()
+	{
 	}
+
+
+	@FXML
+	private void handleBtnDeleteObstacle()
+	{
+	}
+
 
 	//TODO: Update airports and runways
 	@FXML
-	private void handleBtnUpdateAirport() {
+	private void handleBtnUpdateAirport()
+	{
 	}
 
-	@FXML
-	private void handleBtnUpdateRunway() {
-	}
 
 	@FXML
-	private void handleBtnUpdateObstacle() {
+	private void handleBtnUpdateRunway()
+	{
+	}
+
+
+	@FXML
+	private void handleBtnUpdateObstacle()
+	{
 		handleObstacleSelected();
 	}
+
 
 	private void updateNewParameters(Runway newRunway)
 	{
@@ -486,6 +525,13 @@ public class MainScreenController
 	}
 
 
+	@FXML
+	private void openShowRotation()
+	{
+		mainApp.toggleVisualScreen(cmbAirports.getValue().getAirportName(), cmbRunways.getValue().getAlignment());
+	}
+
+
 	/**
 	 * Is called by the main application to give a reference back to itself.
 	 *
@@ -572,8 +618,11 @@ public class MainScreenController
 		}
 	}
 
-	private void drawObstacleSide(final GraphicsContext graphicsContext) {
-		if (!Objects.equals(txtObstacles.getText(), "")) {
+
+	private void drawObstacleSide(final GraphicsContext graphicsContext)
+	{
+		if (!Objects.equals(txtObstacles.getText(), ""))
+		{
 			Canvas canvas = graphicsContext.getCanvas();
 			Obstacle obstacle = cmbRunways.getValue().getObstacle();
 
@@ -591,7 +640,6 @@ public class MainScreenController
 			graphicsContext.setStroke(Color.WHITE);
 			graphicsContext.setLineWidth(1);
 
-
 			final double tora = Objects.equals(lblRecalcTora.getText(), "") ? Double.parseDouble(lblOrigTora.getText()) : Double.parseDouble(lblRecalcTora.getText());
 			final double lda = Objects.equals(lblRecalcLda.getText(), "") ? Double.parseDouble(lblOrigLda.getText()) : Double.parseDouble(lblRecalcLda.getText());
 
@@ -604,20 +652,23 @@ public class MainScreenController
 			//TODO: Make slope end at correct point
 			slopeStartY = runwayStartY;
 			slopeEndY = runwayStartY + obstacleHeight;
-			if (obstacle.getDisplacementPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0)) {
+			if (obstacle.getDisplacementPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0))
+			{
 				slopeStartX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 40;
 				slopeEndX = (RUNWAY_START_X_SCALING * canvas.getWidth()) + ((SCALING * canvas.getWidth()) - ldaPixel); // start of lda
 
 				obstacleHeightX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 10;
-				obstacleHeightTextX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 30 - 8 * String.valueOf(obstacle.getHeight()).length();
-			} else {
+				obstacleHeightTextX =
+						runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX - 30 - 8 * String.valueOf(obstacle.getHeight()).length();
+			}
+			else
+			{
 				slopeStartX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX;
 				slopeEndX = (RUNWAY_START_X_SCALING * canvas.getWidth()) + toraPixel; // end of tora
 
 				obstacleHeightX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 50;
 				obstacleHeightTextX = runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX + 70;
 			}
-
 
 			//Draw slope caused over obstacle
 			graphicsContext.strokeLine(slopeStartX, slopeStartY, slopeEndX, slopeEndY);
@@ -633,6 +684,7 @@ public class MainScreenController
 			graphicsContext.fillText(obstacle.getHeight() + "m", obstacleHeightTextX, runwayStartY + obstacleHeight / 2);
 		}
 	}
+
 
 	private void drawParameterLines(final GraphicsContext graphicsContext)
 	{
@@ -666,12 +718,15 @@ public class MainScreenController
 			{
 				obstacle = cmbRunways.getValue().getObstacle();
 
-				if (obstacle.getDisplacementPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0)) {
+				if (obstacle.getDisplacementPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0))
+				{
 					toraStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + ((SCALING * canvas.getWidth()) - toraPixel);
 					//ldaStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + displacedThresholdPixel;
 					ldaStartPixel = (RUNWAY_START_X_SCALING * canvas.getWidth()) + ((SCALING * canvas.getWidth()) - ldaPixel);
 					displacedThresholdStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth();
-				} else {
+				}
+				else
+				{
 					//displacement threshold stays in same position on runway
 					//ldaStartPixel = RUNWAY_START_X_SCALING * canvas.getWidth();
 					//displacedThresholdStartPixel = ldaStartPixel + ldaPixel;
@@ -713,7 +768,9 @@ public class MainScreenController
 				RUNWAY_HEIGHT_SCALING * canvas.getHeight());
 	}
 
-	private void drawSideRunwaySurface(final GraphicsContext graphicsContext) {
+
+	private void drawSideRunwaySurface(final GraphicsContext graphicsContext)
+	{
 		Canvas canvas = graphicsContext.getCanvas();
 		graphicsContext.setFill(Color.rgb(0, 51, 51)); //Background colour
 		graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight() / 2);
@@ -757,12 +814,11 @@ public class MainScreenController
 
 		double lineLength = (SCALING * canvas.getWidth()) / 15;
 
-
 		double lineStart = (RUNWAY_START_X_SCALING * canvas.getWidth()) + lineLength;
 		double centreline = (RUNWAY_START_Y_SCALING * canvas.getHeight()) + 25;
 
-
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < 7; i++)
+		{
 			graphicsContext.strokeLine(lineStart, centreline, lineStart + lineLength, centreline);
 			lineStart = lineStart + 2 * lineLength;
 		}
@@ -778,11 +834,13 @@ public class MainScreenController
 */
 	}
 
+
 	/* Draws directional arrow and scale
 	 *
 	 * @param graphicsContext The graphics content to paint to
 	 */
-	private void drawAdditionalComponents(final GraphicsContext graphicsContext) {
+	private void drawAdditionalComponents(final GraphicsContext graphicsContext)
+	{
 		Canvas canvas = graphicsContext.getCanvas();
 		graphicsContext.setStroke(Color.WHITE);
 		graphicsContext.setLineWidth(2);
@@ -795,14 +853,20 @@ public class MainScreenController
 		graphicsContext.setFont(font);
 		graphicsContext.setFill(Color.WHITE);
 
-		try {
+		try
+		{
 			Obstacle obstacle = cmbRunways.getValue().getObstacle();
-			if (obstacle.getDisplacementPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0)) {
+			if (obstacle.getDisplacementPosition() < (Double.parseDouble(lblOrigTora.getText()) / 2.0))
+			{
 				graphicsContext.fillText("Direction: Landing Towards/Take-off Away", canvas.getWidth() - 330, canvas.getHeight() * 0.1 - 10);
-			} else {
+			}
+			else
+			{
 				graphicsContext.fillText("Direction: Landing Away/Take-off Over", canvas.getWidth() - 324, canvas.getHeight() * 0.1 - 10);
 			}
-		} catch (NullPointerException e) {
+		}
+		catch (NullPointerException e)
+		{
 			graphicsContext.fillText("Direction: Landing/Take-off", canvas.getWidth() - 287, canvas.getHeight() * 0.1 - 10);
 		}
 
@@ -814,93 +878,198 @@ public class MainScreenController
 		graphicsContext.strokeLine(canvas.getWidth() - 50, canvas.getHeight() * 0.9 - 10, canvas.getWidth() - 50, canvas.getHeight() * 0.9);
 		graphicsContext.strokeLine(canvas.getWidth() - 50 - scaleLength, canvas.getHeight() * 0.9 - 10, canvas.getWidth() - 50 - scaleLength, canvas.getHeight() * 0.9);
 
-
 		graphicsContext.fillText("500m", canvas.getWidth() - scaleLength / 2 - 65, canvas.getHeight() * 0.9 - 10);
 	}
-	
-	
+
+
 	//TODO: refactor, possibly move to another file
 	public void handleBtnImportAirport()
 	{
 		Airport importedAirport = importController.importAirport(mainApp, dbf);
-		if (importedAirport != null) {
+		if (importedAirport != null)
+		{
 			airportList.add(importedAirport);
-		} else {
+		}
+		else
+		{
 			//TODO: Error message
 		}
 	}
-	
+
+
 	public void handleBtnImportRunway()
 	{
 		Runway importedRunway = importController.importRunway(mainApp, dbf);
-		if (importedRunway != null) {
+		if (importedRunway != null)
+		{
 			final Airport selected = cmbAirports.getValue();
 			selected.addRunway(importedRunway);
-			try {
+			try
+			{
 				updateRunwayList();
-			} catch (Exception e) {
+			}
+			catch (Exception e)
+			{
 				e.printStackTrace();
 			}
-		} else {
+		}
+		else
+		{
 			//TODO: Error message
 		}
 	}
+
+	//TODO: export runway fully
 
 
 	public void handleBtnImportObstacle()
 	{
 		Obstacle importedObstacle = importController.importObstacle(mainApp, dbf);
-		if (importedObstacle != null) {
+		if (importedObstacle != null)
+		{
 			final Airport selected = cmbAirports.getValue();
 			final Runway runway = cmbRunways.getValue();
 			runway.setObstacle(importedObstacle);
 			updateObstacleList();
-		} else {
+		}
+		else
+		{
 			//TODO: Error message
 		}
 	}
 
-	public void handleBtnExportAirportOnly() {
+
+	public void handleBtnExportAirportOnly()
+	{
 		exportController.exportAirport(mainApp, dbf, cmbAirports.getValue(), 2);
 	}
 
+
 	//TODO export airport fully
-	public void handleBtnExportAirportRunways() {
+	public void handleBtnExportAirportRunways()
+	{
 		exportController.exportAirport(mainApp, dbf, cmbAirports.getValue(), 1);
 	}
 
-	public void handleBtnExportAirport() {
+
+	public void handleBtnExportAirport()
+	{
 		exportController.exportAirport(mainApp, dbf, cmbAirports.getValue(), 0);
 	}
 
-	//TODO: export runway fully
 
-	public void handleBtnExportRunway() {
+	public void handleBtnExportRunway()
+	{
 		exportController.exportRunway(mainApp, dbf, cmbAirports.getValue().getAirportName(), cmbRunways.getValue(), 0);
 	}
 
-	public void handleBtnExportRunwayOnly() {
+
+	public void handleBtnExportRunwayOnly()
+	{
 		exportController.exportRunway(mainApp, dbf, cmbAirports.getValue().getAirportName(), cmbRunways.getValue(), 1);
 	}
 
-	public void handleBtnExportObstacle() {
+
+	public void handleBtnExportObstacle()
+	{
 		final Runway runway = cmbRunways.getValue();
 		exportController.exportObstacle(mainApp, dbf, runway.getObstacle());
 	}
 
-	public void handleBtnExportTopDown() {
+
+	public void handleBtnExportTopDown()
+	{
 		exportController.exportImage(mainApp, cnvTop);
 	}
 
-	public void handleBtnExportSideOn() {
+
+	public void handleBtnExportSideOn()
+	{
 		exportController.exportImage(mainApp, cnvSide);
 	}
 
-	public void handleBtnExportPDF() {
-		if (cmbRunways.getValue().getObstacle() != null) {
+
+	public void handleBtnExportPDF()
+	{
+		if (cmbRunways.getValue().getObstacle() != null)
+		{
 			exportController.exportPDF(mainApp, cnvTop, cnvSide, cmbAirports.getValue().getAirportName(), cmbRunways.getValue());
-		} else {
+		}
+		else
+		{
 			//TODO: Error can't export PDF
 		}
+	}
+
+
+	public Label getLblOrigTora()
+	{
+		return lblOrigTora;
+	}
+
+
+	public Label getLblOrigToda()
+	{
+		return lblOrigToda;
+	}
+
+
+	public Label getLblOrigAsda()
+	{
+		return lblOrigAsda;
+	}
+
+
+	public Label getLblOrigLda()
+	{
+		return lblOrigLda;
+	}
+
+
+	public Label getLblOrigDisplacedThreshold()
+	{
+		return lblOrigDisplacedThreshold;
+	}
+
+
+	public Label getLblRecalcTora()
+	{
+		return lblRecalcTora;
+	}
+
+
+	public Label getLblRecalcToda()
+	{
+		return lblRecalcToda;
+	}
+
+
+	public Label getLblRecalcAsda()
+	{
+		return lblRecalcAsda;
+	}
+
+
+	public Label getLblRecalcLda()
+	{
+		return lblRecalcLda;
+	}
+
+
+	public Label getLblRecalcDisplacedThreshold()
+	{
+		return lblRecalcDisplacedThreshold;
+	}
+
+
+	public TextField getTxtObstacles()
+	{
+		return txtObstacles;
+	}
+
+
+	public ComboBox<Runway> getCmbRunways()
+	{
+		return cmbRunways;
 	}
 }

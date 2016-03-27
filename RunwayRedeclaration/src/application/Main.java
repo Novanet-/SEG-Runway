@@ -1,9 +1,6 @@
 package application;
 
-import application.controller.AddAirportController;
-import application.controller.AddObstacleController;
-import application.controller.AddRunwayController;
-import application.controller.MainScreenController;
+import application.controller.*;
 import application.model.Airport;
 import application.model.Obstacle;
 import javafx.application.Application;
@@ -24,24 +21,28 @@ public class Main extends Application
 	//TODO: Add obstacle JUNIT tests
 	//TODO: readme file, help document
 
-	private static final String PLANE_ICON        = "file:resources/planeicon.png";
-	private static final String APPLICATION_TITLE = "Runway Redeclaration";
-	private static final String MAIN_FXML         = "view/MainScreen.fxml";
-	private static final String ADD_AIRPORT_FXML  = "view/AddAirport.fxml";
-	private static final String ADD_RUNWAY_FXML   = "view/AddRunway.fxml";
-	private static final String ADD_OBSTACLE_FXML = "view/AddObstacle.fxml";
+	private static final String PLANE_ICON         = "file:resources/planeicon.png";
+	private static final String APPLICATION_TITLE  = "Runway Redeclaration";
+	private static final String MAIN_FXML          = "view/MainScreen.fxml";
+	private static final String ADD_AIRPORT_FXML   = "view/AddAirport.fxml";
+	private static final String ADD_RUNWAY_FXML    = "view/AddRunway.fxml";
+	private static final String ADD_OBSTACLE_FXML  = "view/AddObstacle.fxml";
+	private static final String VISUAL_SCREEN_FXML = "view/VisualScreen.fxml";
 
 	private ObservableList<Airport> airportList;
 
-	private Stage					msStage;
-	private Stage					aaStage;
-	private Stage					arStage;
-	private Stage					aoStage;
+	private Stage msStage;
+	private Stage aaStage;
+	private Stage arStage;
+	private Stage aoStage;
+	private Stage vsStage;
 
-	private AddAirportController	aaController;
-	private AddRunwayController		arController;
-	private AddObstacleController	aoController;
-	private MainScreenController	msController;
+	private AddAirportController   aaController;
+	private AddRunwayController    arController;
+	private AddObstacleController  aoController;
+	private MainScreenController   msController;
+	private VisualScreenController vsController;
+
 
 	/**
 	 * @param args Command line arguments
@@ -88,6 +89,7 @@ public class Main extends Application
 		final FXMLLoader aaLoader = loadAAStage();
 		final FXMLLoader arLoader = loadARStage();
 		final FXMLLoader aoLoader = loadAOStage();
+		final FXMLLoader vsLoader = loadVSStage();
 
 		aaController = aaLoader.getController();
 		aaController.setMainApp(this);
@@ -97,11 +99,14 @@ public class Main extends Application
 		aoController.setMainApp(this);
 		msController = msLoader.getController();
 		msController.setMainApp(this);
+		vsController = vsLoader.getController();
+		vsController.setMainApp(this);
 
 		aaController.linkToSession();
 		arController.linkToSession();
 		msController.linkToSession();
 		aoController.linkToSession();
+		vsController.linkToSession();
 
 		msStage.show();
 	}
@@ -194,6 +199,38 @@ public class Main extends Application
 
 
 	/**
+	 * @return The loader for the Add Object stage
+	 */
+	private FXMLLoader loadVSStage()
+	{
+		final FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource(VISUAL_SCREEN_FXML));
+		AnchorPane page = null;
+
+		try
+		{
+			page = loader.load();
+		}
+		catch (final IOException e)
+		{
+			e.printStackTrace();
+		}
+
+		vsStage = new Stage();
+		assert page != null;
+		final Scene scene = new Scene(page);
+		vsStage.setScene(scene);
+		vsStage.setTitle("Visual Screen");
+		// TODO: plane icon doesn't show - set path relative to other files
+		vsStage.getIcons().add(new Image(PLANE_ICON));
+		vsStage.setMinWidth(300.0);
+		vsStage.setMinHeight(100.0);
+
+		return loader;
+	}
+
+
+	/**
 	 *
 	 */
 	public final void toggleAddAirport()
@@ -238,15 +275,20 @@ public class Main extends Application
 	 * @param airportName The airport that contains the runway that the obstacle is being added to
 	 * @param runwayID    The string alignment+position of the runway that will be the owner of the obstacle
 	 */
-	public final void toggleAddObstacle(String airportName, String runwayID) {
-		if (aoStage.isShowing()) {
+	public final void toggleAddObstacle(String airportName, String runwayID)
+	{
+		if (aoStage.isShowing())
+		{
 			aoStage.hide();
 			msController.updateObstacleList();
-		} else {
+		}
+		else
+		{
 			aoController.updateSelectedAirportRunway(airportName, runwayID);
 			aoStage.show();
 		}
 	}
+
 
 	/**
 	 * @param airportName The airport that contains the runway that the obstacle is being added to
@@ -264,6 +306,25 @@ public class Main extends Application
 			aoController.updateSelectedAirportRunway(airportName, runwayID);
 			aoController.updateObstacleParameters(obstacle);
 			aoStage.show();
+		}
+	}
+
+
+	/**
+	 * @param airportName The airport that contains the runway that the obstacle is being added to
+	 * @param runwayID    The string alignment+position of the runway that will be the owner of the obstacle
+	 */
+	public final void toggleVisualScreen(String airportName, String runwayID)
+	{
+		if (vsStage.isShowing())
+		{
+			vsStage.hide();
+		}
+		else
+		{
+			vsController.updateSelectedAirportRunway(msController, msController.getCmbRunways().getValue());
+			vsController.drawRotatedRunway();
+			vsStage.show();
 		}
 	}
 
