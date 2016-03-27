@@ -66,7 +66,7 @@ public class AddObstacleController
 			final double obstacleCentrePosition = Double.parseDouble(txtPrimObstacleDistFromCentre.getText());
 
 			final Obstacle primaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstaclePrimaryPosition, obstacleCentrePosition, 300.0);
-			final Obstacle secondaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstacleSecondaryPosition, obstacleCentrePosition, 300.0);
+			final Obstacle secondaryObstacle = new Obstacle(obstacleName, obstacleHeight, obstacleSecondaryPosition, -1 * obstacleCentrePosition, 300.0);
 
 			String[] runwayIdentifiers = new String[2];
 
@@ -120,7 +120,11 @@ public class AddObstacleController
 	@FXML
 	private void handleDistCentreChanged()
 	{
-		lblSecObstacleDistFromCentre.setText(txtPrimObstacleDistFromCentre.getText());
+		try {
+			lblSecObstacleDistFromCentre.setText(Double.toString(-1 * Double.valueOf(txtPrimObstacleDistFromCentre.getText())));
+		} catch (Exception e) {
+			lblSecObstacleDistFromCentre.setText("-" + txtPrimObstacleDistFromCentre.getText());
+		}
 	}
 
 

@@ -612,11 +612,13 @@ public class MainScreenController
 			Canvas canvas = graphicsContext.getCanvas();
 			Obstacle obstacle = cmbRunways.getValue().getObstacle();
 
+			double yscaling = RUNWAY_HEIGHT_SCALING * canvas.getHeight() / cmbRunways.getValue().getStripWidth();
+
 			final double pixelRatio = (SCALING * canvas.getWidth()) / Double.parseDouble(lblOrigTora.getText());
 
 			graphicsContext.setFill(Color.rgb(179, 45, 0)); //Background colour
 			final double centreAdjustmentX = (obstacle.getDisplacementPosition() < 0) ? -20 : 20;
-			final double centreAdjustmentY = 5.0;
+			final double centreAdjustmentY = -1 * pixelRatio * obstacle.getCentrePosition() + 5; //(obstacle.getCentrePosition() < 0) ? (-1 * pixelRatio * obstacle.getCentrePosition()) : 20;
 			final double runwayStartX = RUNWAY_START_X_SCALING * canvas.getWidth();
 			final double runwayStartY = RUNWAY_START_Y_SCALING * canvas.getHeight();
 			graphicsContext.fillRect(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX, runwayStartY + centreAdjustmentY, 40, 40);
