@@ -86,9 +86,9 @@ public class AddObstacleController
 				}
 			});
 			mainApp.toggleAddObstacle(lblAirportName.getText(), lblRunwayID.getText());
-			String notificationText = lblAirportName.getText() + " runway " + runwayIdentifiers[0];
+			String notificationText = obstacleName + " on " + lblAirportName.getText() + " runway " + runwayIdentifiers[0];
 			if (runwayIdentifiers[1] != null) {
-				notificationText += " and runway " + runwayIdentifiers[1];
+				notificationText += " and " + runwayIdentifiers[1];
 			}
 			Notifications.create()
 					.title("Obstacle added/updated")

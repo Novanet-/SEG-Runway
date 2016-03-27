@@ -5,6 +5,7 @@ import application.model.Airport;
 import application.model.Obstacle;
 import application.model.Runway;
 import javafx.stage.FileChooser;
+import org.controlsfx.control.Notifications;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -54,6 +55,11 @@ public class ImportController
 				a.addRunway(importRunwayElement(runwayElement));
 			}
 
+			Notifications.create()
+					.title("Airport imported")
+					.text("Airport " + a.getAirportName() + " imported from file.")
+					.showWarning();
+
 			return a;
 
 			// TODO: handle these exceptions properly
@@ -92,8 +98,15 @@ public class ImportController
 			Document dom = db.parse(file);
 			Element root = dom.getDocumentElement();
 
-			return importRunwayElement(root);
 
+			Runway runway = importRunwayElement(root);
+
+			Notifications.create()
+					.title("Runway imported")
+					.text("Runway " + runway.getAlignment() + " imported from file.")
+					.showWarning();
+
+			return runway;
 			//TODO: handle obstacles
 
 			// TODO: handle these exceptions properly
@@ -156,7 +169,14 @@ public class ImportController
 			Document dom = db.parse(file);
 			Element root = dom.getDocumentElement();
 
-			return importObstacleElement(root);
+			Obstacle obstacle = importObstacleElement(root);
+
+			Notifications.create()
+					.title("Obstacle imported")
+					.text("Obstacle " + obstacle.getName() + " imported from file.")
+					.showWarning();
+
+			return obstacle;
 
 			// TODO: handle these exceptions properly
 		}
@@ -180,7 +200,6 @@ public class ImportController
 		{
 			e.printStackTrace();
 		}
-
 		return null;
 	}
 
