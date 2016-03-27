@@ -2,6 +2,10 @@
 
 <!--suppress ALL -->
 
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import java.lang.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.text.*?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.canvas.Canvas?>
@@ -10,825 +14,485 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx = "http://javafx.com/fxml/1"
-            style = "-fx-min-width: 1000; -fx-min-height: 450;"
-            stylesheets = "@application.css"
-            xmlns = "http://javafx.com/javafx/8.0.65"
-            fx:controller = "application.controller.MainScreenController">
+
+<AnchorPane style="-fx-min-width: 1000; -fx-min-height: 450;" stylesheets="@application.css"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="application.controller.MainScreenController">
     <children>
-        <SplitPane dividerPositions = "0.445"
-                   layoutY = "27.0"
-                   minHeight = "700.0"
-                   minWidth = "1280.0"
-                   prefHeight = "700.0"
-                   prefWidth = "1280.0"
-                   AnchorPane.bottomAnchor = "0.0"
-                   AnchorPane.leftAnchor = "0.0"
-                   AnchorPane.rightAnchor = "0.0"
-                   AnchorPane.topAnchor = "27.0">
+        <SplitPane dividerPositions="0.445" layoutY="27.0" minHeight="700.0" minWidth="1280.0" prefHeight="700.0"
+                   prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
             <items>
-                <AnchorPane maxWidth = "100.0"
-                            minHeight = "400.0"
-                            minWidth = "0.0"
-                            prefHeight = "160.0"
-                            prefWidth = "100.0"
-                            style = "-fx-min-width: 400;">
+                <AnchorPane maxWidth="100.0" minHeight="400.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0"
+                            style="-fx-min-width: 400;">
                     <children>
-                        <GridPane layoutX = "-14.0"
-                                  layoutY = "30.0"
-                                  prefHeight = "699.0"
-                                  prefWidth = "400.0"
-                                  style = "-fx-background-color: #41464d; -fx-min-width: 300;"
-                                  AnchorPane.bottomAnchor = "0.0"
-                                  AnchorPane.leftAnchor = "0.0"
-                                  AnchorPane.rightAnchor = "0.0"
-                                  AnchorPane.topAnchor = "0.0">
+                        <GridPane layoutX="-14.0" layoutY="30.0" prefHeight="699.0" prefWidth="400.0"
+                                  style="-fx-background-color: #41464d; -fx-min-width: 300;"
+                                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                  AnchorPane.topAnchor="0.0">
                             <columnConstraints>
-                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                   minWidth = "10.0"
-                                                   prefWidth = "100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints maxHeight = "140.0"
-                                                minHeight = "10.0"
-                                                prefHeight = "128.0"
-                                                vgrow = "SOMETIMES"/>
-                                <RowConstraints maxHeight = "190.0"
-                                                minHeight = "10.0"
-                                                prefHeight = "130.0"
-                                                vgrow = "SOMETIMES"/>
-                                <RowConstraints maxHeight = "276.0"
-                                                minHeight = "10.0"
-                                                prefHeight = "130.0"
-                                                vgrow = "SOMETIMES"/>
-                                <RowConstraints maxHeight = "173.0"
-                                                minHeight = "10.0"
-                                                prefHeight = "160.0"
-                                                vgrow = "SOMETIMES"/>
-                                <RowConstraints maxHeight = "131.0"
-                                                minHeight = "10.0"
-                                                prefHeight = "113.0"
-                                                vgrow = "SOMETIMES"/>
+                                <RowConstraints maxHeight="140.0" minHeight="10.0" prefHeight="128.0"
+                                                vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="190.0" minHeight="10.0" prefHeight="130.0"
+                                                vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="130.0"
+                                                vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="160.0"
+                                                vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="113.0"
+                                                vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <AnchorPane prefHeight = "200.0"
-                                            prefWidth = "200.0"
-                                            style = "-fx-background-color: #363d43;">
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #363d43;">
                                     <children>
-                                        <GridPane prefHeight = "132.0"
-                                                  prefWidth = "390.0"
-                                                  AnchorPane.bottomAnchor = "9.0"
-                                                  AnchorPane.leftAnchor = "0.0"
-                                                  AnchorPane.rightAnchor = "0.0"
-                                                  AnchorPane.topAnchor = "0.0">
+                                        <GridPane prefHeight="132.0" prefWidth="390.0" AnchorPane.bottomAnchor="9.0"
+                                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                  AnchorPane.topAnchor="0.0">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                                   maxWidth = "92.0"
-                                                                   minWidth = "10.0"
-                                                                   prefWidth = "72.0"/>
-                                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                                   maxWidth = "126.0"
-                                                                   minWidth = "10.0"
-                                                                   prefWidth = "75.0"/>
-                                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                                   maxWidth = "215.0"
-                                                                   minWidth = "10.0"
-                                                                   prefWidth = "182.0"/>
-                                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                                   maxWidth = "151.0"
-                                                                   minWidth = "10.0"
-                                                                   prefWidth = "71.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0"
+                                                                   prefWidth="72.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0"
+                                                                   prefWidth="75.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0"
+                                                                   prefWidth="182.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0"
+                                                                   prefWidth="71.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints maxHeight = "62.0"
-                                                                minHeight = "10.0"
-                                                                prefHeight = "10.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints maxHeight = "41.0"
-                                                                minHeight = "0.0"
-                                                                prefHeight = "40.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints maxHeight = "41.0"
-                                                                minHeight = "10.0"
-                                                                prefHeight = "40.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints maxHeight = "41.0"
-                                                                minHeight = "0.0"
-                                                                prefHeight = "40.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints maxHeight = "41.0"
-                                                                minHeight = "10.0"
-                                                                prefHeight = "10.0"
-                                                                vgrow = "SOMETIMES"/>
+                                                <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="10.0"
+                                                                vgrow="SOMETIMES"/>
+                                                <RowConstraints maxHeight="41.0" minHeight="0.0" prefHeight="40.0"
+                                                                vgrow="SOMETIMES"/>
+                                                <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="40.0"
+                                                                vgrow="SOMETIMES"/>
+                                                <RowConstraints maxHeight="41.0" minHeight="0.0" prefHeight="40.0"
+                                                                vgrow="SOMETIMES"/>
+                                                <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="10.0"
+                                                                vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <children>
-                                                <Label text = "Runway: "
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.halignment = "RIGHT"
-                                                       GridPane.rowIndex = "2">
+                                                <Label text="Runway: " GridPane.columnIndex="1"
+                                                       GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <ComboBox fx:id = "cmbRunways"
-                                                          onAction = "#handleRunwaySelected"
-                                                          prefHeight = "27.0"
-                                                          prefWidth = "215.0"
-                                                          style = "-fx-background-color: #fff;"
-                                                          GridPane.columnIndex = "2"
-                                                          GridPane.rowIndex = "2">
+                                                <ComboBox fx:id="cmbRunways" onAction="#handleRunwaySelected"
+                                                          prefHeight="27.0" prefWidth="215.0"
+                                                          style="-fx-background-color: #fff;" GridPane.columnIndex="2"
+                                                          GridPane.rowIndex="2">
                                                     <GridPane.margin>
-                                                        <Insets bottom = "5.0"
-                                                                left = "5.0"
-                                                                right = "5.0"
-                                                                top = "5.0"/>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                                     </GridPane.margin>
                                                 </ComboBox>
-                                                <Label text = "Obstacle: "
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.halignment = "RIGHT"
-                                                       GridPane.rowIndex = "3">
+                                                <Label text="Obstacle: " GridPane.columnIndex="1"
+                                                       GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <TextField fx:id = "txtObstacles"
-                                                           editable = "false"
-                                                           onAction = "#handleObstacleSelected"
-                                                           onMouseClicked = "#handleObstacleSelected"
-                                                           onTouchReleased = "#handleObstacleSelected"
-                                                           prefHeight = "50.0"
-                                                           prefWidth = "145.0"
-                                                           styleClass = "text-field-small"
-                                                           GridPane.columnIndex = "2"
-                                                           GridPane.rowIndex = "3">
+                                                <TextField fx:id="txtObstacles" editable="false"
+                                                           onAction="#handleObstacleSelected"
+                                                           onMouseClicked="#handleObstacleSelected"
+                                                           onTouchReleased="#handleObstacleSelected" prefHeight="50.0"
+                                                           prefWidth="145.0" styleClass="text-field-small"
+                                                           GridPane.columnIndex="2" GridPane.rowIndex="3">
                                                     <GridPane.margin>
-                                                        <Insets bottom = "5.0"
-                                                                left = "5.0"
-                                                                right = "5.0"
-                                                                top = "5.0"/>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                                     </GridPane.margin>
                                                 </TextField>
-                                                <Label styleClass = "thin-txt"
-                                                       text = "Airport: "
-                                                       textFill = "#d6dadb"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.halignment = "RIGHT"
-                                                       GridPane.rowIndex = "1">
+                                                <Label styleClass="thin-txt" text="Airport: " textFill="#d6dadb"
+                                                       GridPane.columnIndex="1" GridPane.halignment="RIGHT"
+                                                       GridPane.rowIndex="1">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <ComboBox fx:id = "cmbAirports"
-                                                          onAction = "#handleAirportSelected"
-                                                          prefHeight = "27.0"
-                                                          prefWidth = "190.0"
-                                                          style = "-fx-background-color: #fff;"
-                                                          GridPane.columnIndex = "2"
-                                                          GridPane.rowIndex = "1">
+                                                <ComboBox fx:id="cmbAirports" onAction="#handleAirportSelected"
+                                                          prefHeight="27.0" prefWidth="190.0"
+                                                          style="-fx-background-color: #fff;" GridPane.columnIndex="2"
+                                                          GridPane.rowIndex="1">
                                                     <GridPane.margin>
-                                                        <Insets bottom = "5.0"
-                                                                left = "5.0"
-                                                                right = "5.0"
-                                                                top = "5.0"/>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                                     </GridPane.margin>
                                                 </ComboBox>
-                                                <Button fx:id = "btnAddObstacle"
-                                                        alignment = "CENTER"
-                                                        mnemonicParsing = "false"
-                                                        onAction = "#handleBtnAddObstacle"
-                                                        prefWidth = "60.0"
-                                                        text = "+"
-                                                        textAlignment = "CENTER"
-                                                        GridPane.columnIndex = "3"
-                                                        GridPane.halignment = "LEFT"
-                                                        GridPane.rowIndex = "3">
+                                                <Button fx:id="btnAddObstacle" alignment="CENTER"
+                                                        mnemonicParsing="false" onAction="#handleBtnAddObstacle"
+                                                        prefWidth="60.0" text="+" textAlignment="CENTER"
+                                                        GridPane.columnIndex="3" GridPane.halignment="LEFT"
+                                                        GridPane.rowIndex="3">
                                                     <GridPane.margin>
-                                                        <Insets bottom = "5.0"
-                                                                left = "5.0"
-                                                                right = "5.0"
-                                                                top = "5.0"/>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                                     </GridPane.margin>
                                                 </Button>
-                                                <Button fx:id = "btnRemoveObstacle"
-                                                        alignment = "CENTER"
-                                                        mnemonicParsing = "false"
-                                                        onAction = "#handleBtnRemoveObstacle"
-                                                        prefWidth = "60.0"
-                                                        text = "-"
-                                                        textAlignment = "CENTER"
-                                                        GridPane.columnIndex = "3"
-                                                        GridPane.halignment = "RIGHT"
-                                                        GridPane.rowIndex = "3">
+                                                <Button fx:id="btnRemoveObstacle" alignment="CENTER"
+                                                        mnemonicParsing="false" onAction="#handleBtnRemoveObstacle"
+                                                        prefWidth="60.0" text="-" textAlignment="CENTER"
+                                                        GridPane.columnIndex="3" GridPane.halignment="RIGHT"
+                                                        GridPane.rowIndex="3">
                                                     <GridPane.margin>
-                                                        <Insets bottom = "5.0"
-                                                                left = "5.0"
-                                                                right = "5.0"
-                                                                top = "5.0"/>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                                     </GridPane.margin>
                                                 </Button>
-                                                <FontAwesomeIcon fill = "#d6dadb"
-                                                                 glyphName = "PLANE"
-                                                                 GridPane.halignment = "RIGHT"
-                                                                 GridPane.rowIndex = "1"/>
-                                                <FontAwesomeIcon fill = "#d6dadb"
-                                                                 glyphName = "ROAD"
-                                                                 GridPane.halignment = "RIGHT"
-                                                                 GridPane.rowIndex = "2"/>
-                                                <FontAwesomeIcon fill = "#d6dadb"
-                                                                 glyphName = "CUBE"
-                                                                 GridPane.halignment = "RIGHT"
-                                                                 GridPane.rowIndex = "3"/>
+                                                <FontAwesomeIcon fill="#d6dadb" glyphName="PLANE"
+                                                                 GridPane.halignment="RIGHT" GridPane.rowIndex="1"/>
+                                                <FontAwesomeIcon fill="#d6dadb" glyphName="ROAD"
+                                                                 GridPane.halignment="RIGHT" GridPane.rowIndex="2"/>
+                                                <FontAwesomeIcon fill="#d6dadb" glyphName="CUBE"
+                                                                 GridPane.halignment="RIGHT" GridPane.rowIndex="3"/>
                                             </children>
                                         </GridPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane prefHeight = "200.0"
-                                            prefWidth = "200.0"
-                                            GridPane.rowIndex = "1">
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                     <children>
-                                        <GridPane layoutX = "1.0"
-                                                  prefHeight = "190.0"
-                                                  prefWidth = "393.0"
-                                                  AnchorPane.bottomAnchor = "0.0"
-                                                  AnchorPane.leftAnchor = "1.0"
-                                                  AnchorPane.rightAnchor = "-1.0"
-                                                  AnchorPane.topAnchor = "0.0">
+                                        <GridPane layoutX="1.0" prefHeight="190.0" prefWidth="393.0"
+                                                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0"
+                                                  AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                                   maxWidth = "222.0"
-                                                                   minWidth = "10.0"
-                                                                   prefWidth = "40.0"/>
-                                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                                   maxWidth = "233.0"
-                                                                   minWidth = "10.0"
-                                                                   prefWidth = "230.0"/>
-                                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                                   minWidth = "10.0"
-                                                                   prefWidth = "100.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0"
+                                                                   prefWidth="40.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0"
+                                                                   prefWidth="230.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <padding>
-                                                <Insets bottom = "5.0"
-                                                        left = "5.0"
-                                                        right = "5.0"
-                                                        top = "5.0"/>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </padding>
                                             <children>
-                                                <Label text = "LDA:"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "4">
+                                                <Label text="LDA:" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label text = "Displaced Threshold:"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "5">
+                                                <Label text="Displaced Threshold:" GridPane.columnIndex="1"
+                                                       GridPane.rowIndex="5">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label prefHeight = "21.0"
-                                                       prefWidth = "285.0"
-                                                       text = "Original Parameters"
-                                                       GridPane.columnIndex = "1">
+                                                <Label prefHeight="21.0" prefWidth="285.0" styleClass="label-header"
+                                                       text="Original Parameters" GridPane.columnIndex="1">
                                                     <font>
-                                                        <Font name = "System Bold"
-                                                              size = "12.0"/>
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label text = "TORA"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "1">
+                                                <Label text="TORA" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label text = "TODA"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "2">
+                                                <Label text="TODA" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label text = "ASDA"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "3">
+                                                <Label text="ASDA" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Rectangle arcHeight = "5.0"
-                                                           arcWidth = "5.0"
-                                                           fill = "#ff8688"
-                                                           height = "15.0"
-                                                           stroke = "TRANSPARENT"
-                                                           strokeType = "INSIDE"
-                                                           width = "15.0"
-                                                           GridPane.halignment = "CENTER"
-                                                           GridPane.rowIndex = "1"
-                                                           GridPane.valignment = "CENTER">
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff8688" height="15.0"
+                                                           stroke="TRANSPARENT" strokeType="INSIDE" width="15.0"
+                                                           GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                                                           GridPane.valignment="CENTER">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Rectangle>
-                                                <Rectangle arcHeight = "5.0"
-                                                           arcWidth = "5.0"
-                                                           fill = "#febf00"
-                                                           height = "15.0"
-                                                           stroke = "TRANSPARENT"
-                                                           strokeType = "INSIDE"
-                                                           width = "15.0"
-                                                           GridPane.halignment = "CENTER"
-                                                           GridPane.rowIndex = "2"
-                                                           GridPane.valignment = "CENTER">
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#febf00" height="15.0"
+                                                           stroke="TRANSPARENT" strokeType="INSIDE" width="15.0"
+                                                           GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                                                           GridPane.valignment="CENTER">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Rectangle>
-                                                <Rectangle arcHeight = "5.0"
-                                                           arcWidth = "5.0"
-                                                           fill = "#f8fa00"
-                                                           height = "15.0"
-                                                           stroke = "TRANSPARENT"
-                                                           strokeType = "INSIDE"
-                                                           width = "15.0"
-                                                           GridPane.halignment = "CENTER"
-                                                           GridPane.rowIndex = "3"
-                                                           GridPane.valignment = "CENTER">
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8fa00" height="15.0"
+                                                           stroke="TRANSPARENT" strokeType="INSIDE" width="15.0"
+                                                           GridPane.halignment="CENTER" GridPane.rowIndex="3"
+                                                           GridPane.valignment="CENTER">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Rectangle>
-                                                <Rectangle arcHeight = "5.0"
-                                                           arcWidth = "5.0"
-                                                           fill = "#b4e206"
-                                                           height = "15.0"
-                                                           stroke = "TRANSPARENT"
-                                                           strokeType = "INSIDE"
-                                                           width = "15.0"
-                                                           GridPane.halignment = "CENTER"
-                                                           GridPane.rowIndex = "4"
-                                                           GridPane.valignment = "CENTER">
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4e206" height="15.0"
+                                                           stroke="TRANSPARENT" strokeType="INSIDE" width="15.0"
+                                                           GridPane.halignment="CENTER" GridPane.rowIndex="4"
+                                                           GridPane.valignment="CENTER">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Rectangle>
-                                                <Rectangle arcHeight = "5.0"
-                                                           arcWidth = "5.0"
-                                                           fill = "#93d4fc"
-                                                           height = "15.0"
-                                                           stroke = "TRANSPARENT"
-                                                           strokeType = "INSIDE"
-                                                           width = "15.0"
-                                                           GridPane.halignment = "CENTER"
-                                                           GridPane.rowIndex = "5"
-                                                           GridPane.valignment = "CENTER">
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#93d4fc" height="15.0"
+                                                           stroke="TRANSPARENT" strokeType="INSIDE" width="15.0"
+                                                           GridPane.halignment="CENTER" GridPane.rowIndex="5"
+                                                           GridPane.valignment="CENTER">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Rectangle>
-                                                <Label fx:id = "lblOrigTora"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "1"/>
-                                                <Label fx:id = "lblOrigToda"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "2"/>
-                                                <Label fx:id = "lblOrigAsda"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "3"/>
-                                                <Label fx:id = "lblOrigLda"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "4"/>
-                                                <Label fx:id = "lblOrigDisplacedThreshold"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "5"/>
+                                                <Label fx:id="lblOrigTora" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                                                <Label fx:id="lblOrigToda" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                                                <Label fx:id="lblOrigAsda" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                                                <Label fx:id="lblOrigLda" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                                                <Label fx:id="lblOrigDisplacedThreshold" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="5"/>
                                             </children>
                                         </GridPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane prefHeight = "200.0"
-                                            prefWidth = "200.0"
-                                            GridPane.rowIndex = "2">
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                                     <children>
-                                        <GridPane prefHeight = "190.0"
-                                                  prefWidth = "393.0"
-                                                  AnchorPane.bottomAnchor = "0.0"
-                                                  AnchorPane.leftAnchor = "0.0"
-                                                  AnchorPane.rightAnchor = "0.0"
-                                                  AnchorPane.topAnchor = "0.0">
+                                        <GridPane prefHeight="190.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0"
+                                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                  AnchorPane.topAnchor="0.0">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                                   maxWidth = "222.0"
-                                                                   minWidth = "0.0"
-                                                                   prefWidth = "40.0"/>
-                                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                                   maxWidth = "233.0"
-                                                                   minWidth = "10.0"
-                                                                   prefWidth = "230.0"/>
-                                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                                   minWidth = "10.0"
-                                                                   prefWidth = "100.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="0.0"
+                                                                   prefWidth="40.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0"
+                                                                   prefWidth="230.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <padding>
-                                                <Insets bottom = "5.0"
-                                                        left = "5.0"
-                                                        right = "5.0"
-                                                        top = "5.0"/>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </padding>
                                             <children>
-                                                <Label text = "LDA:"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "4">
+                                                <Label text="LDA:" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label text = "Displaced Threshold:"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "5">
+                                                <Label text="Displaced Threshold:" GridPane.columnIndex="1"
+                                                       GridPane.rowIndex="5">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label prefHeight = "21.0"
-                                                       prefWidth = "233.0"
-                                                       text = "Recalculated Parameters"
-                                                       GridPane.columnIndex = "1">
+                                                <Label prefHeight="21.0" prefWidth="233.0" styleClass="label-header"
+                                                       text="Recalculated Parameters" GridPane.columnIndex="1">
                                                     <font>
-                                                        <Font name = "System Bold"
-                                                              size = "12.0"/>
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label text = "TORA"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "1">
+                                                <Label text="TORA" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label text = "TODA"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "2">
+                                                <Label text="TODA" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label text = "ASDA"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "3">
+                                                <Label text="ASDA" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Rectangle arcHeight = "5.0"
-                                                           arcWidth = "5.0"
-                                                           fill = "#ff8688"
-                                                           height = "15.0"
-                                                           stroke = "TRANSPARENT"
-                                                           strokeType = "INSIDE"
-                                                           width = "15.0"
-                                                           GridPane.halignment = "CENTER"
-                                                           GridPane.rowIndex = "1"
-                                                           GridPane.valignment = "CENTER">
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff8688" height="15.0"
+                                                           stroke="TRANSPARENT" strokeType="INSIDE" width="15.0"
+                                                           GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                                                           GridPane.valignment="CENTER">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Rectangle>
-                                                <Rectangle arcHeight = "5.0"
-                                                           arcWidth = "5.0"
-                                                           fill = "#febf00"
-                                                           height = "15.0"
-                                                           stroke = "TRANSPARENT"
-                                                           strokeType = "INSIDE"
-                                                           width = "15.0"
-                                                           GridPane.halignment = "CENTER"
-                                                           GridPane.rowIndex = "2"
-                                                           GridPane.valignment = "CENTER">
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#febf00" height="15.0"
+                                                           stroke="TRANSPARENT" strokeType="INSIDE" width="15.0"
+                                                           GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                                                           GridPane.valignment="CENTER">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Rectangle>
-                                                <Rectangle arcHeight = "5.0"
-                                                           arcWidth = "5.0"
-                                                           fill = "#f8fa00"
-                                                           height = "15.0"
-                                                           stroke = "TRANSPARENT"
-                                                           strokeType = "INSIDE"
-                                                           width = "15.0"
-                                                           GridPane.halignment = "CENTER"
-                                                           GridPane.rowIndex = "3"
-                                                           GridPane.valignment = "CENTER">
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8fa00" height="15.0"
+                                                           stroke="TRANSPARENT" strokeType="INSIDE" width="15.0"
+                                                           GridPane.halignment="CENTER" GridPane.rowIndex="3"
+                                                           GridPane.valignment="CENTER">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Rectangle>
-                                                <Rectangle arcHeight = "5.0"
-                                                           arcWidth = "5.0"
-                                                           fill = "#b4e206"
-                                                           height = "15.0"
-                                                           stroke = "TRANSPARENT"
-                                                           strokeType = "INSIDE"
-                                                           width = "15.0"
-                                                           GridPane.halignment = "CENTER"
-                                                           GridPane.rowIndex = "4"
-                                                           GridPane.valignment = "CENTER">
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4e206" height="15.0"
+                                                           stroke="TRANSPARENT" strokeType="INSIDE" width="15.0"
+                                                           GridPane.halignment="CENTER" GridPane.rowIndex="4"
+                                                           GridPane.valignment="CENTER">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Rectangle>
-                                                <Rectangle arcHeight = "5.0"
-                                                           arcWidth = "5.0"
-                                                           fill = "#93d4fc"
-                                                           height = "15.0"
-                                                           stroke = "TRANSPARENT"
-                                                           strokeType = "INSIDE"
-                                                           width = "15.0"
-                                                           GridPane.halignment = "CENTER"
-                                                           GridPane.rowIndex = "5"
-                                                           GridPane.valignment = "CENTER">
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#93d4fc" height="15.0"
+                                                           stroke="TRANSPARENT" strokeType="INSIDE" width="15.0"
+                                                           GridPane.halignment="CENTER" GridPane.rowIndex="5"
+                                                           GridPane.valignment="CENTER">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Rectangle>
-                                                <Label fx:id = "lblRecalcTora"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "1"/>
-                                                <Label fx:id = "lblRecalcToda"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "2"/>
-                                                <Label fx:id = "lblRecalcAsda"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "3"/>
-                                                <Label fx:id = "lblRecalcLda"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "4"/>
-                                                <Label fx:id = "lblRecalcDisplacedThreshold"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "5"/>
+                                                <Label fx:id="lblRecalcTora" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                                                <Label fx:id="lblRecalcToda" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                                                <Label fx:id="lblRecalcAsda" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                                                <Label fx:id="lblRecalcLda" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                                                <Label fx:id="lblRecalcDisplacedThreshold" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="5"/>
                                             </children>
                                         </GridPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane prefHeight = "200.0"
-                                            prefWidth = "200.0"
-                                            GridPane.rowIndex = "3">
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                                     <children>
-                                        <GridPane prefHeight = "170.0"
-                                                  prefWidth = "390.0"
-                                                  AnchorPane.bottomAnchor = "0.0"
-                                                  AnchorPane.leftAnchor = "0.0"
-                                                  AnchorPane.rightAnchor = "0.0"
-                                                  AnchorPane.topAnchor = "0.0">
+                                        <GridPane prefHeight="170.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0"
+                                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                  AnchorPane.topAnchor="0.0">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                                   maxWidth = "222.0"
-                                                                   minWidth = "0.0"
-                                                                   prefWidth = "40.0"/>
-                                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                                   maxWidth = "233.0"
-                                                                   minWidth = "7.0"
-                                                                   prefWidth = "230.0"/>
-                                                <ColumnConstraints hgrow = "SOMETIMES"
-                                                                   minWidth = "10.0"
-                                                                   prefWidth = "100.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="0.0"
+                                                                   prefWidth="40.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="7.0"
+                                                                   prefWidth="230.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
-                                                <RowConstraints minHeight = "10.0"
-                                                                prefHeight = "30.0"
-                                                                vgrow = "SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <padding>
-                                                <Insets bottom = "5.0"
-                                                        left = "5.0"
-                                                        right = "5.0"
-                                                        top = "5.0"/>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </padding>
                                             <children>
-                                                <Label text = "Angle of Slope:"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "4">
+                                                <Label text="Angle of Slope:" GridPane.columnIndex="1"
+                                                       GridPane.rowIndex="4">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label text = "Strip Width:"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "5">
+                                                <Label text="Strip Width:" GridPane.columnIndex="1"
+                                                       GridPane.rowIndex="5">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label text = "Clear &amp; Graded Width:"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "6">
+                                                <Label text="Clear &amp; Graded Width:" GridPane.columnIndex="1"
+                                                       GridPane.rowIndex="6">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label text = "Blast Protection"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "3">
+                                                <Label text="Blast Protection" GridPane.columnIndex="1"
+                                                       GridPane.rowIndex="3">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label text = "Stopway"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "2">
+                                                <Label text="Stopway" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label text = "RESA"
-                                                       GridPane.columnIndex = "1"
-                                                       GridPane.rowIndex = "1">
+                                                <Label text="RESA" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label prefHeight = "21.0"
-                                                       prefWidth = "239.0"
-                                                       text = "Other Details"
-                                                       GridPane.columnIndex = "1">
+                                                <Label prefHeight="21.0" prefWidth="239.0" styleClass="label-header"
+                                                       text="Other Details" GridPane.columnIndex="1">
                                                     <font>
-                                                        <Font name = "System Bold"
-                                                              size = "12.0"/>
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                     <effect>
                                                         <Blend/>
                                                     </effect>
                                                 </Label>
-                                                <Label fx:id = "lblResa"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "1"/>
-                                                <Label fx:id = "lblStopway"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "2"/>
-                                                <Label fx:id = "lblBlastProtection"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "3"/>
-                                                <Label fx:id = "lblAngleOfSlope"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "4"/>
-                                                <Label fx:id = "lblStripWidth"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "5"/>
-                                                <Label fx:id = "lblCAndGWidth"
-                                                       styleClass = "label-bright"
-                                                       GridPane.columnIndex = "2"
-                                                       GridPane.rowIndex = "6"/>
+                                                <Label fx:id="lblResa" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                                                <Label fx:id="lblStopway" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                                                <Label fx:id="lblBlastProtection" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                                                <Label fx:id="lblAngleOfSlope" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                                                <Label fx:id="lblStripWidth" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+                                                <Label fx:id="lblCAndGWidth" styleClass="label-bright"
+                                                       GridPane.columnIndex="2" GridPane.rowIndex="6"/>
                                             </children>
                                         </GridPane>
                                     </children>
                                 </AnchorPane>
-                                <TextArea fx:id = "txtCalculations"
-                                          prefHeight = "158.0"
-                                          prefWidth = "390.0"
-                                          style = "-fx-background-color: #41464d; -fx-text-fill: #d6dadb;"
-                                          styleClass = "text-area"
-                                          stylesheets = "@application.css"
-                                          GridPane.rowIndex = "4"/>
+                                <TextArea fx:id="txtCalculations" prefHeight="158.0" prefWidth="390.0"
+                                          style="-fx-background-color: #41464d; -fx-text-fill: #d6dadb; }: ;"
+                                          styleClass="text-area" stylesheets="@application.css" GridPane.rowIndex="4"/>
                             </children>
                         </GridPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight = "0.0"
-                            minWidth = "0.0"
-                            prefHeight = "160.0"
-                            prefWidth = "100.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <children>
-                        <SplitPane dividerPositions = "0.5"
-                                   maxHeight = "-Infinity"
-                                   maxWidth = "-Infinity"
-                                   minHeight = "-Infinity"
-                                   minWidth = "-Infinity"
-                                   orientation = "VERTICAL"
-                                   prefHeight = "700.0"
-                                   prefWidth = "875.0"
-                                   AnchorPane.bottomAnchor = "0.0"
-                                   AnchorPane.leftAnchor = "0.0"
-                                   AnchorPane.rightAnchor = "0.0"
-                                   AnchorPane.topAnchor = "0.0">
+                        <SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity"
+                                   minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="700.0"
+                                   prefWidth="875.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <items>
-                                <AnchorPane prefHeight = "350.0"
-                                            prefWidth = "875.0"
-                                            style = "-fx-background-color: #003300;">
+                                <AnchorPane prefHeight="350.0" prefWidth="875.0">
                                     <children>
-                                        <AnchorPane layoutX = "-32.0"
-                                                    minHeight = "-Infinity"
-                                                    minWidth = "-Infinity"
-                                                    prefHeight = "350.0"
-                                                    prefWidth = "875.0"
-                                                    style = "-fx-background-color: #003300;"
-                                                    AnchorPane.bottomAnchor = "0.0"
-                                                    AnchorPane.leftAnchor = "0.0"
-                                                    AnchorPane.rightAnchor = "0.0"
-                                                    AnchorPane.topAnchor = "0.0">
+                                        <AnchorPane layoutX="-32.0" minHeight="-Infinity" minWidth="-Infinity"
+                                                    prefHeight="350.0" prefWidth="875.0"
+                                                    style="-fx-background-color: #ededed;" AnchorPane.bottomAnchor="0.0"
+                                                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                    AnchorPane.topAnchor="0.0">
                                             <children>
-                                                <Canvas fx:id = "cnvTop"
-                                                        height = "350.0"
-                                                        width = "875.0"/>
+                                                <Canvas fx:id="cnvTop" height="350.0" width="875.0"/>
                                             </children>
                                         </AnchorPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane prefHeight = "350.0"
-                                            prefWidth = "875.0">
+                                <AnchorPane prefHeight="350.0" prefWidth="875.0">
                                     <children>
-                                        <AnchorPane layoutX = "-6.0"
-                                                    minHeight = "-Infinity"
-                                                    minWidth = "-Infinity"
-                                                    prefHeight = "350.0"
-                                                    prefWidth = "875.0"
-                                                    style = "-fx-background-color: #003300;"
-                                                    AnchorPane.bottomAnchor = "0.0"
-                                                    AnchorPane.leftAnchor = "0.0"
-                                                    AnchorPane.rightAnchor = "0.0"
-                                                    AnchorPane.topAnchor = "0.0">
+                                        <AnchorPane layoutX="-6.0" minHeight="-Infinity" minWidth="-Infinity"
+                                                    prefHeight="350.0" prefWidth="875.0"
+                                                    style="-fx-background-color: #d6dadb;" AnchorPane.bottomAnchor="0.0"
+                                                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                    AnchorPane.topAnchor="0.0">
                                             <children>
-                                                <Canvas fx:id = "cnvSide"
-                                                        height = "350.0"
-                                                        width = "875.0"/>
+                                                <Canvas fx:id="cnvSide" height="350.0" width="875.0"/>
                                             </children>
                                         </AnchorPane>
                                     </children>
@@ -839,135 +503,91 @@
                 </AnchorPane>
             </items>
         </SplitPane>
-        <MenuBar layoutY = "-3.0"
-                 prefHeight = "0.0"
-                 prefWidth = "1280.0">
+        <MenuBar layoutY="-3.0" prefHeight="0.0" prefWidth="1280.0">
             <menus>
-                <Menu mnemonicParsing = "false"
-                      text = "File">
+                <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <Menu mnemonicParsing = "false"
-                              text = "New">
+                        <Menu mnemonicParsing="false" text="New">
                             <items>
-                                <MenuItem fx:id = "btnAddAirport"
-                                          mnemonicParsing = "false"
-                                          onAction = "#handleBtnAddAirport"
-                                          text = "New Airport"/>
-                                <MenuItem fx:id = "btnAddRunway"
-                                          mnemonicParsing = "false"
-                                          onAction = "#handleBtnAddRunway"
-                                          text = "New Runway"/>
+                                <MenuItem fx:id="btnAddAirport" mnemonicParsing="false" onAction="#handleBtnAddAirport"
+                                          text="New Airport"/>
+                                <MenuItem fx:id="btnAddRunway" mnemonicParsing="false" onAction="#handleBtnAddRunway"
+                                          text="New Runway"/>
                             </items>
                         </Menu>
-                        <Menu mnemonicParsing = "false"
-                              text = "Import">
+                        <Menu mnemonicParsing="false" text="Import">
                             <items>
-                                <MenuItem fx:id = "btnImportAirport"
-                                          onAction = "#handleBtnImportAirport"
-                                          text = "Import Airport"/>
-                                <MenuItem fx:id = "btnImportRunway"
-                                          onAction = "#handleBtnImportRunway"
-                                          text = "Import Runway"/>
-                                <MenuItem fx:id = "btnImportObstacle"
-                                          onAction = "#handleBtnImportObstacle"
-                                          text = "Import Obstacle"/>
+                                <MenuItem fx:id="btnImportAirport" onAction="#handleBtnImportAirport"
+                                          text="Import Airport"/>
+                                <MenuItem fx:id="btnImportRunway" onAction="#handleBtnImportRunway"
+                                          text="Import Runway"/>
+                                <MenuItem fx:id="btnImportObstacle" onAction="#handleBtnImportObstacle"
+                                          text="Import Obstacle"/>
                             </items>
                         </Menu>
-                        <Menu mnemonicParsing = "false"
-                              text = "Export">
+                        <Menu mnemonicParsing="false" text="Export">
                             <items>
-                                <Menu mnemonicParsing = "false"
-                                      text = "Export Airport">
+                                <Menu mnemonicParsing="false" text="Export Airport">
                                     <items>
-                                        <MenuItem mnemonicParsing = "false"
-                                                  onAction = "#handleBtnExportAirportOnly"
-                                                  text = "Airport Only"/>
-                                        <MenuItem mnemonicParsing = "false"
-                                                  onAction = "#handleBtnExportAirportRunways"
-                                                  text = "Include Runways"/>
-                                        <MenuItem mnemonicParsing = "false"
-                                                  onAction = "#handleBtnExportAirport"
-                                                  text = "Include Obstacles"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportAirportOnly"
+                                                  text="Airport Only"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportAirportRunways"
+                                                  text="Include Runways"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportAirport"
+                                                  text="Include Obstacles"/>
                                     </items>
                                 </Menu>
-                                <Menu mnemonicParsing = "false"
-                                      text = "Export Runway">
+                                <Menu mnemonicParsing="false" text="Export Runway">
                                     <items>
-                                        <MenuItem mnemonicParsing = "false"
-                                                  onAction = "#handleBtnExportRunwayOnly"
-                                                  text = "Runway Only"/>
-                                        <MenuItem mnemonicParsing = "false"
-                                                  onAction = "#handleBtnExportRunway"
-                                                  text = "Include Obstacle"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportRunwayOnly"
+                                                  text="Runway Only"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportRunway"
+                                                  text="Include Obstacle"/>
                                     </items>
                                 </Menu>
-                                <MenuItem mnemonicParsing = "false"
-                                          onAction = "#handleBtnExportObstacle"
-                                          text = "Export Obstacle"/>
-                                <Menu mnemonicParsing = "false"
-                                      text = "Export Visualisation">
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnExportObstacle"
+                                          text="Export Obstacle"/>
+                                <Menu mnemonicParsing="false" text="Export Visualisation">
                                     <items>
-                                        <MenuItem mnemonicParsing = "false"
-                                                  onAction = "#handleBtnExportTopDown"
-                                                  text = "Top-Down View"/>
-                                        <MenuItem mnemonicParsing = "false"
-                                                  onAction = "#handleBtnExportSideOn"
-                                                  text = "Side-On Visualisation"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportTopDown"
+                                                  text="Top-Down View"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleBtnExportSideOn"
+                                                  text="Side-On Visualisation"/>
                                     </items>
                                 </Menu>
-                                <MenuItem mnemonicParsing = "false"
-                                          onAction = "#handleBtnExportPDF"
-                                          text = "Export PDF"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnExportPDF" text="Export PDF"/>
                             </items>
                         </Menu>
-                        <MenuItem mnemonicParsing = "false"
-                                  onAction = "#handleBtnClose"
-                                  text = "Close"/>
-                        <MenuItem fx:id = "btnShowRotation"
-                                  mnemonicParsing = "false"
-                                  onAction = "#openShowRotation"
-                                  text = "Show Rotation"/>
+                        <MenuItem mnemonicParsing="false" onAction="#handleBtnClose" text="Close"/>
                     </items>
                 </Menu>
-                <Menu mnemonicParsing = "false"
-                      text = "Edit">
+                <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <Menu mnemonicParsing = "false"
-                              text = "Delete">
+                        <Menu mnemonicParsing="false" text="Delete">
                             <items>
-                                <MenuItem mnemonicParsing = "false"
-                                          onAction = "#handleBtnDeleteAirport"
-                                          text = "Delete Airport"/>
-                                <MenuItem mnemonicParsing = "false"
-                                          onAction = "#handleBtnDeleteRunway"
-                                          text = "Delete Runway"/>
-                                <MenuItem mnemonicParsing = "false"
-                                          onAction = "#handleBtnDeleteObstacle"
-                                          text = "Delete Obstacle"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnDeleteAirport"
+                                          text="Delete Airport"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnDeleteRunway"
+                                          text="Delete Runway"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnDeleteObstacle"
+                                          text="Delete Obstacle"/>
                             </items>
                         </Menu>
-                        <Menu mnemonicParsing = "false"
-                              text = "Update">
+                        <Menu mnemonicParsing="false" text="Update">
                             <items>
-                                <MenuItem mnemonicParsing = "false"
-                                          onAction = "#handleBtnUpdateAirport"
-                                          text = "Update Airport"/>
-                                <MenuItem mnemonicParsing = "false"
-                                          onAction = "#handleBtnUpdateRunway"
-                                          text = "Update Runway"/>
-                                <MenuItem mnemonicParsing = "false"
-                                          onAction = "#handleBtnUpdateObstacle"
-                                          text = "Update Obstacle"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateAirport"
+                                          text="Update Airport"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateRunway"
+                                          text="Update Runway"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateObstacle"
+                                          text="Update Obstacle"/>
                             </items>
                         </Menu>
                     </items>
                 </Menu>
-                <Menu mnemonicParsing = "false"
-                      text = "Help">
+                <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing = "false"
-                                  onAction = "#handleBtnAbout"
-                                  text = "About"/>
+                        <MenuItem mnemonicParsing="false" onAction="#handleBtnAbout" text="About"/>
                     </items>
                 </Menu>
             </menus>

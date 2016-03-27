@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import org.controlsfx.control.Notifications;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.util.Objects;
@@ -203,6 +204,10 @@ public class MainScreenController
 				}
 				updateObstacleList();
 				updateOriginalParameters();
+				Notifications.create()
+						.title("Obstacle removed")
+						.text(currentRunway.getObstacle().getName() + " obstacle removed.")
+						.showWarning();
 			}
 			else
 			{

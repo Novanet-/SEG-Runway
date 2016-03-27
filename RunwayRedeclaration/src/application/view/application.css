@@ -4,7 +4,7 @@
 
 .label {
     -fx-font-size: 11.0pt;
-    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-font-family: "Helvetica Neue Ultralight", "Segoe UI Semilight";
     -fx-font-weight: 300;
     -fx-text-fill: #c0c4c5;
     -fx-opacity: 1.0;
@@ -12,16 +12,15 @@
 
 .label-bright {
     -fx-font-size: 11.0pt;
-    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-font-family: "Helvetica Neue", "Segoe UI Semilight";
     -fx-font-weight: 300;
     -fx-text-fill: #c0c4c5;
     -fx-opacity: 1.0;
 }
 
 .label-header {
-    -fx-font-size: 32.0pt;
-    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
-    -fx-font-weight: 300;
+    -fx-font-size: 11.0pt;
+    -fx-font-family: "Helvetica Neue", "Segoe UI Semilight";
     -fx-text-fill: #c0c4c5;
     -fx-opacity: 1.0;
 }
@@ -51,7 +50,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20.0pt;
-    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-font-family: "Helvetica Neue", "Segoe UI Semilight";
     -fx-text-fill: #c0c4c5;
     -fx-alignment: center-left;
     -fx-opacity: 1.0;
@@ -92,20 +91,20 @@
 
 .text-field {
     -fx-font-size: 12.0pt;
-    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-font-family: "Helvetica Neue", "Segoe UI Semilight";
     -fx-font-weight: 300;
 }
 
 .text-field-small {
     -fx-font-size: 8.0pt;
-    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-font-family: "Helvetica Neue", "Segoe UI Semilight";
     -fx-font-weight: 300;
 }
 
 .text-area .content {
     -fx-background-color: #41464d;
     -fx-font-size: 11.0pt;
-    -fx-font-family: "Helvetica Neue", "Segoe UI Semibold";
+    -fx-font-family: "Helvetica Neue", "Segoe UI Semilight";
     -fx-text-fill: #d6dadb;
     -fx-font-weight: 300;
 }
