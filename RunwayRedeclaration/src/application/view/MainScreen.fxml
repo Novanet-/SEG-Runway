@@ -2,27 +2,22 @@
 
 <!--suppress ALL -->
 
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import java.lang.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.text.*?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane style="-fx-min-width: 1000; -fx-min-height: 450;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainScreenController">
+<AnchorPane style="-fx-min-width: 1000; -fx-min-height: 450;" stylesheets="@application.css"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="application.controller.MainScreenController">
     <children>
         <SplitPane dividerPositions="0.445" layoutY="27.0" minHeight="700.0" minWidth="1280.0" prefHeight="700.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
             <items>
@@ -423,7 +418,6 @@
                             </items>
                         </Menu>
                         <MenuItem mnemonicParsing="false" onAction="#handleBtnClose" text="Close" />
-                  <MenuItem fx:id="btnShowRotation" mnemonicParsing="false" onAction="#openShowRotation" text="Show Rotation" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
@@ -442,6 +436,12 @@
                                 <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateObstacle" text="Update Obstacle" />
                             </items>
                         </Menu>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="View">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleBtnViewRotated"
+                                  text="Rotated Visualisation"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">

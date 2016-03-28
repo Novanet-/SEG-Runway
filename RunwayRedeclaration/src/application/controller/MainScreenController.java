@@ -1008,6 +1008,10 @@ public class MainScreenController
 		}
 	}
 
+	public void handleBtnViewRotated() {
+		openShowRotation();
+	}
+
 
 	public Label getLblOrigTora()
 	{
