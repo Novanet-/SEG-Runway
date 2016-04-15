@@ -831,7 +831,7 @@ public class MainScreenController
             double cagWidth = Runway.getCagWidth();
             double pixelCagWidth = cagWidth * SCALING;
 
-            graphicsContext.setFill(Color.rgb(51, 51, 0));
+            graphicsContext.setFill(Color.rgb(51, 51, 204));
             double firstX = runwayStartX - (60 * SCALING) * 1.1;
             double firstY = (canvasMiddleY - (runwayHeight/2) - pixelCagWidth) * 0.925;
             double width = pixelCanvasWidth + (120 * SCALING);
@@ -841,11 +841,14 @@ public class MainScreenController
 
         {
             double cagWidth = Runway.getCagWidth();
+            double pixelCagWidth = cagWidth * SCALING;
+            final double cagExtender = 1.4;
+
             graphicsContext.setFill(Color.rgb(51, 51, 204));
-            double firstX = runwayStartX + (300 * SCALING);
-            double firstY = canvasMiddleY - (1.4 * cagWidth * SCALING) - (runwayStartY / 3.5);
-            double width = pixelCanvasWidth - (600 * SCALING);
-            double height = (1.4 * cagWidth * SCALING * 2) + runwayStartY / 3.5;
+            double firstX = runwayStartX + (150 * SCALING);
+            double firstY = canvasMiddleY - runwayHeight - (cagExtender * pixelCagWidth);
+            double width = pixelCanvasWidth - (300 * SCALING);
+            double height = ((cagExtender * pixelCagWidth) * 2) + runwayHeight;
             ;
             graphicsContext.fillRect(firstX, firstY, width, height);
         }
