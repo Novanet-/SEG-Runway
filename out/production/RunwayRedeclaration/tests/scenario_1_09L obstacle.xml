@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<obstacle>
+    <name>Scenario 1</name>
+    <height>12</height>
+    <displacement_position>-50</displacement_position>
+    <centre_position>0</centre_position>
+    <blast_protection>300</blast_protection>
+</obstacle>

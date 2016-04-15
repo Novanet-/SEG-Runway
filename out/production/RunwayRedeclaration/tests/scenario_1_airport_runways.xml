@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airport>
+    <id>45</id>
+    <name>Heathrow</name>
+    <runways>
+        <runway>
+            <id>78</id>
+            <alignment>09L</alignment>
+            <tora>3902</tora>
+            <toda>3902</toda>
+            <asda>3902</asda>
+            <lda>3595</lda>
+            <displaced_threshold>306</displaced_threshold>
+            <obstacle>
+                <name>Scenario 1</name>
+                <height>12</height>
+                <displacement_position>-50</displacement_position>
+                <centre_position>0</centre_position>
+                <blast_protection>300</blast_protection>
+            </obstacle>
+
+        </runway>
+        <runway>
+            <id>79</id>
+            <alignment>27R</alignment>
+            <tora>3884</tora>
+            <toda>3962</toda>
+            <asda>3884</asda>
+            <lda>3884</lda>
+            <displaced_threshold>0</displaced_threshold>
+            <obstacle>
+                <name>Scenario 1</name>
+                <height>12</height>
+                <displacement_position>3646</displacement_position>
+                <centre_position>0</centre_position>
+                <blast_protection>300</blast_protection>
+            </obstacle>
+        </runway>
+    </runways>
+</airport>
