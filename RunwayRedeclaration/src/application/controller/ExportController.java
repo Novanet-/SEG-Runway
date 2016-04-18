@@ -28,7 +28,6 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
 
 import application.Main;
 import application.model.Airport;
@@ -39,9 +38,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
 
-/**
- * Created by jackclarke on 24/03/2016.
- */
+
 public class ExportController
 {
 
@@ -55,6 +52,7 @@ public class ExportController
 
 
 	public void exportAirport(Main mainApp, DocumentBuilderFactory dbf, Airport airport, int exportType)
+			throws Exception
 	{
 
 		FileChooser fileChooser = new FileChooser();
@@ -80,19 +78,18 @@ public class ExportController
 			StreamResult newfile = new StreamResult(file);
 			transformer.transform(source, newfile);
 
-			// TODO: handle these exceptions properly
 		}
 		catch (ParserConfigurationException pce)
 		{
-			pce.printStackTrace();
+			throw new Exception("Document parser not configured correctly.");
 		}
 		catch (NumberFormatException nfe)
 		{
-			nfe.printStackTrace();
+			throw new Exception("A number in the document is not formatted correctly.");
 		}
 		catch (javax.xml.transform.TransformerException te)
 		{
-			te.printStackTrace();
+			throw new Exception("Document could not be tranformed to XML.");
 		}
 	}
 
@@ -130,7 +127,8 @@ public class ExportController
 	}
 
 
-	public void exportRunway(Main mainApp, DocumentBuilderFactory dbf, String airportName, Runway runway, int exportType)
+	public void exportRunway(Main mainApp, DocumentBuilderFactory dbf, String airportName, Runway runway,
+			int exportType) throws Exception
 	{
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Export Runway");
@@ -155,19 +153,18 @@ public class ExportController
 			StreamResult newfile = new StreamResult(file);
 			transformer.transform(source, newfile);
 
-			// TODO: handle these exceptions properly
 		}
 		catch (ParserConfigurationException pce)
 		{
-			pce.printStackTrace();
+			throw new Exception("Document parser not configured correctly.");
 		}
 		catch (NumberFormatException nfe)
 		{
-			nfe.printStackTrace();
+			throw new Exception("A number in the document is not formatted correctly.");
 		}
 		catch (javax.xml.transform.TransformerException te)
 		{
-			te.printStackTrace();
+			throw new Exception("Document could not be tranformed to XML.");
 		}
 	}
 
@@ -198,7 +195,7 @@ public class ExportController
 	}
 
 
-	public void exportObstacle(Main mainApp, DocumentBuilderFactory dbf, Obstacle obstacle)
+	public void exportObstacle(Main mainApp, DocumentBuilderFactory dbf, Obstacle obstacle) throws Exception
 	{
 
 		FileChooser fileChooser = new FileChooser();
@@ -224,19 +221,18 @@ public class ExportController
 			StreamResult newfile = new StreamResult(file);
 			transformer.transform(source, newfile);
 
-			// TODO: handle these exceptions properly
 		}
 		catch (ParserConfigurationException pce)
 		{
-			pce.printStackTrace();
+			throw new Exception("Document parser not configured correctly.");
 		}
 		catch (NumberFormatException nfe)
 		{
-			nfe.printStackTrace();
+			throw new Exception("A number in the document is not formatted correctly.");
 		}
 		catch (javax.xml.transform.TransformerException te)
 		{
-			te.printStackTrace();
+			throw new Exception("Document could not be tranformed to XML.");
 		}
 	}
 
@@ -263,7 +259,7 @@ public class ExportController
 	}
 
 
-	public void exportImage(Main mainApp, Canvas canvas)
+	public void exportImage(Main mainApp, Canvas canvas) throws Exception
 	{
 
 		FileChooser fileChooser = new FileChooser();
@@ -276,15 +272,14 @@ public class ExportController
 		try
 		{
 			ImageIO.write(SwingFXUtils.fromFXImage(generateImage(canvas), null), "png", file);
-			// TODO: handle these exceptions properly
 		}
 		catch (NumberFormatException nfe)
 		{
-			nfe.printStackTrace();
+			throw new Exception("A number in the document is not formatted correctly.");
 		}
 		catch (IOException io)
 		{
-			io.printStackTrace();
+			throw new Exception("The image file could not be written.");
 		}
 	}
 
@@ -315,7 +310,6 @@ public class ExportController
 			com.itextpdf.text.Document document = new com.itextpdf.text.Document();
 
 			FileOutputStream fop = new FileOutputStream(file);
-			PdfWriter writer = PdfWriter.getInstance(document, fop);
 			document.open();
 
 			Font fontHeader = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
