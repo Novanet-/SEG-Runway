@@ -15,9 +15,6 @@ import javafx.fxml.FXML;
 
 //TODO: Remove duplicate code and make the drawing a seperate class, fix this abomination =P
 
-/**
- * Created by Will on 27/03/16.
- */
 public class VisualScreenController
 {
 
@@ -82,7 +79,6 @@ public class VisualScreenController
 
 			graphicsContext.setFill(Color.rgb(179, 45, 0)); //Background colour
 			final double centreAdjustmentX = (obstacle.getDisplacementPosition() < 0) ? -20 : 20;
-			final double centreAdjustmentY = 5.0;
 			final double runwayStartX = MainScreenController.getRunwayStartXScaling() * canvas.getWidth();
 			final double runwayStartY = canvas.getHeight() / 2 - obstacleHeight;
 			graphicsContext.fillRect(runwayStartX + (obstacle.getDisplacementPosition() * pixelRatio) + centreAdjustmentX, runwayStartY, 40, obstacleHeight);
@@ -243,7 +239,7 @@ public class VisualScreenController
 		graphicsContext.setFill(Color.rgb(77, 77, 77)); //Runway colour
 		graphicsContext
 				.fillRect(MainScreenController.getRunwayStartXScaling() * canvas.getWidth(), canvas.getHeight() / 2, (MainScreenController.getSCALING() * canvas.getWidth()),
-						(msController.getRunwayHeightScaling() * canvas.getHeight()) / 3.5);
+						(MainScreenController.getRunwayHeightScaling() * canvas.getHeight()) / 3.5);
 	}
 
 

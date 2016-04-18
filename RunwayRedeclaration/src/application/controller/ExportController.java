@@ -1,21 +1,10 @@
 package application.controller;
 
-import application.Main;
-import application.model.Airport;
-import application.model.Obstacle;
-import application.model.Runway;
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.image.WritableImage;
-import javafx.stage.FileChooser;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
@@ -26,11 +15,29 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Date;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import application.Main;
+import application.model.Airport;
+import application.model.Obstacle;
+import application.model.Runway;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.image.WritableImage;
+import javafx.stage.FileChooser;
 
 /**
  * Created by jackclarke on 24/03/2016.
@@ -310,8 +317,6 @@ public class ExportController
 			FileOutputStream fop = new FileOutputStream(file);
 			PdfWriter writer = PdfWriter.getInstance(document, fop);
 			document.open();
-
-			PdfContentByte cb = writer.getDirectContent();
 
 			Font fontHeader = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
 			Font fontBodyHead = new Font(Font.FontFamily.HELVETICA, 10, Font.UNDERLINE);

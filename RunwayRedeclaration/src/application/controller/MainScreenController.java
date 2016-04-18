@@ -1006,7 +1006,6 @@ public class MainScreenController
         Obstacle importedObstacle = importController.importObstacle(mainApp, dbf);
         if (importedObstacle != null)
         {
-            final Airport selected = cmbAirports.getValue();
             final Runway runway = cmbRunways.getValue();
             runway.setObstacle(importedObstacle);
             updateObstacleList();
