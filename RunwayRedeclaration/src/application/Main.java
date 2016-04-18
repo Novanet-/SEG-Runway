@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class Main extends Application
 {
 
-	//TODO: Add obstacle JUNIT tests
 	//TODO: readme file, help document
 
 	private static final String PLANE_ICON         = "file:resources/planeicon.png";
