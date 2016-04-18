@@ -1,5 +1,11 @@
 package application.controller;
 
+import java.util.Objects;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.controlsfx.control.Notifications;
+
 import application.Main;
 import application.model.Airport;
 import application.model.Obstacle;
@@ -10,15 +16,16 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import org.controlsfx.control.Notifications;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.util.Objects;
 
 public class MainScreenController
 {
