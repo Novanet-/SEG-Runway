@@ -1018,51 +1018,115 @@ public class MainScreenController
 
     public void handleBtnExportAirportOnly()
     {
-        exportController.exportAirport(mainApp, dbf, cmbAirports.getValue(), 2);
+        try
+		{
+			exportController.exportAirport(mainApp, dbf, cmbAirports.getValue(), 2);
+		}
+		catch (Exception e)
+		{
+	        final Alert alert = new Alert(AlertType.INFORMATION, e.toString());
+	        alert.showAndWait();
+		}
     }
 
 
     //TODO export airport fully
     public void handleBtnExportAirportRunways()
     {
-        exportController.exportAirport(mainApp, dbf, cmbAirports.getValue(), 1);
+        try
+		{
+			exportController.exportAirport(mainApp, dbf, cmbAirports.getValue(), 1);
+		}
+		catch (Exception e)
+		{
+	        final Alert alert = new Alert(AlertType.INFORMATION, e.toString());
+	        alert.showAndWait();
+		}
     }
 
 
     public void handleBtnExportAirport()
     {
-        exportController.exportAirport(mainApp, dbf, cmbAirports.getValue(), 0);
+        try
+		{
+			exportController.exportAirport(mainApp, dbf, cmbAirports.getValue(), 0);
+		}
+		catch (Exception e)
+		{
+	        final Alert alert = new Alert(AlertType.INFORMATION, e.toString());
+	        alert.showAndWait();
+		}
     }
 
 
     public void handleBtnExportRunway()
     {
-        exportController.exportRunway(mainApp, dbf, cmbAirports.getValue().getAirportName(), cmbRunways.getValue(), 0);
+        try
+		{
+			exportController.exportRunway(mainApp, dbf, cmbAirports.getValue().getAirportName(), cmbRunways.getValue(), 0);
+		}
+		catch (Exception e)
+		{
+	        final Alert alert = new Alert(AlertType.INFORMATION, e.toString());
+	        alert.showAndWait();
+		}
     }
 
 
     public void handleBtnExportRunwayOnly()
     {
-        exportController.exportRunway(mainApp, dbf, cmbAirports.getValue().getAirportName(), cmbRunways.getValue(), 1);
+        try
+		{
+			exportController.exportRunway(mainApp, dbf, cmbAirports.getValue().getAirportName(), cmbRunways.getValue(), 1);
+		}
+		catch (Exception e)
+		{
+	        final Alert alert = new Alert(AlertType.INFORMATION, e.toString());
+	        alert.showAndWait();
+		}
     }
 
 
     public void handleBtnExportObstacle()
     {
         final Runway runway = cmbRunways.getValue();
-        exportController.exportObstacle(mainApp, dbf, runway.getObstacle());
+        try
+		{
+			exportController.exportObstacle(mainApp, dbf, runway.getObstacle());
+		}
+		catch (Exception e)
+		{
+	        final Alert alert = new Alert(AlertType.INFORMATION, e.toString());
+	        alert.showAndWait();
+		}
     }
 
 
     public void handleBtnExportTopDown()
     {
-        exportController.exportImage(mainApp, cnvTop);
+        try
+		{
+			exportController.exportImage(mainApp, cnvTop);
+		}
+		catch (Exception e)
+		{
+	        final Alert alert = new Alert(AlertType.INFORMATION, e.toString());
+	        alert.showAndWait();
+		}
     }
 
 
     public void handleBtnExportSideOn()
     {
-        exportController.exportImage(mainApp, cnvSide);
+        try
+		{
+			exportController.exportImage(mainApp, cnvSide);
+		}
+		catch (Exception e)
+		{
+	        final Alert alert = new Alert(AlertType.INFORMATION, e.toString());
+	        alert.showAndWait();
+		}
     }
 
 
