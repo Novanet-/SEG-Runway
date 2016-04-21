@@ -340,7 +340,7 @@
                                         </GridPane>
                                     </children>
                                 </AnchorPane>
-                                <TextArea fx:id="txtCalculations" prefHeight="158.0" prefWidth="390.0" style="-fx-background-color: #41464d; -fx-text-fill: #d6dadb; }: ;" styleClass="text-area" stylesheets="@application.css" GridPane.rowIndex="4" />
+                                <TextArea fx:id="txtCalculations" prefHeight="158.0" prefWidth="390.0" style="-fx-background-color: #41464d; -fx-text-fill: #d6dadb; }: ;" styleClass="text-area" stylesheets="@application.css" visible="false" GridPane.rowIndex="4" />
                             </children>
                         </GridPane>
                     </children>
