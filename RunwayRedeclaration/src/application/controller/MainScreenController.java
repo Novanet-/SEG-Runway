@@ -1167,7 +1167,7 @@ public class MainScreenController
     
     public void handleBtnShowCalculations()
     {
-    	System.out.println("Calculations");
+    	mainApp.toggleShowCalculations();
     }
 
 

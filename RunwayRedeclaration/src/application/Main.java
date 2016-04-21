@@ -276,6 +276,18 @@ public class Main extends Application
 			aaStage.show();
 		}
 	}
+	
+	public final void toggleShowCalculations()
+	{
+		if (csStage.isShowing())
+		{
+			csStage.hide();
+		}
+		else
+		{
+			csStage.show();
+		}
+	}
 
 
 	/**
