@@ -379,18 +379,25 @@ public class MainScreenController
     @FXML
     private void handleBtnDeleteAirport()
     {
+        airportList.remove(cmbAirports.getValue());
+        cmbRunways.setValue(null);
+        updateCmbAirports();
+        if (!Objects.equals(txtObstacles.getText(), "") && !btnRemoveObstacle.isVisible()) {
+            toggleObstacleButton();
+        } else if (Objects.equals(txtObstacles.getText(), "") && !btnAddObstacle.isVisible()) {
+            toggleObstacleButton();
+        }
+        airportSelected = false;
     }
 
 
     @FXML
     private void handleBtnDeleteRunway()
     {
-    }
-
-
-    @FXML
-    private void handleBtnDeleteObstacle()
-    {
+        Runway runway = cmbRunways.getValue();
+        cmbRunways.setValue(null);
+        //cmbAirports.getValue().getRunways().remove(runway);
+        //updateCmbAirports();
     }
 
 

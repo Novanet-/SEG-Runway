@@ -340,7 +340,7 @@
                                         </GridPane>
                                     </children>
                                 </AnchorPane>
-                                <TextArea fx:id="txtCalculations" prefHeight="158.0" prefWidth="390.0" style="-fx-background-color: #41464d; -fx-text-fill: #d6dadb; }: ;" styleClass="text-area" stylesheets="@application.css" GridPane.rowIndex="4" />
+                                <TextArea fx:id="txtCalculations" prefHeight="158.0" prefWidth="390.0" style="-fx-background-color: #41464d; -fx-text-fill: #d6dadb; }: ;" styleClass="text-area" stylesheets="@application.css" visible="false" GridPane.rowIndex="4" />
                             </children>
                         </GridPane>
                     </children>
@@ -424,14 +424,12 @@
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#handleBtnDeleteAirport" text="Delete Airport" />
                                 <MenuItem mnemonicParsing="false" onAction="#handleBtnDeleteRunway" text="Delete Runway" />
-                                <MenuItem mnemonicParsing="false" onAction="#handleBtnDeleteObstacle" text="Delete Obstacle" />
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Update">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateAirport" text="Update Airport" />
                                 <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateRunway" text="Update Runway" />
-                                <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateObstacle" text="Update Obstacle" />
                             </items>
                         </Menu>
                     </items>
