@@ -1163,6 +1163,12 @@ public class MainScreenController
     {
         openShowRotation();
     }
+    
+    
+    public void handleBtnShowCalculations()
+    {
+    	System.out.println("Calculations");
+    }
 
 
     public Label getLblOrigTora()

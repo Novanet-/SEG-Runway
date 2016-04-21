@@ -27,6 +27,7 @@ public class Main extends Application
 	private static final String ADD_RUNWAY_FXML    = "view/AddRunway.fxml";
 	private static final String ADD_OBSTACLE_FXML  = "view/AddObstacle.fxml";
 	private static final String VISUAL_SCREEN_FXML = "view/VisualScreen.fxml";
+	private static final String CALCULATIONS_SCREEN_FXML = "view/Calculations.fxml";
 
 	private ObservableList<Airport> airportList;
 
@@ -35,12 +36,14 @@ public class Main extends Application
 	private Stage arStage;
 	private Stage aoStage;
 	private Stage vsStage;
+	private Stage csStage;
 
 	private AddAirportController   aaController;
 	private AddRunwayController    arController;
 	private AddObstacleController  aoController;
 	private MainScreenController   msController;
 	private VisualScreenController vsController;
+	private CalculationsScreenController csController;
 
 
 	/**
@@ -89,6 +92,7 @@ public class Main extends Application
 		final FXMLLoader arLoader = loadARStage();
 		final FXMLLoader aoLoader = loadAOStage();
 		final FXMLLoader vsLoader = loadVSStage();
+		final FXMLLoader csLoader = loadCSStage();
 
 		aaController = aaLoader.getController();
 		aaController.setMainApp(this);
@@ -100,6 +104,8 @@ public class Main extends Application
 		msController.setMainApp(this);
 		vsController = vsLoader.getController();
 		vsController.setMainApp(this);
+		csController = csLoader.getController();
+		csController.setMainApp(this);
 
 		aaController.linkToSession();
 		arController.linkToSession();
@@ -108,6 +114,33 @@ public class Main extends Application
 		vsController.linkToSession();
 
 		msStage.show();
+	}
+
+
+	private FXMLLoader loadCSStage()
+	{
+		final FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource(CALCULATIONS_SCREEN_FXML));
+		AnchorPane page = null;
+		try
+		{
+			page = loader.load();
+		}
+		catch (final IOException e)
+		{
+			e.printStackTrace();
+		}
+
+		csStage = new Stage();
+		assert page != null;
+		final Scene scene = new Scene(page);
+		csStage.setScene(scene);
+		csStage.setTitle("Calculations");
+		csStage.getIcons().add(new Image(PLANE_ICON));
+		csStage.setMinWidth(300.0);
+		csStage.setMinHeight(100.0);
+
+		return loader;
 	}
 
 

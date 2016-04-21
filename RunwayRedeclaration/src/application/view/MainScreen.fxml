@@ -437,6 +437,7 @@
             <Menu mnemonicParsing="false" text="View">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#handleBtnViewRotated" text="Rotated Visualisation" />
+                <MenuItem mnemonicParsing="false" onAction="#handleBtnShowCalculations" text="Show Calculations" />
               </items>
             </Menu>
                 <Menu mnemonicParsing="false" text="Help">
