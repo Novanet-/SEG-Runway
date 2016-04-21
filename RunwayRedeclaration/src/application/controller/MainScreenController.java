@@ -393,7 +393,12 @@ public class MainScreenController
     @FXML
     private void handleBtnDeleteRunway()
     {
-
+        cmbAirports.getValue().getRunways().remove(cmbRunways.getValue());
+        try {
+            updateRunwayList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

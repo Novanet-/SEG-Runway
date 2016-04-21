@@ -424,7 +424,6 @@
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#handleBtnDeleteAirport" text="Delete Airport" />
                                 <MenuItem mnemonicParsing="false" onAction="#handleBtnDeleteRunway" text="Delete Runway" />
-                                <MenuItem mnemonicParsing="false" onAction="#handleBtnDeleteObstacle" text="Delete Obstacle" />
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Update">
