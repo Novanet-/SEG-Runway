@@ -477,6 +477,11 @@ public class ExportController
 			document.close();
 			fop.flush();
 			fop.close();
+
+			Notifications.create()
+					.title("PDF exported")
+					.text("PDF of scenario exported to file " + file.getName() + ".")
+					.showWarning();
 		}
 		catch (IOException io)
 		{
