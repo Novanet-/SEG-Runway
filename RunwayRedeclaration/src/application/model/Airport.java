@@ -94,6 +94,13 @@ public class Airport
 		runways.add(runway);
 	}
 
+	public final void removeRunway(Runway runway) {
+		runways.remove(runway);
+		for (Runway rw : runways) {
+			System.out.println(rw.getAlignment());
+		}
+	}
+
 
 	/**
 	 * @return A string representation of the airport

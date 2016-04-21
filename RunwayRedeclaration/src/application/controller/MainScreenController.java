@@ -379,6 +379,7 @@ public class MainScreenController
     @FXML
     private void handleBtnDeleteAirport()
     {
+        Airport airport = cmbAirports.getValue();
         airportList.remove(cmbAirports.getValue());
         cmbRunways.setValue(null);
         updateCmbAirports();
@@ -388,6 +389,11 @@ public class MainScreenController
             toggleObstacleButton();
         }
         airportSelected = false;
+
+        Notifications.create()
+                .title("Airport deleted")
+                .text("Airport " + airport.getAirportName() + " removed from system.")
+                .showWarning();
     }
 
 
@@ -396,8 +402,13 @@ public class MainScreenController
     {
         Runway runway = cmbRunways.getValue();
         cmbRunways.setValue(null);
-        //cmbAirports.getValue().getRunways().remove(runway);
-        //updateCmbAirports();
+        cmbAirports.getValue().removeRunway(runway);
+        cmbRunways.getItems().remove(runway);
+
+        Notifications.create()
+                .title("Runway deleted")
+                .text("Runway " + runway.getAlignment() + " removed from airport " + cmbAirports.getValue().getAirportName() + ".")
+                .showWarning();
     }
 
 
