@@ -430,7 +430,6 @@
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateAirport" text="Update Airport" />
                                 <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateRunway" text="Update Runway" />
-                                <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateObstacle" text="Update Obstacle" />
                             </items>
                         </Menu>
                     </items>
