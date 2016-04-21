@@ -309,6 +309,8 @@ public class ExportController
 
 	public void exportPDF(Main mainApp, Canvas topDownCanvas, Canvas sideOnCanvas, String airportName, Runway runway)
 	{
+
+
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Export PDF");
 

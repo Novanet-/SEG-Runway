@@ -1146,12 +1146,16 @@ public class MainScreenController
 
     public void handleBtnExportPDF()
     {
-        if (cmbRunways.getValue().getObstacle() != null)
-        {
-            exportController.exportPDF(mainApp, cnvTop, cnvSide, cmbAirports.getValue().getAirportName(), cmbRunways.getValue());
-        } else
-        {
-            //TODO: Error can't export PDF
+        try {
+            if (cmbRunways.getValue().getObstacle() != null) {
+                exportController.exportPDF(mainApp, cnvTop, cnvSide, cmbAirports.getValue().getAirportName(), cmbRunways.getValue());
+            } else {
+                final Alert alert = new Alert(AlertType.INFORMATION, "You an only export a PDF of a complete scenario. Please make sure there is an object on the runway.");
+                alert.showAndWait();
+            }
+        } catch (Exception e) {
+            final Alert alert = new Alert(AlertType.INFORMATION, "You an only export a PDF of a complete scenario. Please make sure there is an object on the runway.");
+            alert.showAndWait();
         }
     }
 
