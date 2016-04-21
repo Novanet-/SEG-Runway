@@ -21,15 +21,15 @@ public class Main extends Application
 
 	//TODO: readme file, help document
 
-	private static final String PLANE_ICON          = "file:resources/planeicon.png";
-	private static final String APPLICATION_TITLE   = "Runway Redeclaration";
-	private static final String MAIN_FXML           = "view/MainScreen.fxml";
-	private static final String ADD_AIRPORT_FXML    = "view/AddAirport.fxml";
-	private static final String ADD_RUNWAY_FXML     = "view/AddRunway.fxml";
-	private static final String ADD_OBSTACLE_FXML   = "view/AddObstacle.fxml";
-	private static final String VISUAL_SCREEN_FXML  = "view/VisualScreen.fxml";
+	private static final String PLANE_ICON = "file:resources/planeicon.png";
+	private static final String APPLICATION_TITLE = "Runway Redeclaration";
+	private static final String MAIN_FXML = "view/MainScreen.fxml";
+	private static final String ADD_AIRPORT_FXML = "view/AddAirport.fxml";
+	private static final String ADD_RUNWAY_FXML = "view/AddRunway.fxml";
+	private static final String ADD_OBSTACLE_FXML = "view/AddObstacle.fxml";
+	private static final String VISUAL_SCREEN_FXML = "view/VisualScreen.fxml";
 	private static final String UPDATE_AIRPORT_FXML = "view/UpdateAirport.fxml";
-	private static final String UPDATE_RUNWAY_FXML  = "view/UpdateRunway.fxml";
+	private static final String UPDATE_RUNWAY_FXML = "view/UpdateRunway.fxml";
 	private static final String CALCULATIONS_SCREEN_FXML = "view/Calculations.fxml";
 
 	private ObservableList<Airport> airportList;
@@ -43,13 +43,13 @@ public class Main extends Application
 	private Stage urStage;
 	private Stage csStage;
 
-	private AddAirportController    aaController;
-	private AddRunwayController     arController;
-	private AddObstacleController   aoController;
-	private MainScreenController    msController;
-	private VisualScreenController  vsController;
+	private AddAirportController aaController;
+	private AddRunwayController arController;
+	private AddObstacleController aoController;
+	private MainScreenController msController;
+	private VisualScreenController vsController;
 	private UpdateAirportController uaController;
-	private UpdateRunwayController  urController;
+	private UpdateRunwayController urController;
 	private CalculationsScreenController csController;
 
 	/**
@@ -279,30 +279,26 @@ public class Main extends Application
 	/**
 	 * @return The loader for the Add Object stage
 	 */
-	private FXMLLoader loadUAStage()
-	{
+	private FXMLLoader loadUAStage() {
 		final FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource(UPDATE_AIRPORT_FXML));
 		AnchorPane page = null;
 
-		try
-		{
+		try {
 			page = loader.load();
-		}
-		catch (final IOException e)
-		{
+		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 
-		vsStage = new Stage();
+		uaStage = new Stage();
 		assert page != null;
 		final Scene scene = new Scene(page);
-		vsStage.setScene(scene);
-		vsStage.setTitle("Update Airport");
+		uaStage.setScene(scene);
+		uaStage.setTitle("Update Airport");
 		// TODO: plane icon doesn't show - set path relative to other files
-		vsStage.getIcons().add(new Image(PLANE_ICON));
-		vsStage.setMinWidth(300.0);
-		vsStage.setMinHeight(100.0);
+		uaStage.getIcons().add(new Image(PLANE_ICON));
+		uaStage.setMinWidth(300.0);
+		uaStage.setMinHeight(100.0);
 
 		return loader;
 	}
@@ -311,30 +307,26 @@ public class Main extends Application
 	/**
 	 * @return The loader for the Add Object stage
 	 */
-	private FXMLLoader loadURStage()
-	{
+	private FXMLLoader loadURStage() {
 		final FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource(UPDATE_RUNWAY_FXML));
 		AnchorPane page = null;
 
-		try
-		{
+		try {
 			page = loader.load();
-		}
-		catch (final IOException e)
-		{
+		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 
-		vsStage = new Stage();
+		urStage = new Stage();
 		assert page != null;
 		final Scene scene = new Scene(page);
-		vsStage.setScene(scene);
-		vsStage.setTitle("Update Runway");
+		urStage.setScene(scene);
+		urStage.setTitle("Update Runway");
 		// TODO: plane icon doesn't show - set path relative to other files
-		vsStage.getIcons().add(new Image(PLANE_ICON));
-		vsStage.setMinWidth(300.0);
-		vsStage.setMinHeight(100.0);
+		urStage.getIcons().add(new Image(PLANE_ICON));
+		urStage.setMinWidth(300.0);
+		urStage.setMinHeight(100.0);
 
 		return loader;
 	}
@@ -354,7 +346,7 @@ public class Main extends Application
 			aaStage.show();
 		}
 	}
-
+	
 	public final void toggleShowCalculations()
 	{
 		if (csStage.isShowing())
@@ -454,14 +446,10 @@ public class Main extends Application
 	/**
 	 *
 	 */
-	public final void toggleUpdateAirport(Airport airport)
-	{
-		if (uaStage.isShowing())
-		{
+	public final void toggleUpdateAirport(Airport airport) {
+		if (uaStage.isShowing()) {
 			uaStage.hide();
-		}
-		else
-		{
+		} else {
 			uaController.updateSelectedAirport(airport);
 			uaStage.show();
 		}
@@ -471,24 +459,18 @@ public class Main extends Application
 	/**
 	 * @param airportName The airport to add the runway to
 	 */
-	public final void toggleUpdateRunway(String airportName, Runway runway)
-	{
-		if (urStage.isShowing())
-		{
+	public final void toggleUpdateRunway(String airportName, Runway runway) {
+		if (urStage.isShowing()) {
 			urStage.hide();
-			try
-			{
+			try {
 				msController.updateRunwayList();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else
-		{
+		} else {
 			urController.updateSelectedAirport(airportName);
 			urController.updateSelectedRunway(runway);
+			urController.updatePrimaries();
 			urStage.show();
 		}
 	}

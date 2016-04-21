@@ -428,7 +428,7 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Update">
                             <items>
-                                <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateAirport" text="Update Airport" />
+                                <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateAirport" text="Update Airport" visible="false" />
                                 <MenuItem mnemonicParsing="false" onAction="#handleBtnUpdateRunway" text="Update Runway" />
                             </items>
                         </Menu>
@@ -437,7 +437,7 @@
             <Menu mnemonicParsing="false" text="View">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#handleBtnViewRotated" text="Rotated Visualisation" />
-                <MenuItem mnemonicParsing="false" onAction="#handleBtnShowCalculations" text="Show Calculations" />
+                <MenuItem mnemonicParsing="false" onAction="#handleBtnShowCalculations" text="Show Calculations" visible="false" />
               </items>
             </Menu>
                 <Menu mnemonicParsing="false" text="Help">

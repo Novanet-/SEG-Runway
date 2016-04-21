@@ -65,14 +65,17 @@ public class UpdateRunwayController
 		cmbRunwayAlignment.setValue("00");
 		cmbRunwayPosition.setValue("");
 
+		//updatePrimaries();
+	}
+
+	//TODO: Add not-null/data type validation to input/submission
+
+	public void updatePrimaries() {
 		txtPrimaryTORA.setText(Double.toString(selectedRunway.getTORA()));
 		txtPrimaryTODA.setText(Double.toString(selectedRunway.getTODA()));
 		txtPrimaryASDA.setText(Double.toString(selectedRunway.getASDA()));
 		txtPrimaryLDA.setText(Double.toString(selectedRunway.getLDA()));
 	}
-
-	//TODO: Add not-null/data type validation to input/submission
-
 
 	/**
 	 *

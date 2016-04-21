@@ -412,26 +412,21 @@ public class MainScreenController
     }
 
 
-	//TODO: Update airports and runways
-	@FXML
-	private void handleBtnUpdateAirport()
-	{
-	}
+    //TODO: Update airports and runways
+    @FXML
+    private void handleBtnUpdateAirport() {
+    }
 
 
-	@FXML
-	private void handleBtnUpdateRunway()
-	{
-		if ((airportSelected) && (cmbRunways.getValue() != null))
-		{
-			openUpdateRunway();
-		}
-		else
-		{
-			final Alert alert = new Alert(AlertType.INFORMATION, "No airport/runway selected. Please select an airport.");
-			alert.showAndWait();
-		}
-	}
+    @FXML
+    private void handleBtnUpdateRunway() {
+        if ((airportSelected) && (cmbRunways.getValue() != null)) {
+            openUpdateRunway();
+        } else {
+            final Alert alert = new Alert(AlertType.INFORMATION, "No airport/runway selected. Please select an airport.");
+            alert.showAndWait();
+        }
+    }
 
 
     @FXML
@@ -575,10 +570,14 @@ public class MainScreenController
         mainApp.toggleAddObstacle(cmbAirports.getValue().getAirportName(), cmbRunways.getValue().getAlignment());
     }
 
-	private void openUpdateAirport() { mainApp.toggleUpdateAirport(cmbAirports.getValue());}
+    private void openUpdateAirport() {
+        mainApp.toggleUpdateAirport(cmbAirports.getValue());
+    }
 
 
-	private void openUpdateRunway() { mainApp.toggleUpdateRunway(cmbAirports.getValue().getAirportName(), cmbRunways.getValue());}
+    private void openUpdateRunway() {
+        mainApp.toggleUpdateRunway(cmbAirports.getValue().getAirportName(), cmbRunways.getValue());
+    }
 
 
     @FXML
@@ -1181,7 +1180,11 @@ public class MainScreenController
 
     public void handleBtnShowCalculations()
     {
-    	mainApp.toggleShowCalculations();
+        /*try {
+            mainApp.toggleShowCalculations(cmbRunways.getValue().getExplanation());
+        } catch (Exception e) {
+            mainApp.toggleShowCalculations("");
+        }*/
     }
 
 
