@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.Notifications;
 
 public class AddAirportController
 {
@@ -35,6 +36,10 @@ public class AddAirportController
 		{
 			airportList.add(new Airport(airportList.size(), txtAirportName.getText()));
 			txtAirportName.setText(""); //Clears textbox
+			Notifications.create()
+					.title("Airport added")
+					.text("Airport " + txtAirportName.getText() + " added to system.")
+					.showWarning();
 			mainApp.toggleAddAirport();
 		}
 		catch (IllegalArgumentException e)

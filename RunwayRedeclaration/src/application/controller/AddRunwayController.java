@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import org.controlsfx.control.Notifications;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +107,11 @@ public class AddRunwayController
 			assert selectedAirport != null;
 			selectedAirport.addRunway(primaryRunway);
 			selectedAirport.addRunway(secondaryRunway);
+
+			Notifications.create()
+					.title("Runway added")
+					.text("Runway " + primaryRunway.getAlignment() + "and " + secondaryRunway.getAlignment() + " added to system.")
+					.showWarning();
 
 			//Clears textboxes after runways added
 			txtPrimaryTORA.setText("");
