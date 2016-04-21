@@ -5,8 +5,10 @@ import application.model.Airport;
 import application.model.Obstacle;
 import application.model.Runway;
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.WritableImage;
@@ -318,7 +320,10 @@ public class ExportController
 			com.itextpdf.text.Document document = new com.itextpdf.text.Document();
 
 			FileOutputStream fop = new FileOutputStream(file);
+			PdfWriter writer = PdfWriter.getInstance(document, fop);
 			document.open();
+
+			PdfContentByte cb = writer.getDirectContent();
 
 			Font fontHeader = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
 			Font fontBodyHead = new Font(Font.FontFamily.HELVETICA, 10, Font.UNDERLINE);
