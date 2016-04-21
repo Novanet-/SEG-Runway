@@ -15,9 +15,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane style="-fx-min-width: 1000; -fx-min-height: 450;" stylesheets="@application.css"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="application.controller.MainScreenController">
+<AnchorPane style="-fx-min-width: 1000; -fx-min-height: 450;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainScreenController">
     <children>
         <SplitPane dividerPositions="0.445" layoutY="27.0" minHeight="700.0" minWidth="1280.0" prefHeight="700.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
             <items>
@@ -438,12 +436,11 @@
                         </Menu>
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="View">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#handleBtnViewRotated"
-                                  text="Rotated Visualisation"/>
-                    </items>
-                </Menu>
+            <Menu mnemonicParsing="false" text="View">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleBtnViewRotated" text="Rotated Visualisation" />
+              </items>
+            </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#handleBtnAbout" text="About" />

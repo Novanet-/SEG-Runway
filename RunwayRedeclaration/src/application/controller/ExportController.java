@@ -1,10 +1,20 @@
 package application.controller;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Date;
+import application.Main;
+import application.model.Airport;
+import application.model.Obstacle;
+import application.model.Runway;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.image.WritableImage;
+import javafx.stage.FileChooser;
+import org.controlsfx.control.Notifications;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
@@ -15,28 +25,11 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-
-import application.Main;
-import application.model.Airport;
-import application.model.Obstacle;
-import application.model.Runway;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.image.WritableImage;
-import javafx.stage.FileChooser;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Date;
 
 
 public class ExportController
@@ -77,6 +70,11 @@ public class ExportController
 			DOMSource source = new DOMSource(dom);
 			StreamResult newfile = new StreamResult(file);
 			transformer.transform(source, newfile);
+
+			Notifications.create()
+					.title("Airport exported")
+					.text("Airport " + airport.getAirportName() + " exported to file " + file.getName() + ".")
+					.showWarning();
 
 		}
 		catch (ParserConfigurationException pce)
@@ -153,6 +151,11 @@ public class ExportController
 			StreamResult newfile = new StreamResult(file);
 			transformer.transform(source, newfile);
 
+			Notifications.create()
+					.title("Runway exported")
+					.text("Runway " + runway.getAlignment() + " exported to file " + file.getName() + ".")
+					.showWarning();
+
 		}
 		catch (ParserConfigurationException pce)
 		{
@@ -220,6 +223,11 @@ public class ExportController
 			DOMSource source = new DOMSource(dom);
 			StreamResult newfile = new StreamResult(file);
 			transformer.transform(source, newfile);
+
+			Notifications.create()
+					.title("Obstacle exported")
+					.text("Obstacle " + obstacle.getName() + " exported to file " + file.getName() + ".")
+					.showWarning();
 
 		}
 		catch (ParserConfigurationException pce)

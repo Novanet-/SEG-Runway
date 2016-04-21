@@ -5,3 +5,4 @@ bin/
 # Ignore all hidden files except Git ignore
 .*
 !.gitignore
+RunwayRedeclaration.iml
