@@ -10,13 +10,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
 
-public class AddAirportController
+public class UpdateAirportController
 {
 
 	private       Main                    mainApp;
 	@FXML private TextField               txtAirportName;
 	@FXML private Button                  btnSubmitAirport;
 	private       ObservableList<Airport> airportList;
+	private       Airport                 selectedAirport;
 
 
 	/**
@@ -34,10 +35,17 @@ public class AddAirportController
 	{
 		try
 		{
-			airportList.add(new Airport(airportList.size(), txtAirportName.getText()));
+			final Airport newAirport = new Airport(airportList.size(), txtAirportName.getText());
+			for (Airport a : airportList)
+			{
+				if (a.equals(selectedAirport))
+				{
+					airportList.set(airportList.indexOf(a), newAirport);
+				}
+			}
 			txtAirportName.setText(""); //Clears textbox
-			Notifications.create().title("Airport added").text("Airport " + txtAirportName.getText() + " added to system.").showWarning();
-			mainApp.toggleAddAirport();
+			Notifications.create().title("Airport updated").text("Airport " + txtAirportName.getText() + " updated").showWarning();
+			mainApp.toggleUpdateAirport(selectedAirport);
 		}
 		catch (IllegalArgumentException e)
 		{
@@ -61,5 +69,11 @@ public class AddAirportController
 	public final void linkToSession()
 	{
 		airportList = mainApp.getAirportList();
+	}
+
+
+	public void updateSelectedAirport(Airport airport)
+	{
+		selectedAirport = airport;
 	}
 }

@@ -5,13 +5,13 @@ import application.model.Airport;
 import application.model.Obstacle;
 import application.model.Runway;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.util.Objects;
-import javafx.fxml.FXML;
 
 //TODO: Remove duplicate code and make the drawing a seperate class, fix this abomination =P
 

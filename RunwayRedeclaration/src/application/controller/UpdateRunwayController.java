@@ -14,12 +14,12 @@ import org.controlsfx.control.Notifications;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddRunwayController
+public class UpdateRunwayController
 {
 
+	Runway selectedRunway;
 	private       Main                    mainApp;
 	@FXML private Label                   lblAirportName;
-	@FXML private Label                   lblSecondRunwayAlignment;
 	@FXML private Button                  btnSubmitRunway;
 	@FXML private ComboBox<String>        cmbRunwayAlignment;
 	@FXML private ComboBox<String>        cmbRunwayPosition;
@@ -28,11 +28,6 @@ public class AddRunwayController
 	@FXML private TextField               txtPrimaryASDA;
 	@FXML private TextField               txtPrimaryLDA;
 	@FXML private TextField               txtPrimaryDisplacedThreshold;
-	@FXML private TextField               txtSecondaryTORA;
-	@FXML private TextField               txtSecondaryTODA;
-	@FXML private TextField               txtSecondaryASDA;
-	@FXML private TextField               txtSecondaryLDA;
-	@FXML private TextField               txtSecondaryDisplacedThreshold;
 	private       ObservableList<Airport> airportList;
 
 	//TODO: modify css to style dialog boxes
@@ -61,9 +56,7 @@ public class AddRunwayController
 		cmbRunwayPosition.setItems(FXCollections.observableArrayList(positions));
 
 		final BooleanBinding needInputsFilled = txtPrimaryTORA.textProperty().isEmpty().or(txtPrimaryTODA.textProperty().isEmpty()).or(txtPrimaryASDA.textProperty().isEmpty())
-				.or(txtPrimaryLDA.textProperty().isEmpty()).or(txtPrimaryDisplacedThreshold.textProperty().isEmpty()).or(txtSecondaryTORA.textProperty().isEmpty())
-				.or(txtSecondaryTODA.textProperty().isEmpty()).or(txtSecondaryASDA.textProperty().isEmpty()).or(txtSecondaryLDA.textProperty().isEmpty())
-				.or(txtSecondaryDisplacedThreshold.textProperty().isEmpty());
+				.or(txtPrimaryLDA.textProperty().isEmpty()).or(txtPrimaryDisplacedThreshold.textProperty().isEmpty());
 		btnSubmitRunway.disableProperty().bind(needInputsFilled);
 
 		// I have added 2 textFields, you can add more...
@@ -71,6 +64,11 @@ public class AddRunwayController
 		cmbRunwayPosition.disableProperty().bind(needAlignmentSelected);
 		cmbRunwayAlignment.setValue("00");
 		cmbRunwayPosition.setValue("");
+
+		txtPrimaryTORA.setText(Double.toString(selectedRunway.getTORA()));
+		txtPrimaryTODA.setText(Double.toString(selectedRunway.getTODA()));
+		txtPrimaryASDA.setText(Double.toString(selectedRunway.getASDA()));
+		txtPrimaryLDA.setText(Double.toString(selectedRunway.getLDA()));
 	}
 
 	//TODO: Add not-null/data type validation to input/submission
@@ -90,26 +88,16 @@ public class AddRunwayController
 			final double primaryLDA = Double.parseDouble(txtPrimaryLDA.textProperty().getValue());
 			final double primaryDisplacedThreshold = Double.parseDouble(txtPrimaryDisplacedThreshold.textProperty().getValue());
 
-			final double secondaryTORA = Double.parseDouble(txtSecondaryTORA.textProperty().getValue());
-			final double secondaryTODA = Double.parseDouble(txtSecondaryTODA.textProperty().getValue());
-			final double secondaryASDA = Double.parseDouble(txtSecondaryASDA.textProperty().getValue());
-			final double secondaryLDA = Double.parseDouble(txtSecondaryLDA.textProperty().getValue());
-			final double secondaryDisplacedThreshold = Double.parseDouble(txtSecondaryDisplacedThreshold.textProperty().getValue());
-
 			// TODO: Add all runways properties (incl. strip width) as a user declared property of runways
 
 			final String alignment = cmbRunwayAlignment.getValue() + cmbRunwayPosition.getValue();
 			final Runway primaryRunway = new Runway(0, alignment, primaryTORA, primaryTODA, primaryASDA, primaryLDA, primaryDisplacedThreshold);
-			final Runway secondaryRunway = new Runway(1, lblSecondRunwayAlignment.getText(), secondaryTORA, secondaryTODA, secondaryASDA, secondaryLDA,
-					secondaryDisplacedThreshold);
 
 			final Airport selectedAirport = getSelectedAirport();
 			assert selectedAirport != null;
-			selectedAirport.addRunway(primaryRunway);
-			selectedAirport.addRunway(secondaryRunway);
+			selectedAirport.updateRunway(selectedRunway.getAlignment(), primaryRunway);
 
-			Notifications.create().title("Runway added").text("Runway " + primaryRunway.getAlignment() + "and " + secondaryRunway.getAlignment() + " added to system.")
-					.showWarning();
+			Notifications.create().title("Runway added").text("Runway " + primaryRunway.getAlignment() + " added to system.").showWarning();
 
 			//Clears textboxes after runways added
 			txtPrimaryTORA.setText("");
@@ -117,13 +105,8 @@ public class AddRunwayController
 			txtPrimaryASDA.setText("");
 			txtPrimaryLDA.setText("");
 			txtPrimaryDisplacedThreshold.setText("");
-			txtSecondaryTORA.setText("");
-			txtSecondaryTODA.setText("");
-			txtSecondaryASDA.setText("");
-			txtSecondaryLDA.setText("");
-			txtSecondaryDisplacedThreshold.setText("");
 
-			mainApp.toggleAddRunway(lblAirportName.getText());
+			mainApp.toggleUpdateRunway(lblAirportName.getText(), selectedRunway);
 
 		}
 		catch (final NumberFormatException e)
@@ -131,49 +114,6 @@ public class AddRunwayController
 			final Alert alert = new Alert(AlertType.ERROR, "Please enter only numerical values.");
 			alert.showAndWait();
 		}
-	}
-
-
-	/**
-	 *
-	 */
-	@FXML
-	private void handleItemSelected()
-	{
-		updateSecondRunway(Runway.calculateSecondaryAlignment(Integer.parseInt(cmbRunwayAlignment.getValue())), cmbRunwayPosition.getValue());
-	}
-
-
-	/**
-	 *
-	 */
-	@FXML
-	private void handlePositionSelected()
-	{
-		updateSecondRunway(Runway.calculateSecondaryAlignment(Integer.parseInt(cmbRunwayAlignment.getValue())), cmbRunwayPosition.getValue());
-	}
-
-
-	private void updateSecondRunway(int alignment, String position)
-	{
-		String newPosition = "";
-
-		if (!position.isEmpty())
-		{
-			switch (position)
-			{
-				case "L":
-					newPosition = "R";
-					break;
-				case "C":
-					newPosition = "C";
-					break;
-				case "R":
-					newPosition = "L";
-			}
-		}
-
-		lblSecondRunwayAlignment.setText(Integer.toString(alignment) + newPosition);
 	}
 
 
@@ -210,5 +150,11 @@ public class AddRunwayController
 	public final void linkToSession()
 	{
 		airportList = mainApp.getAirportList();
+	}
+
+
+	public void updateSelectedRunway(final Runway runway)
+	{
+		selectedRunway = runway;
 	}
 }

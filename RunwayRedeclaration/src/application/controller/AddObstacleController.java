@@ -87,13 +87,11 @@ public class AddObstacleController
 			});
 			mainApp.toggleAddObstacle(lblAirportName.getText(), lblRunwayID.getText());
 			String notificationText = obstacleName + " on " + lblAirportName.getText() + " runway " + runwayIdentifiers[0];
-			if (runwayIdentifiers[1] != null) {
+			if (runwayIdentifiers[1] != null)
+			{
 				notificationText += " and " + runwayIdentifiers[1];
 			}
-			Notifications.create()
-					.title("Obstacle added/updated")
-					.text(notificationText)
-					.showWarning();
+			Notifications.create().title("Obstacle added/updated").text(notificationText).showWarning();
 		}
 		catch (NumberFormatException e)
 		{
@@ -120,9 +118,12 @@ public class AddObstacleController
 	@FXML
 	private void handleDistCentreChanged()
 	{
-		try {
+		try
+		{
 			lblSecObstacleDistFromCentre.setText(Double.toString(-1 * Double.valueOf(txtPrimObstacleDistFromCentre.getText())));
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			lblSecObstacleDistFromCentre.setText("-" + txtPrimObstacleDistFromCentre.getText());
 		}
 	}

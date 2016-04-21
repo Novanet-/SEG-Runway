@@ -3,10 +3,7 @@ package application.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Airport
 {
@@ -94,9 +91,24 @@ public class Airport
 		runways.add(runway);
 	}
 
-	public final void removeRunway(Runway runway) {
+
+	public final void updateRunway(String oldAlignment, Runway newRunway)
+	{
+		for (Runway r : runways)
+		{
+			if (Objects.equals(r.getAlignment(), oldAlignment))
+			{
+				runways.set(runways.indexOf(r), newRunway);
+			}
+		}
+	}
+
+
+	public final void removeRunway(Runway runway)
+	{
 		runways.remove(runway);
-		for (Runway rw : runways) {
+		for (Runway rw : runways)
+		{
 			System.out.println(rw.getAlignment());
 		}
 	}

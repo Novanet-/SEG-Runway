@@ -33,7 +33,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 
-
 public class ExportController
 {
 
@@ -46,8 +45,7 @@ public class ExportController
 	}
 
 
-	public void exportAirport(Main mainApp, DocumentBuilderFactory dbf, Airport airport, int exportType)
-			throws Exception
+	public void exportAirport(Main mainApp, DocumentBuilderFactory dbf, Airport airport, int exportType) throws Exception
 	{
 
 		FileChooser fileChooser = new FileChooser();
@@ -73,10 +71,7 @@ public class ExportController
 			StreamResult newfile = new StreamResult(file);
 			transformer.transform(source, newfile);
 
-			Notifications.create()
-					.title("Airport exported")
-					.text("Airport " + airport.getAirportName() + " exported to file " + file.getName() + ".")
-					.showWarning();
+			Notifications.create().title("Airport exported").text("Airport " + airport.getAirportName() + " exported to file " + file.getName() + ".").showWarning();
 
 		}
 		catch (ParserConfigurationException pce)
@@ -127,8 +122,7 @@ public class ExportController
 	}
 
 
-	public void exportRunway(Main mainApp, DocumentBuilderFactory dbf, String airportName, Runway runway,
-			int exportType) throws Exception
+	public void exportRunway(Main mainApp, DocumentBuilderFactory dbf, String airportName, Runway runway, int exportType) throws Exception
 	{
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Export Runway");
@@ -153,10 +147,7 @@ public class ExportController
 			StreamResult newfile = new StreamResult(file);
 			transformer.transform(source, newfile);
 
-			Notifications.create()
-					.title("Runway exported")
-					.text("Runway " + runway.getAlignment() + " exported to file " + file.getName() + ".")
-					.showWarning();
+			Notifications.create().title("Runway exported").text("Runway " + runway.getAlignment() + " exported to file " + file.getName() + ".").showWarning();
 
 		}
 		catch (ParserConfigurationException pce)
@@ -226,10 +217,7 @@ public class ExportController
 			StreamResult newfile = new StreamResult(file);
 			transformer.transform(source, newfile);
 
-			Notifications.create()
-					.title("Obstacle exported")
-					.text("Obstacle " + obstacle.getName() + " exported to file " + file.getName() + ".")
-					.showWarning();
+			Notifications.create().title("Obstacle exported").text("Obstacle " + obstacle.getName() + " exported to file " + file.getName() + ".").showWarning();
 
 		}
 		catch (ParserConfigurationException pce)

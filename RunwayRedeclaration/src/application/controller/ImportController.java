@@ -55,10 +55,7 @@ public class ImportController
 				a.addRunway(importRunwayElement(runwayElement));
 			}
 
-			Notifications.create()
-					.title("Airport imported")
-					.text("Airport " + a.getAirportName() + " imported from file.")
-					.showWarning();
+			Notifications.create().title("Airport imported").text("Airport " + a.getAirportName() + " imported from file.").showWarning();
 
 			return a;
 
@@ -98,13 +95,9 @@ public class ImportController
 			Document dom = db.parse(file);
 			Element root = dom.getDocumentElement();
 
-
 			Runway runway = importRunwayElement(root);
 
-			Notifications.create()
-					.title("Runway imported")
-					.text("Runway " + runway.getAlignment() + " imported from file.")
-					.showWarning();
+			Notifications.create().title("Runway imported").text("Runway " + runway.getAlignment() + " imported from file.").showWarning();
 
 			return runway;
 			//TODO: handle obstacles
@@ -171,10 +164,7 @@ public class ImportController
 
 			Obstacle obstacle = importObstacleElement(root);
 
-			Notifications.create()
-					.title("Obstacle imported")
-					.text("Obstacle " + obstacle.getName() + " imported from file.")
-					.showWarning();
+			Notifications.create().title("Obstacle imported").text("Obstacle " + obstacle.getName() + " imported from file.").showWarning();
 
 			return obstacle;
 
