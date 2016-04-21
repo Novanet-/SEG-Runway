@@ -387,18 +387,17 @@ public class MainScreenController
         } else if (Objects.equals(txtObstacles.getText(), "") && !btnAddObstacle.isVisible()) {
             toggleObstacleButton();
         }
+        airportSelected = false;
     }
 
 
     @FXML
     private void handleBtnDeleteRunway()
     {
-        cmbAirports.getValue().getRunways().remove(cmbRunways.getValue());
-        try {
-            updateRunwayList();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Runway runway = cmbRunways.getValue();
+        cmbRunways.setValue(null);
+        //cmbAirports.getValue().getRunways().remove(runway);
+        //updateCmbAirports();
     }
 
 
